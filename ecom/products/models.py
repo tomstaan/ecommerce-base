@@ -7,7 +7,7 @@ def get_image_path(instance, filename):
     return os.path.join('photos', str(instance.product_id), filename)
 
 # Create your models here.
-class product(models.Model):
+class Product(models.Model):
     #sku = models.CharField(max_length=15, blank=True)
     #idsku = models.CharField(blank=True, max_length=255)
     #vendor_product_id = models.CharField(max_length=255, blank=True)
@@ -15,7 +15,7 @@ class product(models.Model):
     product_description = models.CharField(max_length=2000, blank=True)
     product_image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
     supplier_id = models.CharField(max_length=255, blank=True)
-    category_id = models.CharField(max_length=255, blank=True)
+    category_id = models.ForeignKey('Product_categories', on_delete=models.CASCADE, blank=True, null=True)
     quantity_per_unit = models.IntegerField()
     unit_price = models.DecimalField(max_digits=8, decimal_places=2)
     msrp = models.DecimalField(max_digits=8, decimal_places=2, blank=True)
@@ -30,22 +30,18 @@ class product(models.Model):
     discount_price = models.DecimalField(max_digits=8, decimal_places=2)
     note = models.CharField(max_length=500, blank=True)
     date = models.DateTimeField(default=datetime.now, blank=True)
-    
 
-    class Meta:
-        verbose_name_plural = "Products"
 
 
 # Create your models here.
-class subproduct(models.Model):
+class Subproduct(models.Model):
     #sku = models.CharField(max_length=15, blank=True)
     #idsku = models.CharField(blank=True, max_length=255)
     #vendor_product_id = models.CharField(max_length=255, blank=True)
-    parent_product = models.ForeignKey(product, on_delete=models.CASCADE)
+    parent_product = models.ForeignKey(Product, on_delete=models.CASCADE)
     product_name = models.CharField(max_length=255)
     product_description = models.CharField(max_length=2000, blank=True)
     supplier_id = models.CharField(max_length=255, blank=True)
-    category_id = models.CharField(max_length=255, blank=True)
     quantity_per_unit = models.IntegerField()
     unit_price = models.DecimalField(max_digits=8, decimal_places=2)
     msrp = models.DecimalField(max_digits=8, decimal_places=2, blank=True)
@@ -61,15 +57,9 @@ class subproduct(models.Model):
     note = models.CharField(max_length=500, blank=True)
     date = models.DateTimeField(default=datetime.now, blank=True)
 
-    class Meta:
-        verbose_name_plural = "Subproducts"
-
-class product_categories(models.Model):
+class Product_categories(models.Model):
     name = models.CharField(max_length=128, null=False)
     description = models.CharField(max_length=500)
     active = models.BooleanField(default=True, null=False)
-
-    class Meta:
-        verbose_name_plural = "Product Categories"
-
+    
 
