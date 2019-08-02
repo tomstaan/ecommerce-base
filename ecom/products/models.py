@@ -1,9 +1,10 @@
 import os
 from django.db import models
+from datetime import datetime
 
 
 def get_image_path(instance, filename):
-    return os.path.join('photos', str(instance.post_id), filename)
+    return os.path.join('photos', str(instance.product_id), filename)
 
 # Create your models here.
 class product(models.Model):
@@ -12,7 +13,7 @@ class product(models.Model):
     #vendor_product_id = models.CharField(max_length=255, blank=True)
     product_name = models.CharField(max_length=255)
     product_description = models.CharField(max_length=2000, blank=True)
-    post_image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
+    product_image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
     supplier_id = models.CharField(max_length=255, blank=True)
     category_id = models.CharField(max_length=255, blank=True)
     quantity_per_unit = models.IntegerField()
@@ -22,12 +23,14 @@ class product(models.Model):
     color = models.CharField(blank=True, max_length=20)
     discount = models.DecimalField(max_digits=4, decimal_places=2, blank=True)
     unit_weight = models.DecimalField(max_digits=10, decimal_places=3)
-    units_in_stock = models.IntegerField()
+    units_in_stock = models.IntegerField() 
     units_on_order = models.IntegerField(blank=True)
     product_availible = models.BooleanField(default=False)
     discount_availible = models.BooleanField(default=False)
     discount_price = models.DecimalField(max_digits=8, decimal_places=2)
     note = models.CharField(max_length=500, blank=True)
+    date = models.DateTimeField(default=datetime.now, blank=True)
+    
 
     class Meta:
         verbose_name_plural = "Products"
@@ -50,15 +53,23 @@ class subproduct(models.Model):
     color = models.CharField(blank=True, max_length=20)
     discount = models.DecimalField(max_digits=4, decimal_places=2, blank=True)
     unit_weight = models.DecimalField(max_digits=10, decimal_places=3)
-    units_in_stock = models.IntegerField()
-    units_on_order = models.IntegerField(blank=True)
+    units_in_stock = models.IntegerField(default=0, blank=True)
+    units_on_order = models.IntegerField(default=0, blank=True)
     product_availible = models.BooleanField(default=False)
     discount_availible = models.BooleanField(default=False)
     discount_price = models.DecimalField(max_digits=8, decimal_places=2)
     note = models.CharField(max_length=500, blank=True)
+    date = models.DateTimeField(default=datetime.now, blank=True)
 
     class Meta:
         verbose_name_plural = "Subproducts"
 
+class product_categories(models.Model):
+    name = models.CharField(max_length=128, null=False)
+    description = models.CharField(max_length=500)
+    active = models.BooleanField(default=True, null=False)
+
+    class Meta:
+        verbose_name_plural = "Product Categories"
 
 
