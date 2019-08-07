@@ -1,0 +1,144 @@
+.headerCont{
+    width: 100%;
+    position: relative;
+    margin: auto;
+    background-color: #fff;
+}
+.headerLmt{
+    position: relative;
+    max-width: 1600px;
+    width: 95%;
+    margin: auto;
+}
+.headerCont header{
+    width: 100%;
+    position: relative;
+    margin: auto;
+    background-color: #fff;
+    height: 50px;
+    border-bottom: solid #F6F6F6 1px;
+}
+
+.headerLogo{
+    position: absolute;
+    left: 0px;
+    height: 28px;
+    width: 74px;
+    padding-top: 10px;
+}
+.headerLogo img{
+    position: relative;
+    top: 0px;
+    left: 0px;
+    height: 30px;
+    width: auto;
+    -webkit-user-select: none;  /* Chrome all / Safari all */
+    -moz-user-select: none;     /* Firefox all */
+    -ms-user-select: none;      /* IE 10+ */
+}
+
+.headerUserMenu{
+    position: absolute;
+    right: 0px;
+}
+.headerUserMenu ul{
+    position: relative;
+    float: left;
+}
+.headerUserMenu li{
+    float: right;
+    position: relative;
+    list-style: none;
+}
+
+.userMenuProfile{
+    position: relative;
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+    overflow: hidden;
+    background-color: #DEDEDE;
+    margin: 5px;
+    border-radius: 100%;
+    transition: .3s ease;
+    background-image: url('./images/user.png');
+    background-size: contain;
+}
+
+.userMenuProfile:hover{
+    opacity: .85;
+}
+
+.userMenuMessage{
+    position: relative;
+    height: 28px;
+    margin: 11px;
+    cursor: pointer;
+    width: 28px;
+    transition: .3s ease;
+    background-image: url('./images/message.png');
+    background-size: contain;
+}
+.userMenuMessage:hover{
+    opacity: .8;
+}
+.userMenuMessageAlert{
+    position: relative;
+    float:right;
+    transition: .3s ease;
+    height:14px ;
+    top: -2px;
+    right: -2px;
+    width: 14px;
+    background-color: #FF0000;
+    border-radius: 100%;
+}
+
+.mainSearchCont{
+    position: relative;
+    width: 500px;
+    height: 50px; 
+    margin: auto;
+}
+
+.mainSearchBar{
+    height: 40px;
+    width: 100%;
+    position: absolute;
+    border-radius: 7px;
+    margin-top: 5px;
+    overflow: hidden;
+    background-color: #EFEFEF;
+}
+.mainSearchIcon{
+    position: relative;
+    float: left;
+    height: 40px;
+    width: 40px;
+    position: relative;
+    float: left;
+}
+.mainSearchImg{
+    position: relative;
+    background-image: url('./images/search.png');
+    background-size: contain;
+    height: 24px;
+    margin: 8px;
+    width: 24px;
+}
+.mainSearchBar input, .mainSearchBar input:active, .mainSearchBar input:hover, .mainSearchBar input:focus{
+    height: 40px;
+    width: 460px;
+    border: none;
+    outline: none;
+}
+
+.mainSearchBar input{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    padding-right: 8px;
+    color: #000;
+    padding-left: 0px;
+
+    background-color: transparent;
+}
