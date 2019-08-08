@@ -11,6 +11,7 @@
     margin: auto;
 }
 .headerCont header{
+    z-index: 101;
     width: 100%;
     position: relative;
     margin: auto;
@@ -140,4 +141,181 @@
     color: #000;
     padding-left: 0px;
     background-color: transparent;
+}
+
+.headerLower{
+    z-index: 100;
+    position: relative;
+    height: 50px;
+    width: 100%;
+    background-color: #fff;
+}
+
+.hlOptions{
+    position: relative;
+    float: left;
+}
+.hlDashboard{
+    cursor: pointer;
+    position: relative;
+    float: left;
+    margin-right: 15px;
+    top: 0px;
+    transition: .2s ease;
+    height: 48px;
+    opacity: .35;
+    border-bottom: 0px solid #0066FF;
+}
+.hlDashboard:hover{
+    opacity: 1;
+}
+.hlDashboard img{
+    position: relative;
+    height: 16px;
+    width: 16px;
+    float: left;
+    padding-top: 17px;
+    padding-right: 5px;
+}
+
+.hlDashText{
+    height: 35px;
+    top: 0px;
+    float: left;
+}
+
+.hlDashText h2{
+    line-height: 20px;
+    margin-top: 15px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    color: #000;
+    position: relative;
+    font-size: #000000;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.hlDashboardActive{
+    cursor: pointer;
+    position: relative;
+    float: left;
+    margin-right: 15px;
+    top: 0px;
+    height: 48px;
+    border-bottom: 2px solid #0066FF;
+}
+
+.hlDashboardActive img{
+    position: relative;
+    height: 16px;
+    width: 16px;
+    float: left;
+    padding-top: 17px;
+    padding-right: 5px;
+}
+
+.hlDashTextActive{
+    height: 35px;
+    top: 0px;
+    float: left;
+}
+
+.hlDashTextActive h2{
+    line-height: 20px;
+    margin-top: 15px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    color: #000;
+    position: relative;
+    font-size: #000000;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+
+/*sefefe*/
+
+
+
+.hlSettings{
+    cursor: pointer;
+    position: relative;
+    float: right;
+    margin-right: 8px;
+    top: 0px;
+    transition: .2s ease;
+    height: 48px;
+    opacity: .35;
+    border-bottom: 0px solid #0066FF;
+}
+.hlSettings:hover{
+    opacity: 1;
+}
+.hlSettings img{
+    position: relative;
+    height: 16px;
+    width: 16px;
+    float: left;
+    padding-top: 17px;
+    padding-right: 5px;
+}
+
+.hlSettText{
+    height: 35px;
+    top: 0px;
+    float: left;
+}
+
+.hlSettText h2{
+    line-height: 20px;
+    margin-top: 15px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    color: #000;
+    position: relative;
+    font-size: #000000;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.hlSettingsActive{
+    cursor: pointer;
+    position: relative;
+    float: right;
+    margin-right: 15px;
+    top: 0px;
+    height: 48px;
+    border-bottom: 2px solid #0066FF;
+}
+
+.hlSettingsActive img{
+    position: relative;
+    height: 16px;
+    width: 16px;
+    float: left;
+    padding-top: 17px;
+    padding-right: 5px;
+}
+
+.hlSettTextActive{
+    height: 35px;
+    top: 0px;
+    float: left;
+}
+
+.hlSettTextActive h2{
+    line-height: 20px;
+    margin-top: 15px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    color: #000;
+    position: relative;
+    font-size: #000000;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: 'Open Sans', sans-serif;
 }

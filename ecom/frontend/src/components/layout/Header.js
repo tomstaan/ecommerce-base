@@ -3,6 +3,9 @@ import './../style/header.css';
 
 //Images
 import logo from "./../style/images/headlogo.png";
+import dashboard from "./../style/images/dash.png";
+import product from "./../style/images/product.png";
+import settings from "./../style/images/sett.png";
 
 export default class Header extends Component {
     render() {
@@ -41,7 +44,31 @@ export default class Header extends Component {
                     </div>
                 </header>
                 <div className="headerLower">
-
+                    <div className="headerLmt">
+                        <div className="col-lg-12">
+                            <div className="hlOptions">
+                                <div className="hlDashboard">
+                                    <img src={ dashboard } alt="Dashboard" title="Dashboard"/>
+                                    <div className="hlDashText">
+                                        <h2>Dashboard</h2>
+                                    </div>
+                                </div>
+                                <div className="hlDashboardActive">
+                                    <img src={product} alt="ProductsActive" title="Products" />
+                                    <div className="hlDashText">
+                                        <h2>Products</h2>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div className="hlSettings">
+                                <img src={settings} alt="Settings" title="Settings" />
+                                <div className="hlSettText">
+                                    <h2>Settings</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         )
