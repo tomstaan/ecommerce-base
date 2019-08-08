@@ -71,10 +71,10 @@
 
 .userMenuMessage{
     position: relative;
-    height: 28px;
-    margin: 11px;
+    height: 24px;
+    margin: 13px;
     cursor: pointer;
-    width: 28px;
+    width: 24px;
     transition: .3s ease;
     background-image: url('./images/message.png');
     background-size: contain;
@@ -86,10 +86,10 @@
     position: relative;
     float:right;
     transition: .3s ease;
-    height:14px ;
+    height:12px ;
     top: -2px;
     right: -2px;
-    width: 14px;
+    width: 12px;
     background-color: #FF0000;
     border-radius: 100%;
 }
@@ -102,19 +102,19 @@
 }
 
 .mainSearchBar{
-    height: 40px;
+    height: 35px;
     width: 100%;
     position: absolute;
     border-radius: 7px;
-    margin-top: 5px;
+    margin-top: 7.5px;
     overflow: hidden;
     background-color: #EFEFEF;
 }
 .mainSearchIcon{
     position: relative;
     float: left;
-    height: 40px;
-    width: 40px;
+    height: 35px;
+    width: 35px;
     position: relative;
     float: left;
 }
@@ -122,12 +122,12 @@
     position: relative;
     background-image: url('./images/search.png');
     background-size: contain;
-    height: 24px;
-    margin: 8px;
-    width: 24px;
+    height: 22px;
+    margin: 5.5px;
+    width: 22px;
 }
 .mainSearchBar input, .mainSearchBar input:active, .mainSearchBar input:hover, .mainSearchBar input:focus{
-    height: 40px;
+    height: 35px;
     width: 460px;
     border: none;
     outline: none;
@@ -135,10 +135,9 @@
 
 .mainSearchBar input{
     font-family: 'Open Sans', sans-serif;
-    font-size: 15px;
+    font-size: 14px;
     padding-right: 8px;
     color: #000;
     padding-left: 0px;
-
     background-color: transparent;
 }
