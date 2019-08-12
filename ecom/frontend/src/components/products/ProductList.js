@@ -10,6 +10,13 @@ import { getProducts } from "../../actions/products";
 import Case from "./../style/images/case.jpg";
 
 export class ProductList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedProducts: []
+    };
+  }
+
   static propTypes = {
     products: PropTypes.array.isRequired
   };
@@ -18,17 +25,38 @@ export class ProductList extends Component {
     this.props.getProducts();
   }
 
+  handleSelectChange(e) {
+    if (this.state.selectedProducts.indexOf(e.target.id) < 0) {
+      this.setState({
+        selectedProducts: [...this.state.selectedProducts, e.target.id]
+      });
+    } else {
+      var array = [...this.state.selectedProducts]; // make a separate copy of the array
+      var index = array.indexOf(e.target.id);
+      if (index !== -1) {
+        array.splice(index, 1);
+        this.setState({ selectedProducts: array });
+      }
+    }
+  }
+
   render() {
     return (
       <div className="plBack">
         <div className="col-lg-12">
-          <Fragment>
-            {this.props.products.map(product => (
+          {this.props.products.map(product => (
+            <Fragment key={product.id}>
               <div className="productBack">
                 <div className="selectProductCont">
                   <div className="selectProductBack">
-                    <input className="selectProductBox" type="checkbox" name="" id="" />
-                    <span className="selectProductCheck"></span>
+                    <input
+                      className="selectProductBox"
+                      type="checkbox"
+                      name={product.product_name}
+                      id={product.id}
+                      onClick={this.handleSelectChange.bind(this)}
+                    />
+                    <span className="selectProductCheck" />
                   </div>
                 </div>
                 <div className="productImageBox">
@@ -45,14 +73,18 @@ export class ProductList extends Component {
                     </div>
                     <div className="productQuant">
                       <h3 className="productBold">Quantity Per Unit</h3>
-                      <h3 className="productTxt">{product.quantity_per_unit}</h3>
+                      <h3 className="productTxt">
+                        {product.quantity_per_unit}
+                      </h3>
                     </div>
                   </div>
                   <div className="productDescBottom">
                     <div className="productPrice">
                       <div className="productPriceBox">
                         <label className="priceCurrencySign">€</label>
-                        <label className="priceAmount">{product.unit_price}</label>
+                        <label className="priceAmount">
+                          {product.unit_price}
+                        </label>
                       </div>
                     </div>
                     <div className="productDiscountCont">
@@ -92,13 +124,13 @@ export class ProductList extends Component {
                     </div>
                     <div className="productColor">
                       <h3 className="productBold">Supplier</h3>
-                      <h3 className="productTxt"></h3>
+                      <h3 className="productTxt" />
                     </div>
                   </div>
                 </div>
               </div>
-            ))}
-          </Fragment>
+            </Fragment>
+          ))}
         </div>
       </div>
     );

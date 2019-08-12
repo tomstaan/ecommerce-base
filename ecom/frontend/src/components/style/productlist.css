@@ -13,6 +13,7 @@
     margin-bottom: 10px;
     width: 100%;
     overflow: hidden;
+    
 }
 
 .selectProductCont{
@@ -54,7 +55,6 @@
 .selectProductBack input:checked ~ .selectProductBack {
   border-color: #707070;
 }
-
 .selectProductCont input{
     position: absolute;
   opacity: 0;
@@ -267,3 +267,4 @@
     margin-bottom: 11px;
     float: left;
 }
+
