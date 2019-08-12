@@ -37,7 +37,7 @@ export default class Header extends Component {
                                     <div className="mainSearchIcon">
                                         <div className="mainSearchImg"></div>
                                     </div>
-                                    <input type="search" name="mainsearch" id="mainsearch" autocomplete="off" />
+                                    <input type="search" name="mainsearch" id="mainsearch" autoComplete="off" />
                                 </div>
                             </div>
                         </div>

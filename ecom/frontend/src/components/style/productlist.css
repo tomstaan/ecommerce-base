@@ -1,0 +1,269 @@
+.plBack{
+    
+    position: relative;
+    width: 95%;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.productBack{
+    position:relative;
+    background-color: #fff;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.selectProductCont{
+    position: relative;
+    background-color: #fff;
+    float: left;
+    border-right:1px solid #EFEFEF;
+    height: 58px;
+    margin-top: 11px;
+    margin-bottom: 11px;
+}
+
+.selectProductBack{
+    display: block;
+    cursor: pointer;
+    position: relative;
+    height: 20px;
+    background-color: #fff;
+    width: 20px;
+    border-radius: 3px;
+    border: 2px #efefef solid;
+    margin: 17px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    transition: .3s ease;
+}
+
+.selectProductBack input:checked ~ .selectProductCheck {
+  display: block;
+  opacity:1 ;
+}
+.selectProductBack input:hover ~ .selectProductCheck {
+  display: block;
+  opacity:.4 ;
+  transition: .3s ease;
+}
+.selectProductBack input:checked ~ .selectProductBack {
+  border-color: #707070;
+}
+
+.selectProductCont input{
+    position: absolute;
+  opacity: 0;
+  background-color: transparent;
+  color: transparent;
+  cursor: pointer;
+  height: 16px;
+  width: 16px;
+  transition: .3s ease;
+}
+.selectProductCheck:active{
+    display: block;
+    opacity: 1;
+}
+
+.selectProductCheck{
+    opacity: 1;
+    display: none;
+    pointer-events: none;
+    position: absolute;
+  top: 0;
+  left: 0;
+  height: 16px;
+   top: 2px;
+    left: 2px;
+    transition: .3s ease;
+    padding: 0px;
+    border-radius: 1px;
+    margin: 0px;
+  width: 16px;
+  background-color: #0066ff;
+}
+/*
+.selectProductCont input:checked{
+    cursor: pointer;
+    position: relative;
+    height: 22px;
+    width: 22px;
+    border-radius: 3px;
+    border: 2px #707070 solid;
+    margin: 17px;
+}
+
+.selectProductFill{
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    background-color: #0066ff;
+    border-radius: 1.5px;
+    top: 2px;
+    left: 2px;
+    padding: 0px;
+    margin: 0px;
+}
+*/
+
+.productImageBox{
+    float: left;
+    position: relative;
+    width: 105px;
+    height: 74px;
+    overflow: hidden;
+    background-color: #efefef;
+    margin: 3px;
+}
+.productImageBox img{
+    position:absolute;
+    width: 100%;
+    height: auto;
+}
+
+.productDescBack{
+    position: relative;
+    float: left;
+    margin-left: 10px;
+}
+.productDescTop{
+    position: relative;
+    height: 40px;
+    top: 0px;
+}
+.productDescBottom{
+    position: relative;
+    height: 40px;
+    top: 0px;
+}
+.productDescTitle{
+    position: relative;
+    height: 40px;
+    width: 300px;
+    max-width: 300px;
+    overflow: hidden;
+    float: left;
+}
+.productDescTitle h3{
+    position: relative;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    line-height: 40px;
+}
+.productColor{
+    position: relative;
+    height: 40px;
+    float: left;
+    overflow: hidden;
+    max-width: 95px;
+    width: 95px;
+}
+.productBold{
+    position: relative;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 15px;
+    margin-top: 5px;
+}
+.productTxt{
+    position: relative;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 15px;
+    margin-top: 0px;
+}
+.productQuant{
+    position: relative;
+    height: 40px;
+    float: left;
+    overflow: hidden;
+    max-width: 140px;
+    width: 140px;
+}
+.productPrice{
+    position: relative;
+    float: left;
+    margin-right: 10px;
+    height: 40px;
+    width: 120px;
+    overflow: hidden;
+}
+.productPriceBox{
+    position: relative;
+    height: 30px;
+    float: left;
+    width: 120px;
+    margin-top: 5px;
+    background-color: #efefef;
+    border-radius: 4px;
+}
+.priceCurrencySign{
+    font-family: 'Open Sans', sans-serif;
+    position: relative;
+    color: #000;
+    text-align: left;
+    font-size: 14px;
+    line-height: 30px;
+    padding-left: 5px;
+}
+.priceAmount{
+    font-family: 'Open Sans', sans-serif;
+    position: relative;
+    color: #000;
+    font-size: 14px;
+    float: right;
+    text-align: right;
+    padding-right: 5px;
+    line-height: 30px;
+    padding-left: 5px;
+}
+.productDiscountCont{
+    position: relative;
+    height: 40px;
+    float: left;
+    overflow: hidden;
+    max-width: 80px;
+    width: 80px;
+}
+.productDiscActive{
+    position: relative;
+    color: #00CB44;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 15px;
+    margin-top: 0px;
+}
+.productDiscNot{
+    position: relative;
+    color: #ff0000;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 15px;
+    margin-top: 0px;
+}
+.productOriginalPrice{
+    position: relative;
+    height: 40px;
+    float: left;
+    overflow: hidden;
+    max-width: 90px;
+    width: 90px;
+}
+.productDivLine{
+    position: relative;
+    height: 58px;
+    width: 1px;
+    background-color: #efefef;
+    margin-top: 11px;
+    margin-bottom: 11px;
+    float: left;
+}
