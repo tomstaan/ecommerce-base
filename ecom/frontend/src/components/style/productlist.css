@@ -1,9 +1,9 @@
 .plBack{
-    
     position: relative;
     width: 95%;
     margin: auto;
     margin-top: 20px;
+    max-width: 1600px;
 }
 
 .productBack{

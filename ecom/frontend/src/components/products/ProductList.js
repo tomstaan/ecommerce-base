@@ -4,7 +4,7 @@ import "./../style/productlist.css";
 //Displaying Products
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { getProducts } from "../../actions/products";
+import { getProducts, deleteProducts } from "../../actions/products";
 
 //Images
 import Case from "./../style/images/case.jpg";
@@ -13,12 +13,15 @@ export class ProductList extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      products: [],
       selectedProducts: []
     };
   }
 
   static propTypes = {
-    products: PropTypes.array.isRequired
+    products: PropTypes.array.isRequired,
+    getProducts: PropTypes.func.isRequired,
+    deleteProducts: PropTypes.func.isRequired
   };
 
   componentDidMount() {
@@ -40,20 +43,48 @@ export class ProductList extends Component {
     }
   }
 
+  handleDeleteProducts(e){
+    if(this.state.selectedProducts.length > 0){
+      this.state.selectedProducts.forEach(id => {
+        this.props.deleteProducts(id);
+        this.setState({
+          products: this.state.products.filter(product => product.id !== id)
+        })
+      });
+      this.setState({
+        selectedProducts: []
+      });
+      location.reload();
+      //this.updateProductList(productListCopy);
+    } 
+  }
+/*
+  updateProductList(productListCopy){
+    this.state.selectedProducts.forEach(selectId => {
+      this.setState({
+        products: productListCopy.filter(product => product.id !== selectId)
+      })
+    });
+    this.setState({
+      selectedProducts: []
+    });
+  }
+*/
   render() {
     return (
       <div className="plBack">
         <div className="col-lg-12">
-          {this.props.products.map(product => (
-            <Fragment key={product.id}>
-              <div className="productBack">
+          <Fragment>
+          {this.props.products.map(Product => {
+            return (
+            <div className="productBack" key={Product.id}>
                 <div className="selectProductCont">
                   <div className="selectProductBack">
                     <input
                       className="selectProductBox"
                       type="checkbox"
-                      name={product.product_name}
-                      id={product.id}
+                      name={Product.product_name}
+                      id={Product.id}
                       onClick={this.handleSelectChange.bind(this)}
                     />
                     <span className="selectProductCheck" />
@@ -65,16 +96,16 @@ export class ProductList extends Component {
                 <div className="productDescBack">
                   <div className="productDescTop">
                     <div className="productDescTitle">
-                      <h3>{product.product_name}</h3>
+                      <h3>{Product.product_name}</h3>
                     </div>
                     <div className="productColor">
                       <h3 className="productBold">Color</h3>
-                      <h3 className="productTxt">{product.color}</h3>
+                      <h3 className="productTxt">{Product.color}</h3>
                     </div>
                     <div className="productQuant">
                       <h3 className="productBold">Quantity Per Unit</h3>
                       <h3 className="productTxt">
-                        {product.quantity_per_unit}
+                        {Product.quantity_per_unit}
                       </h3>
                     </div>
                   </div>
@@ -83,7 +114,7 @@ export class ProductList extends Component {
                       <div className="productPriceBox">
                         <label className="priceCurrencySign">€</label>
                         <label className="priceAmount">
-                          {product.unit_price}
+                          {Product.unit_price}
                         </label>
                       </div>
                     </div>
@@ -93,15 +124,15 @@ export class ProductList extends Component {
                     </div>
                     <div className="productOriginalPrice">
                       <h3 className="productBold">Original Price</h3>
-                      <h3 className="productTxt">{product.unit_price}</h3>
+                      <h3 className="productTxt">{Product.unit_price}</h3>
                     </div>
                     <div className="productColor">
                       <h3 className="productBold">Size</h3>
-                      <h3 className="productTxt">{product.size}</h3>
+                      <h3 className="productTxt">{Product.size}</h3>
                     </div>
                     <div className="productQuant">
                       <h3 className="productBold">Category</h3>
-                      <h3 className="productTxt">{product.category_id}</h3>
+                      <h3 className="productTxt">{Product.category_id}</h3>
                     </div>
                   </div>
                 </div>
@@ -110,17 +141,17 @@ export class ProductList extends Component {
                   <div className="productDescTop">
                     <div className="productColor">
                       <h3 className="productBold">Units Available</h3>
-                      <h3 className="productTxt">{product.units_in_stock}</h3>
+                      <h3 className="productTxt">{Product.units_in_stock}</h3>
                     </div>
                     <div className="productColor">
                       <h3 className="productBold">MSRP</h3>
-                      <h3 className="productTxt">€{product.msrp}</h3>
+                      <h3 className="productTxt">€{Product.msrp}</h3>
                     </div>
                   </div>
                   <div className="productDescBottom">
                     <div className="productColor">
                       <h3 className="productBold">Units On Order</h3>
-                      <h3 className="productTxt">{product.units_on_order}</h3>
+                      <h3 className="productTxt">{Product.units_on_order}</h3>
                     </div>
                     <div className="productColor">
                       <h3 className="productBold">Supplier</h3>
@@ -129,9 +160,11 @@ export class ProductList extends Component {
                   </div>
                 </div>
               </div>
-            </Fragment>
-          ))}
+            
+            )})}
+          </Fragment>
         </div>
+        <button type="button" className="btn btn-primary" onClick={this.handleDeleteProducts.bind(this)}>Delete Selected</button>
       </div>
     );
   }
@@ -143,5 +176,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getProducts }
+  { getProducts, deleteProducts }
 )(ProductList);
