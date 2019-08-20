@@ -29,13 +29,13 @@ export class ProductList extends Component {
   }
 
   handleSelectChange(e) {
-    if (this.state.selectedProducts.indexOf(e.target.id) < 0) {
+    if (this.state.selectedProducts.indexOf(e.target) < 0) {
       this.setState({
-        selectedProducts: [...this.state.selectedProducts, e.target.id]
+        selectedProducts: [...this.state.selectedProducts, e.target]
       });
     } else {
       var array = [...this.state.selectedProducts]; // make a separate copy of the array
-      var index = array.indexOf(e.target.id);
+      var index = array.indexOf(e.target);
       if (index !== -1) {
         array.splice(index, 1);
         this.setState({ selectedProducts: array });
@@ -45,6 +45,8 @@ export class ProductList extends Component {
 
   handleDeleteProducts(e){
     if(this.state.selectedProducts.length > 0){
+      console.log(this.state.selectedProducts);
+      /*
       this.state.selectedProducts.forEach(id => {
         this.props.deleteProducts(id);
         this.setState({
@@ -54,9 +56,11 @@ export class ProductList extends Component {
       this.setState({
         selectedProducts: []
       });
-      location.reload();
+      //location.reload();
       //this.updateProductList(productListCopy);
+      */
     } 
+
   }
 /*
   updateProductList(productListCopy){
