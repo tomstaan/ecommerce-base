@@ -16,7 +16,7 @@ export const getProducts = () => dispatch => {
 };
 
 //Delete Tasks
-export const deleteProducts = id => dispatch => {
+export const deleteProducts = id => (dispatch) => {
     axios
       .delete(`/api/products/${id}/`)
       .then(res => {

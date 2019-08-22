@@ -29,13 +29,14 @@ export class ProductList extends Component {
   }
 
   handleSelectChange(e) {
-    if (this.state.selectedProducts.indexOf(e.target) < 0) {
+    if (this.state.selectedProducts.indexOf(e) < 0) {
       this.setState({
-        selectedProducts: [...this.state.selectedProducts, e.target]
+        selectedProducts: [...this.state.selectedProducts, e]
       });
+      console.log("Added = " + e);
     } else {
       var array = [...this.state.selectedProducts]; // make a separate copy of the array
-      var index = array.indexOf(e.target);
+      var index = array.indexOf(e);
       if (index !== -1) {
         array.splice(index, 1);
         this.setState({ selectedProducts: array });
@@ -43,45 +44,27 @@ export class ProductList extends Component {
     }
   }
 
-  handleDeleteProducts(e){
-    if(this.state.selectedProducts.length > 0){
-      console.log(this.state.selectedProducts);
-      /*
-      this.state.selectedProducts.forEach(id => {
-        this.props.deleteProducts(id);
-        this.setState({
-          products: this.state.products.filter(product => product.id !== id)
-        })
+  handleDeleteProducts(e) {
+    if (this.state.selectedProducts.length > 0) {
+      // Loops through each product id selected by user
+      this.state.selectedProducts.forEach(Product => {
+        console.log(Product.id);
+        this.props.deleteProducts(Product.id);
       });
+
+      // Clears selected list after items are deleted
       this.setState({
         selectedProducts: []
       });
-      //location.reload();
-      //this.updateProductList(productListCopy);
-      */
-    } 
-
+    }
   }
-/*
-  updateProductList(productListCopy){
-    this.state.selectedProducts.forEach(selectId => {
-      this.setState({
-        products: productListCopy.filter(product => product.id !== selectId)
-      })
-    });
-    this.setState({
-      selectedProducts: []
-    });
-  }
-*/
   render() {
-    return (
+    const productMapList = this.props.products ? (
       <div className="plBack">
         <div className="col-lg-12">
           <Fragment>
-          {this.props.products.map(Product => {
-            return (
-            <div className="productBack" key={Product.id}>
+            {this.props.products.map(Product => (
+              <div className="productBack" key={Product.id}>
                 <div className="selectProductCont">
                   <div className="selectProductBack">
                     <input
@@ -89,7 +72,7 @@ export class ProductList extends Component {
                       type="checkbox"
                       name={Product.product_name}
                       id={Product.id}
-                      onClick={this.handleSelectChange.bind(this)}
+                      onClick={this.handleSelectChange.bind(this, Product)}
                     />
                     <span className="selectProductCheck" />
                   </div>
@@ -161,16 +144,31 @@ export class ProductList extends Component {
                       <h3 className="productBold">Supplier</h3>
                       <h3 className="productTxt" />
                     </div>
+                    <button
+                      type="button"
+                      className="btn btn-primary"
+                      onClick={this.props.deleteProducts.bind(this, Product.id)}
+                    >
+                      delete product
+                    </button>
                   </div>
                 </div>
               </div>
-            
-            )})}
+            ))}
           </Fragment>
         </div>
-        <button type="button" className="btn btn-primary" onClick={this.handleDeleteProducts.bind(this)}>Delete Selected</button>
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={this.handleDeleteProducts.bind(this)}
+        >
+          Delete Selected
+        </button>
       </div>
+    ) : (
+      <div />
     );
+    return <div>{productMapList}</div>;
   }
 }
 
