@@ -29,6 +29,7 @@ export class ProductList extends Component {
   }
 
   handleSelectChange(e) {
+    console.log(this.props.selectAllChecked);
     if (this.state.selectedProducts.indexOf(e) < 0) {
       this.setState({
         selectedProducts: [...this.state.selectedProducts, e]
@@ -166,14 +167,17 @@ export class ProductList extends Component {
         </button>
       </div>
     ) : (
-      <div />
+      <div>
+        <h2>Loading...</h2>
+      </div>
     );
     return <div>{productMapList}</div>;
   }
 }
 
 const mapStateToProps = state => ({
-  products: state.products.products
+  products: state.products.products,
+  selectAllChecked: state.products.selectAllChecked
 });
 
 export default connect(

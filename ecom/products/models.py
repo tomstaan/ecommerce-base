@@ -29,7 +29,7 @@ class Product(models.Model):
     discount_availible = models.BooleanField(default=False)
     discount_price = models.DecimalField(max_digits=8, decimal_places=2)
     note = models.CharField(max_length=500, blank=True)
-    date = models.DateTimeField(default=datetime.now, blank=True)
+    date = models.DateTimeField(default=datetime.now(), blank=True)
 
 
 
@@ -55,7 +55,7 @@ class Subproduct(models.Model):
     discount_availible = models.BooleanField(default=False)
     discount_price = models.DecimalField(max_digits=8, decimal_places=2)
     note = models.CharField(max_length=500, blank=True)
-    date = models.DateTimeField(default=datetime.now, blank=True)
+    date = models.DateTimeField(default=datetime.now(), blank=True)
 
 class Product_categories(models.Model):
     name = models.CharField(max_length=128, null=False)

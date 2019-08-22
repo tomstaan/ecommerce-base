@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { GET_PRODUCTS, DELETE_PRODUCT } from "./types.js";
+import { GET_PRODUCTS, DELETE_PRODUCT, SELECT_ALL_PRODUCTS } from "./types.js";
 
 //Get Products
 export const getProducts = () => dispatch => {
@@ -15,7 +15,7 @@ export const getProducts = () => dispatch => {
     .catch(err => console.log(err));
 };
 
-//Delete Tasks
+//Delete Products
 export const deleteProducts = id => (dispatch) => {
     axios
       .delete(`/api/products/${id}/`)
@@ -29,3 +29,9 @@ export const deleteProducts = id => (dispatch) => {
       .catch(err => console.log(err));
 };
 
+//Select All Products
+export const selectAllProducts = () => (dispatch) => {
+  dispatch({
+    type: SELECT_ALL_PRODUCTS
+  });
+};

@@ -210,3 +210,107 @@
    -ms-user-select: none;
    user-select: none;
 }
+
+
+
+.selectProductContOpt{
+    position: relative;
+    background-color: transparent;
+    float: left;
+}
+
+.selectProductBackOpt{
+    display: block;
+    cursor: pointer;
+    position: relative;
+    height: 20px;
+    background-color: #fff;
+    width: 20px;
+    border-radius: 3px;
+    border: 2px #efefef solid;
+    margin: 5.5px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    transition: .3s ease;
+}
+.selectProductBackOpt input:hover ~ .selectProductCheckOpt {
+  display: block;
+  opacity:.4 ;
+  transition: .3s ease;
+}
+.selectProductContOpt input{
+    position: absolute;
+  opacity: 0;
+  background-color: transparent;
+  color: transparent;
+  cursor: pointer;
+  height: 16px;
+  width: 16px;
+  transition: .3s ease;
+}
+.selectProductCheckOpt:active{
+    display: block;
+    opacity: 1;
+}
+
+.selectProductCheckOpt{
+    opacity: 1;
+    display: block;
+    pointer-events: none;
+    position: absolute;
+  top: 0;
+  left: 0;
+  height: 16px;
+   top: 2px;
+    left: 2px;
+    transition: .3s ease;
+    padding: 0px;
+    border-radius: 1px;
+    margin: 0px;
+  width: 16px;
+  background-color: #0066ff;
+}
+.selectProductBackOpt input:checked ~ .selectProductCheckOpt {
+  display: block;
+  opacity:1 ;
+}
+/*
+.selectProductCont input:checked{
+    cursor: pointer;
+    position: relative;
+    height: 22px;
+    width: 22px;
+    border-radius: 3px;
+    border: 2px #707070 solid;
+    margin: 17px;
+}
+
+.selectProductFill{
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    background-color: #0066ff;
+    border-radius: 1.5px;
+    top: 2px;
+    left: 2px;
+    padding: 0px;
+    margin: 0px;
+}
+*/
+
+.productImageBoxOpt{
+    float: left;
+    position: relative;
+    width: 105px;
+    height: 74px;
+    overflow: hidden;
+    background-color: #efefef;
+    margin: 3px;
+}
+.productImageBoxOpt img{
+    position:absolute;
+    width: 100%;
+    height: auto;
+}
