@@ -16,6 +16,8 @@ export class ProductList extends Component {
       products: [],
       selectedProducts: []
     };
+
+    this.handleSelectAll = this.handleSelectAll.bind(this);
   }
 
   static propTypes = {
@@ -59,6 +61,34 @@ export class ProductList extends Component {
       });
     }
   }
+
+  handleSelectAll = e => this.setState({ [e.target.id]: e.target.checked });
+  /*
+  handleSelectAll(e) {
+    //Only allows unselect once before all elements are selected.
+    let allowOnce = true;
+
+    //Select all elements if true
+    if (this.props.selectAllChecked == true) {
+      this.props.products.forEach(Product =>{
+        //Check if product exists before adding it to array
+        if (this.state.selectedProducts.indexOf(e) < 0) {
+          this.handleSelectChange(e);
+        }
+        // Set back to true after select all is triggered
+        allowOnce = true;
+      })
+    } else if (this.props.selectAllChecked == false && allowOnce == true) {
+      //Set to false to prevent further unselects
+      allowOnce = false;
+
+      //Empty array after select all is unselected
+      this.setState({
+        selectedProducts: []
+      });
+    }
+  }
+  */
   render() {
     const productMapList = this.props.products ? (
       <div className="plBack">
@@ -72,6 +102,10 @@ export class ProductList extends Component {
                       className="selectProductBox"
                       type="checkbox"
                       name={Product.product_name}
+                      onChange={this.handleSelectAll}
+                      checked={this.state.selectedProducts.some(
+                        Prod => Prod.id === Product.id
+                      )}
                       id={Product.id}
                       onClick={this.handleSelectChange.bind(this, Product)}
                     />
