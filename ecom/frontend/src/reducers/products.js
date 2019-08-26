@@ -40,7 +40,12 @@ export default function(state = initalState, action) {
     case SELECT_ALL_PRODUCTS:
       return {
         ...state,
-        selectAllChecked: !state.selectAllChecked
+        selectAllChecked: !state.selectAllChecked,
+        products: state.products.map(Product =>
+          Product.selected !== !state.selectAllChecked
+            ? { ...Product, selected: !state.selectAllChecked }
+            : Product
+        )
       };
     default:
       return state;
