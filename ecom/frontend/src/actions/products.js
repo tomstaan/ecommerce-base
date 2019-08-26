@@ -1,6 +1,11 @@
 import axios from "axios";
 
-import { GET_PRODUCTS, DELETE_PRODUCT, SELECT_ALL_PRODUCTS } from "./types.js";
+import {
+  GET_PRODUCTS,
+  DELETE_PRODUCT,
+  SELECT_ALL_PRODUCTS,
+  HANDLE_PRODUCT_SELECT
+} from "./types.js";
 
 //Get Products
 export const getProducts = () => dispatch => {
@@ -16,22 +21,30 @@ export const getProducts = () => dispatch => {
 };
 
 //Delete Products
-export const deleteProducts = id => (dispatch) => {
-    axios
-      .delete(`/api/products/${id}/`)
-      .then(res => {
-        //Message for adding leads
-        dispatch({
-          type: DELETE_PRODUCT,
-          payload: id
-        });
-      })
-      .catch(err => console.log(err));
+export const deleteProducts = id => dispatch => {
+  axios
+    .delete(`/api/products/${id}/`)
+    .then(res => {
+      //Message for adding leads
+      dispatch({
+        type: DELETE_PRODUCT,
+        payload: id
+      });
+    })
+    .catch(err => console.log(err));
 };
 
 //Select All Products
-export const selectAllProducts = () => (dispatch) => {
+export const selectAllProducts = () => dispatch => {
   dispatch({
     type: SELECT_ALL_PRODUCTS
+  });
+};
+
+//Select All Products
+export const handleProductSelect = id => dispatch => {
+  dispatch({
+    type: HANDLE_PRODUCT_SELECT,
+    payload: id
   });
 };

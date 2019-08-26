@@ -4,7 +4,7 @@ import "./../style/productlist.css";
 //Displaying Products
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { getProducts, deleteProducts } from "../../actions/products";
+import { getProducts, deleteProducts, handleProductSelect } from "../../actions/products";
 
 //Images
 import Case from "./../style/images/case.jpg";
@@ -16,20 +16,20 @@ export class ProductList extends Component {
       products: [],
       selectedProducts: []
     };
-
-    this.handleSelectAll = this.handleSelectAll.bind(this);
   }
 
   static propTypes = {
     products: PropTypes.array.isRequired,
     getProducts: PropTypes.func.isRequired,
-    deleteProducts: PropTypes.func.isRequired
+    deleteProducts: PropTypes.func.isRequired,
+    handleProductSelect: PropTypes.func.isRequired
   };
 
   componentDidMount() {
     this.props.getProducts();
   }
 
+  /*
   handleSelectChange(e) {
     console.log(this.props.selectAllChecked);
     if (this.state.selectedProducts.indexOf(e) < 0) {
@@ -46,6 +46,7 @@ export class ProductList extends Component {
       }
     }
   }
+  */
 
   handleDeleteProducts(e) {
     if (this.state.selectedProducts.length > 0) {
@@ -62,8 +63,22 @@ export class ProductList extends Component {
     }
   }
 
-  handleSelectAll = e => this.setState({ [e.target.id]: e.target.checked });
   /*
+  handleSelectAll(e) {
+    const { value, checked } = e.target;
+
+    if (checked) {
+      this.setState(prevState => ({
+        selectedProducts: [...prevState.selectedProducts, e * 1]
+      }));
+    } else {
+      this.setState(prevState => ({
+        selectedProducts: prevState.selectedProducts.filter(item => item != e)
+      }));
+    }
+  }
+
+  
   handleSelectAll(e) {
     //Only allows unselect once before all elements are selected.
     let allowOnce = true;
@@ -102,12 +117,9 @@ export class ProductList extends Component {
                       className="selectProductBox"
                       type="checkbox"
                       name={Product.product_name}
-                      onChange={this.handleSelectAll}
-                      checked={this.state.selectedProducts.some(
-                        Prod => Prod.id === Product.id
-                      )}
+                      onChange={this.props.handleProductSelect.bind(this, Product.id)}
+                      checked={Product.selected}
                       id={Product.id}
-                      onClick={this.handleSelectChange.bind(this, Product)}
                     />
                     <span className="selectProductCheck" />
                   </div>
@@ -216,5 +228,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getProducts, deleteProducts }
+  { getProducts, deleteProducts, handleProductSelect }
 )(ProductList);
