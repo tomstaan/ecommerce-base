@@ -21,7 +21,6 @@ export default function(state = initalState, action) {
         }))
       };
     case DELETE_PRODUCT:
-      console.log("Action = " + action.payload);
       return {
         ...state,
         products: state.products.filter(

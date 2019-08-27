@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import "./../style/products.css";
@@ -14,23 +14,16 @@ export class Options extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectAllChecked: this.props.selectAllChecked
+      selectAllChecked: []
     };
   }
-
-  componentDidMount() {
-    this.setState({ selectAllChecked: this.props.selectAllChecked });
-  }
-
-  handleSelectAll = () => {
-    this.setState({
-      selectAllChecked: !this.state.selectAllChecked
-    });
-    this.props.selectAllProducts();
+  static propTypes = {
+    selectAllChecked: PropTypes.bool.isRequired,
+    selectAllProducts: PropTypes.func.isRequired
   };
 
-  handleChange = e => {
-    this.setState({ selectAllChecked: e.target.checked });
+  handleSelectAll = () => {
+    this.props.selectAllProducts();
   };
 
   render() {
@@ -43,12 +36,13 @@ export class Options extends Component {
                 className="selectProductBoxOpt"
                 type="checkbox"
                 name="Select All"
-                checked={this.state.isChecked}
-                onChange={this.handleChange.bind(this)}
+                checked={this.props.selectAllChecked}
+                onChange={this.props.selectAllProducts}
+                onClick={this.handleSelectAll}
               />
               <span
                 className={
-                  this.state.selectAllChecked ? "selectProductCheckOpt" : ""
+                  this.props.selectAllChecked ? "selectProductCheckOpt" : ""
                 }
               />
             </div>
@@ -87,7 +81,7 @@ export class Options extends Component {
 }
 
 const mapStateToProps = state => ({
-  selectAllChecked: state.selectAllChecked
+  selectAllChecked: state.products.selectAllChecked
 });
 
 export default connect(

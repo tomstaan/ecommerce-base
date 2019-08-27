@@ -4,7 +4,12 @@ import "./../style/productlist.css";
 //Displaying Products
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { getProducts, deleteProducts, handleProductSelect } from "../../actions/products";
+import {
+  getProducts,
+  deleteProducts,
+  handleProductSelect,
+  selectAllProducts
+} from "../../actions/products";
 
 //Images
 import Case from "./../style/images/case.jpg";
@@ -22,88 +27,22 @@ export class ProductList extends Component {
     products: PropTypes.array.isRequired,
     getProducts: PropTypes.func.isRequired,
     deleteProducts: PropTypes.func.isRequired,
-    handleProductSelect: PropTypes.func.isRequired
+    handleProductSelect: PropTypes.func.isRequired,
+    selectAllProducts: PropTypes.func.isRequired
   };
 
   componentDidMount() {
     this.props.getProducts();
   }
 
-  /*
-  handleSelectChange(e) {
-    console.log(this.props.selectAllChecked);
-    if (this.state.selectedProducts.indexOf(e) < 0) {
-      this.setState({
-        selectedProducts: [...this.state.selectedProducts, e]
-      });
-      console.log("Added = " + e);
-    } else {
-      var array = [...this.state.selectedProducts]; // make a separate copy of the array
-      var index = array.indexOf(e);
-      if (index !== -1) {
-        array.splice(index, 1);
-        this.setState({ selectedProducts: array });
-      }
-    }
-  }
-  */
-
   handleDeleteProducts(e) {
-    if (this.state.selectedProducts.length > 0) {
-      // Loops through each product id selected by user
-      this.state.selectedProducts.forEach(Product => {
-        console.log(Product.id);
-        this.props.deleteProducts(Product.id);
-      });
-
-      // Clears selected list after items are deleted
-      this.setState({
-        selectedProducts: []
-      });
-    }
+    //Delete all selected products
+    this.props.products.forEach(Product =>
+      Product.selected === true ? this.props.deleteProducts(Product.id) : ""
+    );
+    this.props.selectAllProducts();
   }
 
-  /*
-  handleSelectAll(e) {
-    const { value, checked } = e.target;
-
-    if (checked) {
-      this.setState(prevState => ({
-        selectedProducts: [...prevState.selectedProducts, e * 1]
-      }));
-    } else {
-      this.setState(prevState => ({
-        selectedProducts: prevState.selectedProducts.filter(item => item != e)
-      }));
-    }
-  }
-
-  
-  handleSelectAll(e) {
-    //Only allows unselect once before all elements are selected.
-    let allowOnce = true;
-
-    //Select all elements if true
-    if (this.props.selectAllChecked == true) {
-      this.props.products.forEach(Product =>{
-        //Check if product exists before adding it to array
-        if (this.state.selectedProducts.indexOf(e) < 0) {
-          this.handleSelectChange(e);
-        }
-        // Set back to true after select all is triggered
-        allowOnce = true;
-      })
-    } else if (this.props.selectAllChecked == false && allowOnce == true) {
-      //Set to false to prevent further unselects
-      allowOnce = false;
-
-      //Empty array after select all is unselected
-      this.setState({
-        selectedProducts: []
-      });
-    }
-  }
-  */
   render() {
     const productMapList = this.props.products ? (
       <div className="plBack">
@@ -117,7 +56,10 @@ export class ProductList extends Component {
                       className="selectProductBox"
                       type="checkbox"
                       name={Product.product_name}
-                      onChange={this.props.handleProductSelect.bind(this, Product.id)}
+                      onChange={this.props.handleProductSelect.bind(
+                        this,
+                        Product.id
+                      )}
                       checked={Product.selected}
                       id={Product.id}
                     />
@@ -228,5 +170,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getProducts, deleteProducts, handleProductSelect }
+  { getProducts, deleteProducts, handleProductSelect, selectAllProducts }
 )(ProductList);
