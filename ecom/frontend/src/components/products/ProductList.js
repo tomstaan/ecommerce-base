@@ -35,14 +35,6 @@ export class ProductList extends Component {
     this.props.getProducts();
   }
 
-  handleDeleteProducts(e) {
-    //Delete all selected products
-    this.props.products.forEach(Product =>
-      Product.selected === true ? this.props.deleteProducts(Product.id) : ""
-    );
-    this.props.selectAllProducts();
-  }
-
   render() {
     const productMapList = this.props.products ? (
       <div className="plBack">
@@ -146,13 +138,6 @@ export class ProductList extends Component {
             ))}
           </Fragment>
         </div>
-        <button
-          type="button"
-          className="btn btn-primary"
-          onClick={this.handleDeleteProducts.bind(this)}
-        >
-          Delete Selected
-        </button>
       </div>
     ) : (
       <div>

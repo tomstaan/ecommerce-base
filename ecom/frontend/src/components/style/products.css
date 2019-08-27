@@ -1,280 +1,322 @@
-.productLimit{
-    position: relative;
-    margin-top: 0px;
-    max-width: 1600px;
-    width: 95%;
-    margin: auto;
-    margin-top: 10px;
-    height: 35px;
+.productLimit {
+  position: relative;
+  margin-top: 0px;
+  max-width: 1600px;
+  width: 95%;
+  margin: auto;
+  margin-top: 10px;
+  height: 35px;
 }
 
-.selectBox{
-    cursor: pointer;
-    position: relative;
-    transition: .2s ease;
-    float: left;
-    height: 35px;
-    width: 115px;
-    border-radius: 4px;
-    background-image: linear-gradient(to right top, #efefef, #f3f3f3, #f7f7f7, #fbfbfb, #ffffff);
-    -webkit-box-shadow: 0px 0px 23px -7px rgba(0,0,0,0.2);
-    -moz-box-shadow: 0px 0px 23px -7px rgba(0,0,0,0.2);
-    box-shadow: 0px 0px 23px -7px rgba(0,0,0,0.2);
+.selectBox {
+  cursor: pointer;
+  position: relative;
+  transition: 0.2s ease;
+  float: left;
+  height: 35px;
+  width: 115px;
+  border-radius: 4px;
+  background-image: linear-gradient(
+    to right top,
+    #efefef,
+    #f3f3f3,
+    #f7f7f7,
+    #fbfbfb,
+    #ffffff
+  );
+  -webkit-box-shadow: 0px 0px 23px -7px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 0px 23px -7px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 23px -7px rgba(0, 0, 0, 0.2);
 }
-.selectBox:active, .filterBox:active, .actionBox:active{
-    opacity: 1;
-    -webkit-box-shadow: 0px 0px 23px -7px rgba(0,0,0,0.0);
-    -moz-box-shadow: 0px 0px 23px -7px rgba(0,0,0,0.0);
-    box-shadow: 0px 0px 23px -7px rgba(0,0,0,0.0);
+.selectBox:active,
+.filterBox:active,
+.actionBox:active {
+  opacity: 1;
+  -webkit-box-shadow: 0px 0px 23px -7px rgba(0, 0, 0, 0);
+  -moz-box-shadow: 0px 0px 23px -7px rgba(0, 0, 0, 0);
+  box-shadow: 0px 0px 23px -7px rgba(0, 0, 0, 0);
 }
-.selectFrame{
-    position: relative;
-    float: left;
-    height: 20px;
-    width: 20px;
-    margin: 6.5px;
-    border-radius: 3px;
-    border: 2px solid #707070;
+.selectFrame {
+  position: relative;
+  float: left;
+  height: 20px;
+  width: 20px;
+  margin: 6.5px;
+  border-radius: 3px;
+  border: 2px solid #707070;
 }
-.selectCube{
-    position: absolute;
-    height: 16px;
-    width: 16px;
-    background-color: #0066ff;
-    border-radius: 1.5px;
-    top: 2px;
-    left: 2px;
-    padding: 0px;
-    margin: 0px;
+.selectCube {
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  background-color: #0066ff;
+  border-radius: 1.5px;
+  top: 2px;
+  left: 2px;
+  padding: 0px;
+  margin: 0px;
 }
-.selectText{
-    position: relative;
-    float: left;
-    margin-left: 4px;
+.selectText {
+  position: relative;
+  float: left;
+  margin-left: 4px;
 }
-.selectText h2{
-    position: relative;
-    font-weight: bold;
-    font-size: 13px;
-    font-family: 'Open Sans', sans-serif;
-    line-height: 35px;
-    color: #7A7A7A;
-    -moz-user-select: none;
-   -khtml-user-select: none;
-   -webkit-user-select: none;
-   -ms-user-select: none;
-   user-select: none;
-}
-
-.filterBox{
-    cursor: pointer;
-    position: relative;
-    transition: .2s ease;
-    margin-left: 10px;
-    float: left;
-    height: 35px;
-    width: 165px;
-    border-radius: 4px;
-    background-image: linear-gradient(to right top, #efefef, #f3f3f3, #f7f7f7, #fbfbfb, #ffffff);
-    -webkit-box-shadow: 0px 0px 23px -7px rgba(0,0,0,0.2);
-    -moz-box-shadow: 0px 0px 23px -7px rgba(0,0,0,0.2);
-    box-shadow: 0px 0px 23px -7px rgba(0,0,0,0.2);
-}
-.filterBox img, .actionBox img{
-    position: relative;
-    float: left;
-    height: 15px;
-    width: 15px;
-    margin: 10px;
-}
-.actionBox{
-    cursor: pointer;
-    position: relative;
-    transition: .2s ease;
-    margin-left: 10px;
-    float: left;
-    height: 35px;
-    width: 115px;
-    border-radius: 4px;
-    background-image: linear-gradient(to right top, #efefef, #f3f3f3, #f7f7f7, #fbfbfb, #ffffff);
-    -webkit-box-shadow: 0px 0px 23px -7px rgba(0,0,0,0.2);
-    -moz-box-shadow: 0px 0px 23px -7px rgba(0,0,0,0.2);
-    box-shadow: 0px 0px 23px -7px rgba(0,0,0,0.2);
-}
-.actionText{
-    position: relative;
-    float: left;
-    margin-left: 0px;
-}
-.actionText h2{
-    position: relative;
-    font-weight: bold;
-    font-size: 13px;
-    font-family: 'Open Sans', sans-serif;
-    line-height: 35px;
-    color: #7A7A7A;
-    -moz-user-select: none;
-   -khtml-user-select: none;
-   -webkit-user-select: none;
-   -ms-user-select: none;
-   user-select: none;
-}
-.AddProdBtn{
-    cursor: pointer;
-    position: relative;
-    transition: .2s ease;
-    margin-left: 10px;
-    float: right;
-    height: 35px;
-    width: 125px;
-    border-radius: 4px;
-    background-color: #0066ff;
-    -webkit-box-shadow: 0px 0px 23px -7px rgba(0,0,0,0.2);
-    -moz-box-shadow: 0px 0px 23px -7px rgba(0,0,0,0.2);
-    box-shadow: 0px 0px 23px -7px rgba(0,0,0,0.2);
-}
-.AddProdBtn:active{
-    opacity: 1;
-    -webkit-box-shadow: 0px 0px 23px -7px rgba(0,0,0,0.0);
-    -moz-box-shadow: 0px 0px 23px -7px rgba(0,0,0,0.0);
-    box-shadow: 0px 0px 23px -7px rgba(0,0,0,0.0);
-}
-.AddProdBtn img{
-    position: relative;
-    float: left;
-    height: 20px;
-    width: 20px;
-    margin: 7.5px;
-}
-.AddProdText{
-    position: relative;
-    float: left;
-    margin-left: 0px;
-}
-.AddProdText h2{
-    position: relative;
-    font-weight: normal;
-    font-size: 13px;
-    font-family: 'Open Sans', sans-serif;
-    line-height: 35px;
-    color: #fff;
-    -moz-user-select: none;
-   -khtml-user-select: none;
-   -webkit-user-select: none;
-   -ms-user-select: none;
-   user-select: none;
+.selectText h2 {
+  position: relative;
+  font-weight: bold;
+  font-size: 13px;
+  font-family: "Open Sans", sans-serif;
+  line-height: 35px;
+  color: #7a7a7a;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-.AddProdCatBtn{
-    cursor: pointer;
-    position: relative;
-    transition: .2s ease;
-    margin-left: 10px;
-    float: right;
-    height: 35px;
-    width: 180px;
-    border-radius: 4px;
-    background-color: #0066ff;
-    -webkit-box-shadow: 0px 0px 23px -7px rgba(0,0,0,0.2);
-    -moz-box-shadow: 0px 0px 23px -7px rgba(0,0,0,0.2);
-    box-shadow: 0px 0px 23px -7px rgba(0,0,0,0.2);
+.filterBox {
+  cursor: pointer;
+  position: relative;
+  transition: 0.2s ease;
+  margin-left: 10px;
+  float: left;
+  height: 35px;
+  width: 165px;
+  border-radius: 4px;
+  background-image: linear-gradient(
+    to right top,
+    #efefef,
+    #f3f3f3,
+    #f7f7f7,
+    #fbfbfb,
+    #ffffff
+  );
+  -webkit-box-shadow: 0px 0px 23px -7px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 0px 23px -7px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 23px -7px rgba(0, 0, 0, 0.2);
 }
-.AddProdCatBtn:active{
-    opacity: 1;
-    -webkit-box-shadow: 0px 0px 23px -7px rgba(0,0,0,0.0);
-    -moz-box-shadow: 0px 0px 23px -7px rgba(0,0,0,0.0);
-    box-shadow: 0px 0px 23px -7px rgba(0,0,0,0.0);
+.filterBox img,
+.actionBox img {
+  position: relative;
+  float: left;
+  height: 15px;
+  width: 15px;
+  margin: 10px;
 }
-.AddProdCatBtn img{
-    position: relative;
-    float: left;
-    height: 20px;
-    width: 20px;
-    margin: 7.5px;
+.actionBoxFrame {
+  position: relative;
+  float: left;
+  top: 0px;
 }
-.AddProdCatText{
-    position: relative;
-    float: left;
-    margin-left: 0px;
+.actionBoxOptions {
+  width: 140px;
+  position: absolute;
+  left: 10px;
+  border-radius: 6px;
+  z-index: 170;
+  top: 40px;
+  background: rgb(250, 250, 250);
+  background: linear-gradient(
+    148deg,
+    rgba(250, 250, 250, 0.4) 0%,
+    rgba(242, 242, 242, 0.4) 63%,
+    rgba(207, 207, 207, 0.4) 100%
+  );
 }
-.AddProdCatText h2{
-    position: relative;
-    font-weight: normal;
-    font-size: 13px;
-    font-family: 'Open Sans', sans-serif;
-    line-height: 35px;
-    color: #fff;
-    -moz-user-select: none;
-   -khtml-user-select: none;
-   -webkit-user-select: none;
-   -ms-user-select: none;
-   user-select: none;
+.actionBox {
+  cursor: pointer;
+  position: relative;
+  transition: 0.2s ease;
+  margin-left: 10px;
+  float: left;
+  height: 35px;
+  width: 140px;
+  border-radius: 4px;
+  background-image: linear-gradient(
+    to right top,
+    #efefef,
+    #f3f3f3,
+    #f7f7f7,
+    #fbfbfb,
+    #ffffff
+  );
+  -webkit-box-shadow: 0px 0px 23px -7px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 0px 23px -7px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 23px -7px rgba(0, 0, 0, 0.2);
+}
+.actionText {
+  position: relative;
+  float: left;
+  margin-left: 0px;
+}
+.actionText h2 {
+  position: relative;
+  font-weight: bold;
+  font-size: 13px;
+  font-family: "Open Sans", sans-serif;
+  line-height: 35px;
+  color: #7a7a7a;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.AddProdBtn {
+  cursor: pointer;
+  position: relative;
+  transition: 0.2s ease;
+  margin-left: 10px;
+  float: right;
+  height: 35px;
+  width: 125px;
+  border-radius: 4px;
+  background-color: #0066ff;
+  -webkit-box-shadow: 0px 0px 23px -7px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 0px 23px -7px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 23px -7px rgba(0, 0, 0, 0.2);
+}
+.AddProdBtn:active {
+  opacity: 1;
+  -webkit-box-shadow: 0px 0px 23px -7px rgba(0, 0, 0, 0);
+  -moz-box-shadow: 0px 0px 23px -7px rgba(0, 0, 0, 0);
+  box-shadow: 0px 0px 23px -7px rgba(0, 0, 0, 0);
+}
+.AddProdBtn img {
+  position: relative;
+  float: left;
+  height: 20px;
+  width: 20px;
+  margin: 7.5px;
+}
+.AddProdText {
+  position: relative;
+  float: left;
+  margin-left: 0px;
+}
+.AddProdText h2 {
+  position: relative;
+  font-weight: normal;
+  font-size: 13px;
+  font-family: "Open Sans", sans-serif;
+  line-height: 35px;
+  color: #fff;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-
-
-.selectProductContOpt{
-    position: relative;
-    background-color: transparent;
-    float: left;
+.AddProdCatBtn {
+  cursor: pointer;
+  position: relative;
+  transition: 0.2s ease;
+  margin-left: 10px;
+  float: right;
+  height: 35px;
+  width: 180px;
+  border-radius: 4px;
+  background-color: #0066ff;
+  -webkit-box-shadow: 0px 0px 23px -7px rgba(0, 0, 0, 0.99);
+  -moz-box-shadow: 0px 0px 23px -7px rgba(0, 0, 0, 0.99);
+  box-shadow: 0px 0px 23px -7px rgba(0, 0, 0, 0.99);
+}
+.AddProdCatBtn:active {
+  opacity: 1;
+  -webkit-box-shadow: 0px 0px 23px -7px rgba(0, 0, 0, 0);
+  -moz-box-shadow: 0px 0px 23px -7px rgba(0, 0, 0, 0);
+  box-shadow: 0px 0px 23px -7px rgba(0, 0, 0, 0);
+}
+.AddProdCatBtn img {
+  position: relative;
+  float: left;
+  height: 20px;
+  width: 20px;
+  margin: 7.5px;
+}
+.AddProdCatText {
+  position: relative;
+  float: left;
+  margin-left: 0px;
+}
+.AddProdCatText h2 {
+  position: relative;
+  font-weight: normal;
+  font-size: 13px;
+  font-family: "Open Sans", sans-serif;
+  line-height: 35px;
+  color: #fff;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-.selectProductBackOpt{
-    display: block;
-    cursor: pointer;
-    position: relative;
-    height: 20px;
-    background-color: #fff;
-    width: 20px;
-    border-radius: 3px;
-    border: 2px #efefef solid;
-    margin: 5.5px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    transition: .3s ease;
+.selectProductContOpt {
+  position: relative;
+  background-color: transparent;
+  float: left;
+}
+
+.selectProductBackOpt {
+  display: block;
+  cursor: pointer;
+  position: relative;
+  height: 20px;
+  background-color: #fff;
+  width: 20px;
+  border-radius: 3px;
+  border: 2px #efefef solid;
+  margin: 5.5px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  transition: 0.3s ease;
 }
 .selectProductBackOpt input:hover ~ .selectProductCheckOpt {
   display: block;
-  opacity:.4 ;
-  transition: .3s ease;
+  opacity: 0.4;
+  transition: 0.3s ease;
 }
-.selectProductContOpt input{
-    position: absolute;
+.selectProductContOpt input {
+  position: absolute;
   opacity: 0;
   background-color: transparent;
   color: transparent;
   cursor: pointer;
   height: 16px;
   width: 16px;
-  transition: .3s ease;
+  transition: 0.3s ease;
 }
-.selectProductCheckOpt:active{
-    display: block;
-    opacity: 1;
+.selectProductCheckOpt:active {
+  display: block;
+  opacity: 1;
 }
 
-.selectProductCheckOpt{
-    opacity: 1;
-    display: block;
-    pointer-events: none;
-    position: absolute;
+.selectProductCheckOpt {
+  opacity: 1;
+  display: block;
+  pointer-events: none;
+  position: absolute;
   top: 0;
   left: 0;
   height: 16px;
-   top: 2px;
-    left: 2px;
-    transition: .3s ease;
-    padding: 0px;
-    border-radius: 1px;
-    margin: 0px;
+  top: 2px;
+  left: 2px;
+  transition: 0.3s ease;
+  padding: 0px;
+  border-radius: 1px;
+  margin: 0px;
   width: 16px;
   background-color: #0066ff;
 }
 .selectProductBackOpt input:checked ~ .selectProductCheckOpt {
   display: block;
-  opacity:1 ;
+  opacity: 1;
 }
 /*
 .selectProductCont input:checked{
@@ -300,17 +342,88 @@
 }
 */
 
-.productImageBoxOpt{
-    float: left;
-    position: relative;
-    width: 105px;
-    height: 74px;
-    overflow: hidden;
-    background-color: #efefef;
-    margin: 3px;
+.productImageBoxOpt {
+  float: left;
+  position: relative;
+  width: 105px;
+  height: 74px;
+  overflow: hidden;
+  background-color: #efefef;
+  margin: 3px;
 }
-.productImageBoxOpt img{
-    position:absolute;
-    width: 100%;
-    height: auto;
+.productImageBoxOpt img {
+  position: absolute;
+  width: 100%;
+  height: auto;
+}
+.actionDeleteSelect {
+  cursor: pointer;
+  position: relative;
+  width: 130px;
+  height: 35px;
+  margin: 5px;
+  transition: 0.3s ease;
+  background-color: #fff;
+  border-radius: 6px;
+  -webkit-box-shadow: 0px 3px 12px 2px rgba(0, 0, 0, 0.16);
+  -moz-box-shadow: 0px 3px 12px 2px rgba(0, 0, 0, 0.16);
+  box-shadow: 0px 3px 12px 2px rgba(0, 0, 0, 0.16);
+}
+.actionDeleteSelect:hover {
+  opacity: 0.85;
+}
+.actionDeleteSelect:active {
+  -webkit-box-shadow: 0px 3px 12px 2px rgba(0, 0, 0, 0);
+  -moz-box-shadow: 0px 3px 12px 2px rgba(0, 0, 0, 0);
+  box-shadow: 0px 3px 12px 2px rgba(0, 0, 0, 0);
+}
+.actionDeleteSelect h2 {
+  font-weight: normal;
+  font-size: 13px;
+  font-family: "Open Sans", sans-serif;
+  line-height: 35px;
+  color: #ff0000;
+  text-align: center;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.actionItemSelect {
+  cursor: pointer;
+  position: relative;
+  width: 130px;
+  height: 35px;
+  margin: 5px;
+  margin-top: 0px;
+  transition: 0.3s ease;
+  background-color: #fff;
+  border-radius: 6px;
+  -webkit-box-shadow: 0px 3px 12px 2px rgba(0, 0, 0, 0.16);
+  -moz-box-shadow: 0px 3px 12px 2px rgba(0, 0, 0, 0.16);
+  box-shadow: 0px 3px 12px 2px rgba(0, 0, 0, 0.16);
+}
+
+.actionItemSelect:hover {
+  opacity: 0.85;
+}
+.actionItemSelect:active {
+  -webkit-box-shadow: 0px 3px 12px 2px rgba(0, 0, 0, 0);
+  -moz-box-shadow: 0px 3px 12px 2px rgba(0, 0, 0, 0);
+  box-shadow: 0px 3px 12px 2px rgba(0, 0, 0, 0);
+}
+.actionItemSelect h2 {
+  font-weight: normal;
+  font-size: 13px;
+  font-family: "Open Sans", sans-serif;
+  line-height: 35px;
+  color: #000;
+  text-align: center;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }

@@ -8,22 +8,52 @@ import Filter from "./../style/images/filter.png";
 import Actions from "./../style/images/options.png";
 import Add from "./../style/images/plus.png";
 
-import { selectAllProducts } from "../../actions/products";
+import {
+  selectAllProducts,
+  deleteProducts,
+  getProducts
+} from "../../actions/products";
 
 export class Options extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectAllChecked: []
+      selectAllChecked: [],
+      actionMenu: false,
+      products: []
     };
   }
   static propTypes = {
     selectAllChecked: PropTypes.bool.isRequired,
-    selectAllProducts: PropTypes.func.isRequired
+    selectAllProducts: PropTypes.func.isRequired,
+    products: PropTypes.array.isRequired,
+    getProducts: PropTypes.func.isRequired,
+    deleteProducts: PropTypes.func.isRequired
   };
+
+  componentDidMount() {
+    this.props.getProducts();
+  }
+
+  handleDeleteProducts(e) {
+    //Delete all selected products
+    this.props.products.forEach(Product =>
+      Product.selected === true ? this.props.deleteProducts(Product.id) : ""
+    );
+    if (this.props.selectAllChecked === true) {
+      this.props.selectAllProducts();
+    }
+    this.toggleAction();
+  }
 
   handleSelectAll = () => {
     this.props.selectAllProducts();
+  };
+
+  toggleAction = () => {
+    this.setState({
+      actionMenu: !this.state.actionMenu
+    });
   };
 
   render() {
@@ -57,11 +87,31 @@ export class Options extends Component {
             <h2>Filter</h2>
           </div>
         </div>
-        <div className="actionBox">
-          <img src={Actions} alt="Actions" title="Actions" />
-          <div className="actionText">
-            <h2>Actions</h2>
+        <div className="actionBoxFrame">
+          <div className="actionBox" onClick={this.toggleAction}>
+            <img src={Actions} alt="Actions" title="Actions" />
+            <div className="actionText">
+              <h2>Actions</h2>
+            </div>
           </div>
+          {this.state.actionMenu ? (
+            <div className="actionBoxOptions">
+              <div
+                className="actionDeleteSelect"
+                onClick={this.handleDeleteProducts.bind(this)}
+              >
+                <h2>Delete Selected</h2>
+              </div>
+              <div className="actionItemSelect">
+                <h2>Apply Discount</h2>
+              </div>
+              <div className="actionItemSelect">
+                <h2>Change Category</h2>
+              </div>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
         <div className="AddProdBtn">
           <img src={Add} alt="Add" title="Add" />
@@ -81,10 +131,11 @@ export class Options extends Component {
 }
 
 const mapStateToProps = state => ({
-  selectAllChecked: state.products.selectAllChecked
+  selectAllChecked: state.products.selectAllChecked,
+  products: state.products.products
 });
 
 export default connect(
   mapStateToProps,
-  { selectAllProducts }
+  { selectAllProducts, deleteProducts, getProducts }
 )(Options);
