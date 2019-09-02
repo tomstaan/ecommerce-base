@@ -7,6 +7,8 @@ import "./../style/products.css";
 import Filter from "./../style/images/filter.png";
 import Actions from "./../style/images/options.png";
 import Add from "./../style/images/plus.png";
+import Asc from "./../style/images/asc.png";
+import Desc from "./../style/images/desc.png";
 
 import {
   selectAllProducts,
@@ -81,10 +83,29 @@ export class Options extends Component {
             <h2>Select All</h2>
           </div>
         </div>
-        <div className="filterBox">
-          <img src={Filter} alt="Filter" title="Filter" />
-          <div className="actionText">
-            <h2>Filter</h2>
+        <div className="filterBoxFrame">
+          <div className="filterBox">
+            <img src={Filter} alt="Filter" title="Filter" />
+            <div className="actionText">
+              <h2>Filter</h2>
+            </div>
+          </div>
+          <div className="filterBoxOptions">
+            <div className="filterSearchItem">
+              <input type="search" name="" placeholder="Keyword" id="" />
+            </div>
+            <div className="filterSortTypes">
+              <div className="filterSortAsc">
+                <div className="filterAscImg">
+                  <img src={Asc} alt="Ascending" title="Ascending" />
+                </div>
+              </div>
+              <div className="filterSortDesc">
+                <div className="filterDescImg">
+                  <img src={Desc} alt="Descending" title="Descending" />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div className="actionBoxFrame">
