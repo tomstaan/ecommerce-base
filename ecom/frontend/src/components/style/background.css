@@ -133,3 +133,10 @@ table {
 body{
     background-color: #F7F7F7;
 }
+img {
+    -khtml-user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}

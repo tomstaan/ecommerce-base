@@ -22,6 +22,7 @@ export class Options extends Component {
     this.state = {
       selectAllChecked: [],
       actionMenu: false,
+      filterMenu: false,
       products: []
     };
   }
@@ -58,6 +59,12 @@ export class Options extends Component {
     });
   };
 
+  toggleFilter = () => {
+    this.setState({
+      filterMenu: !this.state.filterMenu
+    });
+  };
+
   render() {
     return (
       <div className="productOptions">
@@ -84,29 +91,48 @@ export class Options extends Component {
           </div>
         </div>
         <div className="filterBoxFrame">
-          <div className="filterBox">
+          <div className="filterBox" onClick={this.toggleFilter}>
             <img src={Filter} alt="Filter" title="Filter" />
             <div className="actionText">
               <h2>Filter</h2>
             </div>
           </div>
-          <div className="filterBoxOptions">
-            <div className="filterSearchItem">
-              <input type="search" name="" placeholder="Keyword" id="" />
-            </div>
-            <div className="filterSortTypes">
-              <div className="filterSortAsc">
-                <div className="filterAscImg">
-                  <img src={Asc} alt="Ascending" title="Ascending" />
+          {this.state.filterMenu ? (
+            <div className="filterBoxOptions">
+              <div className="filterSearchItem">
+                <input type="search" name="" placeholder="Keyword" id="" />
+              </div>
+              <div className="filterSortTypes">
+                <div className="filterSortAsc">
+                  <div className="filterAscImg">
+                    <img src={Asc} alt="Ascending" title="Ascending" />
+                  </div>
+                </div>
+                <div className="filterSortDesc">
+                  <div className="filterDescImg">
+                    <img src={Desc} alt="Descending" title="Descending" />
+                  </div>
                 </div>
               </div>
-              <div className="filterSortDesc">
-                <div className="filterDescImg">
-                  <img src={Desc} alt="Descending" title="Descending" />
+              <div className="filterSortPrice">
+                <div className="filterSortPriceCover">
+                  <h2>Price</h2>
+                </div>
+              </div>
+              <div className="filterSortCategory">
+                <div className="filterSortCategoryCover">
+                  <h2>Category</h2>
+                </div>
+              </div>
+              <div className="filterSortUnits">
+                <div className="filterSortUnitsCover">
+                  <h2>Units Available</h2>
                 </div>
               </div>
             </div>
-          </div>
+          ) : (
+            ""
+          )}
         </div>
         <div className="actionBoxFrame">
           <div className="actionBox" onClick={this.toggleAction}>
