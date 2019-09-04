@@ -21,12 +21,19 @@ export default function(state = initalState, action) {
         products: action.payload.map(product => ({
           ...product,
           selected: false
+        })),
+        filteredProducts: action.payload.map(product => ({
+          ...product,
+          selected: false
         }))
       };
     case DELETE_PRODUCT:
       return {
         ...state,
         products: state.products.filter(
+          product => product.id !== action.payload
+        ),
+        filteredProducts: state.filteredProducts.filter(
           product => product.id !== action.payload
         )
       };
@@ -37,6 +44,11 @@ export default function(state = initalState, action) {
           Product.id === action.payload
             ? { ...Product, selected: !Product.selected }
             : Product
+        ),
+        filteredProducts: state.filteredProducts.map(Product =>
+          Product.id === action.payload
+            ? { ...Product, selected: !Product.selected }
+            : Product
         )
       };
     case SELECT_ALL_PRODUCTS:
@@ -44,6 +56,11 @@ export default function(state = initalState, action) {
         ...state,
         selectAllChecked: !state.selectAllChecked,
         products: state.products.map(Product =>
+          Product.selected !== !state.selectAllChecked
+            ? { ...Product, selected: !state.selectAllChecked }
+            : Product
+        ),
+        filteredProducts: state.filteredProducts.map(Product =>
           Product.selected !== !state.selectAllChecked
             ? { ...Product, selected: !state.selectAllChecked }
             : Product
