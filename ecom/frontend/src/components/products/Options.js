@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { bindActionCreators } from "redux";
 import "./../style/products.css";
 
 //Images
@@ -13,7 +14,8 @@ import Desc from "./../style/images/desc.png";
 import {
   selectAllProducts,
   deleteProducts,
-  getProducts
+  getProducts,
+  filterProducts
 } from "../../actions/products";
 
 export class Options extends Component {
@@ -31,7 +33,9 @@ export class Options extends Component {
     selectAllProducts: PropTypes.func.isRequired,
     products: PropTypes.array.isRequired,
     getProducts: PropTypes.func.isRequired,
-    deleteProducts: PropTypes.func.isRequired
+    deleteProducts: PropTypes.func.isRequired,
+    filterProducts: PropTypes.func.isRequired,
+    filterValue: PropTypes.string.isRequired
   };
 
   componentDidMount() {
@@ -100,7 +104,12 @@ export class Options extends Component {
           {this.state.filterMenu ? (
             <div className="filterBoxOptions">
               <div className="filterSearchItem">
-                <input type="search" name="" placeholder="Keyword" id="" />
+                <input
+                  type="search"
+                  placeholder="Keyword"
+                  onChange={(e) => this.props.filterProducts(e.target.value)}
+                  value={this.props.filterValue}
+                />
               </div>
               <div className="filterSortTypes">
                 <div className="filterSortAsc">
@@ -179,10 +188,11 @@ export class Options extends Component {
 
 const mapStateToProps = state => ({
   selectAllChecked: state.products.selectAllChecked,
-  products: state.products.products
+  products: state.products.products,
+  filterValue: state.products.filterValue
 });
 
 export default connect(
   mapStateToProps,
-  { selectAllProducts, deleteProducts, getProducts }
+  { selectAllProducts, deleteProducts, getProducts, filterProducts }
 )(Options);

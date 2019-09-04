@@ -2,12 +2,15 @@ import {
   GET_PRODUCTS,
   DELETE_PRODUCT,
   SELECT_ALL_PRODUCTS,
-  HANDLE_PRODUCT_SELECT
+  HANDLE_PRODUCT_SELECT,
+  FILTER_PRODUCTS
 } from "../actions/types.js";
 
 const initalState = {
   products: [],
-  selectAllChecked: false
+  selectAllChecked: false,
+  filterValue: "",
+  filteredProducts: []
 };
 
 export default function(state = initalState, action) {
@@ -46,6 +49,15 @@ export default function(state = initalState, action) {
             : Product
         )
       };
+    case FILTER_PRODUCTS: {
+      return {
+        ...state,
+        filterValue: action.payload,
+        filteredProducts: state.products.filter(Product =>
+          Product.product_name.includes(action.payload)
+        )
+      };
+    }
     default:
       return state;
   }

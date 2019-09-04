@@ -4,7 +4,8 @@ import {
   GET_PRODUCTS,
   DELETE_PRODUCT,
   SELECT_ALL_PRODUCTS,
-  HANDLE_PRODUCT_SELECT
+  HANDLE_PRODUCT_SELECT,
+  FILTER_PRODUCTS
 } from "./types.js";
 
 //Get Products
@@ -46,5 +47,12 @@ export const handleProductSelect = id => dispatch => {
   dispatch({
     type: HANDLE_PRODUCT_SELECT,
     payload: id
+  });
+};
+
+export const filterProducts = value => dispatch => {
+  dispatch({
+    type: FILTER_PRODUCTS,
+    payload: value
   });
 };
