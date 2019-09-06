@@ -156,7 +156,8 @@ export class ProductList extends Component {
 const mapStateToProps = state => ({
   products: state.products.products,
   selectAllChecked: state.products.selectAllChecked,
-  filteredProducts: state.products.filteredProducts
+  filteredProducts: state.products.filteredProducts,
+  filterValue: state.products.filterValue
 });
 
 export default connect(

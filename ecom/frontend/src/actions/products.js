@@ -5,7 +5,12 @@ import {
   DELETE_PRODUCT,
   SELECT_ALL_PRODUCTS,
   HANDLE_PRODUCT_SELECT,
-  FILTER_PRODUCTS
+  FILTER_PRODUCTS,
+  FILTER_ASCENDING,
+  FILTER_DESCENDING,
+  FILTER_PRICE,
+  FILTER_CATEGORY,
+  FILTER_UNITS
 } from "./types.js";
 
 //Get Products
@@ -54,5 +59,35 @@ export const filterProducts = value => dispatch => {
   dispatch({
     type: FILTER_PRODUCTS,
     payload: value
+  });
+};
+
+export const filterByAsc = () => dispatch => {
+  dispatch({
+    type: FILTER_ASCENDING
+  });
+};
+
+export const filterByDesc = () => dispatch => {
+  dispatch({
+    type: FILTER_DESCENDING
+  });
+};
+
+export const filterByPrice = () => dispatch => {
+  dispatch({
+    type: FILTER_PRICE
+  });
+};
+
+export const filterByCat = () => dispatch => {
+  dispatch({
+    type: FILTER_CATEGORY
+  });
+};
+
+export const filterByUnits = () => dispatch => {
+  dispatch({
+    type: FILTER_UNITS
   });
 };

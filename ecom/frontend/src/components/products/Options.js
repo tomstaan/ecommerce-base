@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { bindActionCreators } from "redux";
 import "./../style/products.css";
 
 //Images
@@ -15,7 +14,12 @@ import {
   selectAllProducts,
   deleteProducts,
   getProducts,
-  filterProducts
+  filterProducts,
+  filterByAsc,
+  filterByDesc,
+  filterByPrice,
+  filterByCat,
+  filterByUnits
 } from "../../actions/products";
 
 export class Options extends Component {
@@ -35,7 +39,17 @@ export class Options extends Component {
     getProducts: PropTypes.func.isRequired,
     deleteProducts: PropTypes.func.isRequired,
     filterProducts: PropTypes.func.isRequired,
-    filterValue: PropTypes.string.isRequired
+    filterValue: PropTypes.string.isRequired,
+    filterByAsc: PropTypes.func.isRequired,
+    filterByDesc: PropTypes.func.isRequired,
+    filterByPrice: PropTypes.func.isRequired,
+    filterByCat: PropTypes.func.isRequired,
+    filterByUnits: PropTypes.func.isRequired,
+    filterAsc: PropTypes.bool.isRequired,
+    filterDesc: PropTypes.bool.isRequired,
+    filterPrice: PropTypes.bool.isRequired,
+    filterCategory: PropTypes.bool.isRequired,
+    filterUnits: PropTypes.bool.isRequired
   };
 
   componentDidMount() {
@@ -139,28 +153,59 @@ export class Options extends Component {
                   />
                 </div>
                 <div className="filterSortTypes">
-                  <div className="filterSortAsc">
+                  <div
+                    className={
+                      this.props.filterAsc ? "filterSortAscH" : "filterSortAsc"
+                    }
+                    onClick={this.props.filterByAsc.bind(this)}
+                  >
                     <div className="filterAscImg">
                       <img src={Asc} alt="Ascending" title="Ascending" />
                     </div>
                   </div>
-                  <div className="filterSortDesc">
+                  <div
+                    className={
+                      this.props.filterDesc
+                        ? "filterSortDescH"
+                        : "filterSortDesc"
+                    }
+                    onClick={this.props.filterByDesc.bind(this)}
+                  >
                     <div className="filterDescImg">
                       <img src={Desc} alt="Descending" title="Descending" />
                     </div>
                   </div>
                 </div>
-                <div className="filterSortPrice">
+                <div
+                  className={
+                    this.props.filterPrice
+                      ? "filterSortPriceH"
+                      : "filterSortPrice"
+                  }
+                  onClick={this.props.filterByPrice.bind(this)}
+                >
                   <div className="filterSortPriceCover">
                     <h2>Price</h2>
                   </div>
                 </div>
-                <div className="filterSortCategory">
+                <div
+                  className={
+                    this.props.filterCategory
+                      ? "filterSortCategoryH"
+                      : "filterSortCategory"
+                  }
+                  onClick={this.props.filterByCat.bind(this)}
+                >
                   <div className="filterSortCategoryCover">
                     <h2>Category</h2>
                   </div>
                 </div>
-                <div className="filterSortUnits">
+                <div
+                  className={
+                    this.props.filterUnits ? "filterSortUnitsH" : "filterSortUnits"
+                  }
+                  onClick={this.props.filterByUnits.bind(this)}
+                >
                   <div className="filterSortUnitsCover">
                     <h2>Units Available</h2>
                   </div>
@@ -191,10 +236,25 @@ export class Options extends Component {
 const mapStateToProps = state => ({
   selectAllChecked: state.products.selectAllChecked,
   products: state.products.products,
-  filterValue: state.products.filterValue
+  filterValue: state.products.filterValue,
+  filterAsc: state.products.filterAsc,
+  filterDesc: state.products.filterDesc,
+  filterPrice: state.products.filterPrice,
+  filterCategory: state.products.filterCategory,
+  filterUnits: state.products.filterUnits
 });
 
 export default connect(
   mapStateToProps,
-  { selectAllProducts, deleteProducts, getProducts, filterProducts }
+  {
+    selectAllProducts,
+    deleteProducts,
+    getProducts,
+    filterProducts,
+    filterByAsc,
+    filterByDesc,
+    filterByPrice,
+    filterByCat,
+    filterByUnits
+  }
 )(Options);

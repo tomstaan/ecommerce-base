@@ -3,14 +3,24 @@ import {
   DELETE_PRODUCT,
   SELECT_ALL_PRODUCTS,
   HANDLE_PRODUCT_SELECT,
-  FILTER_PRODUCTS
+  FILTER_PRODUCTS,
+  FILTER_PRICE,
+  FILTER_ASCENDING,
+  FILTER_DESCENDING,
+  FILTER_CATEGORY,
+  FILTER_UNITS
 } from "../actions/types.js";
 
 const initalState = {
   products: [],
   selectAllChecked: false,
   filterValue: "",
-  filteredProducts: []
+  filteredProducts: [],
+  filterAsc: true,
+  filterDesc: false,
+  filterPrice: true,
+  filterCategory: false,
+  filterUnits: false
 };
 
 export default function(state = initalState, action) {
@@ -73,6 +83,44 @@ export default function(state = initalState, action) {
         filteredProducts: state.products.filter(Product =>
           Product.product_name.includes(action.payload)
         )
+      };
+    }
+    case FILTER_ASCENDING: {
+      return {
+        ...state,
+        filterAsc: true,
+        filterDesc: false
+      };
+    }
+    case FILTER_DESCENDING: {
+      return {
+        ...state,
+        filterDesc: true,
+        filterAsc: false
+      };
+    }
+    case FILTER_PRICE: {
+      return {
+        ...state,
+        filterPrice: true,
+        filterCategory: false,
+        filterUnits: false
+      };
+    }
+    case FILTER_CATEGORY: {
+      return {
+        ...state,
+        filterPrice: false,
+        filterCategory: true,
+        filterUnits: false
+      };
+    }
+    case FILTER_UNITS: {
+      return {
+        ...state,
+        filterPrice: false,
+        filterCategory: false,
+        filterUnits: true
       };
     }
     default:
