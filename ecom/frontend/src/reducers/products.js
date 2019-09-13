@@ -20,23 +20,63 @@ const initalState = {
   filterDesc: false,
   filterPrice: true,
   filterCategory: false,
-  filterUnits: false
+  filterUnits: false,
+  currentSort: "unit_price"
 };
 
-//const sortByKey = key => (a, b) => a[key] > b[key];
-
 export default function(state = initalState, action) {
+  //Handles the sort type
+  function handleSort() {
+    let listCopy = state.filteredProducts;
+
+    if (state.filterAsc) {
+      //Ascending
+      listCopy.sort(function(a, b) {
+        var priceA = parseFloat(a[state.currentSort]);
+        var priceB = parseFloat(b[state.currentSort]);
+        if (priceA < priceB) {
+          return -1;
+        }
+        if (priceA > priceB) {
+          return 1;
+        }
+        // price must be equal
+        return 0;
+      });
+    } else {
+      //Descending
+      listCopy.sort(function(a, b) {
+        var priceA = parseFloat(a[state.currentSort]);
+        var priceB = parseFloat(b[state.currentSort]);
+        if (priceA > priceB) {
+          return -1;
+        }
+        if (priceA < priceB) {
+          return 1;
+        }
+        // price must be equal
+        return 0;
+      });
+    }
+    //Returns sorted List
+    state.filteredProducts = listCopy;
+  }
   switch (action.type) {
     case GET_PRODUCTS:
+      state.filteredProducts = action.payload.map(product => ({
+        ...product,
+        selected: false
+      }));
+      handleSort();
+
       return {
         ...state,
         products: action.payload.map(product => ({
           ...product,
           selected: false
         })),
-        filteredProducts: action.payload.map(product => ({
-          ...product,
-          selected: false
+        filteredProducts: state.filteredProducts.map(Product => ({
+          ...Product
         }))
       };
     case DELETE_PRODUCT:
@@ -89,43 +129,45 @@ export default function(state = initalState, action) {
       };
     }
     case FILTER_ASCENDING: {
-      const priceSorted = state.filteredProducts.unit_price.sort(
-        (a, b) => a - b
-      );
-      console.log(priceSorted);
+      state.filterAsc = true;
+      state.filterDesc = false;
+      handleSort();
       return {
         ...state,
         filterAsc: true,
         filterDesc: false,
-        filteredProducts: priceSorted
+        filteredProducts: state.filteredProducts.map(Product => ({
+          ...Product
+        }))
       };
     }
     case FILTER_DESCENDING: {
+      state.filterAsc = false;
+      state.filterDesc = true;
+      handleSort();
       return {
         ...state,
         filterDesc: true,
-        filterAsc: false
+        filterAsc: false,
+        filteredProducts: state.filteredProducts.map(Product => ({
+          ...Product
+        }))
       };
     }
     case FILTER_PRICE: {
-      //const priceSorted = state.filteredProducts.slice().sort(sortByKey("unit_price"));
-      function compare(a, b) {
-        if (a.unit_price < b.unit_price) {
-          return -1;
-        }
-        if (a.unit_price > b.unit_price) {
-          return 1;
-        }
-        return 0;
-      }
-      const priceSorted = state.filteredProducts.sort(compare);
-      console.log(priceSorted);
+      state.filterPrice = true;
+      state.filterCategory = false;
+      state.filterUnits = false;
+      state.currentSort = 'unit_price';
+      handleSort();
       return {
         ...state,
         filterPrice: true,
         filterCategory: false,
         filterUnits: false,
-        filteredProducts: priceSorted
+        filteredProducts: state.filteredProducts.map(Product => ({
+          ...Product
+        }))
       };
     }
     case FILTER_CATEGORY: {
@@ -137,11 +179,19 @@ export default function(state = initalState, action) {
       };
     }
     case FILTER_UNITS: {
+      state.filterPrice = false;
+      state.filterCategory = false;
+      state.filterUnits = true;
+      state.currentSort = 'units_in_stock';
+      handleSort();
       return {
         ...state,
         filterPrice: false,
         filterCategory: false,
-        filterUnits: true
+        filterUnits: true,
+        filteredProducts: state.filteredProducts.map(Product => ({
+          ...Product
+        }))
       };
     }
     default:
