@@ -23,6 +23,8 @@ const initalState = {
   filterUnits: false
 };
 
+//const sortByKey = key => (a, b) => a[key] > b[key];
+
 export default function(state = initalState, action) {
   switch (action.type) {
     case GET_PRODUCTS:
@@ -76,20 +78,26 @@ export default function(state = initalState, action) {
             : Product
         )
       };
+
     case FILTER_PRODUCTS: {
       return {
         ...state,
         filterValue: action.payload,
         filteredProducts: state.products.filter(Product =>
-          Product.product_name.includes(action.payload)
+          Product.product_name.toLowerCase().includes(action.payload)
         )
       };
     }
     case FILTER_ASCENDING: {
+      const priceSorted = state.filteredProducts.unit_price.sort(
+        (a, b) => a - b
+      );
+      console.log(priceSorted);
       return {
         ...state,
         filterAsc: true,
-        filterDesc: false
+        filterDesc: false,
+        filteredProducts: priceSorted
       };
     }
     case FILTER_DESCENDING: {
@@ -100,11 +108,24 @@ export default function(state = initalState, action) {
       };
     }
     case FILTER_PRICE: {
+      //const priceSorted = state.filteredProducts.slice().sort(sortByKey("unit_price"));
+      function compare(a, b) {
+        if (a.unit_price < b.unit_price) {
+          return -1;
+        }
+        if (a.unit_price > b.unit_price) {
+          return 1;
+        }
+        return 0;
+      }
+      const priceSorted = state.filteredProducts.sort(compare);
+      console.log(priceSorted);
       return {
         ...state,
         filterPrice: true,
         filterCategory: false,
-        filterUnits: false
+        filterUnits: false,
+        filteredProducts: priceSorted
       };
     }
     case FILTER_CATEGORY: {
