@@ -120,11 +120,14 @@ export default function(state = initalState, action) {
       };
 
     case FILTER_PRODUCTS: {
+      handleSort();
       return {
         ...state,
         filterValue: action.payload,
         filteredProducts: state.products.filter(Product =>
-          Product.product_name.toLowerCase().includes(action.payload)
+          action.payload === ""
+            ? { ...Product }
+            : Product.product_name.toLowerCase().includes(action.payload)
         )
       };
     }
@@ -158,7 +161,7 @@ export default function(state = initalState, action) {
       state.filterPrice = true;
       state.filterCategory = false;
       state.filterUnits = false;
-      state.currentSort = 'unit_price';
+      state.currentSort = "unit_price";
       handleSort();
       return {
         ...state,
@@ -182,7 +185,7 @@ export default function(state = initalState, action) {
       state.filterPrice = false;
       state.filterCategory = false;
       state.filterUnits = true;
-      state.currentSort = 'units_in_stock';
+      state.currentSort = "units_in_stock";
       handleSort();
       return {
         ...state,
