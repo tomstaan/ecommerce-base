@@ -11,6 +11,8 @@ import {
   selectAllProducts
 } from "../../actions/products";
 
+import { getCategory } from "../../actions/category";
+
 //Images
 import Case from "./../style/images/case.jpg";
 
@@ -19,7 +21,8 @@ export class ProductList extends Component {
     super(props);
     this.state = {
       products: [],
-      selectedProducts: []
+      selectedProducts: [],
+      category: []
     };
   }
 
@@ -29,11 +32,15 @@ export class ProductList extends Component {
     deleteProducts: PropTypes.func.isRequired,
     handleProductSelect: PropTypes.func.isRequired,
     selectAllProducts: PropTypes.func.isRequired,
-    filteredProducts: PropTypes.array.isRequired
+    filteredProducts: PropTypes.array.isRequired,
+    category: PropTypes.array.isRequired,
+    getCategory: PropTypes.func.isRequired
   };
 
   componentDidMount() {
     this.props.getProducts();
+    this.props.getCategory();
+    console.log(this.props.products);
   }
 
   render() {
@@ -102,7 +109,17 @@ export class ProductList extends Component {
                       </div>
                       <div className="productQuant">
                         <h3 className="productBold">Category</h3>
-                        <h3 className="productTxt">{Product.category_id}</h3>
+                        {this.props.category.map(Category => (
+                          <div>
+                            {Product.category_id == Category.id ? (
+                              <h3 className="productTxt" key={Category.id}>
+                                {Category.cat_name}
+                              </h3>
+                            ) : (
+                              ""
+                            )}
+                          </div>
+                        ))}
                       </div>
                     </div>
                   </div>
@@ -127,6 +144,7 @@ export class ProductList extends Component {
                         <h3 className="productBold">Supplier</h3>
                         <h3 className="productTxt" />
                       </div>
+                      
                       <button
                         type="button"
                         className="btn btn-primary"
@@ -157,10 +175,17 @@ const mapStateToProps = state => ({
   products: state.products.products,
   selectAllChecked: state.products.selectAllChecked,
   filteredProducts: state.products.filteredProducts,
-  filterValue: state.products.filterValue
+  filterValue: state.products.filterValue,
+  category: state.category.category
 });
 
 export default connect(
   mapStateToProps,
-  { getProducts, deleteProducts, handleProductSelect, selectAllProducts }
+  {
+    getProducts,
+    deleteProducts,
+    handleProductSelect,
+    selectAllProducts,
+    getCategory
+  }
 )(ProductList);
