@@ -10,3 +10,6 @@ export const FILTER_DESCENDING = "FILTER_DESCENDING";
 export const FILTER_PRICE = "FILTER_PRICE";
 export const FILTER_CATEGORY = "FILTER_CATEGORY";
 export const FILTER_UNITS = "FILTER_UNITS";
+
+//Category
+export const GET_CATEGORY = "GET_CATEGORY";

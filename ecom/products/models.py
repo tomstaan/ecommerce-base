@@ -15,7 +15,8 @@ class Product(models.Model):
     product_description = models.CharField(max_length=2000, blank=True)
     product_image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
     supplier_id = models.CharField(max_length=255, blank=True)
-    category_id = models.ForeignKey('Product_categories', on_delete=models.CASCADE, blank=True, null=True)
+    category_id = models.ForeignKey(
+        'Product_categories', on_delete=models.CASCADE, blank=True, null=True)
     quantity_per_unit = models.IntegerField()
     unit_price = models.DecimalField(max_digits=8, decimal_places=2)
     msrp = models.DecimalField(max_digits=8, decimal_places=2, blank=True)
@@ -30,6 +31,9 @@ class Product(models.Model):
     discount_price = models.DecimalField(max_digits=8, decimal_places=2)
     note = models.CharField(max_length=500, blank=True)
     date = models.DateTimeField(default=datetime.now(), blank=True)
+
+    def __str__(self):
+        return self.product_name
 
 
 
@@ -57,9 +61,18 @@ class Subproduct(models.Model):
     note = models.CharField(max_length=500, blank=True)
     date = models.DateTimeField(default=datetime.now(), blank=True)
 
+    def __str__(self):
+        return self.product_name + ' ('+ self.parent_product + ')'
+
 class Product_categories(models.Model):
-    name = models.CharField(max_length=128, null=False)
+    cat_name = models.CharField(max_length=128, null=False)
     description = models.CharField(max_length=500)
     active = models.BooleanField(default=True, null=False)
+
+    def __str__(self):
+        return self.cat_name
+    
+    def __unicode__(self):
+        return u'%s %s' % (self.cat_name)
     
 
