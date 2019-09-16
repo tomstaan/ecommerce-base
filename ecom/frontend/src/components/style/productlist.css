@@ -268,4 +268,42 @@
     margin-bottom: 11px;
     float: left;
 }
-
+.singleProductActions{
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    width: 34px;
+    height: 34px;
+    background-color: #fff;
+}
+.deleteSingleProduct{
+    position: absolute;
+    height: 34px;
+    overflow: hidden;
+    width: 34px;
+    border-radius: 6px;
+    background-color: #fff;
+    right: 0px;
+    bottom: 0px;
+}
+.deleteSingleProduct button{
+    position: relative;
+    height: 34px;
+    opacity: .6;
+    cursor: pointer;
+    width: 34px;
+    border: none;
+    transition: .3s ease;
+    outline: none;
+    background-color: #fff;
+}
+.deleteSingleProduct button:hover{
+    opacity: 1;
+}
+.deleteSingleProduct img{
+    position: absolute;
+    height: 26px;
+    width: 26px;
+    left: 3px;
+    top: 3px;
+}

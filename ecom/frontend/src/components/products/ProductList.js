@@ -15,6 +15,7 @@ import { getCategory } from "../../actions/category";
 
 //Images
 import Case from "./../style/images/case.jpg";
+import Delete from "./../style/images/delete.png";
 
 export class ProductList extends Component {
   constructor(props) {
@@ -144,7 +145,10 @@ export class ProductList extends Component {
                         <h3 className="productBold">Supplier</h3>
                         <h3 className="productTxt" />
                       </div>
-                      
+                    </div>
+                  </div>
+                  <div className="singleProductActions">
+                    <div className="deleteSingleProduct">
                       <button
                         type="button"
                         className="btn btn-primary"
@@ -153,7 +157,7 @@ export class ProductList extends Component {
                           Product.id
                         )}
                       >
-                        delete product
+                        <img src={Delete} alt="Delete Product" title="Delete Product"/>
                       </button>
                     </div>
                   </div>
