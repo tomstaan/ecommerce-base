@@ -4,6 +4,7 @@ import "./../style/productlist.css";
 //Displaying Products
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+
 import {
   getProducts,
   deleteProducts,
@@ -59,7 +60,7 @@ export class ProductList extends Component {
             <Fragment>
               {this.props.filteredProducts.map(Product => (
                 <div key={Product.id} className="productBack">
-                  <div className="selectProductCont">
+                  <div className="selectProductCont"> 
                     <div className="selectProductBack">
                       <input
                         className="selectProductBox"
