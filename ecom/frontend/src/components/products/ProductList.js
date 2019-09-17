@@ -41,7 +41,14 @@ export class ProductList extends Component {
   componentDidMount() {
     this.props.getProducts();
     this.props.getCategory();
-    console.log(this.props.products);
+  }
+
+  categoryDisplay(e, prodId) {
+    let title = "";
+    this.props.category.map(Category =>
+      Category.id == prodId ? (title = Category.cat_name) : ""
+    );
+    return title;
   }
 
   render() {
@@ -51,7 +58,7 @@ export class ProductList extends Component {
           {this.props.filteredProducts.length ? (
             <Fragment>
               {this.props.filteredProducts.map(Product => (
-                <div className="productBack" key={Product.id}>
+                <div key={Product.id} className="productBack">
                   <div className="selectProductCont">
                     <div className="selectProductBack">
                       <input
@@ -110,17 +117,11 @@ export class ProductList extends Component {
                       </div>
                       <div className="productQuant">
                         <h3 className="productBold">Category</h3>
-                        {this.props.category.map(Category => (
-                          <div>
-                            {Product.category_id == Category.id ? (
-                              <h3 className="productTxt" key={Category.id}>
-                                {Category.cat_name}
-                              </h3>
-                            ) : (
-                              ""
-                            )}
-                          </div>
-                        ))}
+                        <div>
+                          <h3 className="productTxt">
+                            {this.categoryDisplay(this, Product.category_id)}
+                          </h3>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -157,7 +158,11 @@ export class ProductList extends Component {
                           Product.id
                         )}
                       >
-                        <img src={Delete} alt="Delete Product" title="Delete Product"/>
+                        <img
+                          src={Delete}
+                          alt="Delete Product"
+                          title="Delete Product"
+                        />
                       </button>
                     </div>
                   </div>
