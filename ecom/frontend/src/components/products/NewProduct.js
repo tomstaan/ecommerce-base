@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect, Provider } from "react-redux";
+import TopRoute from "./TopRoute";
 import "./../style/newproduct.css";
 
 //Images
@@ -21,13 +22,13 @@ export class NewProduct extends Component {
   state = {
     productName: "",
     productCategory: "",
-    productPrice: "",
-    productQuantity: "",
+    productPrice: 0.0,
+    productQuantity: 0,
     productSize: "",
     productColor: "",
-    productWeight: "",
-    productStock: "",
-    productOrder: "",
+    productWeight: 0.0,
+    productStock: 0,
+    productOrder: 0,
     productDesc: ""
   };
 
@@ -72,13 +73,13 @@ export class NewProduct extends Component {
     this.setState({
       productName: "",
       productCategory: "",
-      productPrice: "",
-      productQuantity: "",
+      productPrice: 0.0,
+      productQuantity: 0,
       productSize: "",
       productColor: "",
-      productWeight: "",
-      productStock: "",
-      productOrder: "",
+      productWeight: 0.0,
+      productStock: 0,
+      productOrder: 0,
       productDesc: ""
     });
   };
@@ -99,15 +100,7 @@ export class NewProduct extends Component {
     return (
       <div className="NewProdBack">
         <div className="col-lg-12">
-          <div className="topRoutingBack">
-            <div className="routeCont">
-              <h3>Products</h3>
-              <div className="routeArrow">
-                <img src={Arrow} alt="arrow" title="arrow" />
-              </div>
-              <h3>New Product</h3>
-            </div>
-          </div>
+          <TopRoute/>
           <div className="newProductTitle">
             <h3>New Product</h3>
           </div>
@@ -160,13 +153,16 @@ export class NewProduct extends Component {
                 <label className="newProdFieldLabel">Price</label>
                 <input
                   className=""
-                  type="text"
+                  type="number"
+                  step="0.01"
+                  min="0"
                   name="productPrice"
                   id="label-title"
                   placeholder=""
                   onChange={this.onChange}
                   value={productPrice}
                 />
+                <span>€</span>
               </div>
               <div className="newProdFieldRight">
                 <label className="newProdFieldLabel">Quantity Per Unit</label>
