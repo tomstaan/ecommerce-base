@@ -12,8 +12,11 @@ export default class Products extends Component {
     return (
       <Router>
         <div>
-          <NewCategory />
-          <Route path="newproduct" component={NewProduct} />
+          <Switch>
+            <Route path="/products/newcategory">
+              <NewCategory></NewCategory>
+            </Route>
+          </Switch>
         </div>
       </Router>
     );

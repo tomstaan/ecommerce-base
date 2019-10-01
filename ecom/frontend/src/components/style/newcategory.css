@@ -51,6 +51,7 @@
   border: 1px solid #efefef;
   height: 38px;
   border-radius: 3px;
+  box-sizing:border-box;
 }
 .newCatFieldRight input {
   position: relative;
@@ -64,6 +65,7 @@
   border: 1px solid #efefef;
   height: 38px;
   border-radius: 3px;
+  box-sizing:border-box;
 }
 
 .newCatField textarea{
@@ -85,7 +87,6 @@
   position: relative;
   height: 35px;
   float: left;
-  margin-top: 10px;
   transition: .3s ease;
   overflow: hidden;
   -webkit-box-shadow: 0px 0px 23px -7px rgba(0, 0, 0, 0.2);
@@ -97,7 +98,6 @@
   position: relative;
   height: 35px;
   float: right;
-  margin-top: 10px;
   transition: .3s ease;
   overflow: hidden;
   -webkit-box-shadow: 0px 0px 23px -7px rgba(0, 0, 0, 0.2);

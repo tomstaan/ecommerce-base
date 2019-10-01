@@ -5,6 +5,7 @@ from django.conf.urls import url
 
 urlpatterns = [
     path('', views.index),
+    re_path(r'.*', views.index)
 ]
 '''
 urlpatterns = [
