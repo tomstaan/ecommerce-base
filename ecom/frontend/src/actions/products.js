@@ -16,7 +16,7 @@ import {
 //Get Products
 export const getProducts = () => dispatch => {
   axios
-    .get("api/products")
+    .get("http://127.0.0.1:8000/api/products/")
     .then(res => {
       dispatch({
         type: GET_PRODUCTS,
@@ -29,7 +29,7 @@ export const getProducts = () => dispatch => {
 //Delete Products
 export const deleteProducts = id => dispatch => {
   axios
-    .delete(`/api/products/${id}/`)
+    .delete(`http://127.0.0.1:8000/api/products/${id}/`)
     .then(res => {
       //Message for adding leads
       dispatch({

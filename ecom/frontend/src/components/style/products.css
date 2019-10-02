@@ -1,4 +1,4 @@
-.productLimit {
+.productOptions {
   position: relative;
   margin-top: 0px;
   max-width: 1600px;
@@ -219,9 +219,9 @@
   width: 180px;
   border-radius: 4px;
   background-color: #0066ff;
-  -webkit-box-shadow: 0px 0px 23px -7px rgba(0, 0, 0, 0.99);
-  -moz-box-shadow: 0px 0px 23px -7px rgba(0, 0, 0, 0.99);
-  box-shadow: 0px 0px 23px -7px rgba(0, 0, 0, 0.99);
+  -webkit-box-shadow: 0px 0px 23px -7px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 0px 23px -7px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 23px -7px rgba(0, 0, 0, 0.2);
 }
 .AddProdCatBtn:active {
   opacity: 1;

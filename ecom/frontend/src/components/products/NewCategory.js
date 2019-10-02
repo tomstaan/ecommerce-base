@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect, Provider } from "react-redux";
+import { Link } from "react-router-dom";
 import "./../style/newcategory.css";
-
 import TopRoute from "./TopRoute";
+
 //Images
 import Arrow from "./../style/images/return.png";
 //Other imports
@@ -78,7 +79,7 @@ export class NewCategory extends Component {
                 />
               </div>
               <div className="newCatLeftButton">
-                <button>Cancel</button>
+                <Link to="/products"><button>Cancel</button></Link>
               </div>
               <div className="newCatRightButton">
                 <button>Create Category</button>

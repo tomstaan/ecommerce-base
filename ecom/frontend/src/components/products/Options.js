@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import "./../style/products.css";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import NewCategory from "../products/NewCategory";
+import NewProduct from "../products/NewProduct";
 
 //Images
 import Filter from "./../style/images/filter.png";
@@ -85,150 +88,158 @@ export class Options extends Component {
 
   render() {
     return (
-      <div className="productOptions">
-        <div className="selectBox" onClick={this.handleSelectAll}>
-          <div className="selectProductContOpt">
-            <div className="selectProductBackOpt">
-              <input
-                className="selectProductBoxOpt"
-                type="checkbox"
-                name="Select All"
-                checked={this.props.selectAllChecked}
-                onChange={this.props.selectAllProducts}
-                onClick={this.handleSelectAll}
-              />
-              <span
-                className={
-                  this.props.selectAllChecked ? "selectProductCheckOpt" : ""
-                }
-              />
+        <div className="productOptions">
+          <div className="selectBox" onClick={this.handleSelectAll}>
+            <div className="selectProductContOpt">
+              <div className="selectProductBackOpt">
+                <input
+                  className="selectProductBoxOpt"
+                  type="checkbox"
+                  name="Select All"
+                  checked={this.props.selectAllChecked}
+                  onChange={this.props.selectAllProducts}
+                  onClick={this.handleSelectAll}
+                />
+                <span
+                  className={
+                    this.props.selectAllChecked ? "selectProductCheckOpt" : ""
+                  }
+                />
+              </div>
+            </div>
+            <div className="selectText">
+              <h2>Select All</h2>
             </div>
           </div>
-          <div className="selectText">
-            <h2>Select All</h2>
-          </div>
-        </div>
 
-        <div className="actionBoxFrame">
-          <div className="actionBox" onClick={this.toggleAction}>
-            <img src={Actions} alt="Actions" title="Actions" />
-            <div className="actionText">
-              <h2>Actions</h2>
-            </div>
-          </div>
-          {this.state.actionMenu ? (
-            <div className="actionBoxOptions">
-              <div
-                className="actionDeleteSelect"
-                onClick={this.handleDeleteProducts.bind(this)}
-              >
-                <h2>Delete Selected</h2>
-              </div>
-              <div className="actionItemSelect">
-                <h2>Apply Discount</h2>
-              </div>
-              <div className="actionItemSelect">
-                <h2>Change Category</h2>
-              </div>
-            </div>
-          ) : (
-            ""
-          )}
-
-          <div className="filterBoxFrame">
-            <div className="filterBox" onClick={this.toggleFilter}>
-              <img src={Filter} alt="Filter" title="Filter" />
+          <div className="actionBoxFrame">
+            <div className="actionBox" onClick={this.toggleAction}>
+              <img src={Actions} alt="Actions" title="Actions" />
               <div className="actionText">
-                <h2>Filter</h2>
+                <h2>Actions</h2>
               </div>
             </div>
-            {this.state.filterMenu ? (
-              <div className="filterBoxOptions">
-                <div className="filterSearchItem">
-                  <input
-                    type="search"
-                    placeholder="Keyword"
-                    onChange={e => this.props.filterProducts(e.target.value)}
-                    value={this.props.filterValue}
-                  />
-                </div>
-                <div className="filterSortTypes">
-                  <div
-                    className={
-                      this.props.filterAsc ? "filterSortAscH" : "filterSortAsc"
-                    }
-                    onClick={this.props.filterByAsc.bind(this)}
-                  >
-                    <div className="filterAscImg">
-                      <img src={Asc} alt="Ascending" title="Ascending" />
-                    </div>
-                  </div>
-                  <div
-                    className={
-                      this.props.filterDesc
-                        ? "filterSortDescH"
-                        : "filterSortDesc"
-                    }
-                    onClick={this.props.filterByDesc.bind(this)}
-                  >
-                    <div className="filterDescImg">
-                      <img src={Desc} alt="Descending" title="Descending" />
-                    </div>
-                  </div>
-                </div>
+            {this.state.actionMenu ? (
+              <div className="actionBoxOptions">
                 <div
-                  className={
-                    this.props.filterPrice
-                      ? "filterSortPriceH"
-                      : "filterSortPrice"
-                  }
-                  onClick={this.props.filterByPrice.bind(this)}
+                  className="actionDeleteSelect"
+                  onClick={this.handleDeleteProducts.bind(this)}
                 >
-                  <div className="filterSortPriceCover">
-                    <h2>Price</h2>
-                  </div>
+                  <h2>Delete Selected</h2>
                 </div>
-                <div
-                  className={
-                    this.props.filterCategory
-                      ? "filterSortCategoryH"
-                      : "filterSortCategory"
-                  }
-                  onClick={this.props.filterByCat.bind(this)}
-                >
-                  <div className="filterSortCategoryCover">
-                    <h2>Category</h2>
-                  </div>
+                <div className="actionItemSelect">
+                  <h2>Apply Discount</h2>
                 </div>
-                <div
-                  className={
-                    this.props.filterUnits ? "filterSortUnitsH" : "filterSortUnits"
-                  }
-                  onClick={this.props.filterByUnits.bind(this)}
-                >
-                  <div className="filterSortUnitsCover">
-                    <h2>Units Available</h2>
-                  </div>
+                <div className="actionItemSelect">
+                  <h2>Change Category</h2>
                 </div>
               </div>
             ) : (
               ""
             )}
+
+            <div className="filterBoxFrame">
+              <div className="filterBox" onClick={this.toggleFilter}>
+                <img src={Filter} alt="Filter" title="Filter" />
+                <div className="actionText">
+                  <h2>Filter</h2>
+                </div>
+              </div>
+              {this.state.filterMenu ? (
+                <div className="filterBoxOptions">
+                  <div className="filterSearchItem">
+                    <input
+                      type="search"
+                      placeholder="Keyword"
+                      onChange={e => this.props.filterProducts(e.target.value)}
+                      value={this.props.filterValue}
+                    />
+                  </div>
+                  <div className="filterSortTypes">
+                    <div
+                      className={
+                        this.props.filterAsc
+                          ? "filterSortAscH"
+                          : "filterSortAsc"
+                      }
+                      onClick={this.props.filterByAsc.bind(this)}
+                    >
+                      <div className="filterAscImg">
+                        <img src={Asc} alt="Ascending" title="Ascending" />
+                      </div>
+                    </div>
+                    <div
+                      className={
+                        this.props.filterDesc
+                          ? "filterSortDescH"
+                          : "filterSortDesc"
+                      }
+                      onClick={this.props.filterByDesc.bind(this)}
+                    >
+                      <div className="filterDescImg">
+                        <img src={Desc} alt="Descending" title="Descending" />
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className={
+                      this.props.filterPrice
+                        ? "filterSortPriceH"
+                        : "filterSortPrice"
+                    }
+                    onClick={this.props.filterByPrice.bind(this)}
+                  >
+                    <div className="filterSortPriceCover">
+                      <h2>Price</h2>
+                    </div>
+                  </div>
+                  <div
+                    className={
+                      this.props.filterCategory
+                        ? "filterSortCategoryH"
+                        : "filterSortCategory"
+                    }
+                    onClick={this.props.filterByCat.bind(this)}
+                  >
+                    <div className="filterSortCategoryCover">
+                      <h2>Category</h2>
+                    </div>
+                  </div>
+                  <div
+                    className={
+                      this.props.filterUnits
+                        ? "filterSortUnitsH"
+                        : "filterSortUnits"
+                    }
+                    onClick={this.props.filterByUnits.bind(this)}
+                  >
+                    <div className="filterSortUnitsCover">
+                      <h2>Units Available</h2>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                ""
+              )}
+            </div>
           </div>
+          <Link to="/products/newproduct/">
+            <div className="AddProdBtn">
+              <img src={Add} alt="Add" title="Add" />
+              <div className="AddProdText">
+                <h2>Add Product</h2>
+              </div>
+            </div>
+          </Link>
+          <Link to="/products/newcategory/">
+            <div className="AddProdCatBtn">
+              <img src={Add} alt="Add" title="Add" />
+              <div className="AddProdCatText">
+                <h2>Add Product Category</h2>
+              </div>
+            </div>
+          </Link>
         </div>
-        <div className="AddProdBtn">
-          <img src={Add} alt="Add" title="Add" />
-          <div className="AddProdText">
-            <h2>Add Product</h2>
-          </div>
-        </div>
-        <div className="AddProdCatBtn">
-          <img src={Add} alt="Add" title="Add" />
-          <div className="AddProdCatText">
-            <h2>Add Product Category</h2>
-          </div>
-        </div>
-      </div>
     );
   }
 }

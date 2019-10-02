@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./../style/toproute.css";
-import PropTypes from "prop-types";
-import { withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const currentDir = window.location.pathname
   .split("/")
@@ -15,7 +14,7 @@ export default class TopRoute extends Component {
       <div>
         <div className="topRoutingBack">
           <div className="routeCont">
-            <h3>Products</h3>
+            <Link to="/products"><h3>Products</h3></Link>
             <div className="routeArrow">
               <img src={Arrow} alt="arrow" title="arrow" />
             </div>

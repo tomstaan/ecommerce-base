@@ -14,12 +14,12 @@ import store from "../store";
 class App extends Component {
   render() {
     return (
-      <Provider store={store}>
-        <div className="appContent">
-          <Header />
-          <Feed />
-        </div>
-      </Provider>
+        <Provider store={store}>
+          <div className="appContent">
+            <Header />
+            <Feed />
+          </div>
+        </Provider>
     );
   }
 }
