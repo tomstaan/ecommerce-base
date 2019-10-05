@@ -10,8 +10,8 @@ export default class Feed extends Component {
       <Router>
         <Switch>
           <Route exact path="/products/" component={Products} />
-          <Route exact path="/products/newcategory/" component={NewCategory} />
-          <Route exact path="/products/newproduct/" component={NewProduct} />
+          <Route path="/products/newcategory/" component={NewCategory} />
+          <Route path="/products/newproduct/" component={NewProduct} />
         </Switch>
       </Router>
     );

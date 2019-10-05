@@ -223,7 +223,7 @@ export class Options extends Component {
               )}
             </div>
           </div>
-          <Link to="/products/newproduct/">
+          <Link to="/products/newproduct">
             <div className="AddProdBtn">
               <img src={Add} alt="Add" title="Add" />
               <div className="AddProdText">
@@ -231,7 +231,7 @@ export class Options extends Component {
               </div>
             </div>
           </Link>
-          <Link to="/products/newcategory/">
+          <Link to="/products/newcategory">
             <div className="AddProdCatBtn">
               <img src={Add} alt="Add" title="Add" />
               <div className="AddProdCatText">

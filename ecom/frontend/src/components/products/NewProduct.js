@@ -22,7 +22,7 @@ export class NewProduct extends Component {
   state = {
     productName: "",
     productCategory: "",
-    productPrice: 0.0,
+    productPrice: 0,
     productQuantity: 0,
     productSize: "",
     productColor: "",

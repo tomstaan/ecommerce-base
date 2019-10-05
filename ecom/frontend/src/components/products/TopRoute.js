@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./../style/toproute.css";
 import { Link } from "react-router-dom";
 
-const currentDir = window.location.pathname
+let currentDir = window.location.pathname
   .split("/")
   .pop()
   .trim();
