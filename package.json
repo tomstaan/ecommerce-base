@@ -34,7 +34,7 @@
     "image-webpack-loader": "^6.0.0",
     "prop-types": "^15.7.2",
     "react": "^16.10.2",
-    "react-bootstrap": "^1.0.0-beta.12",
+    "react-bootstrap": "^1.0.0-beta.14",
     "react-dom": "^16.10.2",
     "react-redux": "^7.1.1",
     "react-router-dom": "^5.1.2",
