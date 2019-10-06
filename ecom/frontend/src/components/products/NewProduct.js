@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect, Provider } from "react-redux";
 import TopRoute from "./TopRoute";
+import { Link } from "react-router-dom";
 import "./../style/newproduct.css";
 
 //Images
@@ -20,16 +21,16 @@ export class NewProduct extends Component {
   }
 
   state = {
-    productName: "",
-    productCategory: "",
-    productPrice: 0,
-    productQuantity: 0,
-    productSize: "",
-    productColor: "",
-    productWeight: 0.0,
-    productStock: 0,
-    productOrder: 0,
-    productDesc: ""
+    product_name: "",
+    category_id: "",
+    unit_price: 0.0,
+    quantity_per_unit: 0,
+    size: "",
+    color: "",
+    unit_weight: 0.0,
+    units_in_stock: 0,
+    units_on_order: 0,
+    product_description: ""
   };
 
   static propTypes = {
@@ -46,61 +47,61 @@ export class NewProduct extends Component {
   onSubmit = e => {
     e.preventDefault();
     const {
-      productName,
-      productCategory,
-      productPrice,
-      productQuantity,
-      productSize,
-      productColor,
-      productWeight,
-      productStock,
-      productOrder,
-      productDesc
+      product_name,
+      category_id,
+      unit_price,
+      quantity_per_unit,
+      size,
+      color,
+      unit_weight,
+      units_in_stock,
+      units_on_order,
+      product_description
     } = this.state;
     const product = {
-      productName,
-      productCategory,
-      productPrice,
-      productQuantity,
-      productSize,
-      productColor,
-      productWeight,
-      productStock,
-      productOrder,
-      productDesc
+      product_name,
+      category_id,
+      unit_price,
+      quantity_per_unit,
+      size,
+      color,
+      unit_weight,
+      units_in_stock,
+      units_on_order,
+      product_description
     };
     //this.props.addTask(task);
     this.setState({
-      productName: "",
-      productCategory: "",
-      productPrice: 0.0,
-      productQuantity: 0,
-      productSize: "",
-      productColor: "",
-      productWeight: 0.0,
-      productStock: 0,
-      productOrder: 0,
-      productDesc: ""
+      product_name: "",
+      category_id: "",
+      unit_price: 0.0,
+      quantity_per_unit: 0,
+      size: "",
+      color: "",
+      unit_weight: 0.0,
+      units_in_stock: 0,
+      units_on_order: 0,
+      product_description: ""
     });
   };
 
   render() {
     const {
-      productName,
-      productCategory,
-      productPrice,
-      productQuantity,
-      productSize,
-      productColor,
-      productWeight,
-      productStock,
-      productOrder,
-      productDesc
+      product_name,
+      category_id,
+      unit_price,
+      quantity_per_unit,
+      size,
+      color,
+      unit_weight,
+      units_in_stock,
+      units_on_order,
+      product_description
     } = this.state;
     return (
       <div className="NewProdBack">
         <div className="col-lg-12">
-          <TopRoute/>
+          <TopRoute />
           <div className="newProductTitle">
             <h3>New Product</h3>
           </div>
@@ -110,20 +111,20 @@ export class NewProduct extends Component {
                 <input
                   className=""
                   type="text"
-                  name="productName"
+                  name="product_name"
                   id="label-title"
                   placeholder="Product Name"
                   onChange={this.onChange}
-                  value={productName}
+                  value={product_name}
                 />
               </div>
               <div className="newProdField">
                 <select
                   id="newProdCat"
                   onChange={this.onChange}
-                  name="productCategory"
+                  name="category_id"
                   className="newProdCat"
-                  value={productCategory}
+                  value={category_id}
                 >
                   <option className="selectEmptyCat" value="">
                     Category
@@ -145,7 +146,7 @@ export class NewProduct extends Component {
                     />
                   </div>
                   <div className="newProdGalleryButton">
-                    <button>Upload Images</button>
+                    <button type="button">Upload Images</button>
                   </div>
                 </div>
               </div>
@@ -156,46 +157,46 @@ export class NewProduct extends Component {
                   type="number"
                   step="0.01"
                   min="0"
-                  name="productPrice"
+                  name="unit_price"
                   id="label-title"
                   placeholder=""
                   onChange={this.onChange}
-                  value={productPrice}
+                  value={unit_price}
                 />
-                <span>€</span>
+                <span></span>
               </div>
               <div className="newProdFieldRight">
                 <label className="newProdFieldLabel">Quantity Per Unit</label>
                 <input
                   className=""
                   type="text"
-                  name="productQuantity"
+                  name="quantity_per_unit"
                   id="label-title"
                   placeholder=""
                   onChange={this.onChange}
-                  value={productQuantity}
+                  value={quantity_per_unit}
                 />
               </div>
               <div className="newProdField">
                 <input
                   className="newProdBottomFields"
                   type="text"
-                  name="productSize"
+                  name="size"
                   id="label-title"
                   placeholder="Size"
                   onChange={this.onChange}
-                  value={productSize}
+                  value={size}
                 />
               </div>
               <div className="newProdFieldRight">
                 <input
                   className="newProdBottomFields"
                   type="text"
-                  name="productColor"
+                  name="color"
                   id="label-title"
                   placeholder="Color"
                   onChange={this.onChange}
-                  value={productColor}
+                  value={color}
                 />
               </div>
               <div className="newProdField">
@@ -203,11 +204,11 @@ export class NewProduct extends Component {
                 <input
                   className=""
                   type="text"
-                  name="productWeight"
+                  name="unit_weight"
                   id="label-title"
                   placeholder=""
                   onChange={this.onChange}
-                  value={productWeight}
+                  value={unit_weight}
                 />
               </div>
               <div className="newProdFieldRight">
@@ -215,11 +216,11 @@ export class NewProduct extends Component {
                 <input
                   className=""
                   type="text"
-                  name="productStock"
+                  name="units_in_stock"
                   id="label-title"
                   placeholder=""
                   onChange={this.onChange}
-                  value={productStock}
+                  value={units_in_stock}
                 />
               </div>
               <div className="newProdField">
@@ -227,27 +228,27 @@ export class NewProduct extends Component {
                 <input
                   className=""
                   type="text"
-                  name="productOrder"
+                  name="units_on_order"
                   id="label-title"
                   placeholder=""
                   onChange={this.onChange}
-                  value={productOrder}
+                  value={units_on_order}
                 />
               </div>
               <div className="newProdTxtArea">
                 <textarea
-                  name="productDesc"
-                  id="productDesc"
+                  name="product_description"
+                  id="product_description"
                   placeholder="Product Description"
                   onChange={this.onChange}
-                  value={productDesc}
+                  value={product_description}
                 ></textarea>
               </div>
-              <div className="newProdLeftButton">
+              <Link to="/products"><div className="newProdLeftButton">
                 <button>Cancel</button>
-              </div>
+              </div></Link>
               <div className="newProdRightButton">
-                <button>Create Product</button>
+                <button type="submit">Create Product</button>
               </div>
             </div>
           </form>

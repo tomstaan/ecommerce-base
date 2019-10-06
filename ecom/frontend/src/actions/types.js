@@ -13,3 +13,4 @@ export const FILTER_UNITS = "FILTER_UNITS";
 
 //Category
 export const GET_CATEGORY = "GET_CATEGORY";
+export const ADD_CATEGORY = "ADD_CATEGORY";

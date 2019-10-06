@@ -8,20 +8,17 @@ import TopRoute from "./TopRoute";
 //Images
 import Arrow from "./../style/images/return.png";
 //Other imports
-import { getCategory } from "../../actions/category";
+import { getCategory, addCategory } from "../../actions/category";
 
 export class NewCategory extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      category: []
+      category: [],
+      cat_name: "",
+      description: ""
     };
   }
-
-  state = {
-    categoryName: "",
-    categoryDescription: ""
-  };
 
   static propTypes = {
     category: PropTypes.array.isRequired,
@@ -36,19 +33,19 @@ export class NewCategory extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    const { categoryName, categoryDescription } = this.state;
-    const product = {
-      categoryName,
-      categoryDescription
+    const { cat_name, description } = this.state;
+    const newCat = {
+      cat_name,
+      description
     };
-    //this.props.addTask(task);
+    this.props.addCategory(newCat);
     this.setState({
-      categoryName: "",
-      categoryDescription: ""
+      cat_name: "",
+      description: ""
     });
   };
   render() {
-    const { categoryName, categoryDescription } = this.state;
+    const { cat_name, description } = this.state;
     return (
       <div className="NewCatBack">
         <div className="col-lg-12">
@@ -62,27 +59,29 @@ export class NewCategory extends Component {
                 <input
                   className=""
                   type="text"
-                  name="categoryName"
+                  name="cat_name"
                   id="label-title"
                   placeholder="Category Name"
                   onChange={this.onChange}
-                  value={categoryName}
+                  value={cat_name}
                 />
               </div>
               <div className="newCatField">
                 <textarea
-                  name="categoryDescription"
+                  name="description"
                   id="categoryDesc"
                   placeholder="Category Description"
                   onChange={this.onChange}
-                  value={categoryDescription}
+                  value={description}
                 />
               </div>
               <div className="newCatLeftButton">
-                <Link to="/products"><button>Cancel</button></Link>
+                <Link to="/products">
+                  <button>Cancel</button>
+                </Link>
               </div>
               <div className="newCatRightButton">
-                <button>Create Category</button>
+                <button type="submit">Create Category</button>
               </div>
             </div>
           </form>
@@ -99,6 +98,7 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   {
-    getCategory
+    getCategory,
+    addCategory
   }
 )(NewCategory);
