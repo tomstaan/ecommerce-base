@@ -11,31 +11,30 @@ import GalleryIcon from "./../style/images/pic.png";
 
 //Other imports
 import { getCategory } from "../../actions/category";
+import { addProduct } from "../../actions/products";
 
 export class NewProduct extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      category: []
+      category: [],
+      product_name: "",
+      category_id: "",
+      unit_price: 0.0,
+      quantity_per_unit: 0,
+      size: "",
+      color: "",
+      unit_weight: 0.0,
+      units_in_stock: 0,
+      units_on_order: 0,
+      product_description: ""
     };
   }
 
-  state = {
-    product_name: "",
-    category_id: "",
-    unit_price: 0.0,
-    quantity_per_unit: 0,
-    size: "",
-    color: "",
-    unit_weight: 0.0,
-    units_in_stock: 0,
-    units_on_order: 0,
-    product_description: ""
-  };
-
   static propTypes = {
     category: PropTypes.array.isRequired,
-    getCategory: PropTypes.func.isRequired
+    getCategory: PropTypes.func.isRequired,
+    addProduct: PropTypes.func.isRequired
   };
 
   componentDidMount() {
@@ -70,7 +69,7 @@ export class NewProduct extends Component {
       units_on_order,
       product_description
     };
-    //this.props.addTask(task);
+    this.props.addProduct(product);
     this.setState({
       product_name: "",
       category_id: "",
@@ -244,9 +243,11 @@ export class NewProduct extends Component {
                   value={product_description}
                 ></textarea>
               </div>
-              <Link to="/products"><div className="newProdLeftButton">
-                <button>Cancel</button>
-              </div></Link>
+              <Link to="/products">
+                <div className="newProdLeftButton">
+                  <button>Cancel</button>
+                </div>
+              </Link>
               <div className="newProdRightButton">
                 <button type="submit">Create Product</button>
               </div>
@@ -266,6 +267,7 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   {
-    getCategory
+    getCategory,
+    addProduct
   }
 )(NewProduct);

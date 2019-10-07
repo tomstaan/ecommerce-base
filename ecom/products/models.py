@@ -11,24 +11,31 @@ class Product(models.Model):
     #sku = models.CharField(max_length=15, blank=True)
     #idsku = models.CharField(blank=True, max_length=255)
     #vendor_product_id = models.CharField(max_length=255, blank=True)
-    product_name = models.CharField(max_length=255)
-    product_description = models.CharField(max_length=2000, blank=True)
+    product_name = models.CharField(max_length=255, blank=True, null=True)
+    product_description = models.CharField(
+        max_length=2000, blank=True, null=True)
     product_image = models.ImageField(upload_to=get_image_path, blank=True, null=True)
-    supplier_id = models.CharField(max_length=255, blank=True)
+    supplier_id = models.CharField(max_length=255, blank=True, null=True)
     category_id = models.ForeignKey(
         'Product_categories', on_delete=models.CASCADE, blank=True, null=True)
     quantity_per_unit = models.IntegerField()
-    unit_price = models.DecimalField(max_digits=8, decimal_places=2)
-    msrp = models.DecimalField(max_digits=8, decimal_places=2, blank=True)
-    size = models.CharField(blank=True, max_length=20)
-    color = models.CharField(blank=True, max_length=20)
-    discount = models.DecimalField(max_digits=4, decimal_places=2, blank=True)
-    unit_weight = models.DecimalField(max_digits=10, decimal_places=3)
-    units_in_stock = models.IntegerField() 
-    units_on_order = models.IntegerField(blank=True)
-    product_availible = models.BooleanField(default=False)
-    discount_availible = models.BooleanField(default=False)
-    discount_price = models.DecimalField(max_digits=8, decimal_places=2)
+    unit_price = models.DecimalField(
+        max_digits=8, decimal_places=2, blank=True, null=True)
+    msrp = models.DecimalField(
+        max_digits=8, decimal_places=2, blank=True, null=True)
+    size = models.CharField(max_length=20, blank=True, null=True)
+    color = models.CharField(max_length=20, blank=True, null=True)
+    discount = models.DecimalField(
+        max_digits=4, decimal_places=2, blank=True, null=True)
+    unit_weight = models.DecimalField(max_digits=10, decimal_places=3, blank=True, null=True)
+    units_in_stock = models.IntegerField(blank=True, null=True)
+    units_on_order = models.IntegerField(blank=True, null=True)
+    product_availible = models.BooleanField(
+        default=False, blank=True, null=True)
+    discount_availible = models.BooleanField(
+        default=False, blank=True, null=True)
+    discount_price = models.DecimalField(
+        max_digits=8, decimal_places=2, blank=True, null=True)
     note = models.CharField(max_length=500, blank=True)
     date = models.DateTimeField(default=datetime.now(), blank=True)
 

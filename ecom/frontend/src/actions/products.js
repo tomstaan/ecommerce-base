@@ -3,6 +3,7 @@ import axios from "axios";
 import {
   GET_PRODUCTS,
   DELETE_PRODUCT,
+  ADD_PRODUCT,
   SELECT_ALL_PRODUCTS,
   HANDLE_PRODUCT_SELECT,
   FILTER_PRODUCTS,
@@ -35,6 +36,19 @@ export const deleteProducts = id => dispatch => {
       dispatch({
         type: DELETE_PRODUCT,
         payload: id
+      });
+    })
+    .catch(err => console.log(err));
+};
+
+//ADD Category
+export const addProduct = product => dispatch => {
+  axios
+    .post("http://127.0.0.1:8000/api/products/", product)
+    .then(res => {
+      dispatch({
+        type: ADD_PRODUCT,
+        payload: res.data
       });
     })
     .catch(err => console.log(err));

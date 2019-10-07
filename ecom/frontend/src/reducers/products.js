@@ -1,5 +1,6 @@
 import {
   GET_PRODUCTS,
+  ADD_PRODUCT,
   DELETE_PRODUCT,
   SELECT_ALL_PRODUCTS,
   HANDLE_PRODUCT_SELECT,
@@ -88,6 +89,11 @@ export default function(state = initalState, action) {
         filteredProducts: state.filteredProducts.filter(
           product => product.id !== action.payload
         )
+      };
+    case ADD_PRODUCT:
+      return {
+        ...state,
+        products: [...state.products, action.payload]
       };
     case HANDLE_PRODUCT_SELECT:
       return {
