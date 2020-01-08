@@ -10,6 +10,7 @@ django = "*"
 djangorestframework = "*"
 django-rest-knox = "*"
 pyrebase = "*"
+stripe = "*"
 
 [requires]
 python_version = "3.7"
