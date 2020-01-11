@@ -6,12 +6,12 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-django = "*"
 djangorestframework = "*"
 django-rest-knox = "*"
 pyrebase = "*"
 stripe = "*"
-version2-2-8 = "*"
+requests = "*"
+django = "*"
 
 [requires]
 python_version = "3.7"
