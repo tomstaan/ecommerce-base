@@ -6,12 +6,11 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
+django = "*"
 djangorestframework = "*"
 django-rest-knox = "*"
-pyrebase = "*"
-stripe = "*"
 requests = "*"
-django = "*"
+mysqlclient = "*"
 
 [requires]
 python_version = "3.7"
