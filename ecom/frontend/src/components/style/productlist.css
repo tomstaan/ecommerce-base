@@ -1,90 +1,89 @@
-.plBack{
-    position: relative;
-    width: 95%;
-    margin: auto;
-    margin-top: 10px;
-    z-index: 160px;
-    max-width: 1600px;
+.plBack {
+  position: relative;
+  width: 95%;
+  margin: auto;
+  margin-top: 10px;
+  z-index: 160px;
+  max-width: 1600px;
 }
 
-.productBack{
-    position:relative;
-    background-color: #fff;
-    border-radius: 4px;
-    margin-bottom: 10px;
-    width: 100%;
-    overflow: hidden;
-    
+.productBack {
+  position: relative;
+  background-color: #fff;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  width: 100%;
+  overflow: hidden;
 }
 
-.selectProductCont{
-    position: relative;
-    background-color: #fff;
-    float: left;
-    border-right:1px solid #EFEFEF;
-    height: 58px;
-    margin-top: 11px;
-    margin-bottom: 11px;
+.selectProductCont {
+  position: relative;
+  background-color: #fff;
+  float: left;
+  border-right: 1px solid #efefef;
+  height: 58px;
+  margin-top: 11px;
+  margin-bottom: 11px;
 }
 
-.selectProductBack{
-    display: block;
-    cursor: pointer;
-    position: relative;
-    height: 20px;
-    background-color: #fff;
-    width: 20px;
-    border-radius: 3px;
-    border: 2px #efefef solid;
-    margin: 17px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    transition: .3s ease;
+.selectProductBack {
+  display: block;
+  cursor: pointer;
+  position: relative;
+  height: 20px;
+  background-color: #fff;
+  width: 20px;
+  border-radius: 3px;
+  border: 2px #efefef solid;
+  margin: 17px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  transition: 0.3s ease;
 }
 
 .selectProductBack input:checked ~ .selectProductCheck {
   display: block;
-  opacity:1 ;
+  opacity: 1;
 }
 .selectProductBack input:hover ~ .selectProductCheck {
   display: block;
-  opacity:.4 ;
-  transition: .3s ease;
+  opacity: 0.4;
+  transition: 0.3s ease;
 }
 .selectProductBack input:checked ~ .selectProductBack {
   border-color: #707070;
 }
-.selectProductCont input{
-    position: absolute;
+.selectProductCont input {
+  position: absolute;
   opacity: 0;
   background-color: transparent;
   color: transparent;
   cursor: pointer;
   height: 16px;
   width: 16px;
-  transition: .3s ease;
+  transition: 0.3s ease;
 }
-.selectProductCheck:active{
-    display: block;
-    opacity: 1;
+.selectProductCheck:active {
+  display: block;
+  opacity: 1;
 }
 
-.selectProductCheck{
-    opacity: 1;
-    display: none;
-    pointer-events: none;
-    position: absolute;
+.selectProductCheck {
+  opacity: 1;
+  display: none;
+  pointer-events: none;
+  position: absolute;
   top: 0;
   left: 0;
   height: 16px;
-   top: 2px;
-    left: 2px;
-    transition: .3s ease;
-    padding: 0px;
-    border-radius: 1px;
-    margin: 0px;
+  top: 2px;
+  left: 2px;
+  transition: 0.3s ease;
+  padding: 0px;
+  border-radius: 1px;
+  margin: 0px;
   width: 16px;
   background-color: #0066ff;
 }
@@ -112,198 +111,320 @@
 }
 */
 
-.productImageBox{
-    float: left;
-    position: relative;
-    width: 105px;
-    height: 74px;
-    overflow: hidden;
-    background-color: #efefef;
-    margin: 3px;
+.productImageBox {
+  float: left;
+  position: relative;
+  width: 105px;
+  height: 74px;
+  overflow: hidden;
+  background-color: #efefef;
+  margin: 3px;
 }
-.productImageBox img{
-    position:absolute;
-    width: 100%;
-    height: auto;
+.productImageBox img {
+  position: absolute;
+  width: 100%;
+  height: auto;
 }
 
-.productDescBack{
-    position: relative;
-    float: left;
-    margin-left: 10px;
+.productDescBack {
+  position: relative;
+  float: left;
+  margin-left: 10px;
 }
-.productDescTop{
-    position: relative;
-    height: 40px;
-    top: 0px;
+.productDescTop {
+  position: relative;
+  height: 40px;
+  top: 0px;
 }
-.productDescBottom{
-    position: relative;
-    height: 40px;
-    top: 0px;
+.productDescBottom {
+  position: relative;
+  height: 40px;
+  top: 0px;
 }
-.productDescTitle{
-    position: relative;
-    height: 40px;
-    width: 300px;
-    max-width: 300px;
-    overflow: hidden;
-    float: left;
+.productDescTitle {
+  position: relative;
+  height: 40px;
+  width: 300px;
+  max-width: 300px;
+  overflow: hidden;
+  float: left;
 }
-.productDescTitle h3{
-    position: relative;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 18px;
-    line-height: 40px;
+.productDescTitle h3 {
+  position: relative;
+  font-family: "Open Sans", sans-serif;
+  font-size: 18px;
+  line-height: 40px;
 }
-.productColor{
-    position: relative;
-    height: 40px;
-    float: left;
-    overflow: hidden;
-    max-width: 95px;
-    width: 95px;
+.productColor {
+  position: relative;
+  height: 40px;
+  float: left;
+  overflow: hidden;
+  max-width: 95px;
+  width: 95px;
 }
-.productBold{
-    position: relative;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 12px;
-    font-weight: bold;
-    line-height: 15px;
-    margin-top: 5px;
+.productBold {
+  position: relative;
+  font-family: "Open Sans", sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 15px;
+  margin-top: 5px;
 }
-.productTxt{
-    position: relative;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
-    font-weight: normal;
-    line-height: 15px;
-    margin-top: 0px;
+.productTxt {
+  position: relative;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 15px;
+  margin-top: 0px;
 }
-.productQuant{
-    position: relative;
-    height: 40px;
-    float: left;
-    overflow: hidden;
-    max-width: 140px;
-    width: 140px;
+.productQuant {
+  position: relative;
+  height: 40px;
+  float: left;
+  overflow: hidden;
+  max-width: 140px;
+  width: 140px;
 }
-.productPrice{
-    position: relative;
-    float: left;
-    margin-right: 10px;
-    height: 40px;
-    width: 120px;
-    overflow: hidden;
+.productPrice {
+  position: relative;
+  float: left;
+  margin-right: 10px;
+  height: 40px;
+  width: 120px;
+  overflow: hidden;
 }
-.productPriceBox{
-    position: relative;
-    height: 30px;
-    float: left;
-    width: 120px;
-    margin-top: 5px;
-    background-color: #efefef;
-    border-radius: 4px;
+.productPriceBox {
+  position: relative;
+  height: 30px;
+  float: left;
+  width: 120px;
+  margin-top: 5px;
+  background-color: #efefef;
+  border-radius: 4px;
 }
-.priceCurrencySign{
-    font-family: 'Open Sans', sans-serif;
-    position: relative;
-    color: #000;
-    text-align: left;
-    font-size: 14px;
-    line-height: 30px;
-    padding-left: 5px;
+.priceCurrencySign {
+  font-family: "Open Sans", sans-serif;
+  position: relative;
+  color: #000;
+  text-align: left;
+  font-size: 14px;
+  line-height: 30px;
+  padding-left: 5px;
 }
-.priceAmount{
-    font-family: 'Open Sans', sans-serif;
-    position: relative;
-    color: #000;
-    font-size: 14px;
-    float: right;
-    text-align: right;
-    padding-right: 5px;
-    line-height: 30px;
-    padding-left: 5px;
+.priceAmount {
+  font-family: "Open Sans", sans-serif;
+  position: relative;
+  color: #000;
+  font-size: 14px;
+  float: right;
+  text-align: right;
+  padding-right: 5px;
+  line-height: 30px;
+  padding-left: 5px;
 }
-.productDiscountCont{
-    position: relative;
-    height: 40px;
-    float: left;
-    overflow: hidden;
-    max-width: 80px;
-    width: 80px;
+.productDiscountCont {
+  position: relative;
+  height: 40px;
+  float: left;
+  overflow: hidden;
+  max-width: 80px;
+  width: 80px;
 }
-.productDiscActive{
-    position: relative;
-    color: #00CB44;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
-    font-weight: normal;
-    line-height: 15px;
-    margin-top: 0px;
+.productDiscActive {
+  position: relative;
+  color: #00cb44;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 15px;
+  margin-top: 0px;
 }
-.productDiscNot{
-    position: relative;
-    color: #ff0000;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
-    font-weight: normal;
-    line-height: 15px;
-    margin-top: 0px;
+.productDiscNot {
+  position: relative;
+  color: #ff0000;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 15px;
+  margin-top: 0px;
 }
-.productOriginalPrice{
-    position: relative;
-    height: 40px;
-    float: left;
-    overflow: hidden;
-    max-width: 90px;
-    width: 90px;
+.productOriginalPrice {
+  position: relative;
+  height: 40px;
+  float: left;
+  overflow: hidden;
+  max-width: 90px;
+  width: 90px;
 }
-.productDivLine{
-    position: relative;
-    height: 58px;
-    width: 1px;
-    background-color: #efefef;
-    margin-top: 11px;
-    margin-bottom: 11px;
-    float: left;
+.productDivLine {
+  position: relative;
+  height: 58px;
+  width: 1px;
+  background-color: #efefef;
+  margin-top: 11px;
+  margin-bottom: 11px;
+  float: left;
 }
-.singleProductActions{
-    position: absolute;
-    right: 0px;
-    bottom: 0px;
-    width: 34px;
-    height: 34px;
-    background-color: #fff;
+.singleProductActions {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  width: 34px;
+  height: 34px;
+  background-color: #fff;
 }
-.deleteSingleProduct{
-    position: absolute;
-    height: 34px;
-    overflow: hidden;
-    width: 34px;
-    border-radius: 6px;
-    background-color: #fff;
-    right: 0px;
-    bottom: 0px;
+.deleteSingleProduct {
+  position: absolute;
+  height: 34px;
+  overflow: hidden;
+  width: 34px;
+  border-radius: 6px;
+  background-color: #fff;
+  right: 0px;
+  bottom: 0px;
 }
-.deleteSingleProduct button{
-    position: relative;
-    height: 34px;
-    opacity: .6;
-    cursor: pointer;
-    width: 34px;
-    border: none;
+.deleteSingleProduct button {
+  position: relative;
+  height: 34px;
+  opacity: 0.6;
+  cursor: pointer;
+  width: 34px;
+  border: none;
+  transition: 0.3s ease;
+  outline: none;
+  background-color: #fff;
+}
+.deleteSingleProduct button:hover {
+  opacity: 1;
+}
+.deleteSingleProduct img {
+  position: absolute;
+  height: 26px;
+  width: 26px;
+  left: 3px;
+  top: 3px;
+}
+
+.confirmDeleteBack {
     transition: .3s ease;
-    outline: none;
-    background-color: #fff;
+  position: absolute;
+  z-index: 2000;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.20306840998117992) 0%,
+    rgba(0, 0, 0, 0.2) 100%
+  );
 }
-.deleteSingleProduct button:hover{
-    opacity: 1;
+
+.confirmDeleteCont {
+  position: relative;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  min-height: 90px;
+  width: 300px;
+  top: 35%;
+  background-color: #fff;
+  margin: auto;
+  border-radius: 3px;
+  -webkit-box-shadow: 3px 6px 5px 0px rgba(0, 0, 0, 0.12);
+  -moz-box-shadow: 3px 6px 5px 0px rgba(0, 0, 0, 0.12);
+  box-shadow: 3px 6px 5px 0px rgba(0, 0, 0, 0.12);
 }
-.deleteSingleProduct img{
-    position: absolute;
-    height: 26px;
-    width: 26px;
-    left: 3px;
-    top: 3px;
+.confirmDeleteBox {
+  position: relative;
+  width: 92%;
+  margin: auto;
+  top: 0px;
+}
+.confirmDeleteCont h3 {
+  position: relative;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  color: #000;
+  float: left;
+  line-height: 15px;
+  margin-top: 0px;
+}
+
+.confirmDeleteCont h4 {
+  position: relative;
+  padding-top: 10px;
+  float: left;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  color: #000;
+  line-height: 15px;
+  margin-top: 0px;
+}
+
+.confirmDeleteButtons {
+  position: relative;
+  width: 100%;
+}
+.confirmDeleteButton {
+  position: relative;
+  width: 50%;
+  float: left;
+  padding-top: 10px;
+}
+.confirmDeleteCancel {
+  position: relative;
+  height: 35px;
+  transition: 0.3s ease;
+  color: #000;
+  border: none;
+  width: 95%;
+  cursor: pointer;
+  background-color: #fff;
+  float: left;
+  border-radius: 5px;
+  -webkit-box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  -moz-box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.12);
+}
+.confirmDeleteCancel:focus {
+  outline: none;
+}
+.confirmDeleteCancel:hover {
+  opacity: .8;
+}
+.confirmDeleteCancel:active {
+  -webkit-box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0);
+  -moz-box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0);
+  box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0);
+}
+
+.confirmDeleteConf {
+  position: relative;
+  height: 35px;
+  background-color: #fff;
+  color: #ff0000;
+  cursor: pointer;
+  width: 95%;
+  transition: 0.3s ease;
+  float: right;
+  border: none;
+  border-radius: 5px;
+  -webkit-box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  -moz-box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.12);
+}
+.confirmDeleteConf:focus {
+  outline: none;
+}
+.confirmDeleteConf:hover {
+  opacity: .8;
+}
+.confirmDeleteConf:active {
+  -webkit-box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0);
+  -moz-box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0);
+  box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0);
 }
