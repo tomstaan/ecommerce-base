@@ -80,8 +80,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ecom',
-        'USER': 'root',
-        'PASSWORD': 'T1m5@l4x.com',
+        'USER': '',
+        'PASSWORD': '82456729',
     }
 }
 
