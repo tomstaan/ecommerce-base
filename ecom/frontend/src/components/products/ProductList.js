@@ -9,7 +9,7 @@ import {
   getProducts,
   deleteProducts,
   handleProductSelect,
-  selectAllProducts
+  selectAllProducts,
 } from "../../actions/products";
 
 import { getCategory } from "../../actions/category";
@@ -26,8 +26,7 @@ export class ProductList extends Component {
       selectedProducts: [],
       category: [],
       productDeleteWarning: false,
-      confirmProductDelete: null,
-      tempDeleteProduct: null
+      tempDeleteProduct: null,
     };
   }
 
@@ -39,38 +38,48 @@ export class ProductList extends Component {
     selectAllProducts: PropTypes.func.isRequired,
     filteredProducts: PropTypes.array.isRequired,
     category: PropTypes.array.isRequired,
-    getCategory: PropTypes.func.isRequired
+    getCategory: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
-    this.props.getProducts();
+    this.props.getProducts();-
     this.props.getCategory();
   }
 
   categoryDisplay(e, prodId) {
     let title = "";
-    this.props.category.map(Category =>
+    this.props.category.map((Category) =>
       Category.id == prodId ? (title = Category.cat_name) : ""
     );
     return title;
   }
-  warningProductDelete = e => {
-    //this.props.deleteProducts.bind(e, e.id);
+  
+  // Captures object + opens box
+  warningProductDelete = (e, thisProduct) => {
     console.log(e);
     this.setState({
       productDeleteWarning: true,
-      tempDeleteProduct: e
+      tempDeleteProduct: e,
     });
   };
 
-  confirmProductDelete = e => {
-    //this.props.deleteProducts.bind(e, e.id);
-    console.log(e);
+  // Switches the state / toggles the box
+  cancelProductDelete = (e) => {
     this.setState({
-      productDeleteWarning: true,
-      tempDeleteProduct: e
+      productDeleteWarning: false,
+      tempDeleteProduct: null,
     });
-  };
+  }
+
+  // Delete product which was captured by warning function
+  deleteSelectedProduct = (e) => {
+    this.props.deleteProducts(this.state.tempDeleteProduct.id);
+    console.log(this.state.tempDeleteProduct.id);
+    this.setState({
+      productDeleteWarning: false,
+      tempDeleteProduct: null,
+    });
+  }
 
   render() {
     return (
@@ -79,7 +88,7 @@ export class ProductList extends Component {
           <div className="col-lg-12">
             {this.props.filteredProducts.length ? (
               <Fragment>
-                {this.props.filteredProducts.map(Product => (
+                {this.props.filteredProducts.map((Product) => (
                   <div key={Product.id} className="productBack">
                     <div className="selectProductCont">
                       <div className="selectProductBack">
@@ -179,7 +188,7 @@ export class ProductList extends Component {
                         <button
                           type="button"
                           className="btn btn-primary"
-                          onClick={this.confirmProductDelete.bind(
+                          onClick={this.warningProductDelete.bind(
                             this,
                             Product
                           )}
@@ -207,15 +216,20 @@ export class ProductList extends Component {
             <div className="confirmDeleteCont">
               <div className="confirmDeleteBox">
                 <h3>Delete Product</h3>
-                <h4>Are you sure you want to delete selected products?</h4>
+                <h4>Are you sure you want to delete this product?</h4>
                 <div className="confirmDeleteButtons">
                   <div className="confirmDeleteButton">
-                    <button type="button" className="confirmDeleteCancel">
+                    <button
+                      type="button"
+                      className="confirmDeleteCancel"
+                      onClick={this.cancelProductDelete.bind(this)}
+                    >
                       Cancel
                     </button>
                   </div>
                   <div className="confirmDeleteButton">
-                    <button type="button" className="confirmDeleteConf">
+                    <button type="button" className="confirmDeleteConf" 
+                    onClick={this.deleteSelectedProduct.bind(this)}>
                       Delete
                     </button>
                   </div>
@@ -231,21 +245,18 @@ export class ProductList extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   products: state.products.products,
   selectAllChecked: state.products.selectAllChecked,
   filteredProducts: state.products.filteredProducts,
   filterValue: state.products.filterValue,
-  category: state.category.category
+  category: state.category.category,
 });
 
-export default connect(
-  mapStateToProps,
-  {
-    getProducts,
-    deleteProducts,
-    handleProductSelect,
-    selectAllProducts,
-    getCategory
-  }
-)(ProductList);
+export default connect(mapStateToProps, {
+  getProducts,
+  deleteProducts,
+  handleProductSelect,
+  selectAllProducts,
+  getCategory,
+})(ProductList);
