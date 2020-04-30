@@ -43,6 +43,6 @@
     "redux-thunk": "^2.3.0",
     "style-loader": "^1.1.4",
     "url-loader": "^4.1.0",
-    "uuid": "^7.0.3"
+    "uuid": "^8.0.0"
   }
 }
