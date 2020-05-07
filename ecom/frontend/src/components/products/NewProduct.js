@@ -2,15 +2,11 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect, Provider } from "react-redux";
 import TopRoute from "./TopRoute";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import "./../style/newproduct.css";
 
 //Image Uploading
 import NewProductImage from './NewProductImage'
-
-//Images
-import Arrow from "./../style/images/return.png";
-import GalleryIcon from "./../style/images/pic.png";
 
 //Other imports
 import { getCategory } from "../../actions/category";
@@ -30,7 +26,8 @@ export class NewProduct extends Component {
       unit_weight: 0.0,
       units_in_stock: 0,
       units_on_order: 0,
-      product_description: ""
+      product_description: "",
+      redirect: false,
     };
   }
 
@@ -83,11 +80,16 @@ export class NewProduct extends Component {
       unit_weight: 0.0,
       units_in_stock: 0,
       units_on_order: 0,
-      product_description: ""
+      product_description: "",
+      redirect: true,
     });
   };
 
   render() {
+    //Redirect back to products when submit is complete
+    if (this.state.redirect) {
+      return <Redirect push to="/products" />;
+    }
     const {
       product_name,
       category_id,

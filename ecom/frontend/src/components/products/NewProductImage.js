@@ -4,11 +4,9 @@ import { connect, Provider } from "react-redux";
 import "./../style/newproduct.css";
 
 //Images
-import Arrow from "./../style/images/return.png";
 import GalleryIcon from "./../style/images/pic.png";
 
 export default class NewProductImage extends Component {
-
     render() {
         return (
             <div>

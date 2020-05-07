@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect, Provider } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import "./../style/newcategory.css";
 import TopRoute from "./TopRoute";
 
@@ -16,7 +16,8 @@ export class NewCategory extends Component {
     this.state = {
       category: [],
       cat_name: "",
-      description: ""
+      description: "",
+      redirect: false,
     };
   }
 
@@ -41,10 +42,14 @@ export class NewCategory extends Component {
     this.props.addCategory(newCat);
     this.setState({
       cat_name: "",
-      description: ""
+      description: "",
+      redirect: true,
     });
   };
   render() {
+    if (this.state.redirect) {
+      return <Redirect push to="/products" />;
+    }
     const { cat_name, description } = this.state;
     return (
       <div className="NewCatBack">
