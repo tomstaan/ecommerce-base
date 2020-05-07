@@ -5,8 +5,6 @@ import { Link, Redirect } from "react-router-dom";
 import "./../style/newcategory.css";
 import TopRoute from "./TopRoute";
 
-//Images
-import Arrow from "./../style/images/return.png";
 //Other imports
 import { getCategory, addCategory } from "../../actions/category";
 
