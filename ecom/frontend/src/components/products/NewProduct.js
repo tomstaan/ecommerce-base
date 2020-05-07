@@ -5,6 +5,9 @@ import TopRoute from "./TopRoute";
 import { Link } from "react-router-dom";
 import "./../style/newproduct.css";
 
+//Image Uploading
+import NewProductImage from './NewProductImage'
+
 //Images
 import Arrow from "./../style/images/return.png";
 import GalleryIcon from "./../style/images/pic.png";
@@ -135,20 +138,7 @@ export class NewProduct extends Component {
                   ))}
                 </select>
               </div>
-              <div className="newProdImageUploadCont">
-                <div className="newProdImageUploadLabel">
-                  <div className="newProdLabelImg">
-                    <img
-                      src={GalleryIcon}
-                      alt="Gallery Icon"
-                      title="Gallry Icon"
-                    />
-                  </div>
-                  <div className="newProdGalleryButton">
-                    <button type="button">Upload Images</button>
-                  </div>
-                </div>
-              </div>
+              <NewProductImage/>
               <div className="newProdField">
                 <label className="newProdFieldLabel">Price</label>
                 <input

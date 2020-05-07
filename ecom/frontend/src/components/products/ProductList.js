@@ -42,7 +42,7 @@ export class ProductList extends Component {
   };
 
   componentDidMount() {
-    this.props.getProducts();-
+    this.props.getProducts();
     this.props.getCategory();
   }
 

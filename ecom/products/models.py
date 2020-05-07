@@ -1,6 +1,6 @@
 import os
 from django.db import models
-from django.utils import timezone
+from django.utils.timezone import now
 
 
 def get_image_path(instance, filename):
@@ -37,7 +37,7 @@ class Product(models.Model):
     discount_price = models.DecimalField(
         max_digits=8, decimal_places=2, blank=True, null=True)
     note = models.CharField(max_length=500, blank=True)
-    date = models.DateField(default=timezone.now, blank=True)
+    date = models.DateTimeField(default=now, editable=False)
 
     def __str__(self):
         return self.product_name
@@ -66,7 +66,7 @@ class Subproduct(models.Model):
     discount_availible = models.BooleanField(default=False)
     discount_price = models.DecimalField(max_digits=8, decimal_places=2)
     note = models.CharField(max_length=500, blank=True)
-    date = models.DateField(default=timezone.now, blank=True)
+    date = models.DateTimeField(default=now, editable=False)
 
     def __str__(self):
         return self.product_name + ' ('+ self.parent_product + ')'
