@@ -6,17 +6,23 @@ import { Link, Redirect } from "react-router-dom";
 import "./../style/newproduct.css";
 
 //Image Uploading
-import NewProductImage from './NewProductImage'
+import NewProductImage from "./NewProductImage";
+
+// Get products store
+import store from "../../../src/store";
 
 //Other imports
 import { getCategory } from "../../actions/category";
-import { addProduct } from "../../actions/products";
+import { addProduct, addPicsToProd } from "../../actions/products";
 
 export class NewProduct extends Component {
   constructor(props) {
     super(props);
     this.state = {
       category: [],
+      newProductPictures: [],
+      newProdImageId: 0,
+      oldProducts: [],
       product_name: "",
       category_id: "",
       unit_price: 0.0,
@@ -34,16 +40,33 @@ export class NewProduct extends Component {
   static propTypes = {
     category: PropTypes.array.isRequired,
     getCategory: PropTypes.func.isRequired,
-    addProduct: PropTypes.func.isRequired
+    addProduct: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
     this.props.getCategory();
+    this.subscribed = true;
+    store.subscribe(() => {
+      if (this.subscribed == true) {
+        this.setState({
+          newProductPictures: store.getState().products.newProductPictures,
+          newProdImageId: store.getState().products.newProdImageId
+        });
+      }
+    });
   }
 
-  onChange = e => this.setState({ [e.target.name]: e.target.value });
+  componentWillUnmount() {
+    this.subscribed = false;
+  }
 
-  onSubmit = e => {
+  onChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  onSubmit = (e) => {
+    //console.log("Pictures = "+this.state.newProductPictures);
+    // --------------
     e.preventDefault();
     const {
       product_name,
@@ -55,8 +78,9 @@ export class NewProduct extends Component {
       unit_weight,
       units_in_stock,
       units_on_order,
-      product_description
+      product_description,
     } = this.state;
+
     const product = {
       product_name,
       category_id,
@@ -67,9 +91,27 @@ export class NewProduct extends Component {
       unit_weight,
       units_in_stock,
       units_on_order,
-      product_description
+      product_description,
     };
+
+    // Add product
     this.props.addProduct(product);
+
+    
+    this.state.newProductPictures.forEach(picture => {
+      const {
+        newProdImageId
+      } = this.state;
+      const tempNew = 13;
+      const pictureObj = {
+        tempNew,
+        picture
+      }
+      console.log(pictureObj)
+      this.props.addPicsToProd(pictureObj);
+    })
+
+    // Reset state
     this.setState({
       product_name: "",
       category_id: "",
@@ -84,9 +126,9 @@ export class NewProduct extends Component {
       redirect: true,
     });
   };
-
+  
   render() {
-    //Redirect back to products when submit is complete
+    //Redirect back to products when © MorganReeveExposed 2019submit is complete
     if (this.state.redirect) {
       return <Redirect push to="/products" />;
     }
@@ -100,7 +142,7 @@ export class NewProduct extends Component {
       unit_weight,
       units_in_stock,
       units_on_order,
-      product_description
+      product_description,
     } = this.state;
     return (
       <div className="NewProdBack">
@@ -133,14 +175,16 @@ export class NewProduct extends Component {
                   <option className="selectEmptyCat" value="">
                     Category
                   </option>
-                  {this.props.category.map(Category => (
+                  {this.props.category.map((Category) => (
                     <option key={Category.id} value={Category.id}>
                       {Category.cat_name}
                     </option>
                   ))}
                 </select>
               </div>
-              <NewProductImage/>
+            </div>
+            <NewProductImage />
+            <div className="newProdTopFields">
               <div className="newProdField">
                 <label className="newProdFieldLabel">Price</label>
                 <input
@@ -252,14 +296,12 @@ export class NewProduct extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  category: state.category.category
+const mapStateToProps = (state) => ({
+  category: state.category.category,
 });
 
-export default connect(
-  mapStateToProps,
-  {
-    getCategory,
-    addProduct
-  }
-)(NewProduct);
+export default connect(mapStateToProps, {
+  getCategory,
+  addProduct,
+  addPicsToProd
+})(NewProduct);

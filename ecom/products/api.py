@@ -1,6 +1,6 @@
-from .models import Product, Subproduct, Product_categories
+from .models import Product, Subproduct, Product_categories, ProductImage
 from rest_framework import viewsets, permissions
-from .serializers import ProductSerializer, SubProductSerializer, ProductCatSerializer
+from .serializers import ProductSerializer, SubProductSerializer, ProductCatSerializer, ProductImageSerializer
 
 # Product Viewset
 
@@ -24,3 +24,10 @@ class ProductCatViewSet(viewsets.ModelViewSet):
         permissions.AllowAny
     ]
     serializer_class = ProductCatSerializer
+
+class ProductImageViewSet(viewsets.ModelViewSet):
+    queryset = ProductImage.objects.all()
+    permission_classes = [
+        permissions.AllowAny
+    ]
+    serializer_class = ProductImageSerializer

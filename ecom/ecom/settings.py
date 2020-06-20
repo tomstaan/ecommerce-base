@@ -25,7 +25,7 @@ SECRET_KEY = 'tjp!u#8t0f21!@yt8^pk@vtk3de0eh56*_1=o(x64o8_u&t2$8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', '34dce698.ngrok.io']
 
 
 # Application definition
@@ -123,3 +123,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Tells django where static files are stored
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'assets'),
+)
+ 
+#MEDIA_URL =  '/media/'
+#MEDIA_ROOT = os.path.join(BASE_DIR, "media")

@@ -9,11 +9,15 @@ import {
   FILTER_ASCENDING,
   FILTER_DESCENDING,
   FILTER_CATEGORY,
-  FILTER_UNITS
+  FILTER_UNITS,
+  UPDATE_PICTURES,
+  ADD_IMAGE_TO_PRODUCT
 } from "../actions/types.js";
 
 const initalState = {
   products: [],
+  newProductPictures: [],
+  newProdImageId: 0,
   selectAllChecked: false,
   filterValue: "",
   filteredProducts: [],
@@ -93,8 +97,18 @@ export default function(state = initalState, action) {
     case ADD_PRODUCT:
       return {
         ...state,
-        products: [...state.products, action.payload]
+        products: [...state.products, action.payload],
+        newProdImageId: action.payload.id
       };
+    case ADD_IMAGE_TO_PRODUCT:
+      return {
+        ...state
+      }
+    case UPDATE_PICTURES:
+      return{
+        ...state,
+        newProductPictures: action.payload
+      }
     case HANDLE_PRODUCT_SELECT:
       return {
         ...state,

@@ -11,13 +11,15 @@ import {
   FILTER_DESCENDING,
   FILTER_PRICE,
   FILTER_CATEGORY,
-  FILTER_UNITS
+  FILTER_UNITS,
+  UPDATE_PICTURES,
+  ADD_IMAGE_TO_PRODUCT
 } from "./types.js";
 
 //Get Products
 export const getProducts = () => dispatch => {
   axios
-    .get("http://127.0.0.1:8000/api/products/")
+    .get("http://127.0.0.1:8000/api/products/") 
     .then(res => {
       dispatch({
         type: GET_PRODUCTS,
@@ -48,6 +50,27 @@ export const addProduct = product => dispatch => {
     .then(res => {
       dispatch({
         type: ADD_PRODUCT,
+        payload: res.data
+      });
+    })
+    .catch(err => console.log(err));
+};
+
+// Update the pictures to add to new products
+export const updateProductPictures = pictures => dispatch => {
+  dispatch({
+    type: UPDATE_PICTURES,
+    payload: pictures
+  });
+};
+
+//Add product images to id of product
+export const addPicsToProd = picture => dispatch => {
+  axios
+    .post("http://127.0.0.1:8000/api/productimage/", picture)
+    .then(res => {
+      dispatch({
+        type: ADD_IMAGE_TO_PRODUCT,
         payload: res.data
       });
     })
