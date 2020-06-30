@@ -9,5 +9,5 @@ pycparser==2.19
 pytz==2019.3
 six==1.12.0
 sqlparse==0.3.0
-virtualenv==20.0.21
+virtualenv==20.0.25
 virtualenv-clone==0.5.4
