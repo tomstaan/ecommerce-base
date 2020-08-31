@@ -4,13 +4,24 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+pylint = "*"
 
 [packages]
-django = "*"
-djangorestframework = "*"
-django-rest-knox = "*"
+djangorestframework = "==3.10.3"
+django-rest-knox = "==4.1.0"
 requests = "*"
 mysqlclient = "*"
+certifi = "==2019.9.11"
+cffi = "==1.13.1"
+cryptography = "==2.8"
+pipenv = "==2020.6.2"
+pycparser = "==2.19"
+pytz = "==2019.3"
+six = "==1.12.0"
+sqlparse = "==0.3.0"
+virtualenv = "==20.0.25"
+virtualenv-clone = "==0.5.4"
+Django = "==2.2.6"
 
 [requires]
 python_version = "3.7"

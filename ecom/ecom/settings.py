@@ -81,7 +81,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ecom',
         'USER': '',
-        'PASSWORD': '82456729',
+        'PASSWORD': '',
     }
 }
 
@@ -125,9 +125,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # Tells django where static files are stored
+'''
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'assets'),
 )
- 
-#MEDIA_URL =  '/media/'
-#MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+'''
+MEDIA_URL =  '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")

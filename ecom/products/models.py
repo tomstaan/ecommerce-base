@@ -4,7 +4,7 @@ from django.utils.timezone import now
 
 
 def get_image_path(instance, filename):
-    return os.path.join('assets', str(instance.product_id), filename)
+    return '/'.join(['prod_pic', str(instance.product_ref), filename]) 
 
 # Create your models here.
 class Product(models.Model):
@@ -44,7 +44,7 @@ class Product(models.Model):
 
 class ProductImage(models.Model):
     product_ref = models.ForeignKey(Product, on_delete=models.CASCADE)
-    image_name = models.ImageField(upload_to=get_image_path)
+    image_name = models.ImageField(blank=True, null=True, upload_to=get_image_path)
 
 
 # Create your models here.
