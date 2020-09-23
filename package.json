@@ -33,7 +33,7 @@
     "bootstrap": "^4.5.0",
     "braces": "^3.0.2",
     "compress-js": "^2.0.2",
-    "css-loader": "^3.6.0",
+    "css-loader": "^4.3.0",
     "image-webpack-loader": "^6.0.0",
     "jquery": "^3.5.1",
     "popper": "^1.0.1",
