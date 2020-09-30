@@ -28,7 +28,7 @@
     "webpack-cli": "^3.3.12"
   },
   "dependencies": {
-    "@popperjs/core": "^2.4.4",
+    "@popperjs/core": "^2.5.3",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
     "braces": "^3.0.2",
