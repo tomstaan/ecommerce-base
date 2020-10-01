@@ -144,6 +144,7 @@ export class NewProduct extends Component {
       units_on_order,
       product_description,
     } = this.state;
+    
     return (
       <div className="NewProdBack">
         <div className="col-lg-12">
