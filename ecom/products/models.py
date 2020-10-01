@@ -18,6 +18,7 @@ class Product(models.Model):
     supplier_id = models.CharField(max_length=255, blank=True, null=True)
     category_id = models.ForeignKey(
         'Product_categories', on_delete=models.CASCADE, blank=True, null=True)
+    image_id = models.CharField(max_length=255, blank=True, null=True)
     quantity_per_unit = models.IntegerField()
     unit_price = models.DecimalField(
         max_digits=8, decimal_places=2, blank=True, null=True)
@@ -44,6 +45,7 @@ class Product(models.Model):
 
 class ProductImage(models.Model):
     product_ref = models.ForeignKey(Product, on_delete=models.CASCADE)
+    image_id = models.CharField(max_length=255, blank=True, null=True)
     image_name = models.ImageField(blank=True, null=True, upload_to=get_image_path)
 
 

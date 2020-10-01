@@ -14,13 +14,13 @@ export class NewProductImage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      newProductPictures: [],
+      displayProductPictures: [],
       displayImages: false,
     };
   }
 
   static propTypes = {
-    newProductPictures: PropTypes.array.isRequired,
+    displayProductPictures: PropTypes.array.isRequired,
     updateProductPictures: PropTypes.func.isRequired
   }
   
@@ -51,9 +51,9 @@ export class NewProductImage extends Component {
         (images) => {
           /* Once all promises are resolved, update state with image URI array */
           this.setState({
-            newProductPictures: images,
+            displayProductPictures: images
           });
-          this.props.updateProductPictures(images);
+          this.props.updateProductPictures(files);
         },
         (error) => {
           console.error(error);
@@ -64,13 +64,13 @@ export class NewProductImage extends Component {
 
   pictureDeleteHandler = (element) => {
     // Get index of element + remove
-    const tempPics = this.state.newProductPictures;
+    const tempPics = this.state.displayProductPictures;
     const index = tempPics.indexOf(element);
     if (index > -1) {
       tempPics.splice(index, 1);
     }
     this.setState({
-      newProductPictures: tempPics,
+      displayProductPictures: tempPics,
     });
     this.props.updateProductPictures(tempPics);
   };
@@ -79,8 +79,8 @@ export class NewProductImage extends Component {
     return (
       <div>
         {!this.state.displayImages ||
-        this.state.newProductPictures.length == 0 ||
-        this.state.newProductPictures == undefined ? (
+        this.state.displayProductPictures.length == 0 ||
+        this.state.displayProductPictures == undefined ? (
           <div className="newProdTopFields">
             <div className="newProdImageUploadCont">
               <div className="newProdImageUploadLabel">
@@ -106,9 +106,9 @@ export class NewProductImage extends Component {
           </div>
         ) : (
           <div className="newProdImageUploadCont">
-            {this.state.newProductPictures.map((imageUrl) => (
+            {this.state.displayProductPictures.map((imageUrl) => (
               <div
-                key={this.state.newProductPictures.indexOf(imageUrl)}
+                key={this.state.displayProductPictures.indexOf(imageUrl)}
                 className="newProdTempImageCont"
               >
                 <img src={imageUrl} />
@@ -128,7 +128,7 @@ export class NewProductImage extends Component {
 }
 
 const mapStateToProps = state => ({
-  newProductPictures: state.products.newProductPictures
+  displayProductPictures: state.products.displayProductPictures
 })
 
 export default connect(

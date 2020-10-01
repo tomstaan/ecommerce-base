@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect, Provider } from "react-redux";
 import TopRoute from "./TopRoute";
 import { Link, Redirect } from "react-router-dom";
+import { v4 as uuidv4 } from 'uuid';
 import "./../style/newproduct.css";
 
 //Image Uploading
@@ -24,6 +25,7 @@ export class NewProduct extends Component {
       newProdImageId: 0,
       oldProducts: [],
       product_name: "",
+      image_id: "",
       category_id: "",
       unit_price: 0.0,
       quantity_per_unit: 0,
@@ -62,16 +64,21 @@ export class NewProduct extends Component {
 
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
+    this.setState({
+      image_id: uuidv4()
+    })
   };
 
   onSubmit = (e) => {
     //console.log("Pictures = "+this.state.newProductPictures);
     // --------------
     e.preventDefault();
+  
     const {
       product_name,
       category_id,
       unit_price,
+      image_id,
       quantity_per_unit,
       size,
       color,
@@ -85,6 +92,7 @@ export class NewProduct extends Component {
       product_name,
       category_id,
       unit_price,
+      image_id,
       quantity_per_unit,
       size,
       color,
@@ -99,16 +107,16 @@ export class NewProduct extends Component {
 
     
     this.state.newProductPictures.forEach(picture => {
-      const {
-        newProdImageId
-      } = this.state;
-      const tempNew = 13;
-      const pictureObj = {
-        tempNew,
-        picture
-      }
-      console.log(pictureObj)
-      this.props.addPicsToProd(pictureObj);
+      var formData = new FormData(); // Currently empty
+
+      //formData.append('image_name', picture, picture.name);
+
+      //const pictureObj = {
+      //  image_id,
+      //  formData
+      //}
+      console.log(this.state.newProductPictures)
+      //this.props.addPicsToProd(pictureObj);
     })
 
     // Reset state
@@ -116,6 +124,7 @@ export class NewProduct extends Component {
       product_name: "",
       category_id: "",
       unit_price: 0.0,
+      image_id: "",
       quantity_per_unit: 0,
       size: "",
       color: "",
