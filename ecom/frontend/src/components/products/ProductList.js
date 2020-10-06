@@ -179,7 +179,7 @@ export class ProductList extends Component {
                         </div>
                         <div className="productColor">
                           <h3 className="productBold">Supplier</h3>
-                          <h3 className="productTxt" />
+                          <h3 className="productTxt">{Product.id}</h3>
                         </div>
                       </div>
                     </div>

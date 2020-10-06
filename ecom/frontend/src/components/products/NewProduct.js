@@ -15,6 +15,7 @@ import store from "../../../src/store";
 //Other imports
 import { getCategory } from "../../actions/category";
 import { addProduct, addPicsToProd } from "../../actions/products";
+import { FormFile } from "react-bootstrap";
 
 export class NewProduct extends Component {
   constructor(props) {
@@ -107,16 +108,15 @@ export class NewProduct extends Component {
 
     
     this.state.newProductPictures.forEach(picture => {
-      var formData = new FormData(); // Currently empty
+      var newImageObject = new FormData(); // Currently empty
 
-      //formData.append('image_name', picture, picture.name);
+      //const product_ref = 38
 
-      //const pictureObj = {
-      //  image_id,
-      //  formData
-      //}
-      console.log(this.state.newProductPictures)
-      //this.props.addPicsToProd(pictureObj);
+      //newImageObject.append('product_ref', product_ref);
+      newImageObject.append('image_id', image_id);
+      newImageObject.append('image_name', picture, picture.name);
+      console.log(newImageObject);
+      this.props.addPicsToProd(newImageObject);
     })
 
     // Reset state
