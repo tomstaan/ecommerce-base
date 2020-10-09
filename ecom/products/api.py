@@ -1,7 +1,9 @@
 from .models import Product, Subproduct, Product_categories, ProductImage
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from rest_framework import viewsets, permissions
 from .serializers import ProductSerializer, SubProductSerializer, ProductCatSerializer, ProductImageSerializer
+import shutil
+import os
 
 # Product Viewset
 class ProductViewSet(viewsets.ModelViewSet):
@@ -10,6 +12,7 @@ class ProductViewSet(viewsets.ModelViewSet):
         permissions.AllowAny
     ]
     serializer_class = ProductSerializer
+    
 
 class SubProductViewSet(viewsets.ModelViewSet):
     queryset = Subproduct.objects.all()
@@ -41,3 +44,4 @@ class ProductImageViewSet(viewsets.ModelViewSet):
         relatingProductId = self.allProducts.get(image_id=image_id)
         ProductImage.objects.create(product_ref=relatingProductId, image_id=image_id, image_name=image_name)
         return HttpResponse({'message': 'Product Image Created!'}, status=200)
+    

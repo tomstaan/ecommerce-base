@@ -38,7 +38,7 @@ export const deleteProducts = id => dispatch => {
       dispatch({
         type: DELETE_PRODUCT,
         payload: id
-      });
+      }, console.log(res));
     })
     .catch(err => console.log(err));
 };

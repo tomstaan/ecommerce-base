@@ -17,6 +17,7 @@ import { getCategory } from "../../actions/category";
 //Images
 import Case from "./../style/images/case.jpg";
 import Delete from "./../style/images/delete.png";
+import Edit from "./../style/images/edit.png";
 
 export class ProductList extends Component {
   constructor(props) {
@@ -140,7 +141,7 @@ export class ProductList extends Component {
                         </div>
                         <div className="productOriginalPrice">
                           <h3 className="productBold">Original Price</h3>
-                          <h3 className="productTxt">{Product.unit_price}</h3>
+                          <h3 className="productTxt">€{Product.unit_price}</h3>
                         </div>
                         <div className="productColor">
                           <h3 className="productBold">Size</h3>
@@ -178,7 +179,7 @@ export class ProductList extends Component {
                           </h3>
                         </div>
                         <div className="productColor">
-                          <h3 className="productBold">Supplier</h3>
+                          <h3 className="productBold">Product ID</h3>
                           <h3 className="productTxt">{Product.id}</h3>
                         </div>
                       </div>
@@ -197,6 +198,22 @@ export class ProductList extends Component {
                             src={Delete}
                             alt="Delete Product"
                             title="Delete Product"
+                          />
+                        </button>
+                      </div>
+                      <div className="editSingleProduct">
+                        <button
+                          type="button"
+                          className="btn btn-primary"
+                          onClick={this.warningProductDelete.bind(
+                            this,
+                            Product
+                          )}
+                        >
+                          <img
+                            src={Edit}
+                            alt="Edit Product"
+                            title="Edit Product"
                           />
                         </button>
                       </div>

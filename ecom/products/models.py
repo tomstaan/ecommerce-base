@@ -1,6 +1,8 @@
 import os
 from django.db import models
 from django.utils.timezone import now
+from django.dispatch import receiver
+from django.utils.translation import ugettext_lazy as _
 
 
 def get_image_path(instance, filename):
@@ -47,8 +49,25 @@ class ProductImage(models.Model):
     product_ref = models.ForeignKey(Product, on_delete=models.CASCADE, blank=True, null=True)
     image_id = models.CharField(max_length=255, blank=True, null=True)
     image_name = models.ImageField(blank=True, null=True, upload_to=get_image_path)
+    allow_photo_delete = models.BooleanField(blank=True, null=True, default=False)
+'''
+# Autodelete method
+@receiver(models.signals.post_save, sender=ProductImage)
+def allow_file_delete(sender, instance, **kwargs):
+    instance.allow_photo_delete = True
+    instance.save()
 
-
+# Autodelete method
+@receiver(models.signals.post_delete, sender=ProductImage)
+def auto_delete_file_on_delete(sender, instance, **kwargs):
+    """
+    Deletes file from filesystem
+    when corresponding `ProductImage` object is deleted.
+    """
+    if instance.image_name and instance.allow_photo_delete:
+        if os.path.isfile(instance.image_name.path):
+            os.remove(os.path.dirname(instance.image_name.path))
+'''
 # Create your models here.
 class Subproduct(models.Model):
     #sku = models.CharField(max_length=15, blank=True)
