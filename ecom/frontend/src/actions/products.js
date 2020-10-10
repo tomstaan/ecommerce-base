@@ -13,7 +13,8 @@ import {
   FILTER_CATEGORY,
   FILTER_UNITS,
   UPDATE_PICTURES,
-  ADD_IMAGE_TO_PRODUCT
+  ADD_IMAGE_TO_PRODUCT,
+  SET_EDIT_PRODUCT_ID
 } from "./types.js";
 
 //Get Products
@@ -75,6 +76,14 @@ export const addPicsToProd = picture => dispatch => {
       });
     })
     .catch(err => console.log(err));
+};
+
+// Set the edit product id
+export const setEditProductId = id => dispatch => {
+  dispatch({
+    type: SET_EDIT_PRODUCT_ID,
+    payload: id
+  });
 };
 
 //Select All Products

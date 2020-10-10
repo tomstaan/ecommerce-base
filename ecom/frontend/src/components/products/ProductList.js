@@ -10,6 +10,7 @@ import {
   deleteProducts,
   handleProductSelect,
   selectAllProducts,
+  setEditProductId,
 } from "../../actions/products";
 
 import { getCategory } from "../../actions/category";
@@ -27,7 +28,7 @@ export class ProductList extends Component {
       selectedProducts: [],
       category: [],
       productDeleteWarning: false,
-      tempDeleteProduct: null,
+      tempDeleteProduct: null
     };
   }
 
@@ -40,6 +41,7 @@ export class ProductList extends Component {
     filteredProducts: PropTypes.array.isRequired,
     category: PropTypes.array.isRequired,
     getCategory: PropTypes.func.isRequired,
+    setEditProductId: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
@@ -80,6 +82,12 @@ export class ProductList extends Component {
       productDeleteWarning: false,
       tempDeleteProduct: null,
     });
+  }
+
+  //Set the edit product id
+  setEditId = (e, Product) => {
+    this.props.setEditProductId(e.id);
+    console.log(e.id);
   }
 
   render() {
@@ -205,7 +213,7 @@ export class ProductList extends Component {
                         <button
                           type="button"
                           className="btn btn-primary"
-                          onClick={this.warningProductDelete.bind(
+                          onClick={this.setEditId.bind(
                             this,
                             Product
                           )}
@@ -268,6 +276,7 @@ const mapStateToProps = (state) => ({
   filteredProducts: state.products.filteredProducts,
   filterValue: state.products.filterValue,
   category: state.category.category,
+  editProductId: state.products.editProductId,
 });
 
 export default connect(mapStateToProps, {
@@ -276,4 +285,5 @@ export default connect(mapStateToProps, {
   handleProductSelect,
   selectAllProducts,
   getCategory,
+  setEditProductId,
 })(ProductList);

@@ -11,7 +11,8 @@ import {
   FILTER_CATEGORY,
   FILTER_UNITS,
   UPDATE_PICTURES,
-  ADD_IMAGE_TO_PRODUCT
+  ADD_IMAGE_TO_PRODUCT,
+  SET_EDIT_PRODUCT_ID
 } from "../actions/types.js";
 
 const initalState = {
@@ -26,7 +27,8 @@ const initalState = {
   filterPrice: true,
   filterCategory: false,
   filterUnits: false,
-  currentSort: "unit_price"
+  currentSort: "unit_price",
+  editProductId: 0,
 };
 
 export default function(state = initalState, action) {
@@ -100,15 +102,20 @@ export default function(state = initalState, action) {
         products: [...state.products, action.payload],
         newProdImageId: action.payload.id
       };
+    case SET_EDIT_PRODUCT_ID:
+      return{
+        ...state,
+        editProductId: action.payload
+      };
     case ADD_IMAGE_TO_PRODUCT:
       return {
         ...state
-      }
+      };
     case UPDATE_PICTURES:
       return{
         ...state,
         newProductPictures: action.payload
-      }
+      };
     case HANDLE_PRODUCT_SELECT:
       return {
         ...state,
