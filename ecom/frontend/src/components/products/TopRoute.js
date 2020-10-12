@@ -10,7 +10,9 @@ export default class TopRoute extends Component {
       .split("/")
       .pop()
       .trim();
-    return currentDir;
+    //return currentDir;
+    let editDir = window.location.pathname
+    return editDir
   }
   render() {
     return (
@@ -23,8 +25,9 @@ export default class TopRoute extends Component {
             <div className="routeArrow">
               <img src={Arrow} alt="arrow" title="arrow" />
             </div>
-            {this.handleRoute() == "newcategory" ? <h3>New Category</h3> : ""}
-            {this.handleRoute() == "newproduct" ? <h3>New Product</h3> : ""}
+            {this.handleRoute().includes("newcategory") ? <h3>New Category</h3> : ""}
+            {this.handleRoute().includes("newproduct") ? <h3>New Product</h3> : ""}
+            {this.handleRoute().includes("editproduct") ? <h3>Edit Product</h3> : ""}
           </div>
         </div>
       </div>

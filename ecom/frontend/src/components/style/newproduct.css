@@ -277,6 +277,7 @@
   opacity: 0.8;
 }
 
+
 .newProdTempImageCont {
   position: relative;
   display: inline-block;
@@ -328,4 +329,65 @@
 }
 .newProdImageCloseCont:hover {
   opacity: .6;
+}
+
+
+.addProdTempImageCont {
+  position: relative;
+  display: inline-block;
+  height: 280px;
+  width: 280px;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.addProdTempImageIcon{
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background-color: #0066ff;
+  border-radius: 3px;
+  margin: 120px;
+  -webkit-box-shadow: 6px 3px 18px 2px rgba(0, 0, 0, 0.09);
+  -moz-box-shadow: 6px 3px 18px 2px rgba(0, 0, 0, 0.09);
+  box-shadow: 6px 3px 18px 2px rgba(0, 0, 0, 0.09);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.addProdTempImageIcon:hover{
+  opacity: .8;
+  transition: .3s ease ;
+}
+.addProdTempImageIcon:active{
+  -webkit-box-shadow: 6px 3px 18px 2px rgba(0, 0, 0, 0.0);
+  -moz-box-shadow: 6px 3px 18px 2px rgba(0, 0, 0, 0.0);
+  box-shadow: 6px 3px 18px 2px rgba(0, 0, 0, 0.0);
+  transition: .3s ease ;
+}
+
+.addProdTempImageCont label{
+  width: 100%;
+  height: 100%;
+  position: relative;
+  cursor: pointer;
+  top: 0px;
+  left: 0px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.addProdTempImageCont input {
+  opacity: 0;
+  position: absolute;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.addProdTempImageCont span {
+  line-height: 40px;
+  text-align: center;
+  color: #fff;
+  width: 40px;
+  z-index: 1;
 }

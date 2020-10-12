@@ -5,10 +5,9 @@ import "./../style/newproduct.css";
 
 //Images
 import GalleryIcon from "./../style/images/pic.png";
+import AddImageIcon from "./../style/images/addImages.png";
 
-import {
-  updateProductPictures
-} from "../../actions/products";
+import { updateProductPictures } from "../../actions/products";
 
 export class NewProductImage extends Component {
   constructor(props) {
@@ -21,9 +20,9 @@ export class NewProductImage extends Component {
 
   static propTypes = {
     displayProductPictures: PropTypes.array.isRequired,
-    updateProductPictures: PropTypes.func.isRequired
-  }
-  
+    updateProductPictures: PropTypes.func.isRequired,
+  };
+
   pictureSelectedHandler = (event) => {
     if (event.target.files) {
       // Switch from upload to display
@@ -51,7 +50,10 @@ export class NewProductImage extends Component {
         (images) => {
           /* Once all promises are resolved, update state with image URI array */
           this.setState({
-            displayProductPictures: images
+            displayProductPictures: [
+              ...this.state.displayProductPictures,
+              images,
+            ],
           });
           this.props.updateProductPictures(files);
         },
@@ -106,6 +108,21 @@ export class NewProductImage extends Component {
           </div>
         ) : (
           <div className="newProdImageUploadCont">
+            <div className="addProdTempImageCont">
+              <div className="addProdTempImageIcon">
+                <input
+                  type="file"
+                  onChange={this.pictureSelectedHandler}
+                  id="new-prod-add-photos"
+                  accept="image/x-png,image/gif,image/jpeg"
+                  multiple
+                />
+                <label htmlFor="new-prod-add-photos">
+                  <span className="material-icons">add_photo_alternate</span>
+                </label>
+              </div>
+            </div>
+
             {this.state.displayProductPictures.map((imageUrl) => (
               <div
                 key={this.state.displayProductPictures.indexOf(imageUrl)}
@@ -127,13 +144,10 @@ export class NewProductImage extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  displayProductPictures: state.products.displayProductPictures
-})
+const mapStateToProps = (state) => ({
+  displayProductPictures: state.products.displayProductPictures,
+});
 
-export default connect(
-  mapStateToProps,
-  {
-    updateProductPictures
-  }
-)(NewProductImage);
+export default connect(mapStateToProps, {
+  updateProductPictures,
+})(NewProductImage);

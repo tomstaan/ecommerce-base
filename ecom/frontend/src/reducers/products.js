@@ -12,7 +12,8 @@ import {
   FILTER_UNITS,
   UPDATE_PICTURES,
   ADD_IMAGE_TO_PRODUCT,
-  SET_EDIT_PRODUCT_ID
+  SET_EDIT_PRODUCT_ID,
+  EDIT_PRODUCT
 } from "../actions/types.js";
 
 const initalState = {
@@ -95,6 +96,11 @@ export default function(state = initalState, action) {
         filteredProducts: state.filteredProducts.filter(
           product => product.id !== action.payload
         )
+      };
+    case EDIT_PRODUCT:
+      return {
+        ...state,
+        products: [...state.products],
       };
     case ADD_PRODUCT:
       return {

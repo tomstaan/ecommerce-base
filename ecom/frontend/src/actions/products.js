@@ -4,6 +4,7 @@ import {
   GET_PRODUCTS,
   DELETE_PRODUCT,
   ADD_PRODUCT,
+  EDIT_PRODUCT,
   SELECT_ALL_PRODUCTS,
   HANDLE_PRODUCT_SELECT,
   FILTER_PRODUCTS,
@@ -51,6 +52,19 @@ export const addProduct = product => dispatch => {
     .then(res => {
       dispatch({
         type: ADD_PRODUCT,
+        payload: res.data
+      });
+    })
+    .catch(err => console.log(err));
+};
+
+//Edit Category
+export const editProduct = (product, id) => dispatch => {
+  axios
+    .put(`http://127.0.0.1:8000/api/products/${id}/`, product)
+    .then(res => {
+      dispatch({
+        type: EDIT_PRODUCT,
         payload: res.data
       });
     })

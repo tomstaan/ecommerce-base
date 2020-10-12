@@ -4,6 +4,7 @@ import "./../style/productlist.css";
 //Displaying Products
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { Link } from 'react-router-dom';
 
 import {
   getProducts,
@@ -210,6 +211,7 @@ export class ProductList extends Component {
                         </button>
                       </div>
                       <div className="editSingleProduct">
+                        <Link to={`./products/editproduct/${Product.id}`}>
                         <button
                           type="button"
                           className="btn btn-primary"
@@ -223,7 +225,7 @@ export class ProductList extends Component {
                             alt="Edit Product"
                             title="Edit Product"
                           />
-                        </button>
+                        </button></Link>
                       </div>
                     </div>
                   </div>
