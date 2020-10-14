@@ -110,12 +110,9 @@ export class NewProduct extends Component {
     this.state.newProductPictures.forEach(picture => {
       var newImageObject = new FormData(); // Currently empty
 
-      //const product_ref = 38
-
       //newImageObject.append('product_ref', product_ref);
       newImageObject.append('image_id', image_id);
       newImageObject.append('image_name', picture, picture.name);
-      console.log(newImageObject);
       this.props.addPicsToProd(newImageObject);
     })
 
