@@ -6,22 +6,51 @@ import "./../style/newproduct.css";
 //Images
 import GalleryIcon from "./../style/images/pic.png";
 import AddImageIcon from "./../style/images/addImages.png";
+import TestImage from "./../../../../media/product_images/63c39c97-fe7e-46c4-bf7c-b78750206b23/71EoGntO5bL._SX466_.jpg";
 
 import { updateProductPictures } from "../../actions/products";
+import { isEmptyObject } from "jquery";
 
 export class NewProductImage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       displayProductPictures: [],
+      savedProductPictures: [],
+      displaySavedProductPictures: [],
       displayImages: false,
     };
   }
 
+  //
+  // Match urls from saved images and display product pictures
+  //
+
   static propTypes = {
     displayProductPictures: PropTypes.array.isRequired,
+    savedProductPictures: PropTypes.array.isRequired,
     updateProductPictures: PropTypes.func.isRequired,
   };
+
+  componentDidUpdate() {
+    /*
+    var populateArr = true
+    if(this.props.savedProductPictures.length > 0 && populateArr == true) {
+      this.displaySavedImages();
+    }
+    populateArr = false
+    */
+  }
+
+  displaySavedImages() {
+    this.props.savedProductPictures.map(image => {
+      const imageUrl = "./../../../.."+image.image_name
+      this.setState(prevstate => ({
+        displaySavedProductPictures: [prevstate.displaySavedProductPictures, imageUrl]
+      }))
+    })
+    console.log(this.state.displaySavedProductPictures)
+  }
 
   pictureSelectedHandler = (event) => {
     if (event.target.files) {
@@ -34,7 +63,6 @@ export class NewProductImage extends Component {
       const files = Array.from(event.target.files);
 
       /* Map each file to a promise that resolves to an array of image URI's */
-
       Promise.all(
         files.map((file) => {
           return new Promise((resolve, reject) => {
@@ -49,6 +77,7 @@ export class NewProductImage extends Component {
       ).then(
         (images) => {
           /* Once all promises are resolved, update state with image URI array */
+          console.log(images);
           this.setState({
             displayProductPictures: [
               ...this.state.displayProductPictures,
@@ -146,6 +175,7 @@ export class NewProductImage extends Component {
 
 const mapStateToProps = (state) => ({
   displayProductPictures: state.products.displayProductPictures,
+  savedProductPictures: state.products.savedProductPictures,
 });
 
 export default connect(mapStateToProps, {

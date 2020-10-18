@@ -1,13 +1,11 @@
 import stripe
 import requests
 import urllib.request
-stripe.api_key = "sk_test_xZ0UXIzfMO0KU2VTWeax2CWd00pZanpMEx"
+stripe.api_key = "sk_test_qVyhxgBH7ndQwSUy6lW9SGVI00wKodpGe5"
 
-resp = stripe.Charge.retrieve(
-    'ch_1EboxvLXJtYiE5Vc4YPS7po4',
-    expand=['customer', 'invoice.subscription']
-)
-print(resp.status_code)
+customer = stripe.Customer.retrieve("cus_IE6nJd199pkScq")
+
+print(customer)
 
 '''
 try:

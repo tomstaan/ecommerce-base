@@ -21,3 +21,4 @@ export const ADD_CATEGORY = "ADD_CATEGORY";
 // Product Pictures
 export const UPDATE_PICTURES = "UPDATE_PICTURES"
 export const ADD_IMAGE_TO_PRODUCT = "ADD_IMAGE_TO_PRODUCT"
+export const SET_SAVED_PICTURES = "SET_SAVED_PICTURES"

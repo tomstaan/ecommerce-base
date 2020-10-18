@@ -15,7 +15,7 @@ import store from "../../store";
 
 //Other imports
 import { getCategory } from "../../actions/category";
-import { getProducts, editProduct } from "../../actions/products";
+import { getProducts, editProduct, setSavedPictures } from "../../actions/products";
 import { FormFile } from "react-bootstrap";
 import products from "../../reducers/products";
 
@@ -41,19 +41,31 @@ export class EditProduct extends Component {
       units_on_order: 0,
       product_description: "",
       redirect: false,
+      savedProductPictures: [],
     };
   }
 
   static propTypes = {
     category: PropTypes.array.isRequired,
+    savedProductPictures: PropTypes.array.isRequired,
     getCategory: PropTypes.func.isRequired,
-    editProduct: PropTypes.func.isRequired
+    editProduct: PropTypes.func.isRequired,
+    setSavedPictures: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
     this.props.getProducts();
     this.props.getCategory();
     this.getProductDetails();
+    this.getProductImages();
+    this.subscribed = true;
+    store.subscribe(() => {
+      if (this.subscribed == true) {
+        this.setState({
+          savedProductPictures: store.getState().products.savedProductPictures,
+        });
+      }
+    });
   }
 
   getProductDetails() {
@@ -61,22 +73,30 @@ export class EditProduct extends Component {
     axios
       .get(`http://127.0.0.1:8000/api/products/${meetupId}/`)
       .then((response) => {
-        this.setState(
-          {
-            id: response.data.id,
-            product_name: response.data.product_name,
-            image_id: response.data.image_id,
-            category_id: response.data.category_id,
-            unit_price: response.data.unit_price,
-            quantity_per_unit: response.data.quantity_per_unit,
-            size: response.data.size,
-            color: response.data.color,
-            unit_weight: response.data.unit_weight,
-            units_in_stock: response.data.units_in_stock,
-            units_on_order: response.data.units_on_order,
-            product_description: response.data.product_description
-          }
-        );
+        this.setState({
+          id: response.data.id,
+          product_name: response.data.product_name,
+          image_id: response.data.image_id,
+          category_id: response.data.category_id,
+          unit_price: response.data.unit_price,
+          quantity_per_unit: response.data.quantity_per_unit,
+          size: response.data.size,
+          color: response.data.color,
+          unit_weight: response.data.unit_weight,
+          units_in_stock: response.data.units_in_stock,
+          units_on_order: response.data.units_on_order,
+          product_description: response.data.product_description,
+        });
+      })
+      .catch((err) => console.log(err));
+  }
+
+  getProductImages() {
+    let meetupId = this.props.match.params.id;
+    axios
+      .get(`http://127.0.0.1:8000/api/products/${meetupId}/images/`)
+      .then((response) => {
+        this.props.setSavedPictures(response.data)
       })
       .catch((err) => console.log(err));
   }
@@ -84,7 +104,7 @@ export class EditProduct extends Component {
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
-
+ 
   onSubmit = (e) => {
     //console.log("Pictures = "+this.state.newProductPictures);
     // --------------
@@ -324,10 +344,12 @@ export class EditProduct extends Component {
 const mapStateToProps = (state) => ({
   category: state.category.category,
   products: state.products.products,
+  savedProductPictures: state.products.savedProductPictures,
 });
 
 export default connect(mapStateToProps, {
   getCategory,
   getProducts,
-  editProduct
+  editProduct,
+  setSavedPictures,
 })(EditProduct);

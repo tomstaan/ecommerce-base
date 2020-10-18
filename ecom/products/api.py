@@ -22,6 +22,7 @@ class ProductCatViewSet(viewsets.ModelViewSet):
     ]
     serializer_class = ProductCatSerializer
 
+# Create Product Image
 class ProductImageViewSet(viewsets.ModelViewSet):
     queryset = ProductImage.objects.all()
     allProducts = Product.objects.all()

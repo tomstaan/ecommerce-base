@@ -15,7 +15,8 @@ import {
   FILTER_UNITS,
   UPDATE_PICTURES,
   ADD_IMAGE_TO_PRODUCT,
-  SET_EDIT_PRODUCT_ID
+  SET_EDIT_PRODUCT_ID,
+  SET_SAVED_PICTURES
 } from "./types.js";
 
 //Get Products
@@ -75,6 +76,14 @@ export const editProduct = (product, id) => dispatch => {
 export const updateProductPictures = pictures => dispatch => {
   dispatch({
     type: UPDATE_PICTURES,
+    payload: pictures
+  });
+};
+
+// Set images which are saved 
+export const setSavedPictures = pictures => dispatch => {
+  dispatch({
+    type: SET_SAVED_PICTURES,
     payload: pictures
   });
 };
