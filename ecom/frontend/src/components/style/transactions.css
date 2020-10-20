@@ -1,0 +1,80 @@
+.transactionBackground {
+  position: relative;
+  width: 95%;
+  margin: auto;
+  margin-top: 10px;
+  z-index: 160px;
+  max-width: 1600px;
+  background-color: transparent;
+  min-height: 10px;
+}
+
+.transactionHeader{
+    height: 44px;
+    width: 100%;
+}
+.transactionHeader h3{
+    position: relative;
+    font-size: 15px;
+    font-family: "Open Sans", sans-serif;
+    line-height: 45px;
+    color: #8D8D8D;
+}
+
+.transactionHeaderSpace{
+    position: relative;
+    float: left;
+    width: 5%;
+    height: 100%;
+}
+
+.transactionHeaderId{
+    position: relative;
+    float: left;
+    width: 10%;
+    height: 100%;
+}
+
+.transactionHeaderName{
+    position: relative;
+    float: left;
+    width: 25%;
+    height: 100%;
+}
+
+
+.transactionHeaderCustomer{
+    position: relative;
+    float: left;
+    width: 20%;
+    height: 100%;
+}
+
+
+.transactionHeaderDate{
+    position: relative;
+    float: left;
+    width: 10%;
+    height: 100%;
+}
+
+.transactionHeaderQuantity{
+    position: relative;
+    float: left;
+    width: 10%;
+    height: 100%;
+}
+
+.transactionHeaderAmount{
+    position: relative;
+    float: left;
+    width: 10%;
+    height: 100%;
+}
+
+.transactionHeaderStatus{
+    position: relative;
+    float: left;
+    width: 10%;
+    height: 100%;
+}
