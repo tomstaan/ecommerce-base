@@ -9,72 +9,289 @@
   min-height: 10px;
 }
 
-.transactionHeader{
-    height: 44px;
+.transactionHeader {
+  height: 45px;
+  width: 100%;
+}
+.transactionHeader h3 {
+  position: relative;
+  font-size: 15px;
+  font-family: "Open Sans", sans-serif;
+  line-height: 45px;
+  color: #8d8d8d;
+}
+
+.transactionHeaderSpace {
+  position: relative;
+  float: left;
+  width: 5%;
+  height: 100%;
+}
+
+.transactionHeaderId {
+  position: relative;
+  float: left;
+  width: 10%;
+  height: 100%;
+}
+
+.transactionHeaderName {
+  position: relative;
+  float: left;
+  width: 25%;
+  height: 100%;
+}
+
+.transactionHeaderCustomer {
+  position: relative;
+  float: left;
+  width: 20%;
+  height: 100%;
+}
+
+.transactionHeaderDate {
+  position: relative;
+  float: left;
+  width: 10%;
+  height: 100%;
+}
+
+.transactionHeaderQuantity {
+  position: relative;
+  float: left;
+  width: 10%;
+  height: 100%;
+}
+
+.transactionHeaderAmount {
+  position: relative;
+  float: left;
+  width: 10%;
+  height: 100%;
+}
+
+.transactionHeaderStatus {
+  position: relative;
+  float: left;
+  width: 10%;
+  height: 100%;
+}
+
+.transactionListCont {
+  position: relative;
+  width: 100%;
+  margin: auto;
+  background-color: transparent;
+  min-height: 45px;
+  background-color: #fff;
+  border-radius: 4px;
+  -webkit-box-shadow: 0px 0px 23px -7px rgba(0, 0, 0, .05);
+  -moz-box-shadow: 0px 0px 23px -7px rgba(0, 0, 0, .05);
+  box-shadow: 0px 0px 23px -7px rgba(0, 0, 0, .05);
+  overflow: hidden;
+}
+
+.transactionElement{
+    position: relative;
+    height: 45px;
     width: 100%;
 }
-.transactionHeader h3{
+
+.transactionElementSelectBox{
+    position: relative;
+    height: 45px;
+    float: left;
+    width: 5%;
+}
+
+.transactionElement h4 {
     position: relative;
     font-size: 15px;
     font-family: "Open Sans", sans-serif;
     line-height: 45px;
-    color: #8D8D8D;
+    color: black;
 }
 
-.transactionHeaderSpace{
+.transactionElementId{
     position: relative;
-    float: left;
-    width: 5%;
-    height: 100%;
-}
-
-.transactionHeaderId{
-    position: relative;
+    height: 45px;
     float: left;
     width: 10%;
-    height: 100%;
+    overflow: hidden;
 }
 
-.transactionHeaderName{
+.transactionElementId h4 {
     position: relative;
+    font-size: 12px;
+    font-family: "Open Sans", sans-serif;
+    line-height: 45px;
+    color: black;
+}
+
+.transactionElementName{
+    position: relative;
+    height: 45px;
     float: left;
     width: 25%;
-    height: 100%;
+    overflow: hidden;
 }
 
-
-.transactionHeaderCustomer{
+.transactionElementCustomer{
     position: relative;
+    height: 45px;
     float: left;
     width: 20%;
-    height: 100%;
+    overflow: hidden;
 }
 
-
-.transactionHeaderDate{
+.transactionElementDate{
     position: relative;
+    height: 45px;
     float: left;
     width: 10%;
-    height: 100%;
+    overflow: hidden;
 }
 
-.transactionHeaderQuantity{
-    position: relative;
-    float: left;
-    width: 10%;
-    height: 100%;
+.transactionElementDate h4{
+    font-size: 12px;
 }
 
-.transactionHeaderAmount{
+.transactionElementQuantity{
     position: relative;
+    height: 45px;
     float: left;
     width: 10%;
-    height: 100%;
+    overflow: hidden;
+}
+.transactionElementAmount{
+    position: relative;
+    height: 45px;
+    float: left;
+    width: 10%;
+    overflow: hidden;
+}
+.transactionElementStatus{
+    position: relative;
+    height: 45px;
+    float: left;
+    width: 10%;
+    overflow: hidden;
+}
+.transactionElementStatus h4{
+    color: #14FF00;
 }
 
-.transactionHeaderStatus{
+
+
+/* Selecter */
+
+
+.transactionSelectCont {
     position: relative;
+    background-color: #fff;
     float: left;
-    width: 10%;
-    height: 100%;
-}
+    height: 45px;
+    width: 5%;
+  }
+  
+  .transactionSelectBack {
+    display: block;
+    cursor: pointer;
+    position: relative;
+    height: 20px;
+    background-color: #fff;
+    width: 20px;
+    border-radius: 3px;
+    border: 2px #efefef solid;
+    margin-top: 11px;
+    margin-left: 11px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    transition: 0.3s ease;
+  }
+  
+  .transactionSelectBack input:checked ~ .transactionSelectCheck {
+    display: block;
+    opacity: 1;
+  }
+  .transactionSelectBack input:hover ~ .transactionSelectCheck {
+    display: block;
+    opacity: 0.4;
+    transition: 0.3s ease;
+  }
+  .transactionSelectBack input:checked ~ .transactionSelectBack {
+    border-color: #707070;
+  }
+  .transactionSelectCont input {
+    position: absolute;
+    opacity: 0;
+    background-color: transparent;
+    color: transparent;
+    cursor: pointer;
+    height: 16px;
+    width: 16px;
+    transition: 0.3s ease;
+  }
+  .transactionSelectCheck:active {
+    display: block;
+    opacity: 1;
+  }
+  
+  .transactionSelectCheck {
+    opacity: 1;
+    display: none;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 16px;
+    top: 2px;
+    left: 2px;
+    transition: 0.3s ease;
+    padding: 0px;
+    border-radius: 1px;
+    margin: 0px;
+    width: 16px;
+    background-color: #0066ff;
+  }
+  /*
+  .selectProductCont input:checked{
+      cursor: pointer;
+      position: relative;
+      height: 22px;
+      width: 22px;
+      border-radius: 3px;
+      border: 2px #707070 solid;
+      margin: 17px;
+  }
+  
+  .selectProductFill{
+      position: absolute;
+      height: 16px;
+      width: 16px;
+      background-color: #0066ff;
+      border-radius: 1.5px;
+      top: 2px;
+      left: 2px;
+      padding: 0px;
+      margin: 0px;
+  }
+  */
+  
+  .transactionSelectBox {
+    float: left;
+    position: relative;
+    width: 105px;
+    height: 74px;
+    overflow: hidden;
+    background-color: #efefef;
+    margin: 3px;
+  }
+  .transactionSelectBox img {
+    position: absolute;
+    width: 100%;
+    height: auto;
+  }
+  
