@@ -33,23 +33,24 @@ export class NewProductImage extends Component {
   };
 
   componentDidUpdate() {
-    /*
-    var populateArr = true
-    if(this.props.savedProductPictures.length > 0 && populateArr == true) {
+    if (
+      this.props.savedProductPictures.length > 0 &&
+      this.state.displaySavedProductPictures.length == 0
+    ) {
       this.displaySavedImages();
     }
-    populateArr = false
-    */
   }
 
   displaySavedImages() {
-    this.props.savedProductPictures.map(image => {
-      const imageUrl = "./../../../.."+image.image_name
-      this.setState(prevstate => ({
-        displaySavedProductPictures: [prevstate.displaySavedProductPictures, imageUrl]
-      }))
-    })
-    console.log(this.state.displaySavedProductPictures)
+    this.props.savedProductPictures.map((image) => {
+      let imageUrl = "./../../../.." + image.image_name;
+      this.setState((prevstate) => ({
+        displaySavedProductPictures: [
+          ...prevstate.displaySavedProductPictures,
+          imageUrl,
+        ],
+      }));
+    });
   }
 
   pictureSelectedHandler = (event) => {
@@ -109,9 +110,9 @@ export class NewProductImage extends Component {
   render() {
     return (
       <div>
-        {!this.state.displayImages ||
-        this.state.displayProductPictures.length == 0 ||
-        this.state.displayProductPictures == undefined ? (
+        {(!this.state.displayImages) ||
+        (this.state.displayProductPictures.length == 0) ||
+        (this.state.displayProductPictures == undefined) ? (
           <div className="newProdTopFields">
             <div className="newProdImageUploadCont">
               <div className="newProdImageUploadLabel">
