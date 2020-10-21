@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import "./../style/transactions.css";
 
 export default class TransactionHeader extends Component {
+  
   render() {
     return (
       <div>

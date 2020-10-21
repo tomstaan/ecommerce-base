@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --mode development --watch ./ecom/frontend/src/index.js --output ./ecom/frontend/static/frontend/main.js",
+    "dev": "webpack --mode development --port 3000 --watch ./ecom/frontend/src/index.js --output ./ecom/frontend/static/frontend/main.js",
     "build": "webpack --mode production ./ecom/frontend/src/index.js --output ./ecom/frontend/static/frontend/main.js"
   },
   "repository": {
