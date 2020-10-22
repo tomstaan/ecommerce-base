@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --mode development --port 3000 --watch ./ecom/frontend/src/index.js --output ./ecom/frontend/static/frontend/main.js",
+    "dev": "webpack --mode development --watch ./ecom/frontend/src/index.js --output ./ecom/frontend/static/frontend/main.js",
     "build": "webpack --mode production ./ecom/frontend/src/index.js --output ./ecom/frontend/static/frontend/main.js"
   },
   "repository": {
@@ -36,6 +36,7 @@
     "css-loader": "^3.6.0",
     "image-webpack-loader": "^6.0.0",
     "jquery": "^3.5.1",
+    "ngrok": "^3.3.0",
     "popper": "^1.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
