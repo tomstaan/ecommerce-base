@@ -14,6 +14,7 @@ class Product(models.Model):
     #idsku = models.CharField(blank=True, max_length=255)
     #vendor_product_id = models.CharField(max_length=255, blank=True)
     product_name = models.CharField(max_length=255, blank=True, null=True)
+    stripe_ref_id = models.CharField(max_length=255, blank=True, null=True)
     product_unique_name = models.CharField(max_length=255, blank=True, null=True)
     product_description = models.CharField(
         max_length=2000, blank=True, null=True)
@@ -49,9 +50,6 @@ class ProductImage(models.Model):
     product_ref = models.ForeignKey(Product, on_delete=models.CASCADE, blank=True, null=True)
     image_id = models.CharField(max_length=255, blank=True, null=True)
     image_name = models.ImageField(blank=True, null=True, upload_to=get_image_path)
-
-    def __str__(self):
-        return self.image_name
 
 class Product_categories(models.Model):
     cat_name = models.CharField(max_length=128, null=False)

@@ -89,6 +89,7 @@ export class NewProduct extends Component {
       product_description,
     } = this.state;
 
+    
     const product = {
       product_name,
       category_id,

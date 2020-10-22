@@ -10,10 +10,40 @@ import os
 # Product Viewset
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
+    product_cats = Product_categories.objects.all()
     permission_classes = [
         permissions.AllowAny
     ]
     serializer_class = ProductSerializer
+
+    def create(self, request, *args, **kwargs):
+        product_name = request.data['product_name']
+        category_id = request.data['category_id']
+        unit_price = request.data['unit_price']
+        image_id = request.data['image_id']
+        quantity_per_unit = request.data['quantity_per_unit']
+        size = request.data['size']
+        color = request.data['color']
+        unit_weight = request.data['unit_weight']
+        units_in_stock = request.data['units_in_stock']
+        units_on_order = request.data['units_on_order']
+        product_description = request.data['product_description']
+        # Get ref product_category 
+        category_ref = self.product_cats.get(id=category_id)
+        Product.objects.create(
+            product_name = product_name,
+            category_id = category_ref,
+            unit_price = unit_price,
+            image_id = image_id,
+            quantity_per_unit = quantity_per_unit,
+            size = size,
+            color = color,
+            unit_weight = unit_price,
+            units_in_stock = units_in_stock,
+            units_on_order = units_on_order,
+            product_description = product_description
+        )
+        return HttpResponse({'message': 'Product Created'}, status=200)
 
 class ProductCatViewSet(viewsets.ModelViewSet):
     queryset = Product_categories.objects.all()
