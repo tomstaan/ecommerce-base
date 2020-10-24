@@ -12,6 +12,7 @@ import {
   handleProductSelect,
   selectAllProducts,
   setEditProductId,
+  getAllProductImages
 } from "../../actions/products";
 
 import { getCategory } from "../../actions/category";
@@ -43,6 +44,7 @@ export class ProductList extends Component {
     category: PropTypes.array.isRequired,
     getCategory: PropTypes.func.isRequired,
     setEditProductId: PropTypes.func.isRequired,
+    getAllProductImages: PropTypes.func.isRequired
   };
 
   componentDidMount() {
@@ -288,4 +290,5 @@ export default connect(mapStateToProps, {
   selectAllProducts,
   getCategory,
   setEditProductId,
+  getAllProductImages,
 })(ProductList);

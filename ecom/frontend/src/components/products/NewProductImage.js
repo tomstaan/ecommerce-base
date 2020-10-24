@@ -28,10 +28,9 @@ export class NewProductImage extends Component {
 
   static propTypes = {
     displayProductPictures: PropTypes.array.isRequired,
-    savedProductPictures: PropTypes.array.isRequired,
     updateProductPictures: PropTypes.func.isRequired,
   };
-
+/*
   componentDidUpdate() {
     if (
       this.props.savedProductPictures.length > 0 &&
@@ -52,9 +51,10 @@ export class NewProductImage extends Component {
       }));
     });
   }
-
+*/
   pictureSelectedHandler = (event) => {
     if (event.target.files) {
+      console.log(event.target.files)
       // Switch from upload to display
       this.setState({
         displayImages: true,
@@ -79,12 +79,19 @@ export class NewProductImage extends Component {
         (images) => {
           /* Once all promises are resolved, update state with image URI array */
           console.log(images);
-          this.setState({
-            displayProductPictures: [
-              ...this.state.displayProductPictures,
-              images,
-            ],
-          });
+          if (this.state.displayProductPictures.length < 1) {
+            this.setState({
+              displayProductPictures: images
+            });
+          } else {
+            this.setState({
+              displayProductPictures: [
+                ...this.state.displayProductPictures,
+                images
+              ]
+            });
+          }
+          console.log(this.state.displayProductPictures)
           this.props.updateProductPictures(files);
         },
         (error) => {

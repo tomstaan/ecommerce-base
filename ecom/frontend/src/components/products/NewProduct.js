@@ -89,7 +89,6 @@ export class NewProduct extends Component {
       product_description,
     } = this.state;
 
-    
     const product = {
       product_name,
       category_id,
@@ -106,8 +105,10 @@ export class NewProduct extends Component {
 
     // Add product
     this.props.addProduct(product);
-
     
+    //Add product images
+    setTimeout(() => {
+      console.log(this.state.newProductPictures)
     this.state.newProductPictures.forEach(picture => {
       var newImageObject = new FormData(); // Currently empty
 
@@ -116,7 +117,7 @@ export class NewProduct extends Component {
       newImageObject.append('image_name', picture, picture.name);
       this.props.addPicsToProd(newImageObject);
     })
-
+    
     // Reset state
     this.setState({
       product_name: "",
@@ -132,6 +133,8 @@ export class NewProduct extends Component {
       product_description: "",
       redirect: true,
     });
+  }, 2000);
+
   };
   
   render() {
