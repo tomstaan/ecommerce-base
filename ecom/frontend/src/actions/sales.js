@@ -6,8 +6,8 @@ import {
   FILTER_ASCENDING_SALES,
   FILTER_DESCENDING_SALES,
   FILTER_PRICE_SALES,
-  FILTER_CATEGORY_SALES,
-  FILTER_UNITS_SALES,
+  FILTER_DATE_SALES,
+  FILTER_NAME_SALES,
 } from "./types.js";
 
 //Get Products
@@ -21,4 +21,41 @@ export const getSales = () => (dispatch) => {
       });
     })
     .catch((err) => console.log(err));
+};
+
+export const filterSales = (value) => (dispatch) => {
+  dispatch({
+    type: FILTER_SALES,
+    payload: value,
+  });
+};
+
+export const filterByAsc = () => (dispatch) => {
+  dispatch({
+    type: FILTER_ASCENDING_SALES,
+  });
+};
+
+export const filterByDesc = () => (dispatch) => {
+  dispatch({
+    type: FILTER_DESCENDING_SALES,
+  });
+};
+
+export const filterByPrice = () => (dispatch) => {
+  dispatch({
+    type: FILTER_PRICE_SALES,
+  });
+};
+
+export const filterByDate = () => (dispatch) => {
+  dispatch({
+    type: FILTER_DATE_SALES,
+  });
+};
+
+export const filterByName = () => (dispatch) => {
+  dispatch({
+    type: FILTER_NAME_SALES,
+  });
 };

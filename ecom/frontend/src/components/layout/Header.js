@@ -16,32 +16,14 @@ export default class Header extends Component {
           <div className="headerLmt">
             <div className="col-lg-12">
               <div className="headerLogo">
-                <img src={logo} alt="Logo" title="Logo" />
+                <h1>Ecommerce Manager</h1>
               </div>
               <div className="headerUserMenu">
                 <ul>
                   <li>
                     <div className="userMenuProfile"></div>
                   </li>
-                  <li>
-                    <div className="userMenuMessage">
-                      <div className="userMenuMessageAlert"></div>
-                    </div>
-                  </li>
                 </ul>
-              </div>
-              <div className="mainSearchCont">
-                <div className="mainSearchBar">
-                  <div className="mainSearchIcon">
-                    <div className="mainSearchImg"></div>
-                  </div>
-                  <input
-                    type="search"
-                    name="mainsearch"
-                    id="mainsearch"
-                    autoComplete="off"
-                  />
-                </div>
               </div>
             </div>
           </div>

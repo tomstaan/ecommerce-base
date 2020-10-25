@@ -59,6 +59,22 @@ export class TransactionList extends Component {
     });
   }
 
+  handleDate(unixDate) {
+    var date = new Date(unixDate * 1000);
+     // Year
+    var year = date.getFullYear();
+    // Month
+    var month = date.getMonth();
+    // Day
+    var day = date.getDate();
+    // Hours part from the timestamp
+    var hours = date.getHours();
+    // Minutes part from the timestamp
+    var minutes = "0" + date.getMinutes();
+    var fullDate = hours+":"+minutes+" "+day+"/"+month+"/"+year
+    return fullDate
+  }
+
   render() {
     return (
       <div>
@@ -67,12 +83,6 @@ export class TransactionList extends Component {
           <div className="transactionListCont">
             {this.props.sales.map((Transaction) => (
               <div className="transactionElement" key={Transaction.id}>
-                <div className="transactionSelectCont">
-                  <div className="transactionSelectBack">
-                    <input className="transactionSelectBox" type="checkbox" />
-                    <span className="transactionSelectCheck" />
-                  </div>
-                </div>
                 <div className="transactionElementId">
                   <h4>{Transaction.product_details.order_id}</h4>
                 </div>
@@ -83,7 +93,7 @@ export class TransactionList extends Component {
                   <h4>{Transaction.customer_email}</h4>
                 </div>
                 <div className="transactionElementDate">
-                  <h4>{Transaction.date}</h4>
+                  <h4>{this.handleDate(Transaction.date)}</h4>
                 </div>
                 <div className="transactionElementQuantity">
                   <h4>1</h4>

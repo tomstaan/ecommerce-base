@@ -4,6 +4,14 @@
     margin: auto;
     background-color: #fff;
 }
+.headerLogo h1{
+    position: relative;
+    line-height: 30px;
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+}
+
 .headerLmt{
     position: relative;
     max-width: 1600px;
@@ -24,7 +32,6 @@
     position: absolute;
     left: 0px;
     height: 28px;
-    width: 74px;
     padding-top: 10px;
 }
 .headerLogo img{
