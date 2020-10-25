@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 // CSS
@@ -6,9 +6,7 @@ import "./../style/transactions.css";
 // Modules
 import TransactionHeader from "./TransactionHeader";
 
-import {
-  getSales
-} from "../../actions/sales";
+import { getSales } from "../../actions/sales";
 
 export class TransactionList extends Component {
   constructor(props) {
@@ -21,11 +19,12 @@ export class TransactionList extends Component {
 
   static propTypes = {
     sales: PropTypes.array.isRequired,
-    getSales: PropTypes.func.isRequired
+    getSales: PropTypes.func.isRequired,
+    filteredSales: PropTypes.array.isRequired,
   };
 
   componentDidMount() {
-    this.props.getSales()
+    this.props.getSales();
     this.setState({
       TransactionList: [
         {
@@ -61,7 +60,7 @@ export class TransactionList extends Component {
 
   handleDate(unixDate) {
     var date = new Date(unixDate * 1000);
-     // Year
+    // Year
     var year = date.getFullYear();
     // Month
     var month = date.getMonth();
@@ -71,8 +70,8 @@ export class TransactionList extends Component {
     var hours = date.getHours();
     // Minutes part from the timestamp
     var minutes = "0" + date.getMinutes();
-    var fullDate = hours+":"+minutes+" "+day+"/"+month+"/"+year
-    return fullDate
+    var fullDate = hours + ":" + minutes + " " + day + "/" + month + "/" + year;
+    return fullDate;
   }
 
   render() {
@@ -81,33 +80,35 @@ export class TransactionList extends Component {
         <div className="transactionBackground">
           <TransactionHeader />
           <div className="transactionListCont">
-            {this.props.sales.map((Transaction) => (
-              <div className="transactionElement" key={Transaction.id}>
-                <div className="transactionElementId">
-                  <h4>{Transaction.product_details.order_id}</h4>
+            <Fragment>
+              {this.props.filteredSales.map((Transaction) => (
+                <div key={Transaction.id} className="transactionElement">
+                  <div className="transactionElementId">
+                    <h4>{Transaction.product_details.order_id}</h4>
+                  </div>
+                  <div className="transactionElementName">
+                    <h4>{Transaction.name}</h4>
+                  </div>
+                  <div className="transactionElementCustomer">
+                    <h4>{Transaction.customer_email}</h4>
+                  </div>
+                  <div className="transactionElementDate">
+                    <h4>{this.handleDate(Transaction.date)}</h4>
+                  </div>
+                  <div className="transactionElementQuantity">
+                    <h4>1</h4>
+                  </div>
+                  <div className="transactionElementAmount">
+                    <h4>€{Transaction.price/100}</h4>
+                  </div>
+                  <div className="transactionElementStatus">
+                    <h4 className="transactionElementStatusProcessed">
+                      {Transaction.status}
+                    </h4>
+                  </div>
                 </div>
-                <div className="transactionElementName">
-                  <h4>{Transaction.name}</h4>
-                </div>
-                <div className="transactionElementCustomer">
-                  <h4>{Transaction.customer_email}</h4>
-                </div>
-                <div className="transactionElementDate">
-                  <h4>{this.handleDate(Transaction.date)}</h4>
-                </div>
-                <div className="transactionElementQuantity">
-                  <h4>1</h4>
-                </div>
-                <div className="transactionElementAmount">
-                  <h4>€{Transaction.price.toFixed(2)}</h4>
-                </div>
-                <div className="transactionElementStatus">
-                  <h4 className="transactionElementStatusProcessed">
-                    {Transaction.status}
-                  </h4>
-                </div>
-              </div>
-            ))}
+              ))}
+            </Fragment>
           </div>
         </div>
       </div>
@@ -117,11 +118,9 @@ export class TransactionList extends Component {
 
 const mapStateToProps = (state) => ({
   sales: state.sales.sales,
+  filteredSales: state.sales.filteredSales,
 });
 
-export default connect(
-  mapStateToProps,
-  {
-    getSales,
-  }
-)(TransactionList);
+export default connect(mapStateToProps, {
+  getSales,
+})(TransactionList);

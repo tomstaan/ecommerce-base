@@ -34,6 +34,7 @@ export class ProductList extends Component {
     };
   }
 
+  
   static propTypes = {
     products: PropTypes.array.isRequired,
     getProducts: PropTypes.func.isRequired,

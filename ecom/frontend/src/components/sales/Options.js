@@ -15,7 +15,7 @@ import {
   filterByAsc,
   filterByDesc,
   filterByPrice,
-  filterByName,
+  filterByQuantity,
   filterByDate
 } from "../../actions/sales";
 
@@ -29,18 +29,18 @@ export class Options extends Component {
     };
   }
   static propTypes = {
-    products: PropTypes.array.isRequired,
-    getProducts: PropTypes.func.isRequired,
-    filterProducts: PropTypes.func.isRequired,
+    sales: PropTypes.array.isRequired,
+    getSales: PropTypes.func.isRequired,
+    filterSales: PropTypes.func.isRequired,
     filterValue: PropTypes.string.isRequired,
     filterByAsc: PropTypes.func.isRequired,
     filterByDesc: PropTypes.func.isRequired,
     filterByPrice: PropTypes.func.isRequired,
     filterByDate: PropTypes.func.isRequired,
-    filterByName: PropTypes.func.isRequired,
+    filterByQuantity: PropTypes.func.isRequired,
     filterAsc: PropTypes.bool.isRequired,
     filterDesc: PropTypes.bool.isRequired,
-    filterName: PropTypes.bool.isRequired,
+    filterQuantity: PropTypes.bool.isRequired,
     filterPrice: PropTypes.bool.isRequired,
     filterDate: PropTypes.bool.isRequired
   };
@@ -78,7 +78,7 @@ export class Options extends Component {
                     <input
                       type="search"
                       placeholder="Keyword"
-                      onChange={e => this.props.filterProducts(e.target.value)}
+                      onChange={e => this.props.filterSales(e.target.value)}
                       value={this.props.filterValue}
                     />
                   </div>
@@ -134,14 +134,14 @@ export class Options extends Component {
                   </div>
                   <div
                     className={
-                      this.props.filterName
+                      this.props.filterQuantity
                         ? "filterSortUnitsH"
                         : "filterSortUnits"
                     }
-                    onClick={this.props.filterByName.bind(this)}
+                    onClick={this.props.filterByQuantity.bind(this)}
                   >
                     <div className="filterSortUnitsCover">
-                      <h2>Name</h2>
+                      <h2>Quantity</h2>
                     </div>
                   </div>
                 </div>
@@ -162,7 +162,7 @@ const mapStateToProps = state => ({
   filterDesc: state.sales.filterDesc,
   filterPrice: state.sales.filterPrice,
   filterDate: state.sales.filterDate,
-  filterName: state.sales.filterName
+  filterQuantity: state.sales.filterQuantity
 });
 
 export default connect(
@@ -174,6 +174,6 @@ export default connect(
     filterByDesc,
     filterByPrice,
     filterByDate,
-    filterByName
+    filterByQuantity
   }
 )(Options);

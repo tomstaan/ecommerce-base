@@ -34,6 +34,7 @@
     "braces": "^3.0.2",
     "compress-js": "^2.0.2",
     "css-loader": "^3.6.0",
+    "currencyjs": "^1.1.1",
     "image-webpack-loader": "^6.0.0",
     "jquery": "^3.5.1",
     "ngrok": "^3.3.0",

@@ -7,7 +7,7 @@ import {
   FILTER_DESCENDING_SALES,
   FILTER_PRICE_SALES,
   FILTER_DATE_SALES,
-  FILTER_NAME_SALES,
+  FILTER_QUANTITY_SALES,
 } from "./types.js";
 
 //Get Products
@@ -54,8 +54,8 @@ export const filterByDate = () => (dispatch) => {
   });
 };
 
-export const filterByName = () => (dispatch) => {
+export const filterByQuantity = () => (dispatch) => {
   dispatch({
-    type: FILTER_NAME_SALES,
+    type: FILTER_QUANTITY_SALES,
   });
 };
