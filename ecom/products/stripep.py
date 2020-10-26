@@ -8,15 +8,15 @@ stripe.api_key = "sk_test_qVyhxgBH7ndQwSUy6lW9SGVI00wKodpGe5"
 
 # Create Payment
 stripe.PaymentIntent.create(
-    amount=70000,
+    amount=135999,
     currency="eur",
     payment_method_types=["card"],
-    description='Iphone 11 - Black 128GB',
+    description='Dell XPS 13 - 512GB, Black',
     confirm=True,
-    customer="cus_IE6nJd199pkScq",
+    customer="cus_IG4EgmVOQK0DTG",
     metadata={
-        'order_id': '23jk4n3j',
-        'product_ref': 173,
-        'stripe_product_ref': 'prod_IFx9KXqy5Kt51j'
+        'order_id': '432jk22g',
+        'product_ref': 193,
+        'stripe_product_ref': 'prod_IH2aY7wmlHc23T'
     }
 )

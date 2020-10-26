@@ -17,7 +17,8 @@ import {
   ADD_IMAGE_TO_PRODUCT,
   SET_EDIT_PRODUCT_ID,
   SET_SAVED_PICTURES,
-  GET_ALL_PRODUCT_IMAGES
+  GET_ALL_PRODUCT_IMAGES,
+  RESET_REDIRECT
 } from "./types.js";
 
 //Get Products
@@ -62,6 +63,8 @@ export const getAllProductImages = (productId) => (dispatch) => {
     })
     .catch((err) => console.log(err));
 };
+
+
 
 //ADD Category
 export const addProduct = (product) => (dispatch) => {
@@ -131,6 +134,13 @@ export const setEditProductId = (id) => (dispatch) => {
 export const selectAllProducts = () => (dispatch) => {
   dispatch({
     type: SELECT_ALL_PRODUCTS,
+  });
+};
+
+//Select All Products
+export const resetRedirect = () => (dispatch) => {
+  dispatch({
+    type: RESET_REDIRECT,
   });
 };
 

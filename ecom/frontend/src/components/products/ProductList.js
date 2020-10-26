@@ -12,7 +12,8 @@ import {
   handleProductSelect,
   selectAllProducts,
   setEditProductId,
-  getAllProductImages
+  getAllProductImages,
+  resetRedirect
 } from "../../actions/products";
 
 import { getCategory } from "../../actions/category";
@@ -45,12 +46,14 @@ export class ProductList extends Component {
     category: PropTypes.array.isRequired,
     getCategory: PropTypes.func.isRequired,
     setEditProductId: PropTypes.func.isRequired,
-    getAllProductImages: PropTypes.func.isRequired
+    getAllProductImages: PropTypes.func.isRequired,
+    resetRedirect: PropTypes.func.isRequired
   };
 
   componentDidMount() {
     this.props.getProducts();
     this.props.getCategory();
+    this.props.resetRedirect();
   }
 
   categoryDisplay(e, prodId) {
@@ -296,4 +299,5 @@ export default connect(mapStateToProps, {
   getCategory,
   setEditProductId,
   getAllProductImages,
+  resetRedirect
 })(ProductList);

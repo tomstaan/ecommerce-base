@@ -8,6 +8,7 @@ from .serializers import ProductSerializer, ProductCatSerializer, ProductImageSe
 import shutil
 import os
 from .stripefile import create_product, get_payment_intents
+import time
 
 # Product Viewset
 class ProductViewSet(viewsets.ModelViewSet):
@@ -62,6 +63,7 @@ class ProductCatViewSet(viewsets.ModelViewSet):
 # Create Product Image
 class ProductImageViewSet(viewsets.ModelViewSet):
     queryset = ProductImage.objects.all()
+    productQuery = Product.objects.all()
     permission_classes = [
         permissions.AllowAny
     ]
@@ -70,11 +72,15 @@ class ProductImageViewSet(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         req_image_id = request.data['image_id']
         image_name = request.data['image_name']
+        # Wait until product object gets created
+        while self.productQuery.filter(image_id=req_image_id).count() == 0:
+            time.sleep(1)
+        print(self.productQuery.filter(image_id=req_image_id).count())
         # Get Product with image_id that matches the images uploaded by the user
-        relatingProductId = Product.objects.all().get(image_id=req_image_id)
+        relatingProductId = self.productQuery.filter(image_id=req_image_id)[0]
         ProductImage.objects.create(product_ref=relatingProductId, image_id=req_image_id, image_name=image_name)
         if relatingProductId.cover_image == None:
-            relatingProductId.cover_image = ProductImage.objects.all().get(image_id=req_image_id).image_name
+            relatingProductId.cover_image = self.queryset.filter(image_id=req_image_id)[0].image_name
             relatingProductId.save()
         return HttpResponse({'message': 'Product Image Created'}, status=200)
 

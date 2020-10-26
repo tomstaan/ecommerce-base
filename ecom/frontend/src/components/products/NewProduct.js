@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect, Provider } from "react-redux";
 import TopRoute from "./TopRoute";
 import { Link, Redirect } from "react-router-dom";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 import "./../style/newproduct.css";
 
 //Image Uploading
@@ -53,7 +53,8 @@ export class NewProduct extends Component {
       if (this.subscribed == true) {
         this.setState({
           newProductPictures: store.getState().products.newProductPictures,
-          newProdImageId: store.getState().products.newProdImageId
+          newProdImageId: store.getState().products.newProdImageId,
+          redirect: store.getState().products.redirect_to_product_page
         });
       }
     });
@@ -66,15 +67,15 @@ export class NewProduct extends Component {
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
     this.setState({
-      image_id: uuidv4()
-    })
+      image_id: uuidv4(),
+    });
   };
 
   onSubmit = (e) => {
     //console.log("Pictures = "+this.state.newProductPictures);
     // --------------
     e.preventDefault();
-  
+
     const {
       product_name,
       category_id,
@@ -105,19 +106,17 @@ export class NewProduct extends Component {
 
     // Add product
     this.props.addProduct(product);
-    
+
     //Add product images
-    setTimeout(() => {
-      console.log(this.state.newProductPictures)
-    this.state.newProductPictures.forEach(picture => {
+    this.state.newProductPictures.forEach((picture) => {
       var newImageObject = new FormData(); // Currently empty
 
       //newImageObject.append('product_ref', product_ref);
-      newImageObject.append('image_id', image_id);
-      newImageObject.append('image_name', picture, picture.name);
+      newImageObject.append("image_id", image_id);
+      newImageObject.append("image_name", picture, picture.name);
       this.props.addPicsToProd(newImageObject);
-    })
-    
+    });
+
     // Reset state
     this.setState({
       product_name: "",
@@ -130,13 +129,10 @@ export class NewProduct extends Component {
       unit_weight: 0.0,
       units_in_stock: 0,
       units_on_order: 0,
-      product_description: "",
-      redirect: true,
+      product_description: ""
     });
-  }, 2000);
-
   };
-  
+
   render() {
     //Redirect back to products when © MorganReeveExposed 2019submit is complete
     if (this.state.redirect) {
@@ -154,7 +150,7 @@ export class NewProduct extends Component {
       units_on_order,
       product_description,
     } = this.state;
-    
+
     return (
       <div className="NewProdBack">
         <div className="col-lg-12">
@@ -309,10 +305,11 @@ export class NewProduct extends Component {
 
 const mapStateToProps = (state) => ({
   category: state.category.category,
+  redirect_to_product_page: state.products.redirect_to_product_page
 });
 
 export default connect(mapStateToProps, {
   getCategory,
   addProduct,
-  addPicsToProd
+  addPicsToProd,
 })(NewProduct);

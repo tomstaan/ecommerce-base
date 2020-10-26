@@ -15,7 +15,8 @@ import {
   SET_EDIT_PRODUCT_ID,
   EDIT_PRODUCT,
   SET_SAVED_PICTURES,
-  GET_ALL_PRODUCT_IMAGES
+  GET_ALL_PRODUCT_IMAGES,
+  RESET_REDIRECT,
 } from "../actions/types.js";
 
 const initalState = {
@@ -34,16 +35,17 @@ const initalState = {
   editProductId: 0,
   savedProductPictures: [],
   retrievedProductImages: [],
+  redirect_to_product_page: false,
 };
 
-export default function(state = initalState, action) {
+export default function (state = initalState, action) {
   //Handles the sort type
   function handleSort() {
     let listCopy = state.filteredProducts;
 
     if (state.filterAsc) {
       //Ascending
-      listCopy.sort(function(a, b) {
+      listCopy.sort(function (a, b) {
         var priceA = parseFloat(a[state.currentSort]);
         var priceB = parseFloat(b[state.currentSort]);
         if (priceA < priceB) {
@@ -57,7 +59,7 @@ export default function(state = initalState, action) {
       });
     } else {
       //Descending
-      listCopy.sort(function(a, b) {
+      listCopy.sort(function (a, b) {
         var priceA = parseFloat(a[state.currentSort]);
         var priceB = parseFloat(b[state.currentSort]);
         if (priceA > priceB) {
@@ -75,31 +77,31 @@ export default function(state = initalState, action) {
   }
   switch (action.type) {
     case GET_PRODUCTS:
-      state.filteredProducts = action.payload.map(product => ({
+      state.filteredProducts = action.payload.map((product) => ({
         ...product,
-        selected: false
+        selected: false,
       }));
       handleSort();
 
       return {
         ...state,
-        products: action.payload.map(product => ({
+        products: action.payload.map((product) => ({
           ...product,
-          selected: false
+          selected: false,
         })),
-        filteredProducts: state.filteredProducts.map(Product => ({
-          ...Product
-        }))
+        filteredProducts: state.filteredProducts.map((Product) => ({
+          ...Product,
+        })),
       };
     case DELETE_PRODUCT:
       return {
         ...state,
         products: state.products.filter(
-          product => product.id !== action.payload
+          (product) => product.id !== action.payload
         ),
         filteredProducts: state.filteredProducts.filter(
-          product => product.id !== action.payload
-        )
+          (product) => product.id !== action.payload
+        ),
       };
     case EDIT_PRODUCT:
       return {
@@ -110,60 +112,66 @@ export default function(state = initalState, action) {
       return {
         ...state,
         products: [...state.products, action.payload],
-        newProdImageId: action.payload.id
+        newProdImageId: action.payload.id,
       };
     case SET_EDIT_PRODUCT_ID:
-      return{
+      return {
         ...state,
-        editProductId: action.payload
+        editProductId: action.payload,
       };
     case ADD_IMAGE_TO_PRODUCT:
       return {
-        ...state
+        ...state,
+        redirect_to_product_page: true,
+      };
+    case RESET_REDIRECT:
+      return {
+        ...state,
+        redirect_to_product_page: false,
       };
     case UPDATE_PICTURES:
-      return{
+      return {
         ...state,
-        newProductPictures: action.payload
+        newProductPictures: action.payload,
       };
     case GET_ALL_PRODUCT_IMAGES:
-      return{
+      return {
         ...state,
-        retrievedProductImages: action.payload
+        retrievedProductImages: action.payload,
       };
     case SET_SAVED_PICTURES:
-      return{
+      return {
         ...state,
-        savedProductPictures: action.payload
+        savedProductPictures: action.payload,
       };
     case HANDLE_PRODUCT_SELECT:
       return {
         ...state,
-        products: state.products.map(Product =>
+        products: state.products.map((Product) =>
           Product.id === action.payload
             ? { ...Product, selected: !Product.selected }
             : Product
         ),
-        filteredProducts: state.filteredProducts.map(Product =>
+        filteredProducts: state.filteredProducts.map((Product) =>
           Product.id === action.payload
             ? { ...Product, selected: !Product.selected }
             : Product
-        )
+        ),
       };
     case SELECT_ALL_PRODUCTS:
       return {
         ...state,
         selectAllChecked: !state.selectAllChecked,
-        products: state.products.map(Product =>
+        products: state.products.map((Product) =>
           Product.selected !== !state.selectAllChecked
             ? { ...Product, selected: !state.selectAllChecked }
             : Product
         ),
-        filteredProducts: state.filteredProducts.map(Product =>
+        filteredProducts: state.filteredProducts.map((Product) =>
           Product.selected !== !state.selectAllChecked
             ? { ...Product, selected: !state.selectAllChecked }
             : Product
-        )
+        ),
       };
 
     case FILTER_PRODUCTS: {
@@ -171,11 +179,11 @@ export default function(state = initalState, action) {
       return {
         ...state,
         filterValue: action.payload,
-        filteredProducts: state.products.filter(Product =>
+        filteredProducts: state.products.filter((Product) =>
           action.payload === ""
             ? { ...Product }
             : Product.product_name.toLowerCase().includes(action.payload)
-        )
+        ),
       };
     }
     case FILTER_ASCENDING: {
@@ -186,9 +194,9 @@ export default function(state = initalState, action) {
         ...state,
         filterAsc: true,
         filterDesc: false,
-        filteredProducts: state.filteredProducts.map(Product => ({
-          ...Product
-        }))
+        filteredProducts: state.filteredProducts.map((Product) => ({
+          ...Product,
+        })),
       };
     }
     case FILTER_DESCENDING: {
@@ -199,9 +207,9 @@ export default function(state = initalState, action) {
         ...state,
         filterDesc: true,
         filterAsc: false,
-        filteredProducts: state.filteredProducts.map(Product => ({
-          ...Product
-        }))
+        filteredProducts: state.filteredProducts.map((Product) => ({
+          ...Product,
+        })),
       };
     }
     case FILTER_PRICE: {
@@ -215,9 +223,9 @@ export default function(state = initalState, action) {
         filterPrice: true,
         filterCategory: false,
         filterUnits: false,
-        filteredProducts: state.filteredProducts.map(Product => ({
-          ...Product
-        }))
+        filteredProducts: state.filteredProducts.map((Product) => ({
+          ...Product,
+        })),
       };
     }
     case FILTER_CATEGORY: {
@@ -225,7 +233,7 @@ export default function(state = initalState, action) {
         ...state,
         filterPrice: false,
         filterCategory: true,
-        filterUnits: false
+        filterUnits: false,
       };
     }
     case FILTER_UNITS: {
@@ -239,9 +247,9 @@ export default function(state = initalState, action) {
         filterPrice: false,
         filterCategory: false,
         filterUnits: true,
-        filteredProducts: state.filteredProducts.map(Product => ({
-          ...Product
-        }))
+        filteredProducts: state.filteredProducts.map((Product) => ({
+          ...Product,
+        })),
       };
     }
     default:

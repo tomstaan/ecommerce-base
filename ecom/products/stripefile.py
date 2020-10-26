@@ -67,7 +67,7 @@ def create_product(prod_name, prod_price_float, prod_description):
     # Convert double to stripe amount
     prod_price = str(prod_price_float).replace(".", "")
     prod_price_int = int(prod_price)
-    if int(prod_price_float) == prod_price_int:
+    if int(float(prod_price_float)) == prod_price_int:
         prod_price_int = prod_price_int*100
     print(prod_price_int)
 
