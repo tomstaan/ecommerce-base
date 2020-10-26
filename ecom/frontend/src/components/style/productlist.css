@@ -241,6 +241,15 @@
   line-height: 15px;
   margin-top: 0px;
 }
+.productDiscNotActive {
+  position: relative;
+  color: #ff0000;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 15px;
+  margin-top: 0px;
+}
 .productDiscNot {
   position: relative;
   color: #ff0000;
@@ -271,21 +280,22 @@
   position: absolute;
   right: 0px;
   bottom: 0px;
-  width: 34px;
+  width: 68px;
   height: 34px;
   background-color: #fff;
 }
-.deleteSingleProduct {
-  position: absolute;
+.deleteSingleProduct, .editSingleProduct {
+  position: relative;
   height: 34px;
   overflow: hidden;
   width: 34px;
+  float: right;
   border-radius: 6px;
   background-color: #fff;
   right: 0px;
   bottom: 0px;
 }
-.deleteSingleProduct button {
+.deleteSingleProduct button, .editSingleProduct button {
   position: relative;
   height: 34px;
   opacity: 0.6;
@@ -296,10 +306,10 @@
   outline: none;
   background-color: #fff;
 }
-.deleteSingleProduct button:hover {
+.deleteSingleProduct button:hover, .editSingleProduct button:hover {
   opacity: 1;
 }
-.deleteSingleProduct img {
+.deleteSingleProduct img, .editSingleProduct img {
   position: absolute;
   height: 26px;
   width: 26px;

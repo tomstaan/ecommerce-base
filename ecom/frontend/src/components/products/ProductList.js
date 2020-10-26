@@ -4,12 +4,16 @@ import "./../style/productlist.css";
 //Displaying Products
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { Link } from 'react-router-dom';
 
 import {
   getProducts,
   deleteProducts,
   handleProductSelect,
   selectAllProducts,
+  setEditProductId,
+  getAllProductImages,
+  resetRedirect
 } from "../../actions/products";
 
 import { getCategory } from "../../actions/category";
@@ -17,6 +21,7 @@ import { getCategory } from "../../actions/category";
 //Images
 import Case from "./../style/images/case.jpg";
 import Delete from "./../style/images/delete.png";
+import Edit from "./../style/images/edit.png";
 
 export class ProductList extends Component {
   constructor(props) {
@@ -26,10 +31,11 @@ export class ProductList extends Component {
       selectedProducts: [],
       category: [],
       productDeleteWarning: false,
-      tempDeleteProduct: null,
+      tempDeleteProduct: null
     };
   }
 
+  
   static propTypes = {
     products: PropTypes.array.isRequired,
     getProducts: PropTypes.func.isRequired,
@@ -39,11 +45,15 @@ export class ProductList extends Component {
     filteredProducts: PropTypes.array.isRequired,
     category: PropTypes.array.isRequired,
     getCategory: PropTypes.func.isRequired,
+    setEditProductId: PropTypes.func.isRequired,
+    getAllProductImages: PropTypes.func.isRequired,
+    resetRedirect: PropTypes.func.isRequired
   };
 
   componentDidMount() {
     this.props.getProducts();
     this.props.getCategory();
+    this.props.resetRedirect();
   }
 
   categoryDisplay(e, prodId) {
@@ -81,6 +91,16 @@ export class ProductList extends Component {
     });
   }
 
+  //Set the edit product id
+  setEditId = (e, Product) => {
+    this.props.setEditProductId(e.id);
+    console.log(e.id);
+  }
+
+  handleImage(picture) {
+    return "/media/"+picture
+  }
+
   render() {
     return (
       <div>
@@ -107,7 +127,7 @@ export class ProductList extends Component {
                       </div>
                     </div>
                     <div className="productImageBox">
-                      <img src={Case} alt="Case" title="Case" />
+                      <img src={this.handleImage(Product.cover_image)} alt="Case" title="Case" />
                     </div>
                     <div className="productDescBack">
                       <div className="productDescTop">
@@ -136,11 +156,11 @@ export class ProductList extends Component {
                         </div>
                         <div className="productDiscountCont">
                           <h3 className="productBold">Discount</h3>
-                          <h3 className="productDiscActive">Active</h3>
+                          <h3 className="productDiscNotActive">Not Active</h3>
                         </div>
                         <div className="productOriginalPrice">
                           <h3 className="productBold">Original Price</h3>
-                          <h3 className="productTxt">{Product.unit_price}</h3>
+                          <h3 className="productTxt">€{Product.unit_price}</h3>
                         </div>
                         <div className="productColor">
                           <h3 className="productBold">Size</h3>
@@ -166,8 +186,8 @@ export class ProductList extends Component {
                           </h3>
                         </div>
                         <div className="productColor">
-                          <h3 className="productBold">MSRP</h3>
-                          <h3 className="productTxt">€{Product.msrp}</h3>
+                          <h3 className="productBold">Product ID</h3>
+                          <h3 className="productTxt">{Product.id}</h3>
                         </div>
                       </div>
                       <div className="productDescBottom">
@@ -176,10 +196,6 @@ export class ProductList extends Component {
                           <h3 className="productTxt">
                             {Product.units_on_order}
                           </h3>
-                        </div>
-                        <div className="productColor">
-                          <h3 className="productBold">Supplier</h3>
-                          <h3 className="productTxt" />
                         </div>
                       </div>
                     </div>
@@ -199,6 +215,23 @@ export class ProductList extends Component {
                             title="Delete Product"
                           />
                         </button>
+                      </div>
+                      <div className="editSingleProduct">
+                        <Link to={`./editproduct/${Product.id}`}>
+                        <button
+                          type="button"
+                          className="btn btn-primary"
+                          onClick={this.setEditId.bind(
+                            this,
+                            Product
+                          )}
+                        >
+                          <img
+                            src={Edit}
+                            alt="Edit Product"
+                            title="Edit Product"
+                          />
+                        </button></Link>
                       </div>
                     </div>
                   </div>
@@ -251,6 +284,7 @@ const mapStateToProps = (state) => ({
   filteredProducts: state.products.filteredProducts,
   filterValue: state.products.filterValue,
   category: state.category.category,
+  editProductId: state.products.editProductId,
 });
 
 export default connect(mapStateToProps, {
@@ -259,4 +293,7 @@ export default connect(mapStateToProps, {
   handleProductSelect,
   selectAllProducts,
   getCategory,
+  setEditProductId,
+  getAllProductImages,
+  resetRedirect
 })(ProductList);
