@@ -73,6 +73,9 @@ class ProductImageViewSet(viewsets.ModelViewSet):
         # Get Product with image_id that matches the images uploaded by the user
         relatingProductId = Product.objects.all().get(image_id=req_image_id)
         ProductImage.objects.create(product_ref=relatingProductId, image_id=req_image_id, image_name=image_name)
+        if relatingProductId.cover_image == None:
+            relatingProductId.cover_image = ProductImage.objects.all().get(image_id=req_image_id).image_name
+            relatingProductId.save()
         return HttpResponse({'message': 'Product Image Created'}, status=200)
 
 # Get images that relate to a product id

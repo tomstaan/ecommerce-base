@@ -42,6 +42,7 @@ class Product(models.Model):
         max_digits=8, decimal_places=2, blank=True, null=True)
     note = models.CharField(max_length=500, blank=True)
     date = models.DateTimeField(default=now, editable=False)
+    cover_image = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
         return self.product_name

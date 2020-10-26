@@ -94,6 +94,10 @@ export class ProductList extends Component {
     console.log(e.id);
   }
 
+  handleImage(picture) {
+    return "/media/"+picture
+  }
+
   render() {
     return (
       <div>
@@ -120,7 +124,7 @@ export class ProductList extends Component {
                       </div>
                     </div>
                     <div className="productImageBox">
-                      <img src={Case} alt="Case" title="Case" />
+                      <img src={this.handleImage(Product.cover_image)} alt="Case" title="Case" />
                     </div>
                     <div className="productDescBack">
                       <div className="productDescTop">
