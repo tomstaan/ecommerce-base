@@ -19,7 +19,7 @@ export default class TopRoute extends Component {
       <div>
         <div className="topRoutingBack">
           <div className="routeCont">
-            <Link to="/products">
+            <Link to="/products/">
               <h3>Products</h3>
             </Link>
             <div className="routeArrow">

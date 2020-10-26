@@ -156,7 +156,7 @@ export class ProductList extends Component {
                         </div>
                         <div className="productDiscountCont">
                           <h3 className="productBold">Discount</h3>
-                          <h3 className="productDiscActive">Active</h3>
+                          <h3 className="productDiscNotActive">Not Active</h3>
                         </div>
                         <div className="productOriginalPrice">
                           <h3 className="productBold">Original Price</h3>
@@ -186,8 +186,8 @@ export class ProductList extends Component {
                           </h3>
                         </div>
                         <div className="productColor">
-                          <h3 className="productBold">MSRP</h3>
-                          <h3 className="productTxt">€{Product.msrp}</h3>
+                          <h3 className="productBold">Product ID</h3>
+                          <h3 className="productTxt">{Product.id}</h3>
                         </div>
                       </div>
                       <div className="productDescBottom">
@@ -196,10 +196,6 @@ export class ProductList extends Component {
                           <h3 className="productTxt">
                             {Product.units_on_order}
                           </h3>
-                        </div>
-                        <div className="productColor">
-                          <h3 className="productBold">Product ID</h3>
-                          <h3 className="productTxt">{Product.id}</h3>
                         </div>
                       </div>
                     </div>
@@ -221,7 +217,7 @@ export class ProductList extends Component {
                         </button>
                       </div>
                       <div className="editSingleProduct">
-                        <Link to={`./products/editproduct/${Product.id}`}>
+                        <Link to={`./editproduct/${Product.id}`}>
                         <button
                           type="button"
                           className="btn btn-primary"

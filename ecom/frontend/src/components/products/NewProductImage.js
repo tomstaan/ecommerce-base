@@ -30,28 +30,7 @@ export class NewProductImage extends Component {
     displayProductPictures: PropTypes.array.isRequired,
     updateProductPictures: PropTypes.func.isRequired,
   };
-/*
-  componentDidUpdate() {
-    if (
-      this.props.savedProductPictures.length > 0 &&
-      this.state.displaySavedProductPictures.length == 0
-    ) {
-      this.displaySavedImages();
-    }
-  }
-
-  displaySavedImages() {
-    this.props.savedProductPictures.map((image) => {
-      let imageUrl = "./../../../.." + image.image_name;
-      this.setState((prevstate) => ({
-        displaySavedProductPictures: [
-          ...prevstate.displaySavedProductPictures,
-          imageUrl,
-        ],
-      }));
-    });
-  }
-*/
+  
   pictureSelectedHandler = (event) => {
     if (event.target.files) {
       console.log(event.target.files)

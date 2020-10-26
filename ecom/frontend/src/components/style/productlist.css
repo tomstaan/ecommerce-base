@@ -241,6 +241,15 @@
   line-height: 15px;
   margin-top: 0px;
 }
+.productDiscNotActive {
+  position: relative;
+  color: #ff0000;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 15px;
+  margin-top: 0px;
+}
 .productDiscNot {
   position: relative;
   color: #ff0000;
