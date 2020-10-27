@@ -1,3 +1,5 @@
+const webpack = require("webpack");
+
 module.exports = {
   devServer: {
     inline: false,
@@ -48,4 +50,9 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      "process.env.REACT_APP_HOST_IP_ADDRESS": JSON.stringify("http://127.0.0.1:8000")
+    })
+  ]
 };
