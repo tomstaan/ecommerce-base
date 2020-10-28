@@ -21,11 +21,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'tjp!u#8t0f21!@yt8^pk@vtk3de0eh56*_1=o(x64o8_u&t2$8'
-
+#SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", 'changeme')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = ['127.0.0.1', 'f08763f35233.ngrok.io']
 
 
 # Application definition
@@ -58,11 +56,12 @@ MIDDLEWARE = [
 
 # Allows API requests from other servers
 #CORS_ORIGIN_WHITELIST = [
-#   'http://127.0.0.1:8000',
+#   'http://127.0.0.1:8000', 'http://localhost:8000',
 #]
 CORS_ORIGIN_ALLOW_ALL = True
-
-
+ALLOWED_HOSTS = [
+    '127.0.0.1', 'localhost'
+]
 ROOT_URLCONF = 'ecom.urls'
 
 TEMPLATES = [
