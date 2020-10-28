@@ -1,7 +1,6 @@
 {
   "name": "ecommerce-base",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "webpack --mode development --watch ./ecom/frontend/src/index.js --output ./ecom/frontend/static/frontend/main.js",
@@ -54,5 +53,6 @@
     "url-loader": "^4.1.0",
     "uuid": "^8.2.0",
     "webpack": "^5.2.0"
-  }
+  },
+  "description": ""
 }
