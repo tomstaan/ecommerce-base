@@ -1,7 +1,7 @@
 version: '3.7'
 
 services:
-  app:
+  ecom:
     build:
       context: .
     volumes:
@@ -12,7 +12,6 @@ services:
       - ALLOWED_HOSTS=http://127.0.0.1, localhost
       - DJANGO_CORS_ORIGIN_WHITELIST=http://127.0.0.1, localhost
       - API_URL=http://127.0.0.1, localhost
-
   proxy:
     build:
       context: ./proxy
@@ -21,7 +20,7 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - app
+      - ecom
 
 volumes:
   static_data:
