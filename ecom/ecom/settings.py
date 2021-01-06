@@ -23,7 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'tjp!u#8t0f21!@yt8^pk@vtk3de0eh56*_1=o(x64o8_u&t2$8'
 #SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", 'changeme')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
+
+ALLOWED_HOSTS = ['127.0.0.1', '2.tcp.ngrok.io']
 
 
 # Application definition
