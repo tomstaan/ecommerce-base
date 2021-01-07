@@ -52,7 +52,7 @@
     "redux-thunk": "^2.3.0",
     "stripe": "^8.129.0",
     "url-loader": "^4.1.0",
-    "uuid": "^8.2.0",
+    "uuid": "^8.3.2",
     "webpack": "^5.11.1"
   },
   "description": ""
