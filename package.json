@@ -38,7 +38,7 @@
     "currencyjs": "^1.1.1",
     "image-webpack-loader": "^7.0.1",
     "jquery": "^3.5.1",
-    "ngrok": "^3.3.0",
+    "ngrok": "^3.4.0",
     "popper": "^1.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.14.0",
