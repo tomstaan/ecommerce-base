@@ -18,17 +18,21 @@ export class NewProductImage extends Component {
       displayProductPictures: [],
       savedProductPictures: [],
       displaySavedProductPictures: [],
-      displayImages: false,
+      displayImages: false
     };
   }
 
-  //
-  // Match urls from saved images and display product pictures
-  //
+  // Get image id from header (edit/232)
 
+  // Upload images to list, add them to the array of images
+
+  // Allow the user to upload more or delete
+
+  // On Save, compare images from the ones saved and delete the ones that were not included and create new ones
+  //
+  
   static propTypes = {
-    displayProductPictures: PropTypes.array.isRequired,
-    updateProductPictures: PropTypes.func.isRequired,
+    updateProductPictures: PropTypes.func.isRequired
   };
   
   pictureSelectedHandler = (event) => {
@@ -60,7 +64,9 @@ export class NewProductImage extends Component {
           console.log(images);
           if (this.state.displayProductPictures.length < 1) {
             this.setState({
-              displayProductPictures: images
+              displayProductPictures: [
+                images
+              ]
             });
           } else {
             this.setState({
@@ -161,7 +167,6 @@ export class NewProductImage extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  displayProductPictures: state.products.displayProductPictures,
   savedProductPictures: state.products.savedProductPictures,
 });
 

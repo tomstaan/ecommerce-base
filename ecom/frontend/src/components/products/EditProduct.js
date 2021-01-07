@@ -53,11 +53,14 @@ export class EditProduct extends Component {
     setSavedPictures: PropTypes.func.isRequired,
   };
 
+  componentWillMount(){
+    this.getProductDetails();
+    this.getProductImages();
+  }
+
   componentDidMount() {
     this.props.getProducts();
     this.props.getCategory();
-    this.getProductDetails();
-    this.getProductImages();
     this.subscribed = true;
     store.subscribe(() => {
       if (this.subscribed == true) {
@@ -66,6 +69,7 @@ export class EditProduct extends Component {
         });
       }
     });
+    console.log("Hello");
   }
 
   getProductDetails() {
