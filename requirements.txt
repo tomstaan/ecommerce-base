@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 uWSGI>=2.0.18,<2.1
 Pillow==8.1.0
 appdirs==1.4.4
@@ -37,3 +38,18 @@ virtualenv==20.0.25
 virtualenv-clone==0.5.4
 wrapt==1.12.1
 zipp==3.3.1
+=======
+certifi==2019.9.11
+cffi==1.13.1
+cryptography==2.8
+Django==2.2.6
+django-rest-knox==4.1.0
+djangorestframework==3.10.3
+pipenv==2020.8.13
+pycparser==2.19
+pytz==2019.3
+six==1.12.0
+sqlparse==0.3.0
+virtualenv==20.1.0
+virtualenv-clone==0.5.4
+>>>>>>> b5709c14715aadd24b31c81d3c64e7de27f78de4

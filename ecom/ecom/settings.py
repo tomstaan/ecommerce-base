@@ -21,11 +21,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'tjp!u#8t0f21!@yt8^pk@vtk3de0eh56*_1=o(x64o8_u&t2$8'
-#SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", 'changeme')
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['198.211.99.20', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -37,9 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'corsheaders',
     'products',
     'rest_framework',
+    'corsheaders',
     'frontend',
 ]
 
@@ -57,6 +57,7 @@ MIDDLEWARE = [
 ]
 
 # Allows API requests from other servers
+<<<<<<< HEAD
 CORS_ORIGIN_WHITELIST = [
    'http://127.0.0.1', 'http://localhost'
 ]
@@ -64,9 +65,16 @@ CORS_ORIGIN_ALLOW_ALL = True
 ALLOWED_HOSTS = [
    '127.0.0.1', 'localhost'
 ]
+=======
+#CORS_ORIGIN_WHITELIST = [
+#   'http://127.0.0.1:8000',
+#]
+CORS_ORIGIN_ALLOW_ALL = True
+
+>>>>>>> b5709c14715aadd24b31c81d3c64e7de27f78de4
 
 ROOT_URLCONF = 'ecom.urls'
-#docker-compose -f docker-compose-deploy.yml up --build
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -134,7 +142,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
-STATIC_ROOT = '/vol/web/static'
+
 STATIC_URL = '/static/'
 
 # Tells django where static files are stored
@@ -143,6 +151,5 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'assets'),
 )
 '''
-#MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-MEDIA_ROOT = '/vol/web/media'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL =  '/media/'
