@@ -57,21 +57,11 @@ MIDDLEWARE = [
 ]
 
 # Allows API requests from other servers
-<<<<<<< HEAD
-CORS_ORIGIN_WHITELIST = [
-   'http://127.0.0.1', 'http://localhost'
-]
-CORS_ORIGIN_ALLOW_ALL = True
-ALLOWED_HOSTS = [
-   '127.0.0.1', 'localhost'
-]
-=======
 #CORS_ORIGIN_WHITELIST = [
 #   'http://127.0.0.1:8000',
 #]
 CORS_ORIGIN_ALLOW_ALL = True
 
->>>>>>> b5709c14715aadd24b31c81d3c64e7de27f78de4
 
 ROOT_URLCONF = 'ecom.urls'
 
