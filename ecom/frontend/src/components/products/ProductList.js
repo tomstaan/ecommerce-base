@@ -33,6 +33,7 @@ export class ProductList extends Component {
       productDeleteWarning: false,
       tempDeleteProduct: null
     };
+    console.log("True");
   }
 
   

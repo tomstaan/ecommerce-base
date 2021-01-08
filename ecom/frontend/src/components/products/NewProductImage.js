@@ -20,6 +20,7 @@ export class NewProductImage extends Component {
       displaySavedProductPictures: [],
       displayImages: false
     };
+    console.log("True");
   }
 
   // Get image id from header (edit/232)
