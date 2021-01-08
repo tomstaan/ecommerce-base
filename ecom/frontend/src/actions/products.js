@@ -24,7 +24,7 @@ import {
 //Get Products
 export const getProducts = () => (dispatch) => {
   axios
-    .get(`${process.env.REACT_APP_HOST_IP_ADDRESS}/api/products`)
+    .get(`http://127.0.0.1:8000/api/products`)
     .then((res) => {
       dispatch({
         type: GET_PRODUCTS,
@@ -37,7 +37,7 @@ export const getProducts = () => (dispatch) => {
 //Delete Products
 export const deleteProducts = (id) => (dispatch) => {
   axios
-    .delete(`${process.env.REACT_APP_HOST_IP_ADDRESS}/api/products/${id}/`)
+    .delete(`http://127.0.0.1:8000/api/products/${id}/`)
     .then((res) => {
       //Message for adding leads
       dispatch(
@@ -54,7 +54,7 @@ export const deleteProducts = (id) => (dispatch) => {
 // Get Product Images using Image_id
 export const getAllProductImages = (productId) => (dispatch) => {
   axios
-    .get(`${process.env.REACT_APP_HOST_IP_ADDRESS}/api/products/${productId}/images/`)
+    .get(`http://127.0.0.1:8000/api/products/${productId}/images/`)
     .then((res) => {
       dispatch({
         type: GET_ALL_PRODUCT_IMAGES,
@@ -69,7 +69,7 @@ export const getAllProductImages = (productId) => (dispatch) => {
 //ADD Category
 export const addProduct = (product) => (dispatch) => {
   axios
-    .post(`${process.env.REACT_APP_HOST_IP_ADDRESS}/api/products/`, product)
+    .post(`http://127.0.0.1:8000/api/products/`, product)
     .then((res) => {
       dispatch({
         type: ADD_PRODUCT,
@@ -82,7 +82,7 @@ export const addProduct = (product) => (dispatch) => {
 //Edit Category
 export const editProduct = (product, id) => (dispatch) => {
   axios
-    .put(`${process.env.REACT_APP_HOST_IP_ADDRESS}/api/products/${id}/`, product)
+    .put(`http://127.0.0.1:8000/api/products/${id}/`, product)
     .then((res) => {
       dispatch({
         type: EDIT_PRODUCT,
@@ -112,7 +112,7 @@ export const setSavedPictures = (pictures) => (dispatch) => {
 export const addPicsToProd = (picture) => (dispatch) => {
 
     axios
-      .post(`${process.env.REACT_APP_HOST_IP_ADDRESS}/api/productimage/`, picture)
+      .post(`http://127.0.0.1:8000/api/productimage/`, picture)
       .then((res) => {
         dispatch({
           type: ADD_IMAGE_TO_PRODUCT,

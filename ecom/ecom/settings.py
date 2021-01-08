@@ -60,9 +60,9 @@ MIDDLEWARE = [
 CORS_ORIGIN_WHITELIST = [
    'http://127.0.0.1', 'http://localhost'
 ]
-#CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_ALLOW_ALL = True
 ALLOWED_HOSTS = [
-   'http://127.0.0.1', 'http://localhost'
+   '127.0.0.1', 'localhost'
 ]
 
 ROOT_URLCONF = 'ecom.urls'
