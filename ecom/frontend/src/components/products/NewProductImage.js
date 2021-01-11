@@ -8,7 +8,12 @@ import GalleryIcon from "./../style/images/pic.png";
 import AddImageIcon from "./../style/images/addImages.png";
 import TestImage from "./../../../../media/product_images/63c39c97-fe7e-46c4-bf7c-b78750206b23/71EoGntO5bL._SX466_.jpg";
 
-import { updateProductPictures } from "../../actions/products";
+import {
+  updateProductPictures,
+  updateSavedEditImages,
+  updateDisplayEditImages,
+  updateNewEditImages,
+} from "../../actions/products";
 import { isEmptyObject } from "jquery";
 
 export class NewProductImage extends Component {
@@ -16,28 +21,55 @@ export class NewProductImage extends Component {
     super(props);
     this.state = {
       displayProductPictures: [],
+      editNewProductPictures: [],
       savedProductPictures: [],
-      displaySavedProductPictures: [],
-      displayImages: false
+      displayImages: false,
+      imagesLoaded: true,
     };
   }
 
-  // Get image id from header (edit/232)
+  // Make sure new product images works
 
-  // Upload images to list, add them to the array of images
+  // Make function to filter the images from the array to check if they are already contained in the array or got deleted then delete them
 
-  // Allow the user to upload more or delete
+  // Add the rest of the images as new images to the product
 
-  // On Save, compare images from the ones saved and delete the ones that were not included and create new ones
-  //
-  
+  // 1. make a function in actions to check
+
+  // Add images to list on components did update
+  componentDidUpdate() {
+    // If the cureent mode is edit product , get product pictures
+    if (this.props.mode_select_edit) {
+      if (this.state.imagesLoaded) {
+        // Get images
+        var images = this.props.savedProductPictures.map(
+          (img) => img["image_name"]
+        );
+        console.log("Images");
+        console.log(images);
+        let imgCopy = images.slice(); //creates the clone of the state
+        // Cache images into memery
+        this.setState({
+          displayProductPictures: imgCopy
+        });
+        this.setState({
+          imagesLoaded: false,
+          displayImages: true,
+        });
+      }
+    }
+    this.props.updateDisplayEditImages(this.state.displayProductPictures);
+  }
+
   static propTypes = {
-    updateProductPictures: PropTypes.func.isRequired
+    displayProductPictures: PropTypes.array.isRequired,
+    updateProductPictures: PropTypes.func.isRequired,
+    updateSavedEditImages: PropTypes.func.isRequired,
   };
-  
+
   pictureSelectedHandler = (event) => {
     if (event.target.files) {
-      console.log(event.target.files)
+      console.log(event.target.files);
       // Switch from upload to display
       this.setState({
         displayImages: true,
@@ -64,20 +96,20 @@ export class NewProductImage extends Component {
           console.log(images);
           if (this.state.displayProductPictures.length < 1) {
             this.setState({
-              displayProductPictures: [
-                images
-              ]
+              displayProductPictures: [images],
             });
           } else {
             this.setState({
               displayProductPictures: [
                 ...this.state.displayProductPictures,
-                images
-              ]
+                images,
+              ],
             });
           }
-          console.log(this.state.displayProductPictures)
+          console.log(this.state.displayProductPictures);
           this.props.updateProductPictures(files);
+          console.log("");
+          console.log(files);
         },
         (error) => {
           console.error(error);
@@ -102,9 +134,9 @@ export class NewProductImage extends Component {
   render() {
     return (
       <div>
-        {(!this.state.displayImages) ||
-        (this.state.displayProductPictures.length == 0) ||
-        (this.state.displayProductPictures == undefined) ? (
+        {!this.state.displayImages ||
+        this.state.displayProductPictures.length == 0 ||
+        this.state.displayProductPictures == undefined ? (
           <div className="newProdTopFields">
             <div className="newProdImageUploadCont">
               <div className="newProdImageUploadLabel">
@@ -168,8 +200,14 @@ export class NewProductImage extends Component {
 
 const mapStateToProps = (state) => ({
   savedProductPictures: state.products.savedProductPictures,
+  displayProductPictures: state.products.displayProductPictures,
+  editNewProductPictures: state.products.editNewProductPictures,
+  mode_select_edit: state.products.mode_select_edit,
 });
 
 export default connect(mapStateToProps, {
   updateProductPictures,
+  updateSavedEditImages,
+  updateDisplayEditImages,
+  updateNewEditImages,
 })(NewProductImage);

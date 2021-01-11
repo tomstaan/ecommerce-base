@@ -17,6 +17,10 @@ import {
   SET_SAVED_PICTURES,
   GET_ALL_PRODUCT_IMAGES,
   RESET_REDIRECT,
+  UPDATE_EDIT_PICTURES,
+  UPDATE_EDIT_DISPLAY_PICTURES,
+  UPDATE_EDIT_NEW_PICTURES,
+  EDIT_MODE_SELECT,
 } from "../actions/types.js";
 
 const initalState = {
@@ -34,8 +38,11 @@ const initalState = {
   currentSort: "unit_price",
   editProductId: 0,
   savedProductPictures: [],
+  displayProductPictures: [],
   retrievedProductImages: [],
+  editNewProductPictures: [],
   redirect_to_product_page: false,
+  mode_select_edit: false,
 };
 
 export default function (state = initalState, action) {
@@ -139,6 +146,11 @@ export default function (state = initalState, action) {
         ...state,
         retrievedProductImages: action.payload,
       };
+    case EDIT_MODE_SELECT:
+      return {
+        ...state,
+        mode_select_edit: action.payload
+      };
     case SET_SAVED_PICTURES:
       return {
         ...state,
@@ -173,7 +185,21 @@ export default function (state = initalState, action) {
             : Product
         ),
       };
-
+    case UPDATE_EDIT_PICTURES:
+      return {
+        ...state,
+        savedProductPictures: action.payload,
+      };
+    case UPDATE_EDIT_DISPLAY_PICTURES:
+      return {
+        ...state,
+        displayProductPictures: action.payload,
+      };
+    case UPDATE_EDIT_NEW_PICTURES:
+      return {
+        ...state,
+        editNewProductPictures: action.payload.editNewProductPictures,
+      };
     case FILTER_PRODUCTS: {
       handleSort();
       return {

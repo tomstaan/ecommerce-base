@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --mode development --watch ./ecom/frontend/src/index.js --output ./ecom/frontend/static/frontend/main.js",
+    "dev": "webpack --mode development --entry ./ecom/frontend/src/index.js --output-path ./ecom/frontend/static/frontend/ --watch",
     "build": "webpack --mode production ./ecom/frontend/src/index.js --output ./ecom/frontend/static/frontend/main.js"
   },
   "repository": {
@@ -36,6 +36,7 @@
     "braces": "^3.0.2",
     "compress-js": "^2.0.2",
     "currencyjs": "^1.1.1",
+    "fs": "0.0.1-security",
     "image-webpack-loader": "^7.0.1",
     "jquery": "^3.5.1",
     "ngrok": "^3.3.0",

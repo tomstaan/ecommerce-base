@@ -18,7 +18,11 @@ import {
   SET_EDIT_PRODUCT_ID,
   SET_SAVED_PICTURES,
   GET_ALL_PRODUCT_IMAGES,
-  RESET_REDIRECT
+  RESET_REDIRECT, 
+  UPDATE_EDIT_PICTURES,
+  UPDATE_EDIT_DISPLAY_PICTURES,
+  UPDATE_EDIT_NEW_PICTURES,
+  EDIT_MODE_SELECT
 } from "./types.js";
 
 //Get Products
@@ -65,7 +69,6 @@ export const getAllProductImages = (productId) => (dispatch) => {
 };
 
 
-
 //ADD Category
 export const addProduct = (product) => (dispatch) => {
   axios
@@ -110,7 +113,6 @@ export const setSavedPictures = (pictures) => (dispatch) => {
 
 //Add product images to id of product
 export const addPicsToProd = (picture) => (dispatch) => {
-
     axios
       .post(`${process.env.REACT_APP_HOST_IP_ADDRESS}/api/productimage/`, picture)
       .then((res) => {
@@ -186,5 +188,37 @@ export const filterByCat = () => (dispatch) => {
 export const filterByUnits = () => (dispatch) => {
   dispatch({
     type: FILTER_UNITS,
+  });
+};
+
+// Set the savedProductImages from the edit product
+export const updateSavedEditImages = (pictures) => (dispatch) => {
+  dispatch({
+    type: UPDATE_EDIT_PICTURES,
+    payload: pictures,
+  });
+};
+
+// Set the displayProductImages from the edit product
+export const updateDisplayEditImages = (pictures) => (dispatch) => {
+  dispatch({
+    type: UPDATE_EDIT_DISPLAY_PICTURES,
+    payload: pictures,
+  });
+};
+
+// Set the from the edit product
+export const updateNewEditImages = (pictures) => (dispatch) => {
+  dispatch({
+    type: UPDATE_EDIT_NEW_PICTURES,
+    payload: pictures,
+  });
+};
+
+// Set the mode for editing pictures
+export const selectEditMode = (mode) => (dispatch) => {
+  dispatch({
+    type: EDIT_MODE_SELECT,
+    payload: mode,
   });
 };
