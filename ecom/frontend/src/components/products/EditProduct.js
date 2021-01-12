@@ -83,6 +83,10 @@ export class EditProduct extends Component {
     });
   }
 
+  componentDidUpdate(){
+    console.log("Pictures = "+this.state.newProductPictures);
+  }
+
   componentWillUnmount() {
     this.subscribed = false;
   }
@@ -169,58 +173,63 @@ export class EditProduct extends Component {
       return pic["image_name"];
     });
 
+    console.log("Image Name Arr");
+    console.log(image_nameArr);
+
     // Get display images array
-    var allDisplayPics = this.props.displayProductPictures.map((pic) => {
-      return pic[0]
+    var allDisplayPicsURLS = this.props.displayProductPictures.map((pic) => {
+      return pic
     })
 
-    // Get the array that contains new images
-    var newAddedPics = allDisplayPics.filter(pic =>{
-      return pic.startsWith("data");
-    })
+    console.log("All Display pics");
+    console.log(allDisplayPicsURLS);
 
     // Get the images to delete by looping through the saved images and checking which images don't exist in saved
-    var savedPicsToDelete = image_nameArr.map((pic) => {
-      if (!allDisplayPics.includes(pic)){
+    var savedPicsToDeleteURLS = image_nameArr.filter((pic) => {
+      if (!allDisplayPicsURLS.includes(pic)){
         return pic
       }
     });
 
+    var savedPicsToDelete = this.props.savedProductPictures.filter((pic) => {
+      if(savedPicsToDeleteURLS.includes(pic['image_name'])){
+        return pic
+      }
+    });
+
+    console.log("Delete pics Urls");
+    console.log(savedPicsToDeleteURLS);
     console.log("Delete pics");
     console.log(savedPicsToDelete);
-    console.log("New Images");
-    console.log(newAddedPics);
     console.log("Edit Send images");
     console.log(this.state.newProductPictures);
-    console.log(image_id);
-
-    // Delete pictures by url
-
-    // Check what elements to save as new image (check if they exits in display but don't in saved)
-
-    // Saved images to product
-    /*
-    this.state.newProductPictures.forEach((picture) => {
-      var newImageObject = new FormData(); // Currently empty
-
-      //const product_ref = 38
-
-      //newImageObject.append('product_ref', product_ref);
-      newImageObject.append("image_id", image_id);
-      newImageObject.append("image_name", picture, picture.name);
-      console.log(newImageObject); 
-      this.props.addPicsToProd(newImageObject);
-    });*/
+    console.log("Saved images");
+    console.log(this.props.savedProductPictures);
+    console.log("Display images");
+    console.log(this.props.displayProductPictures);
 
     //Add product images
-    this.state.newProductPictures.forEach((picture) => {
-      var newImageObject = new FormData(); // Currently empty
+    if(this.state.newProductPictures.length > 0){
+      this.state.newProductPictures.forEach((picture) => {
+        var newImageObject = new FormData(); // Currently empty
+  
+        //newImageObject.append('product_ref', product_ref);
+        newImageObject.append("image_id", image_id);
+        newImageObject.append("image_name", picture, picture.name);
+        this.props.addPicsToProd(newImageObject);
+        console.log("Picture Added")
+        console.log(image_id)
+      });
+    } else {
+      console.log("No Pictures to add")
+    }
 
-      //newImageObject.append('product_ref', product_ref);
-      newImageObject.append("image_id", image_id);
-      newImageObject.append("image_name", picture, picture.name);
-      this.props.addPicsToProd(newImageObject);
-    });
+    // Delete pictures 
+    
+
+
+
+    
 
     // Reset state
     this.setState({

@@ -13,6 +13,7 @@ import {
   updateSavedEditImages,
   updateDisplayEditImages,
   updateNewEditImages,
+  selectEditMode,
 } from "../../actions/products";
 import { isEmptyObject } from "jquery";
 
@@ -50,13 +51,14 @@ export class NewProductImage extends Component {
         let imgCopy = images.slice(); //creates the clone of the state
         // Cache images into memery
         this.setState({
-          displayProductPictures: imgCopy
+          displayProductPictures: imgCopy,
         });
         this.setState({
           imagesLoaded: false,
           displayImages: true,
         });
       }
+      this.props.selectEditMode(false);
     }
     this.props.updateDisplayEditImages(this.state.displayProductPictures);
   }
@@ -108,7 +110,7 @@ export class NewProductImage extends Component {
           }
           console.log(this.state.displayProductPictures);
           this.props.updateProductPictures(files);
-          console.log("");
+          console.log("New Image Added");
           console.log(files);
         },
         (error) => {
@@ -121,14 +123,41 @@ export class NewProductImage extends Component {
   pictureDeleteHandler = (element) => {
     // Get index of element + remove
     const tempPics = this.state.displayProductPictures;
-    const index = tempPics.indexOf(element);
-    if (index > -1) {
-      tempPics.splice(index, 1);
+    console.log("Length of index");
+    console.log(tempPics.length);
+    if (tempPics.length < 2) {
+      const index = tempPics.indexOf(element);
+      console.log("Temp Pics");
+      console.log(tempPics);
+      console.log("Index");
+      console.log(index);
+      if (index > -1) {
+        tempPics.splice(index, 1);
+      }
+      console.log(tempPics);
+      this.setState({
+        displayProductPictures: tempPics,
+      });
+    } else {
+      var tempCopy = tempPics.filter((array) => {
+        // If an element is an array get the first index
+        if (Array.isArray(array)) {
+          if (array[0] != element) {
+            return array;
+          }
+        } else {
+          // Get the values of url
+          if (array != element) {
+            return array;
+          } 
+        }
+      });
+      console.log("Temp copy");
+      console.log(tempCopy);
+      this.setState({
+        displayProductPictures: tempCopy,
+      });
     }
-    this.setState({
-      displayProductPictures: tempPics,
-    });
-    this.props.updateProductPictures(tempPics);
   };
 
   render() {
@@ -210,4 +239,5 @@ export default connect(mapStateToProps, {
   updateSavedEditImages,
   updateDisplayEditImages,
   updateNewEditImages,
+  selectEditMode,
 })(NewProductImage);
