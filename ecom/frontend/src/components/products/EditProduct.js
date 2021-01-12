@@ -23,7 +23,8 @@ import {
   updateDisplayEditImages,
   updateProductPictures,
   selectEditMode,
-  addPicsToProd
+  addPicsToProd,
+  deleteProductImage,
 } from "../../actions/products";
 import { FormFile } from "react-bootstrap";
 import products from "../../reducers/products";
@@ -83,10 +84,6 @@ export class EditProduct extends Component {
     });
   }
 
-  componentDidUpdate(){
-    console.log("Pictures = "+this.state.newProductPictures);
-  }
-
   componentWillUnmount() {
     this.subscribed = false;
   }
@@ -129,7 +126,6 @@ export class EditProduct extends Component {
   };
 
   onSubmit = (e) => {
-    //console.log("Pictures = "+this.state.newProductPictures);
     // --------------
     e.preventDefault();
 
@@ -173,63 +169,42 @@ export class EditProduct extends Component {
       return pic["image_name"];
     });
 
-    console.log("Image Name Arr");
-    console.log(image_nameArr);
-
     // Get display images array
     var allDisplayPicsURLS = this.props.displayProductPictures.map((pic) => {
-      return pic
-    })
-
-    console.log("All Display pics");
-    console.log(allDisplayPicsURLS);
+      return pic;
+    });
 
     // Get the images to delete by looping through the saved images and checking which images don't exist in saved
     var savedPicsToDeleteURLS = image_nameArr.filter((pic) => {
-      if (!allDisplayPicsURLS.includes(pic)){
-        return pic
+      if (!allDisplayPicsURLS.includes(pic)) {
+        return pic;
       }
     });
 
     var savedPicsToDelete = this.props.savedProductPictures.filter((pic) => {
-      if(savedPicsToDeleteURLS.includes(pic['image_name'])){
-        return pic
+      if (savedPicsToDeleteURLS.includes(pic["image_name"])) {
+        return pic;
       }
     });
 
-    console.log("Delete pics Urls");
-    console.log(savedPicsToDeleteURLS);
-    console.log("Delete pics");
-    console.log(savedPicsToDelete);
-    console.log("Edit Send images");
-    console.log(this.state.newProductPictures);
-    console.log("Saved images");
-    console.log(this.props.savedProductPictures);
-    console.log("Display images");
-    console.log(this.props.displayProductPictures);
-
     //Add product images
-    if(this.state.newProductPictures.length > 0){
+    if (this.state.newProductPictures.length > 0) {
       this.state.newProductPictures.forEach((picture) => {
         var newImageObject = new FormData(); // Currently empty
-  
+
         //newImageObject.append('product_ref', product_ref);
         newImageObject.append("image_id", image_id);
         newImageObject.append("image_name", picture, picture.name);
         this.props.addPicsToProd(newImageObject);
-        console.log("Picture Added")
-        console.log(image_id)
       });
-    } else {
-      console.log("No Pictures to add")
     }
 
-    // Delete pictures 
-    
-
-
-
-    
+    // Delete pictures
+    if (savedPicsToDelete.length > 0) {
+      savedPicsToDelete.forEach((picture) => {
+        this.props.deleteProductImage(picture);
+      });
+    }
 
     // Reset state
     this.setState({
@@ -434,5 +409,6 @@ export default connect(mapStateToProps, {
   updateDisplayEditImages,
   updateProductPictures,
   selectEditMode,
-  addPicsToProd
+  addPicsToProd,
+  deleteProductImage,
 })(EditProduct);

@@ -86,10 +86,14 @@ class ProductImageViewSet(viewsets.ModelViewSet):
         return HttpResponse({'message': 'Product Image Created'}, status=200)
     
     def destroy(self, request, *args, **kwargs):
-        product_id = self.kwargs['id']
-        req_image_name = request.data['image_name']
-        req_image_id = request.data['image_id']
-        image = ProductImage.objects.all().get(id=product_id)
+        product_id = kwargs['pk']
+        print("Product id = "+product_id)
+        print(request.data)
+        req_image_name = request.data['pictures']['image_name']
+        print("Product name = "+req_image_name)
+        req_image_id = request.data['pictures']['image_id']
+        image = ProductImage.objects.all().get(pk=product_id)
+        print(image)
         image.delete()
         # Get correct regex
         re.sub(r'^.*?/media', './../media', req_image_name)

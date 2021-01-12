@@ -21,6 +21,7 @@ import {
   UPDATE_EDIT_DISPLAY_PICTURES,
   UPDATE_EDIT_NEW_PICTURES,
   EDIT_MODE_SELECT,
+  DELETE_PRODUCT_IMAGE,
 } from "../actions/types.js";
 
 const initalState = {
@@ -149,7 +150,7 @@ export default function (state = initalState, action) {
     case EDIT_MODE_SELECT:
       return {
         ...state,
-        mode_select_edit: action.payload
+        mode_select_edit: action.payload,
       };
     case SET_SAVED_PICTURES:
       return {
@@ -199,6 +200,10 @@ export default function (state = initalState, action) {
       return {
         ...state,
         editNewProductPictures: action.payload.editNewProductPictures,
+      };
+    case DELETE_PRODUCT_IMAGE:
+      return {
+        ...state
       };
     case FILTER_PRODUCTS: {
       handleSort();

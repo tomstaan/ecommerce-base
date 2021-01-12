@@ -18,11 +18,12 @@ import {
   SET_EDIT_PRODUCT_ID,
   SET_SAVED_PICTURES,
   GET_ALL_PRODUCT_IMAGES,
-  RESET_REDIRECT, 
+  RESET_REDIRECT,
   UPDATE_EDIT_PICTURES,
   UPDATE_EDIT_DISPLAY_PICTURES,
   UPDATE_EDIT_NEW_PICTURES,
-  EDIT_MODE_SELECT
+  EDIT_MODE_SELECT,
+  DELETE_PRODUCT_IMAGE,
 } from "./types.js";
 
 //Get Products
@@ -58,7 +59,9 @@ export const deleteProducts = (id) => (dispatch) => {
 // Get Product Images using Image_id
 export const getAllProductImages = (productId) => (dispatch) => {
   axios
-    .get(`${process.env.REACT_APP_HOST_IP_ADDRESS}/api/products/${productId}/images/`)
+    .get(
+      `${process.env.REACT_APP_HOST_IP_ADDRESS}/api/products/${productId}/images/`
+    )
     .then((res) => {
       dispatch({
         type: GET_ALL_PRODUCT_IMAGES,
@@ -67,7 +70,6 @@ export const getAllProductImages = (productId) => (dispatch) => {
     })
     .catch((err) => console.log(err));
 };
-
 
 //ADD Category
 export const addProduct = (product) => (dispatch) => {
@@ -85,7 +87,10 @@ export const addProduct = (product) => (dispatch) => {
 //Edit Category
 export const editProduct = (product, id) => (dispatch) => {
   axios
-    .put(`${process.env.REACT_APP_HOST_IP_ADDRESS}/api/products/${id}/`, product)
+    .put(
+      `${process.env.REACT_APP_HOST_IP_ADDRESS}/api/products/${id}/`,
+      product
+    )
     .then((res) => {
       dispatch({
         type: EDIT_PRODUCT,
@@ -113,15 +118,15 @@ export const setSavedPictures = (pictures) => (dispatch) => {
 
 //Add product images to id of product
 export const addPicsToProd = (picture) => (dispatch) => {
-    axios
-      .post(`${process.env.REACT_APP_HOST_IP_ADDRESS}/api/productimage/`, picture)
-      .then((res) => {
-        dispatch({
-          type: ADD_IMAGE_TO_PRODUCT,
-          payload: res.data,
-        });
-      })
-      .catch((err) => console.log(err));
+  axios
+    .post(`${process.env.REACT_APP_HOST_IP_ADDRESS}/api/productimage/`, picture)
+    .then((res) => {
+      dispatch({
+        type: ADD_IMAGE_TO_PRODUCT,
+        payload: res.data,
+      });
+    })
+    .catch((err) => console.log(err));
 };
 
 // Set the edit product id
@@ -221,4 +226,29 @@ export const selectEditMode = (mode) => (dispatch) => {
     type: EDIT_MODE_SELECT,
     payload: mode,
   });
+};
+
+//Delete ProductImage
+export const deleteProductImage = (pictures) => (dispatch) => {
+  axios
+    .delete(
+      `${process.env.REACT_APP_HOST_IP_ADDRESS}/api/productimage/${pictures.id}/`,
+      { 
+        data: { pictures },
+        headers: {
+          "Content-Type": "application/json"
+        }
+     }
+    )
+    .then((res) => {
+      //Message for adding leads
+      dispatch(
+        {
+          type: DELETE_PRODUCT_IMAGE,
+          payload: res.data,
+        },
+        console.log(res)
+      );
+    })
+    .catch((err) => console.log(err));
 };
