@@ -103,6 +103,7 @@ export class NewProductImage extends Component {
           this.setState({
             displayProductPictures: displayArr
           })
+          this.props.updateProductPictures(files);
           console.log("New Image Added");
           console.log(files);
         },

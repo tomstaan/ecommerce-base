@@ -187,6 +187,9 @@ export class EditProduct extends Component {
       }
     });
 
+    console.log("New Product Pictures")
+    console.log(this.state.newProductPictures)
+
     //Add product images
     if (this.state.newProductPictures.length > 0) {
       this.state.newProductPictures.forEach((picture) => {
