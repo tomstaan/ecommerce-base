@@ -138,7 +138,7 @@ export class NewProduct extends Component {
   };
 
   render() {
-    //Redirect back to products when © MorganReeveExposed 2019submit is complete
+    //Redirect back to products when submit is complete
     if (this.state.redirect) {
       return <Redirect push to="/products" />;
     }

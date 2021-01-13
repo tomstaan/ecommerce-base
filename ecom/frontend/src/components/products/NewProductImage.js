@@ -80,6 +80,7 @@ export class NewProductImage extends Component {
       /* Get files in array form */
       const files = Array.from(event.target.files);
 
+      var displayArr = this.state.displayProductPictures;
       /* Map each file to a promise that resolves to an array of image URI's */
       Promise.all(
         files.map((file) => {
@@ -96,20 +97,12 @@ export class NewProductImage extends Component {
         (images) => {
           /* Once all promises are resolved, update state with image URI array */
           console.log(images);
-          if (this.state.displayProductPictures.length < 1) {
-            this.setState({
-              displayProductPictures: [images],
-            });
-          } else {
-            this.setState({
-              displayProductPictures: [
-                ...this.state.displayProductPictures,
-                images,
-              ],
-            });
-          }
-          console.log(this.state.displayProductPictures);
-          this.props.updateProductPictures(files);
+          images.forEach(image=>{
+            displayArr.push(image);
+          })
+          this.setState({
+            displayProductPictures: displayArr
+          })
           console.log("New Image Added");
           console.log(files);
         },
@@ -149,7 +142,7 @@ export class NewProductImage extends Component {
           // Get the values of url
           if (array != element) {
             return array;
-          } 
+          }
         }
       });
       console.log("Temp copy");
