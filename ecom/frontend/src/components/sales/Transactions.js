@@ -5,7 +5,7 @@ import "./../style/transactions.css";
 import Options from "./Options";
 import TransactionList from "./TransactionList";
 
-export default class Transactions extends Component {x
+export default class Transactions extends Component {
   render() {
     return (
       <div>
