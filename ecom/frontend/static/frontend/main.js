@@ -102,11 +102,11 @@ eval("\n\nvar utils = __webpack_require__(/*! ./../utils */ \"./node_modules/axi
   \*****************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 50:0-14 */
+/*! CommonJS bailout: module.exports is used directly at 53:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
-eval("\n\nvar utils = __webpack_require__(/*! ./utils */ \"./node_modules/axios/lib/utils.js\");\nvar bind = __webpack_require__(/*! ./helpers/bind */ \"./node_modules/axios/lib/helpers/bind.js\");\nvar Axios = __webpack_require__(/*! ./core/Axios */ \"./node_modules/axios/lib/core/Axios.js\");\nvar mergeConfig = __webpack_require__(/*! ./core/mergeConfig */ \"./node_modules/axios/lib/core/mergeConfig.js\");\nvar defaults = __webpack_require__(/*! ./defaults */ \"./node_modules/axios/lib/defaults.js\");\n\n/**\n * Create an instance of Axios\n *\n * @param {Object} defaultConfig The default config for the instance\n * @return {Axios} A new instance of Axios\n */\nfunction createInstance(defaultConfig) {\n  var context = new Axios(defaultConfig);\n  var instance = bind(Axios.prototype.request, context);\n\n  // Copy axios.prototype to instance\n  utils.extend(instance, Axios.prototype, context);\n\n  // Copy context to instance\n  utils.extend(instance, context);\n\n  return instance;\n}\n\n// Create the default instance to be exported\nvar axios = createInstance(defaults);\n\n// Expose Axios class to allow class inheritance\naxios.Axios = Axios;\n\n// Factory for creating new instances\naxios.create = function create(instanceConfig) {\n  return createInstance(mergeConfig(axios.defaults, instanceConfig));\n};\n\n// Expose Cancel & CancelToken\naxios.Cancel = __webpack_require__(/*! ./cancel/Cancel */ \"./node_modules/axios/lib/cancel/Cancel.js\");\naxios.CancelToken = __webpack_require__(/*! ./cancel/CancelToken */ \"./node_modules/axios/lib/cancel/CancelToken.js\");\naxios.isCancel = __webpack_require__(/*! ./cancel/isCancel */ \"./node_modules/axios/lib/cancel/isCancel.js\");\n\n// Expose all/spread\naxios.all = function all(promises) {\n  return Promise.all(promises);\n};\naxios.spread = __webpack_require__(/*! ./helpers/spread */ \"./node_modules/axios/lib/helpers/spread.js\");\n\nmodule.exports = axios;\n\n// Allow use of default import syntax in TypeScript\nmodule.exports.default = axios;\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/axios/lib/axios.js?");
+eval("\n\nvar utils = __webpack_require__(/*! ./utils */ \"./node_modules/axios/lib/utils.js\");\nvar bind = __webpack_require__(/*! ./helpers/bind */ \"./node_modules/axios/lib/helpers/bind.js\");\nvar Axios = __webpack_require__(/*! ./core/Axios */ \"./node_modules/axios/lib/core/Axios.js\");\nvar mergeConfig = __webpack_require__(/*! ./core/mergeConfig */ \"./node_modules/axios/lib/core/mergeConfig.js\");\nvar defaults = __webpack_require__(/*! ./defaults */ \"./node_modules/axios/lib/defaults.js\");\n\n/**\n * Create an instance of Axios\n *\n * @param {Object} defaultConfig The default config for the instance\n * @return {Axios} A new instance of Axios\n */\nfunction createInstance(defaultConfig) {\n  var context = new Axios(defaultConfig);\n  var instance = bind(Axios.prototype.request, context);\n\n  // Copy axios.prototype to instance\n  utils.extend(instance, Axios.prototype, context);\n\n  // Copy context to instance\n  utils.extend(instance, context);\n\n  return instance;\n}\n\n// Create the default instance to be exported\nvar axios = createInstance(defaults);\n\n// Expose Axios class to allow class inheritance\naxios.Axios = Axios;\n\n// Factory for creating new instances\naxios.create = function create(instanceConfig) {\n  return createInstance(mergeConfig(axios.defaults, instanceConfig));\n};\n\n// Expose Cancel & CancelToken\naxios.Cancel = __webpack_require__(/*! ./cancel/Cancel */ \"./node_modules/axios/lib/cancel/Cancel.js\");\naxios.CancelToken = __webpack_require__(/*! ./cancel/CancelToken */ \"./node_modules/axios/lib/cancel/CancelToken.js\");\naxios.isCancel = __webpack_require__(/*! ./cancel/isCancel */ \"./node_modules/axios/lib/cancel/isCancel.js\");\n\n// Expose all/spread\naxios.all = function all(promises) {\n  return Promise.all(promises);\n};\naxios.spread = __webpack_require__(/*! ./helpers/spread */ \"./node_modules/axios/lib/helpers/spread.js\");\n\n// Expose isAxiosError\naxios.isAxiosError = __webpack_require__(/*! ./helpers/isAxiosError */ \"./node_modules/axios/lib/helpers/isAxiosError.js\");\n\nmodule.exports = axios;\n\n// Allow use of default import syntax in TypeScript\nmodule.exports.default = axios;\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/axios/lib/axios.js?");
 
 /***/ }),
 
@@ -362,6 +362,20 @@ eval("\n\n/**\n * Determines whether the specified URL is absolute\n *\n * @para
 
 /***/ }),
 
+/***/ "./node_modules/axios/lib/helpers/isAxiosError.js":
+/*!********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/isAxiosError.js ***!
+  \********************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module */
+/*! CommonJS bailout: module.exports is used directly at 9:0-14 */
+/***/ ((module) => {
+
+"use strict";
+eval("\n\n/**\n * Determines whether the payload is an error thrown by Axios\n *\n * @param {*} payload The value to test\n * @returns {boolean} True if the payload is an error thrown by Axios, otherwise false\n */\nmodule.exports = function isAxiosError(payload) {\n  return (typeof payload === 'object') && (payload.isAxiosError === true);\n};\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/axios/lib/helpers/isAxiosError.js?");
+
+/***/ }),
+
 /***/ "./node_modules/axios/lib/helpers/isURLSameOrigin.js":
 /*!***********************************************************!*\
   !*** ./node_modules/axios/lib/helpers/isURLSameOrigin.js ***!
@@ -445,6 +459,21 @@ eval("\n\nvar bind = __webpack_require__(/*! ./helpers/bind */ \"./node_modules/
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"getCategory\": () => /* binding */ getCategory,\n/* harmony export */   \"addCategory\": () => /* binding */ addCategory\n/* harmony export */ });\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ \"./node_modules/axios/index.js\");\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _types_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./types.js */ \"./ecom/frontend/src/actions/types.js\");\n\n //Get Products\n\nvar getCategory = function getCategory() {\n  return function (dispatch) {\n    axios__WEBPACK_IMPORTED_MODULE_0___default().get(\"\".concat(\"http://127.0.0.1:8000\", \"/api/productcat/\")).then(function (res) {\n      dispatch({\n        type: _types_js__WEBPACK_IMPORTED_MODULE_1__.GET_CATEGORY,\n        payload: res.data\n      });\n    })[\"catch\"](function (err) {\n      return console.log(err);\n    });\n  };\n}; //ADD Category\n\nvar addCategory = function addCategory(category) {\n  return function (dispatch) {\n    axios__WEBPACK_IMPORTED_MODULE_0___default().post(\"\".concat(\"http://127.0.0.1:8000\", \"/api/productcat/\"), category).then(function (res) {\n      dispatch({\n        type: _types_js__WEBPACK_IMPORTED_MODULE_1__.ADD_CATEGORY,\n        payload: res.data\n      });\n    })[\"catch\"](function (err) {\n      return console.log(err);\n    });\n  };\n};\n\n//# sourceURL=webpack://ecommerce-base/./ecom/frontend/src/actions/category.js?");
+
+/***/ }),
+
+/***/ "./ecom/frontend/src/actions/dashboard.js":
+/*!************************************************!*\
+  !*** ./ecom/frontend/src/actions/dashboard.js ***!
+  \************************************************/
+/*! namespace exports */
+/*! export getMonthlySales [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__, __webpack_require__.n, __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"getMonthlySales\": () => /* binding */ getMonthlySales\n/* harmony export */ });\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ \"./node_modules/axios/index.js\");\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _types_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./types.js */ \"./ecom/frontend/src/actions/types.js\");\n\n // Get Monthly sales\n\nvar getMonthlySales = function getMonthlySales(value) {\n  return function (dispatch) {\n    dispatch({\n      type: _types_js__WEBPACK_IMPORTED_MODULE_1__.GET_MONTHLY_SALES,\n      payload: value\n    });\n  };\n};\n\n//# sourceURL=webpack://ecommerce-base/./ecom/frontend/src/actions/dashboard.js?");
 
 /***/ }),
 
@@ -533,6 +562,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /*! export GET_ALL_PRODUCT_IMAGES [provided] [no usage info] [missing usage info prevents renaming] */
 /*! export GET_ALL_SALES [provided] [no usage info] [missing usage info prevents renaming] */
 /*! export GET_CATEGORY [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export GET_MONTHLY_SALES [provided] [no usage info] [missing usage info prevents renaming] */
 /*! export GET_PRODUCTS [provided] [no usage info] [missing usage info prevents renaming] */
 /*! export HANDLE_PRODUCT_SELECT [provided] [no usage info] [missing usage info prevents renaming] */
 /*! export RESET_REDIRECT [provided] [no usage info] [missing usage info prevents renaming] */
@@ -548,7 +578,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"GET_PRODUCTS\": () => /* binding */ GET_PRODUCTS,\n/* harmony export */   \"DELETE_PRODUCT\": () => /* binding */ DELETE_PRODUCT,\n/* harmony export */   \"ADD_PRODUCT\": () => /* binding */ ADD_PRODUCT,\n/* harmony export */   \"EDIT_PRODUCT\": () => /* binding */ EDIT_PRODUCT,\n/* harmony export */   \"SET_EDIT_PRODUCT_ID\": () => /* binding */ SET_EDIT_PRODUCT_ID,\n/* harmony export */   \"SELECT_ALL_PRODUCTS\": () => /* binding */ SELECT_ALL_PRODUCTS,\n/* harmony export */   \"HANDLE_PRODUCT_SELECT\": () => /* binding */ HANDLE_PRODUCT_SELECT,\n/* harmony export */   \"RESET_REDIRECT\": () => /* binding */ RESET_REDIRECT,\n/* harmony export */   \"FILTER_PRODUCTS\": () => /* binding */ FILTER_PRODUCTS,\n/* harmony export */   \"FILTER_ASCENDING\": () => /* binding */ FILTER_ASCENDING,\n/* harmony export */   \"FILTER_DESCENDING\": () => /* binding */ FILTER_DESCENDING,\n/* harmony export */   \"FILTER_PRICE\": () => /* binding */ FILTER_PRICE,\n/* harmony export */   \"FILTER_CATEGORY\": () => /* binding */ FILTER_CATEGORY,\n/* harmony export */   \"FILTER_UNITS\": () => /* binding */ FILTER_UNITS,\n/* harmony export */   \"GET_CATEGORY\": () => /* binding */ GET_CATEGORY,\n/* harmony export */   \"ADD_CATEGORY\": () => /* binding */ ADD_CATEGORY,\n/* harmony export */   \"UPDATE_PICTURES\": () => /* binding */ UPDATE_PICTURES,\n/* harmony export */   \"ADD_IMAGE_TO_PRODUCT\": () => /* binding */ ADD_IMAGE_TO_PRODUCT,\n/* harmony export */   \"SET_SAVED_PICTURES\": () => /* binding */ SET_SAVED_PICTURES,\n/* harmony export */   \"GET_ALL_PRODUCT_IMAGES\": () => /* binding */ GET_ALL_PRODUCT_IMAGES,\n/* harmony export */   \"GET_ALL_SALES\": () => /* binding */ GET_ALL_SALES,\n/* harmony export */   \"FILTER_SALES\": () => /* binding */ FILTER_SALES,\n/* harmony export */   \"FILTER_ASCENDING_SALES\": () => /* binding */ FILTER_ASCENDING_SALES,\n/* harmony export */   \"FILTER_DESCENDING_SALES\": () => /* binding */ FILTER_DESCENDING_SALES,\n/* harmony export */   \"FILTER_PRICE_SALES\": () => /* binding */ FILTER_PRICE_SALES,\n/* harmony export */   \"FILTER_DATE_SALES\": () => /* binding */ FILTER_DATE_SALES,\n/* harmony export */   \"FILTER_QUANTITY_SALES\": () => /* binding */ FILTER_QUANTITY_SALES,\n/* harmony export */   \"UPDATE_EDIT_PICTURES\": () => /* binding */ UPDATE_EDIT_PICTURES,\n/* harmony export */   \"UPDATE_EDIT_DISPLAY_PICTURES\": () => /* binding */ UPDATE_EDIT_DISPLAY_PICTURES,\n/* harmony export */   \"UPDATE_EDIT_NEW_PICTURES\": () => /* binding */ UPDATE_EDIT_NEW_PICTURES,\n/* harmony export */   \"EDIT_MODE_SELECT\": () => /* binding */ EDIT_MODE_SELECT,\n/* harmony export */   \"DELETE_PRODUCT_IMAGE\": () => /* binding */ DELETE_PRODUCT_IMAGE\n/* harmony export */ });\nvar GET_PRODUCTS = \"GET_PRODUCTS\";\nvar DELETE_PRODUCT = \"DELETE_PRODUCT\";\nvar ADD_PRODUCT = \"ADD_PRODUCT\";\nvar EDIT_PRODUCT = \"EDIT_PRODUCT\";\nvar SET_EDIT_PRODUCT_ID = \"SET_EDIT_PRODUCT_ID\";\nvar SELECT_ALL_PRODUCTS = \"SELECT_ALL_PRODUCTS\";\nvar HANDLE_PRODUCT_SELECT = \"HANDLE_PRODUCT_SELECT\";\nvar RESET_REDIRECT = \"RESET_REDIRECT\"; // Filtering Products\n\nvar FILTER_PRODUCTS = \"FILTER_PRODUCTS\";\nvar FILTER_ASCENDING = \"FILTER_ASCENDING\";\nvar FILTER_DESCENDING = \"FILTER_DESCENDING\";\nvar FILTER_PRICE = \"FILTER_PRICE\";\nvar FILTER_CATEGORY = \"FILTER_CATEGORY\";\nvar FILTER_UNITS = \"FILTER_UNITS\"; //Category\n\nvar GET_CATEGORY = \"GET_CATEGORY\";\nvar ADD_CATEGORY = \"ADD_CATEGORY\"; // Product Pictures\n\nvar UPDATE_PICTURES = \"UPDATE_PICTURES\";\nvar ADD_IMAGE_TO_PRODUCT = \"ADD_IMAGE_TO_PRODUCT\";\nvar SET_SAVED_PICTURES = \"SET_SAVED_PICTURES\";\nvar GET_ALL_PRODUCT_IMAGES = \"GET_ALL_PRODUCT_IMAGES\"; //Sales\n\nvar GET_ALL_SALES = \"GET_ALL_SALES\"; // Filtering Sales\n\nvar FILTER_SALES = \"FILTER_SALES\";\nvar FILTER_ASCENDING_SALES = \"FILTER_ASCENDING_SALES\";\nvar FILTER_DESCENDING_SALES = \"FILTER_DESCENDING_SALES\";\nvar FILTER_PRICE_SALES = \"FILTER_PRICE_SALES\";\nvar FILTER_DATE_SALES = \"FILTER_DATE_SALES\";\nvar FILTER_QUANTITY_SALES = \"FILTER_QUANTITY_SALES\"; // Editing Pictures\n\nvar UPDATE_EDIT_PICTURES = \"UPDATE_EDIT_PICTURES\";\nvar UPDATE_EDIT_DISPLAY_PICTURES = \"UPDATE_EDIT_DISPLAY_PICTURES\";\nvar UPDATE_EDIT_NEW_PICTURES = \"UPDATE_NEW_DISPLAY_PICTURES\";\nvar EDIT_MODE_SELECT = \"EDIT_MODE_SELECT\";\nvar DELETE_PRODUCT_IMAGE = \"DELETE_PRODUCT_IMAGE\";\n\n//# sourceURL=webpack://ecommerce-base/./ecom/frontend/src/actions/types.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"GET_PRODUCTS\": () => /* binding */ GET_PRODUCTS,\n/* harmony export */   \"DELETE_PRODUCT\": () => /* binding */ DELETE_PRODUCT,\n/* harmony export */   \"ADD_PRODUCT\": () => /* binding */ ADD_PRODUCT,\n/* harmony export */   \"EDIT_PRODUCT\": () => /* binding */ EDIT_PRODUCT,\n/* harmony export */   \"SET_EDIT_PRODUCT_ID\": () => /* binding */ SET_EDIT_PRODUCT_ID,\n/* harmony export */   \"SELECT_ALL_PRODUCTS\": () => /* binding */ SELECT_ALL_PRODUCTS,\n/* harmony export */   \"HANDLE_PRODUCT_SELECT\": () => /* binding */ HANDLE_PRODUCT_SELECT,\n/* harmony export */   \"RESET_REDIRECT\": () => /* binding */ RESET_REDIRECT,\n/* harmony export */   \"FILTER_PRODUCTS\": () => /* binding */ FILTER_PRODUCTS,\n/* harmony export */   \"FILTER_ASCENDING\": () => /* binding */ FILTER_ASCENDING,\n/* harmony export */   \"FILTER_DESCENDING\": () => /* binding */ FILTER_DESCENDING,\n/* harmony export */   \"FILTER_PRICE\": () => /* binding */ FILTER_PRICE,\n/* harmony export */   \"FILTER_CATEGORY\": () => /* binding */ FILTER_CATEGORY,\n/* harmony export */   \"FILTER_UNITS\": () => /* binding */ FILTER_UNITS,\n/* harmony export */   \"GET_CATEGORY\": () => /* binding */ GET_CATEGORY,\n/* harmony export */   \"ADD_CATEGORY\": () => /* binding */ ADD_CATEGORY,\n/* harmony export */   \"UPDATE_PICTURES\": () => /* binding */ UPDATE_PICTURES,\n/* harmony export */   \"ADD_IMAGE_TO_PRODUCT\": () => /* binding */ ADD_IMAGE_TO_PRODUCT,\n/* harmony export */   \"SET_SAVED_PICTURES\": () => /* binding */ SET_SAVED_PICTURES,\n/* harmony export */   \"GET_ALL_PRODUCT_IMAGES\": () => /* binding */ GET_ALL_PRODUCT_IMAGES,\n/* harmony export */   \"GET_ALL_SALES\": () => /* binding */ GET_ALL_SALES,\n/* harmony export */   \"FILTER_SALES\": () => /* binding */ FILTER_SALES,\n/* harmony export */   \"FILTER_ASCENDING_SALES\": () => /* binding */ FILTER_ASCENDING_SALES,\n/* harmony export */   \"FILTER_DESCENDING_SALES\": () => /* binding */ FILTER_DESCENDING_SALES,\n/* harmony export */   \"FILTER_PRICE_SALES\": () => /* binding */ FILTER_PRICE_SALES,\n/* harmony export */   \"FILTER_DATE_SALES\": () => /* binding */ FILTER_DATE_SALES,\n/* harmony export */   \"FILTER_QUANTITY_SALES\": () => /* binding */ FILTER_QUANTITY_SALES,\n/* harmony export */   \"UPDATE_EDIT_PICTURES\": () => /* binding */ UPDATE_EDIT_PICTURES,\n/* harmony export */   \"UPDATE_EDIT_DISPLAY_PICTURES\": () => /* binding */ UPDATE_EDIT_DISPLAY_PICTURES,\n/* harmony export */   \"UPDATE_EDIT_NEW_PICTURES\": () => /* binding */ UPDATE_EDIT_NEW_PICTURES,\n/* harmony export */   \"EDIT_MODE_SELECT\": () => /* binding */ EDIT_MODE_SELECT,\n/* harmony export */   \"DELETE_PRODUCT_IMAGE\": () => /* binding */ DELETE_PRODUCT_IMAGE,\n/* harmony export */   \"GET_MONTHLY_SALES\": () => /* binding */ GET_MONTHLY_SALES\n/* harmony export */ });\nvar GET_PRODUCTS = \"GET_PRODUCTS\";\nvar DELETE_PRODUCT = \"DELETE_PRODUCT\";\nvar ADD_PRODUCT = \"ADD_PRODUCT\";\nvar EDIT_PRODUCT = \"EDIT_PRODUCT\";\nvar SET_EDIT_PRODUCT_ID = \"SET_EDIT_PRODUCT_ID\";\nvar SELECT_ALL_PRODUCTS = \"SELECT_ALL_PRODUCTS\";\nvar HANDLE_PRODUCT_SELECT = \"HANDLE_PRODUCT_SELECT\";\nvar RESET_REDIRECT = \"RESET_REDIRECT\"; // Filtering Products\n\nvar FILTER_PRODUCTS = \"FILTER_PRODUCTS\";\nvar FILTER_ASCENDING = \"FILTER_ASCENDING\";\nvar FILTER_DESCENDING = \"FILTER_DESCENDING\";\nvar FILTER_PRICE = \"FILTER_PRICE\";\nvar FILTER_CATEGORY = \"FILTER_CATEGORY\";\nvar FILTER_UNITS = \"FILTER_UNITS\"; //Category\n\nvar GET_CATEGORY = \"GET_CATEGORY\";\nvar ADD_CATEGORY = \"ADD_CATEGORY\"; // Product Pictures\n\nvar UPDATE_PICTURES = \"UPDATE_PICTURES\";\nvar ADD_IMAGE_TO_PRODUCT = \"ADD_IMAGE_TO_PRODUCT\";\nvar SET_SAVED_PICTURES = \"SET_SAVED_PICTURES\";\nvar GET_ALL_PRODUCT_IMAGES = \"GET_ALL_PRODUCT_IMAGES\"; //Sales\n\nvar GET_ALL_SALES = \"GET_ALL_SALES\"; // Filtering Sales\n\nvar FILTER_SALES = \"FILTER_SALES\";\nvar FILTER_ASCENDING_SALES = \"FILTER_ASCENDING_SALES\";\nvar FILTER_DESCENDING_SALES = \"FILTER_DESCENDING_SALES\";\nvar FILTER_PRICE_SALES = \"FILTER_PRICE_SALES\";\nvar FILTER_DATE_SALES = \"FILTER_DATE_SALES\";\nvar FILTER_QUANTITY_SALES = \"FILTER_QUANTITY_SALES\"; // Editing Pictures\n\nvar UPDATE_EDIT_PICTURES = \"UPDATE_EDIT_PICTURES\";\nvar UPDATE_EDIT_DISPLAY_PICTURES = \"UPDATE_EDIT_DISPLAY_PICTURES\";\nvar UPDATE_EDIT_NEW_PICTURES = \"UPDATE_NEW_DISPLAY_PICTURES\";\nvar EDIT_MODE_SELECT = \"EDIT_MODE_SELECT\";\nvar DELETE_PRODUCT_IMAGE = \"DELETE_PRODUCT_IMAGE\"; // Dashboard\n\nvar GET_MONTHLY_SALES = \"GET_MONTHLY_SALES\";\n\n//# sourceURL=webpack://ecommerce-base/./ecom/frontend/src/actions/types.js?");
 
 /***/ }),
 
@@ -622,7 +652,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => __WEBPACK_DEFAULT_EXPORT__\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var _style_dashboard_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../style/dashboard.css */ \"./ecom/frontend/src/components/style/dashboard.css\");\n/* harmony import */ var _style_dashboard_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_style_dashboard_css__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var react_apexcharts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-apexcharts */ \"./node_modules/react-apexcharts/dist/react-apexcharts.min.js\");\nfunction _typeof(obj) { \"@babel/helpers - typeof\"; if (typeof Symbol === \"function\" && typeof Symbol.iterator === \"symbol\") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === \"function\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj; }; } return _typeof(obj); }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }\n\nfunction _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function\"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }\n\nfunction _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }\n\nfunction _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }\n\nfunction _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === \"object\" || typeof call === \"function\")) { return call; } return _assertThisInitialized(self); }\n\nfunction _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return self; }\n\nfunction _isNativeReflectConstruct() { if (typeof Reflect === \"undefined\" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === \"function\") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }\n\nfunction _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }\n\n\n\n\n\nvar SalesGraph = /*#__PURE__*/function (_Component) {\n  _inherits(SalesGraph, _Component);\n\n  var _super = _createSuper(SalesGraph);\n\n  function SalesGraph(props) {\n    var _this;\n\n    _classCallCheck(this, SalesGraph);\n\n    _this = _super.call(this, props);\n    _this.state = {\n      options: {\n        chart: {\n          type: 'line'\n        },\n        xaxis: {\n          categories: [\"17 Dec\", \"24 Dec\", \"31 Dec\", \"7 Jan\", \"17 Jan\"]\n        }\n      },\n      series: [{\n        name: 'sales',\n        data: [20, 39, 18, 36, 2]\n      }]\n    };\n    return _this;\n  }\n\n  _createClass(SalesGraph, [{\n    key: \"render\",\n    value: function render() {\n      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n        className: \"salesGraphBaseContainer\"\n      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"h4\", null, \"Sales\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n        className: \"salesGraphSalesCont\"\n      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_apexcharts__WEBPACK_IMPORTED_MODULE_2__.default, {\n        options: this.state.options,\n        series: this.state.series,\n        type: \"line\",\n        width: \"500\"\n      }))));\n    }\n  }]);\n\n  return SalesGraph;\n}(react__WEBPACK_IMPORTED_MODULE_0__.Component);\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SalesGraph);\n\n//# sourceURL=webpack://ecommerce-base/./ecom/frontend/src/components/dashboard/SalesGraph.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => __WEBPACK_DEFAULT_EXPORT__\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var _style_dashboard_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../style/dashboard.css */ \"./ecom/frontend/src/components/style/dashboard.css\");\n/* harmony import */ var _style_dashboard_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_style_dashboard_css__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var react_apexcharts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-apexcharts */ \"./node_modules/react-apexcharts/dist/react-apexcharts.min.js\");\n/* harmony import */ var _stripe_StripeDashboard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../../stripe/StripeDashboard */ \"./ecom/frontend/src/stripe/StripeDashboard.js\");\n/* harmony import */ var _actions_dashboard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../actions/dashboard */ \"./ecom/frontend/src/actions/dashboard.js\");\nfunction _typeof(obj) { \"@babel/helpers - typeof\"; if (typeof Symbol === \"function\" && typeof Symbol.iterator === \"symbol\") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === \"function\" && obj.constructor === Symbol && obj !== Symbol.prototype ? \"symbol\" : typeof obj; }; } return _typeof(obj); }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }\n\nfunction _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function\"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }\n\nfunction _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }\n\nfunction _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }\n\nfunction _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === \"object\" || typeof call === \"function\")) { return call; } return _assertThisInitialized(self); }\n\nfunction _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return self; }\n\nfunction _isNativeReflectConstruct() { if (typeof Reflect === \"undefined\" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === \"function\") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }\n\nfunction _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }\n\n\n\n\n\n\n\nvar SalesGraph = /*#__PURE__*/function (_Component) {\n  _inherits(SalesGraph, _Component);\n\n  var _super = _createSuper(SalesGraph);\n\n  function SalesGraph(props) {\n    var _this;\n\n    _classCallCheck(this, SalesGraph);\n\n    _this = _super.call(this, props);\n    _this.state = {\n      options: {\n        chart: {\n          type: 'line'\n        },\n        xaxis: {\n          categories: [\"17 Dec\", \"24 Dec\", \"31 Dec\", \"7 Jan\", \"17 Jan\"]\n        }\n      },\n      series: [{\n        name: 'sales',\n        data: [20, 39, 18, 36, 2]\n      }]\n    };\n    return _this;\n  }\n\n  _createClass(SalesGraph, [{\n    key: \"componentDidMount\",\n    value: function componentDidMount() {\n      (0,_stripe_StripeDashboard__WEBPACK_IMPORTED_MODULE_3__.default)();\n    }\n  }, {\n    key: \"render\",\n    value: function render() {\n      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n        className: \"salesGraphBaseContainer\"\n      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"h4\", null, \"Sales\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n        className: \"salesGraphSalesCont\"\n      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_apexcharts__WEBPACK_IMPORTED_MODULE_2__.default, {\n        options: this.state.options,\n        series: this.state.series,\n        type: \"line\",\n        width: \"500\"\n      }))));\n    }\n  }]);\n\n  return SalesGraph;\n}(react__WEBPACK_IMPORTED_MODULE_0__.Component);\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SalesGraph);\n\n//# sourceURL=webpack://ecommerce-base/./ecom/frontend/src/components/dashboard/SalesGraph.js?");
 
 /***/ }),
 
@@ -964,6 +994,21 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
+/***/ "./ecom/frontend/src/stripe/StripeDashboard.js":
+/*!*****************************************************!*\
+  !*** ./ecom/frontend/src/stripe/StripeDashboard.js ***!
+  \*****************************************************/
+/*! namespace exports */
+/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__, __webpack_require__.n, __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => /* binding */ getDashboardData\n/* harmony export */ });\n/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! prop-types */ \"./node_modules/prop-types/index.js\");\n/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _actions_dashboard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../actions/dashboard */ \"./ecom/frontend/src/actions/dashboard.js\");\n//import stripe from './StripeKey'\n\n\nvar Stripe = __webpack_require__(/*! stripe */ \"./node_modules/stripe/lib/stripe.js\");\n\nvar stripe = Stripe('sk_test_qVyhxgBH7ndQwSUy6lW9SGVI00wKodpGe5');\n\nfunction getDashboardData() {\n  //return stripe.charges.retrieve('ch_1HfY0kGWT31bKfUA2ipUcIGe', {\n  //   api_key: 'sk_test_qVyhxgBH7ndQwSUy6lW9SGVI00wKodpGe5'\n  // });\n  console.log(\"Hello\");\n}\n;\n\n//# sourceURL=webpack://ecommerce-base/./ecom/frontend/src/stripe/StripeDashboard.js?");
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./ecom/frontend/src/components/style/Background.css":
 /*!*************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./ecom/frontend/src/components/style/Background.css ***!
@@ -1127,6 +1172,20 @@ eval("\n\nmodule.exports = function (url, options) {\n  if (!options) {\n    // 
 
 /***/ }),
 
+/***/ "./node_modules/events/events.js":
+/*!***************************************!*\
+  !*** ./node_modules/events/events.js ***!
+  \***************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module */
+/*! CommonJS bailout: module.exports is used directly at 56:0-14 */
+/***/ ((module) => {
+
+"use strict";
+eval("// Copyright Joyent, Inc. and other Node contributors.\n//\n// Permission is hereby granted, free of charge, to any person obtaining a\n// copy of this software and associated documentation files (the\n// \"Software\"), to deal in the Software without restriction, including\n// without limitation the rights to use, copy, modify, merge, publish,\n// distribute, sublicense, and/or sell copies of the Software, and to permit\n// persons to whom the Software is furnished to do so, subject to the\n// following conditions:\n//\n// The above copyright notice and this permission notice shall be included\n// in all copies or substantial portions of the Software.\n//\n// THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS\n// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\n// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN\n// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,\n// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR\n// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE\n// USE OR OTHER DEALINGS IN THE SOFTWARE.\n\n\n\nvar R = typeof Reflect === 'object' ? Reflect : null\nvar ReflectApply = R && typeof R.apply === 'function'\n  ? R.apply\n  : function ReflectApply(target, receiver, args) {\n    return Function.prototype.apply.call(target, receiver, args);\n  }\n\nvar ReflectOwnKeys\nif (R && typeof R.ownKeys === 'function') {\n  ReflectOwnKeys = R.ownKeys\n} else if (Object.getOwnPropertySymbols) {\n  ReflectOwnKeys = function ReflectOwnKeys(target) {\n    return Object.getOwnPropertyNames(target)\n      .concat(Object.getOwnPropertySymbols(target));\n  };\n} else {\n  ReflectOwnKeys = function ReflectOwnKeys(target) {\n    return Object.getOwnPropertyNames(target);\n  };\n}\n\nfunction ProcessEmitWarning(warning) {\n  if (console && console.warn) console.warn(warning);\n}\n\nvar NumberIsNaN = Number.isNaN || function NumberIsNaN(value) {\n  return value !== value;\n}\n\nfunction EventEmitter() {\n  EventEmitter.init.call(this);\n}\nmodule.exports = EventEmitter;\nmodule.exports.once = once;\n\n// Backwards-compat with node 0.10.x\nEventEmitter.EventEmitter = EventEmitter;\n\nEventEmitter.prototype._events = undefined;\nEventEmitter.prototype._eventsCount = 0;\nEventEmitter.prototype._maxListeners = undefined;\n\n// By default EventEmitters will print a warning if more than 10 listeners are\n// added to it. This is a useful default which helps finding memory leaks.\nvar defaultMaxListeners = 10;\n\nfunction checkListener(listener) {\n  if (typeof listener !== 'function') {\n    throw new TypeError('The \"listener\" argument must be of type Function. Received type ' + typeof listener);\n  }\n}\n\nObject.defineProperty(EventEmitter, 'defaultMaxListeners', {\n  enumerable: true,\n  get: function() {\n    return defaultMaxListeners;\n  },\n  set: function(arg) {\n    if (typeof arg !== 'number' || arg < 0 || NumberIsNaN(arg)) {\n      throw new RangeError('The value of \"defaultMaxListeners\" is out of range. It must be a non-negative number. Received ' + arg + '.');\n    }\n    defaultMaxListeners = arg;\n  }\n});\n\nEventEmitter.init = function() {\n\n  if (this._events === undefined ||\n      this._events === Object.getPrototypeOf(this)._events) {\n    this._events = Object.create(null);\n    this._eventsCount = 0;\n  }\n\n  this._maxListeners = this._maxListeners || undefined;\n};\n\n// Obviously not all Emitters should be limited to 10. This function allows\n// that to be increased. Set to zero for unlimited.\nEventEmitter.prototype.setMaxListeners = function setMaxListeners(n) {\n  if (typeof n !== 'number' || n < 0 || NumberIsNaN(n)) {\n    throw new RangeError('The value of \"n\" is out of range. It must be a non-negative number. Received ' + n + '.');\n  }\n  this._maxListeners = n;\n  return this;\n};\n\nfunction _getMaxListeners(that) {\n  if (that._maxListeners === undefined)\n    return EventEmitter.defaultMaxListeners;\n  return that._maxListeners;\n}\n\nEventEmitter.prototype.getMaxListeners = function getMaxListeners() {\n  return _getMaxListeners(this);\n};\n\nEventEmitter.prototype.emit = function emit(type) {\n  var args = [];\n  for (var i = 1; i < arguments.length; i++) args.push(arguments[i]);\n  var doError = (type === 'error');\n\n  var events = this._events;\n  if (events !== undefined)\n    doError = (doError && events.error === undefined);\n  else if (!doError)\n    return false;\n\n  // If there is no 'error' event listener then throw.\n  if (doError) {\n    var er;\n    if (args.length > 0)\n      er = args[0];\n    if (er instanceof Error) {\n      // Note: The comments on the `throw` lines are intentional, they show\n      // up in Node's output if this results in an unhandled exception.\n      throw er; // Unhandled 'error' event\n    }\n    // At least give some kind of context to the user\n    var err = new Error('Unhandled error.' + (er ? ' (' + er.message + ')' : ''));\n    err.context = er;\n    throw err; // Unhandled 'error' event\n  }\n\n  var handler = events[type];\n\n  if (handler === undefined)\n    return false;\n\n  if (typeof handler === 'function') {\n    ReflectApply(handler, this, args);\n  } else {\n    var len = handler.length;\n    var listeners = arrayClone(handler, len);\n    for (var i = 0; i < len; ++i)\n      ReflectApply(listeners[i], this, args);\n  }\n\n  return true;\n};\n\nfunction _addListener(target, type, listener, prepend) {\n  var m;\n  var events;\n  var existing;\n\n  checkListener(listener);\n\n  events = target._events;\n  if (events === undefined) {\n    events = target._events = Object.create(null);\n    target._eventsCount = 0;\n  } else {\n    // To avoid recursion in the case that type === \"newListener\"! Before\n    // adding it to the listeners, first emit \"newListener\".\n    if (events.newListener !== undefined) {\n      target.emit('newListener', type,\n                  listener.listener ? listener.listener : listener);\n\n      // Re-assign `events` because a newListener handler could have caused the\n      // this._events to be assigned to a new object\n      events = target._events;\n    }\n    existing = events[type];\n  }\n\n  if (existing === undefined) {\n    // Optimize the case of one listener. Don't need the extra array object.\n    existing = events[type] = listener;\n    ++target._eventsCount;\n  } else {\n    if (typeof existing === 'function') {\n      // Adding the second element, need to change to array.\n      existing = events[type] =\n        prepend ? [listener, existing] : [existing, listener];\n      // If we've already got an array, just append.\n    } else if (prepend) {\n      existing.unshift(listener);\n    } else {\n      existing.push(listener);\n    }\n\n    // Check for listener leak\n    m = _getMaxListeners(target);\n    if (m > 0 && existing.length > m && !existing.warned) {\n      existing.warned = true;\n      // No error code for this since it is a Warning\n      // eslint-disable-next-line no-restricted-syntax\n      var w = new Error('Possible EventEmitter memory leak detected. ' +\n                          existing.length + ' ' + String(type) + ' listeners ' +\n                          'added. Use emitter.setMaxListeners() to ' +\n                          'increase limit');\n      w.name = 'MaxListenersExceededWarning';\n      w.emitter = target;\n      w.type = type;\n      w.count = existing.length;\n      ProcessEmitWarning(w);\n    }\n  }\n\n  return target;\n}\n\nEventEmitter.prototype.addListener = function addListener(type, listener) {\n  return _addListener(this, type, listener, false);\n};\n\nEventEmitter.prototype.on = EventEmitter.prototype.addListener;\n\nEventEmitter.prototype.prependListener =\n    function prependListener(type, listener) {\n      return _addListener(this, type, listener, true);\n    };\n\nfunction onceWrapper() {\n  if (!this.fired) {\n    this.target.removeListener(this.type, this.wrapFn);\n    this.fired = true;\n    if (arguments.length === 0)\n      return this.listener.call(this.target);\n    return this.listener.apply(this.target, arguments);\n  }\n}\n\nfunction _onceWrap(target, type, listener) {\n  var state = { fired: false, wrapFn: undefined, target: target, type: type, listener: listener };\n  var wrapped = onceWrapper.bind(state);\n  wrapped.listener = listener;\n  state.wrapFn = wrapped;\n  return wrapped;\n}\n\nEventEmitter.prototype.once = function once(type, listener) {\n  checkListener(listener);\n  this.on(type, _onceWrap(this, type, listener));\n  return this;\n};\n\nEventEmitter.prototype.prependOnceListener =\n    function prependOnceListener(type, listener) {\n      checkListener(listener);\n      this.prependListener(type, _onceWrap(this, type, listener));\n      return this;\n    };\n\n// Emits a 'removeListener' event if and only if the listener was removed.\nEventEmitter.prototype.removeListener =\n    function removeListener(type, listener) {\n      var list, events, position, i, originalListener;\n\n      checkListener(listener);\n\n      events = this._events;\n      if (events === undefined)\n        return this;\n\n      list = events[type];\n      if (list === undefined)\n        return this;\n\n      if (list === listener || list.listener === listener) {\n        if (--this._eventsCount === 0)\n          this._events = Object.create(null);\n        else {\n          delete events[type];\n          if (events.removeListener)\n            this.emit('removeListener', type, list.listener || listener);\n        }\n      } else if (typeof list !== 'function') {\n        position = -1;\n\n        for (i = list.length - 1; i >= 0; i--) {\n          if (list[i] === listener || list[i].listener === listener) {\n            originalListener = list[i].listener;\n            position = i;\n            break;\n          }\n        }\n\n        if (position < 0)\n          return this;\n\n        if (position === 0)\n          list.shift();\n        else {\n          spliceOne(list, position);\n        }\n\n        if (list.length === 1)\n          events[type] = list[0];\n\n        if (events.removeListener !== undefined)\n          this.emit('removeListener', type, originalListener || listener);\n      }\n\n      return this;\n    };\n\nEventEmitter.prototype.off = EventEmitter.prototype.removeListener;\n\nEventEmitter.prototype.removeAllListeners =\n    function removeAllListeners(type) {\n      var listeners, events, i;\n\n      events = this._events;\n      if (events === undefined)\n        return this;\n\n      // not listening for removeListener, no need to emit\n      if (events.removeListener === undefined) {\n        if (arguments.length === 0) {\n          this._events = Object.create(null);\n          this._eventsCount = 0;\n        } else if (events[type] !== undefined) {\n          if (--this._eventsCount === 0)\n            this._events = Object.create(null);\n          else\n            delete events[type];\n        }\n        return this;\n      }\n\n      // emit removeListener for all listeners on all events\n      if (arguments.length === 0) {\n        var keys = Object.keys(events);\n        var key;\n        for (i = 0; i < keys.length; ++i) {\n          key = keys[i];\n          if (key === 'removeListener') continue;\n          this.removeAllListeners(key);\n        }\n        this.removeAllListeners('removeListener');\n        this._events = Object.create(null);\n        this._eventsCount = 0;\n        return this;\n      }\n\n      listeners = events[type];\n\n      if (typeof listeners === 'function') {\n        this.removeListener(type, listeners);\n      } else if (listeners !== undefined) {\n        // LIFO order\n        for (i = listeners.length - 1; i >= 0; i--) {\n          this.removeListener(type, listeners[i]);\n        }\n      }\n\n      return this;\n    };\n\nfunction _listeners(target, type, unwrap) {\n  var events = target._events;\n\n  if (events === undefined)\n    return [];\n\n  var evlistener = events[type];\n  if (evlistener === undefined)\n    return [];\n\n  if (typeof evlistener === 'function')\n    return unwrap ? [evlistener.listener || evlistener] : [evlistener];\n\n  return unwrap ?\n    unwrapListeners(evlistener) : arrayClone(evlistener, evlistener.length);\n}\n\nEventEmitter.prototype.listeners = function listeners(type) {\n  return _listeners(this, type, true);\n};\n\nEventEmitter.prototype.rawListeners = function rawListeners(type) {\n  return _listeners(this, type, false);\n};\n\nEventEmitter.listenerCount = function(emitter, type) {\n  if (typeof emitter.listenerCount === 'function') {\n    return emitter.listenerCount(type);\n  } else {\n    return listenerCount.call(emitter, type);\n  }\n};\n\nEventEmitter.prototype.listenerCount = listenerCount;\nfunction listenerCount(type) {\n  var events = this._events;\n\n  if (events !== undefined) {\n    var evlistener = events[type];\n\n    if (typeof evlistener === 'function') {\n      return 1;\n    } else if (evlistener !== undefined) {\n      return evlistener.length;\n    }\n  }\n\n  return 0;\n}\n\nEventEmitter.prototype.eventNames = function eventNames() {\n  return this._eventsCount > 0 ? ReflectOwnKeys(this._events) : [];\n};\n\nfunction arrayClone(arr, n) {\n  var copy = new Array(n);\n  for (var i = 0; i < n; ++i)\n    copy[i] = arr[i];\n  return copy;\n}\n\nfunction spliceOne(list, index) {\n  for (; index + 1 < list.length; index++)\n    list[index] = list[index + 1];\n  list.pop();\n}\n\nfunction unwrapListeners(arr) {\n  var ret = new Array(arr.length);\n  for (var i = 0; i < ret.length; ++i) {\n    ret[i] = arr[i].listener || arr[i];\n  }\n  return ret;\n}\n\nfunction once(emitter, name) {\n  return new Promise(function (resolve, reject) {\n    function eventListener() {\n      if (errorListener !== undefined) {\n        emitter.removeListener('error', errorListener);\n      }\n      resolve([].slice.call(arguments));\n    };\n    var errorListener;\n\n    // Adding an error listener is not optional because\n    // if an error is thrown on an event emitter we cannot\n    // guarantee that the actual event we are waiting will\n    // be fired. The result could be a silent way to create\n    // memory or file descriptor leaks, which is something\n    // we should avoid.\n    if (name !== 'error') {\n      errorListener = function errorListener(err) {\n        emitter.removeListener(name, eventListener);\n        reject(err);\n      };\n\n      emitter.once('error', errorListener);\n    }\n\n    emitter.once(name, eventListener);\n  });\n}\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/events/events.js?");
+
+/***/ }),
+
 /***/ "./node_modules/history/esm/history.js":
 /*!*********************************************!*\
   !*** ./node_modules/history/esm/history.js ***!
@@ -1284,6 +1343,76 @@ eval("/**\n * Copyright (c) 2013-present, Facebook, Inc.\n *\n * This source cod
 
 "use strict";
 eval("/**\n * Copyright (c) 2013-present, Facebook, Inc.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE file in the root directory of this source tree.\n */\n\n\n\nvar ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';\n\nmodule.exports = ReactPropTypesSecret;\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/prop-types/lib/ReactPropTypesSecret.js?");
+
+/***/ }),
+
+/***/ "./node_modules/qs/lib/formats.js":
+/*!****************************************!*\
+  !*** ./node_modules/qs/lib/formats.js ***!
+  \****************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module */
+/*! CommonJS bailout: module.exports is used directly at 6:0-14 */
+/***/ ((module) => {
+
+"use strict";
+eval("\n\nvar replace = String.prototype.replace;\nvar percentTwenties = /%20/g;\n\nmodule.exports = {\n    'default': 'RFC3986',\n    formatters: {\n        RFC1738: function (value) {\n            return replace.call(value, percentTwenties, '+');\n        },\n        RFC3986: function (value) {\n            return value;\n        }\n    },\n    RFC1738: 'RFC1738',\n    RFC3986: 'RFC3986'\n};\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/qs/lib/formats.js?");
+
+/***/ }),
+
+/***/ "./node_modules/qs/lib/index.js":
+/*!**************************************!*\
+  !*** ./node_modules/qs/lib/index.js ***!
+  \**************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 7:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("\n\nvar stringify = __webpack_require__(/*! ./stringify */ \"./node_modules/qs/lib/stringify.js\");\nvar parse = __webpack_require__(/*! ./parse */ \"./node_modules/qs/lib/parse.js\");\nvar formats = __webpack_require__(/*! ./formats */ \"./node_modules/qs/lib/formats.js\");\n\nmodule.exports = {\n    formats: formats,\n    parse: parse,\n    stringify: stringify\n};\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/qs/lib/index.js?");
+
+/***/ }),
+
+/***/ "./node_modules/qs/lib/parse.js":
+/*!**************************************!*\
+  !*** ./node_modules/qs/lib/parse.js ***!
+  \**************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 222:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("\n\nvar utils = __webpack_require__(/*! ./utils */ \"./node_modules/qs/lib/utils.js\");\n\nvar has = Object.prototype.hasOwnProperty;\n\nvar defaults = {\n    allowDots: false,\n    allowPrototypes: false,\n    arrayLimit: 20,\n    charset: 'utf-8',\n    charsetSentinel: false,\n    comma: false,\n    decoder: utils.decode,\n    delimiter: '&',\n    depth: 5,\n    ignoreQueryPrefix: false,\n    interpretNumericEntities: false,\n    parameterLimit: 1000,\n    parseArrays: true,\n    plainObjects: false,\n    strictNullHandling: false\n};\n\nvar interpretNumericEntities = function (str) {\n    return str.replace(/&#(\\d+);/g, function ($0, numberStr) {\n        return String.fromCharCode(parseInt(numberStr, 10));\n    });\n};\n\n// This is what browsers will submit when the ✓ character occurs in an\n// application/x-www-form-urlencoded body and the encoding of the page containing\n// the form is iso-8859-1, or when the submitted form has an accept-charset\n// attribute of iso-8859-1. Presumably also with other charsets that do not contain\n// the ✓ character, such as us-ascii.\nvar isoSentinel = 'utf8=%26%2310003%3B'; // encodeURIComponent('&#10003;')\n\n// These are the percent-encoded utf-8 octets representing a checkmark, indicating that the request actually is utf-8 encoded.\nvar charsetSentinel = 'utf8=%E2%9C%93'; // encodeURIComponent('✓')\n\nvar parseValues = function parseQueryStringValues(str, options) {\n    var obj = {};\n    var cleanStr = options.ignoreQueryPrefix ? str.replace(/^\\?/, '') : str;\n    var limit = options.parameterLimit === Infinity ? undefined : options.parameterLimit;\n    var parts = cleanStr.split(options.delimiter, limit);\n    var skipIndex = -1; // Keep track of where the utf8 sentinel was found\n    var i;\n\n    var charset = options.charset;\n    if (options.charsetSentinel) {\n        for (i = 0; i < parts.length; ++i) {\n            if (parts[i].indexOf('utf8=') === 0) {\n                if (parts[i] === charsetSentinel) {\n                    charset = 'utf-8';\n                } else if (parts[i] === isoSentinel) {\n                    charset = 'iso-8859-1';\n                }\n                skipIndex = i;\n                i = parts.length; // The eslint settings do not allow break;\n            }\n        }\n    }\n\n    for (i = 0; i < parts.length; ++i) {\n        if (i === skipIndex) {\n            continue;\n        }\n        var part = parts[i];\n\n        var bracketEqualsPos = part.indexOf(']=');\n        var pos = bracketEqualsPos === -1 ? part.indexOf('=') : bracketEqualsPos + 1;\n\n        var key, val;\n        if (pos === -1) {\n            key = options.decoder(part, defaults.decoder, charset);\n            val = options.strictNullHandling ? null : '';\n        } else {\n            key = options.decoder(part.slice(0, pos), defaults.decoder, charset);\n            val = options.decoder(part.slice(pos + 1), defaults.decoder, charset);\n        }\n\n        if (val && options.interpretNumericEntities && charset === 'iso-8859-1') {\n            val = interpretNumericEntities(val);\n        }\n\n        if (val && options.comma && val.indexOf(',') > -1) {\n            val = val.split(',');\n        }\n\n        if (has.call(obj, key)) {\n            obj[key] = utils.combine(obj[key], val);\n        } else {\n            obj[key] = val;\n        }\n    }\n\n    return obj;\n};\n\nvar parseObject = function (chain, val, options) {\n    var leaf = val;\n\n    for (var i = chain.length - 1; i >= 0; --i) {\n        var obj;\n        var root = chain[i];\n\n        if (root === '[]' && options.parseArrays) {\n            obj = [].concat(leaf);\n        } else {\n            obj = options.plainObjects ? Object.create(null) : {};\n            var cleanRoot = root.charAt(0) === '[' && root.charAt(root.length - 1) === ']' ? root.slice(1, -1) : root;\n            var index = parseInt(cleanRoot, 10);\n            if (!options.parseArrays && cleanRoot === '') {\n                obj = { 0: leaf };\n            } else if (\n                !isNaN(index)\n                && root !== cleanRoot\n                && String(index) === cleanRoot\n                && index >= 0\n                && (options.parseArrays && index <= options.arrayLimit)\n            ) {\n                obj = [];\n                obj[index] = leaf;\n            } else {\n                obj[cleanRoot] = leaf;\n            }\n        }\n\n        leaf = obj;\n    }\n\n    return leaf;\n};\n\nvar parseKeys = function parseQueryStringKeys(givenKey, val, options) {\n    if (!givenKey) {\n        return;\n    }\n\n    // Transform dot notation to bracket notation\n    var key = options.allowDots ? givenKey.replace(/\\.([^.[]+)/g, '[$1]') : givenKey;\n\n    // The regex chunks\n\n    var brackets = /(\\[[^[\\]]*])/;\n    var child = /(\\[[^[\\]]*])/g;\n\n    // Get the parent\n\n    var segment = brackets.exec(key);\n    var parent = segment ? key.slice(0, segment.index) : key;\n\n    // Stash the parent if it exists\n\n    var keys = [];\n    if (parent) {\n        // If we aren't using plain objects, optionally prefix keys that would overwrite object prototype properties\n        if (!options.plainObjects && has.call(Object.prototype, parent)) {\n            if (!options.allowPrototypes) {\n                return;\n            }\n        }\n\n        keys.push(parent);\n    }\n\n    // Loop through children appending to the array until we hit depth\n\n    var i = 0;\n    while ((segment = child.exec(key)) !== null && i < options.depth) {\n        i += 1;\n        if (!options.plainObjects && has.call(Object.prototype, segment[1].slice(1, -1))) {\n            if (!options.allowPrototypes) {\n                return;\n            }\n        }\n        keys.push(segment[1]);\n    }\n\n    // If there's a remainder, just add whatever is left\n\n    if (segment) {\n        keys.push('[' + key.slice(segment.index) + ']');\n    }\n\n    return parseObject(keys, val, options);\n};\n\nvar normalizeParseOptions = function normalizeParseOptions(opts) {\n    if (!opts) {\n        return defaults;\n    }\n\n    if (opts.decoder !== null && opts.decoder !== undefined && typeof opts.decoder !== 'function') {\n        throw new TypeError('Decoder has to be a function.');\n    }\n\n    if (typeof opts.charset !== 'undefined' && opts.charset !== 'utf-8' && opts.charset !== 'iso-8859-1') {\n        throw new Error('The charset option must be either utf-8, iso-8859-1, or undefined');\n    }\n    var charset = typeof opts.charset === 'undefined' ? defaults.charset : opts.charset;\n\n    return {\n        allowDots: typeof opts.allowDots === 'undefined' ? defaults.allowDots : !!opts.allowDots,\n        allowPrototypes: typeof opts.allowPrototypes === 'boolean' ? opts.allowPrototypes : defaults.allowPrototypes,\n        arrayLimit: typeof opts.arrayLimit === 'number' ? opts.arrayLimit : defaults.arrayLimit,\n        charset: charset,\n        charsetSentinel: typeof opts.charsetSentinel === 'boolean' ? opts.charsetSentinel : defaults.charsetSentinel,\n        comma: typeof opts.comma === 'boolean' ? opts.comma : defaults.comma,\n        decoder: typeof opts.decoder === 'function' ? opts.decoder : defaults.decoder,\n        delimiter: typeof opts.delimiter === 'string' || utils.isRegExp(opts.delimiter) ? opts.delimiter : defaults.delimiter,\n        depth: typeof opts.depth === 'number' ? opts.depth : defaults.depth,\n        ignoreQueryPrefix: opts.ignoreQueryPrefix === true,\n        interpretNumericEntities: typeof opts.interpretNumericEntities === 'boolean' ? opts.interpretNumericEntities : defaults.interpretNumericEntities,\n        parameterLimit: typeof opts.parameterLimit === 'number' ? opts.parameterLimit : defaults.parameterLimit,\n        parseArrays: opts.parseArrays !== false,\n        plainObjects: typeof opts.plainObjects === 'boolean' ? opts.plainObjects : defaults.plainObjects,\n        strictNullHandling: typeof opts.strictNullHandling === 'boolean' ? opts.strictNullHandling : defaults.strictNullHandling\n    };\n};\n\nmodule.exports = function (str, opts) {\n    var options = normalizeParseOptions(opts);\n\n    if (str === '' || str === null || typeof str === 'undefined') {\n        return options.plainObjects ? Object.create(null) : {};\n    }\n\n    var tempObj = typeof str === 'string' ? parseValues(str, options) : str;\n    var obj = options.plainObjects ? Object.create(null) : {};\n\n    // Iterate over the keys and setup the new object\n\n    var keys = Object.keys(tempObj);\n    for (var i = 0; i < keys.length; ++i) {\n        var key = keys[i];\n        var newObj = parseKeys(key, tempObj[key], options);\n        obj = utils.merge(obj, newObj, options);\n    }\n\n    return utils.compact(obj);\n};\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/qs/lib/parse.js?");
+
+/***/ }),
+
+/***/ "./node_modules/qs/lib/stringify.js":
+/*!******************************************!*\
+  !*** ./node_modules/qs/lib/stringify.js ***!
+  \******************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 192:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("\n\nvar utils = __webpack_require__(/*! ./utils */ \"./node_modules/qs/lib/utils.js\");\nvar formats = __webpack_require__(/*! ./formats */ \"./node_modules/qs/lib/formats.js\");\nvar has = Object.prototype.hasOwnProperty;\n\nvar arrayPrefixGenerators = {\n    brackets: function brackets(prefix) { // eslint-disable-line func-name-matching\n        return prefix + '[]';\n    },\n    comma: 'comma',\n    indices: function indices(prefix, key) { // eslint-disable-line func-name-matching\n        return prefix + '[' + key + ']';\n    },\n    repeat: function repeat(prefix) { // eslint-disable-line func-name-matching\n        return prefix;\n    }\n};\n\nvar isArray = Array.isArray;\nvar push = Array.prototype.push;\nvar pushToArray = function (arr, valueOrArray) {\n    push.apply(arr, isArray(valueOrArray) ? valueOrArray : [valueOrArray]);\n};\n\nvar toISO = Date.prototype.toISOString;\n\nvar defaults = {\n    addQueryPrefix: false,\n    allowDots: false,\n    charset: 'utf-8',\n    charsetSentinel: false,\n    delimiter: '&',\n    encode: true,\n    encoder: utils.encode,\n    encodeValuesOnly: false,\n    formatter: formats.formatters[formats['default']],\n    // deprecated\n    indices: false,\n    serializeDate: function serializeDate(date) { // eslint-disable-line func-name-matching\n        return toISO.call(date);\n    },\n    skipNulls: false,\n    strictNullHandling: false\n};\n\nvar stringify = function stringify( // eslint-disable-line func-name-matching\n    object,\n    prefix,\n    generateArrayPrefix,\n    strictNullHandling,\n    skipNulls,\n    encoder,\n    filter,\n    sort,\n    allowDots,\n    serializeDate,\n    formatter,\n    encodeValuesOnly,\n    charset\n) {\n    var obj = object;\n    if (typeof filter === 'function') {\n        obj = filter(prefix, obj);\n    } else if (obj instanceof Date) {\n        obj = serializeDate(obj);\n    } else if (generateArrayPrefix === 'comma' && isArray(obj)) {\n        obj = obj.join(',');\n    }\n\n    if (obj === null) {\n        if (strictNullHandling) {\n            return encoder && !encodeValuesOnly ? encoder(prefix, defaults.encoder, charset) : prefix;\n        }\n\n        obj = '';\n    }\n\n    if (typeof obj === 'string' || typeof obj === 'number' || typeof obj === 'boolean' || utils.isBuffer(obj)) {\n        if (encoder) {\n            var keyValue = encodeValuesOnly ? prefix : encoder(prefix, defaults.encoder, charset);\n            return [formatter(keyValue) + '=' + formatter(encoder(obj, defaults.encoder, charset))];\n        }\n        return [formatter(prefix) + '=' + formatter(String(obj))];\n    }\n\n    var values = [];\n\n    if (typeof obj === 'undefined') {\n        return values;\n    }\n\n    var objKeys;\n    if (isArray(filter)) {\n        objKeys = filter;\n    } else {\n        var keys = Object.keys(obj);\n        objKeys = sort ? keys.sort(sort) : keys;\n    }\n\n    for (var i = 0; i < objKeys.length; ++i) {\n        var key = objKeys[i];\n\n        if (skipNulls && obj[key] === null) {\n            continue;\n        }\n\n        if (isArray(obj)) {\n            pushToArray(values, stringify(\n                obj[key],\n                typeof generateArrayPrefix === 'function' ? generateArrayPrefix(prefix, key) : prefix,\n                generateArrayPrefix,\n                strictNullHandling,\n                skipNulls,\n                encoder,\n                filter,\n                sort,\n                allowDots,\n                serializeDate,\n                formatter,\n                encodeValuesOnly,\n                charset\n            ));\n        } else {\n            pushToArray(values, stringify(\n                obj[key],\n                prefix + (allowDots ? '.' + key : '[' + key + ']'),\n                generateArrayPrefix,\n                strictNullHandling,\n                skipNulls,\n                encoder,\n                filter,\n                sort,\n                allowDots,\n                serializeDate,\n                formatter,\n                encodeValuesOnly,\n                charset\n            ));\n        }\n    }\n\n    return values;\n};\n\nvar normalizeStringifyOptions = function normalizeStringifyOptions(opts) {\n    if (!opts) {\n        return defaults;\n    }\n\n    if (opts.encoder !== null && opts.encoder !== undefined && typeof opts.encoder !== 'function') {\n        throw new TypeError('Encoder has to be a function.');\n    }\n\n    var charset = opts.charset || defaults.charset;\n    if (typeof opts.charset !== 'undefined' && opts.charset !== 'utf-8' && opts.charset !== 'iso-8859-1') {\n        throw new TypeError('The charset option must be either utf-8, iso-8859-1, or undefined');\n    }\n\n    var format = formats['default'];\n    if (typeof opts.format !== 'undefined') {\n        if (!has.call(formats.formatters, opts.format)) {\n            throw new TypeError('Unknown format option provided.');\n        }\n        format = opts.format;\n    }\n    var formatter = formats.formatters[format];\n\n    var filter = defaults.filter;\n    if (typeof opts.filter === 'function' || isArray(opts.filter)) {\n        filter = opts.filter;\n    }\n\n    return {\n        addQueryPrefix: typeof opts.addQueryPrefix === 'boolean' ? opts.addQueryPrefix : defaults.addQueryPrefix,\n        allowDots: typeof opts.allowDots === 'undefined' ? defaults.allowDots : !!opts.allowDots,\n        charset: charset,\n        charsetSentinel: typeof opts.charsetSentinel === 'boolean' ? opts.charsetSentinel : defaults.charsetSentinel,\n        delimiter: typeof opts.delimiter === 'undefined' ? defaults.delimiter : opts.delimiter,\n        encode: typeof opts.encode === 'boolean' ? opts.encode : defaults.encode,\n        encoder: typeof opts.encoder === 'function' ? opts.encoder : defaults.encoder,\n        encodeValuesOnly: typeof opts.encodeValuesOnly === 'boolean' ? opts.encodeValuesOnly : defaults.encodeValuesOnly,\n        filter: filter,\n        formatter: formatter,\n        serializeDate: typeof opts.serializeDate === 'function' ? opts.serializeDate : defaults.serializeDate,\n        skipNulls: typeof opts.skipNulls === 'boolean' ? opts.skipNulls : defaults.skipNulls,\n        sort: typeof opts.sort === 'function' ? opts.sort : null,\n        strictNullHandling: typeof opts.strictNullHandling === 'boolean' ? opts.strictNullHandling : defaults.strictNullHandling\n    };\n};\n\nmodule.exports = function (object, opts) {\n    var obj = object;\n    var options = normalizeStringifyOptions(opts);\n\n    var objKeys;\n    var filter;\n\n    if (typeof options.filter === 'function') {\n        filter = options.filter;\n        obj = filter('', obj);\n    } else if (isArray(options.filter)) {\n        filter = options.filter;\n        objKeys = filter;\n    }\n\n    var keys = [];\n\n    if (typeof obj !== 'object' || obj === null) {\n        return '';\n    }\n\n    var arrayFormat;\n    if (opts && opts.arrayFormat in arrayPrefixGenerators) {\n        arrayFormat = opts.arrayFormat;\n    } else if (opts && 'indices' in opts) {\n        arrayFormat = opts.indices ? 'indices' : 'repeat';\n    } else {\n        arrayFormat = 'indices';\n    }\n\n    var generateArrayPrefix = arrayPrefixGenerators[arrayFormat];\n\n    if (!objKeys) {\n        objKeys = Object.keys(obj);\n    }\n\n    if (options.sort) {\n        objKeys.sort(options.sort);\n    }\n\n    for (var i = 0; i < objKeys.length; ++i) {\n        var key = objKeys[i];\n\n        if (options.skipNulls && obj[key] === null) {\n            continue;\n        }\n        pushToArray(keys, stringify(\n            obj[key],\n            key,\n            generateArrayPrefix,\n            options.strictNullHandling,\n            options.skipNulls,\n            options.encode ? options.encoder : null,\n            options.filter,\n            options.sort,\n            options.allowDots,\n            options.serializeDate,\n            options.formatter,\n            options.encodeValuesOnly,\n            options.charset\n        ));\n    }\n\n    var joined = keys.join(options.delimiter);\n    var prefix = options.addQueryPrefix === true ? '?' : '';\n\n    if (options.charsetSentinel) {\n        if (options.charset === 'iso-8859-1') {\n            // encodeURIComponent('&#10003;'), the \"numeric entity\" representation of a checkmark\n            prefix += 'utf8=%26%2310003%3B&';\n        } else {\n            // encodeURIComponent('✓')\n            prefix += 'utf8=%E2%9C%93&';\n        }\n    }\n\n    return joined.length > 0 ? prefix + joined : '';\n};\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/qs/lib/stringify.js?");
+
+/***/ }),
+
+/***/ "./node_modules/qs/lib/utils.js":
+/*!**************************************!*\
+  !*** ./node_modules/qs/lib/utils.js ***!
+  \**************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module */
+/*! CommonJS bailout: module.exports is used directly at 220:0-14 */
+/***/ ((module) => {
+
+"use strict";
+eval("\n\nvar has = Object.prototype.hasOwnProperty;\nvar isArray = Array.isArray;\n\nvar hexTable = (function () {\n    var array = [];\n    for (var i = 0; i < 256; ++i) {\n        array.push('%' + ((i < 16 ? '0' : '') + i.toString(16)).toUpperCase());\n    }\n\n    return array;\n}());\n\nvar compactQueue = function compactQueue(queue) {\n    while (queue.length > 1) {\n        var item = queue.pop();\n        var obj = item.obj[item.prop];\n\n        if (isArray(obj)) {\n            var compacted = [];\n\n            for (var j = 0; j < obj.length; ++j) {\n                if (typeof obj[j] !== 'undefined') {\n                    compacted.push(obj[j]);\n                }\n            }\n\n            item.obj[item.prop] = compacted;\n        }\n    }\n};\n\nvar arrayToObject = function arrayToObject(source, options) {\n    var obj = options && options.plainObjects ? Object.create(null) : {};\n    for (var i = 0; i < source.length; ++i) {\n        if (typeof source[i] !== 'undefined') {\n            obj[i] = source[i];\n        }\n    }\n\n    return obj;\n};\n\nvar merge = function merge(target, source, options) {\n    if (!source) {\n        return target;\n    }\n\n    if (typeof source !== 'object') {\n        if (isArray(target)) {\n            target.push(source);\n        } else if (target && typeof target === 'object') {\n            if ((options && (options.plainObjects || options.allowPrototypes)) || !has.call(Object.prototype, source)) {\n                target[source] = true;\n            }\n        } else {\n            return [target, source];\n        }\n\n        return target;\n    }\n\n    if (!target || typeof target !== 'object') {\n        return [target].concat(source);\n    }\n\n    var mergeTarget = target;\n    if (isArray(target) && !isArray(source)) {\n        mergeTarget = arrayToObject(target, options);\n    }\n\n    if (isArray(target) && isArray(source)) {\n        source.forEach(function (item, i) {\n            if (has.call(target, i)) {\n                var targetItem = target[i];\n                if (targetItem && typeof targetItem === 'object' && item && typeof item === 'object') {\n                    target[i] = merge(targetItem, item, options);\n                } else {\n                    target.push(item);\n                }\n            } else {\n                target[i] = item;\n            }\n        });\n        return target;\n    }\n\n    return Object.keys(source).reduce(function (acc, key) {\n        var value = source[key];\n\n        if (has.call(acc, key)) {\n            acc[key] = merge(acc[key], value, options);\n        } else {\n            acc[key] = value;\n        }\n        return acc;\n    }, mergeTarget);\n};\n\nvar assign = function assignSingleSource(target, source) {\n    return Object.keys(source).reduce(function (acc, key) {\n        acc[key] = source[key];\n        return acc;\n    }, target);\n};\n\nvar decode = function (str, decoder, charset) {\n    var strWithoutPlus = str.replace(/\\+/g, ' ');\n    if (charset === 'iso-8859-1') {\n        // unescape never throws, no try...catch needed:\n        return strWithoutPlus.replace(/%[0-9a-f]{2}/gi, unescape);\n    }\n    // utf-8\n    try {\n        return decodeURIComponent(strWithoutPlus);\n    } catch (e) {\n        return strWithoutPlus;\n    }\n};\n\nvar encode = function encode(str, defaultEncoder, charset) {\n    // This code was originally written by Brian White (mscdex) for the io.js core querystring library.\n    // It has been adapted here for stricter adherence to RFC 3986\n    if (str.length === 0) {\n        return str;\n    }\n\n    var string = typeof str === 'string' ? str : String(str);\n\n    if (charset === 'iso-8859-1') {\n        return escape(string).replace(/%u[0-9a-f]{4}/gi, function ($0) {\n            return '%26%23' + parseInt($0.slice(2), 16) + '%3B';\n        });\n    }\n\n    var out = '';\n    for (var i = 0; i < string.length; ++i) {\n        var c = string.charCodeAt(i);\n\n        if (\n            c === 0x2D // -\n            || c === 0x2E // .\n            || c === 0x5F // _\n            || c === 0x7E // ~\n            || (c >= 0x30 && c <= 0x39) // 0-9\n            || (c >= 0x41 && c <= 0x5A) // a-z\n            || (c >= 0x61 && c <= 0x7A) // A-Z\n        ) {\n            out += string.charAt(i);\n            continue;\n        }\n\n        if (c < 0x80) {\n            out = out + hexTable[c];\n            continue;\n        }\n\n        if (c < 0x800) {\n            out = out + (hexTable[0xC0 | (c >> 6)] + hexTable[0x80 | (c & 0x3F)]);\n            continue;\n        }\n\n        if (c < 0xD800 || c >= 0xE000) {\n            out = out + (hexTable[0xE0 | (c >> 12)] + hexTable[0x80 | ((c >> 6) & 0x3F)] + hexTable[0x80 | (c & 0x3F)]);\n            continue;\n        }\n\n        i += 1;\n        c = 0x10000 + (((c & 0x3FF) << 10) | (string.charCodeAt(i) & 0x3FF));\n        out += hexTable[0xF0 | (c >> 18)]\n            + hexTable[0x80 | ((c >> 12) & 0x3F)]\n            + hexTable[0x80 | ((c >> 6) & 0x3F)]\n            + hexTable[0x80 | (c & 0x3F)];\n    }\n\n    return out;\n};\n\nvar compact = function compact(value) {\n    var queue = [{ obj: { o: value }, prop: 'o' }];\n    var refs = [];\n\n    for (var i = 0; i < queue.length; ++i) {\n        var item = queue[i];\n        var obj = item.obj[item.prop];\n\n        var keys = Object.keys(obj);\n        for (var j = 0; j < keys.length; ++j) {\n            var key = keys[j];\n            var val = obj[key];\n            if (typeof val === 'object' && val !== null && refs.indexOf(val) === -1) {\n                queue.push({ obj: obj, prop: key });\n                refs.push(val);\n            }\n        }\n    }\n\n    compactQueue(queue);\n\n    return value;\n};\n\nvar isRegExp = function isRegExp(obj) {\n    return Object.prototype.toString.call(obj) === '[object RegExp]';\n};\n\nvar isBuffer = function isBuffer(obj) {\n    if (!obj || typeof obj !== 'object') {\n        return false;\n    }\n\n    return !!(obj.constructor && obj.constructor.isBuffer && obj.constructor.isBuffer(obj));\n};\n\nvar combine = function combine(a, b) {\n    return [].concat(a, b);\n};\n\nmodule.exports = {\n    arrayToObject: arrayToObject,\n    assign: assign,\n    combine: combine,\n    compact: compact,\n    decode: decode,\n    encode: encode,\n    isBuffer: isBuffer,\n    isRegExp: isRegExp,\n    merge: merge\n};\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/qs/lib/utils.js?");
 
 /***/ }),
 
@@ -2277,6 +2406,1162 @@ eval("\n\nif (false) {} else {\n  module.exports = __webpack_require__(/*! ./cjs
 
 "use strict";
 eval("\n\nif (false) {} else {\n  module.exports = __webpack_require__(/*! ./cjs/scheduler-tracing.development.js */ \"./node_modules/scheduler/cjs/scheduler-tracing.development.js\");\n}\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/scheduler/tracing.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/Error.js":
+/*!******************************************!*\
+  !*** ./node_modules/stripe/lib/Error.js ***!
+  \******************************************/
+/*! default exports */
+/*! export StripeAPIError [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export StripeAuthenticationError [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export StripeCardError [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export StripeConnectionError [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export StripeError [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export StripeIdempotencyError [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export StripeInvalidGrantError [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export StripeInvalidRequestError [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export StripePermissionError [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export StripeRateLimitError [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export StripeSignatureVerificationError [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export generate [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: module */
+/***/ ((module) => {
+
+"use strict";
+eval("\n\n/**\n * StripeError is the base error from which all other more specific Stripe errors derive.\n * Specifically for errors returned from Stripe's REST API.\n */\nclass StripeError extends Error {\n  constructor(raw = {}) {\n    super(raw.message);\n    this.type = this.constructor.name;\n\n    this.raw = raw;\n    this.rawType = raw.type;\n    this.code = raw.code;\n    this.doc_url = raw.doc_url;\n    this.param = raw.param;\n    this.detail = raw.detail;\n    this.headers = raw.headers;\n    this.requestId = raw.requestId;\n    this.statusCode = raw.statusCode;\n    this.message = raw.message;\n\n    this.charge = raw.charge;\n    this.decline_code = raw.decline_code;\n    this.payment_intent = raw.payment_intent;\n    this.payment_method = raw.payment_method;\n    this.payment_method_type = raw.payment_method_type;\n    this.setup_intent = raw.setup_intent;\n    this.source = raw.source;\n  }\n\n  /**\n   * Helper factory which takes raw stripe errors and outputs wrapping instances\n   */\n  static generate(rawStripeError) {\n    switch (rawStripeError.type) {\n      case 'card_error':\n        return new StripeCardError(rawStripeError);\n      case 'invalid_request_error':\n        return new StripeInvalidRequestError(rawStripeError);\n      case 'api_error':\n        return new StripeAPIError(rawStripeError);\n      case 'authentication_error':\n        return new StripeAuthenticationError(rawStripeError);\n      case 'rate_limit_error':\n        return new StripeRateLimitError(rawStripeError);\n      case 'idempotency_error':\n        return new StripeIdempotencyError(rawStripeError);\n      case 'invalid_grant':\n        return new StripeInvalidGrantError(rawStripeError);\n      default:\n        return new GenericError('Generic', 'Unknown Error');\n    }\n  }\n}\n\n// Specific Stripe Error types:\n\n/**\n * CardError is raised when a user enters a card that can't be charged for\n * some reason.\n */\nclass StripeCardError extends StripeError {}\n\n/**\n * InvalidRequestError is raised when a request is initiated with invalid\n * parameters.\n */\nclass StripeInvalidRequestError extends StripeError {}\n\n/**\n * APIError is a generic error that may be raised in cases where none of the\n * other named errors cover the problem. It could also be raised in the case\n * that a new error has been introduced in the API, but this version of the\n * Node.JS SDK doesn't know how to handle it.\n */\nclass StripeAPIError extends StripeError {}\n\n/**\n * AuthenticationError is raised when invalid credentials are used to connect\n * to Stripe's servers.\n */\nclass StripeAuthenticationError extends StripeError {}\n\n/**\n * PermissionError is raised in cases where access was attempted on a resource\n * that wasn't allowed.\n */\nclass StripePermissionError extends StripeError {}\n\n/**\n * RateLimitError is raised in cases where an account is putting too much load\n * on Stripe's API servers (usually by performing too many requests). Please\n * back off on request rate.\n */\nclass StripeRateLimitError extends StripeError {}\n\n/**\n * StripeConnectionError is raised in the event that the SDK can't connect to\n * Stripe's servers. That can be for a variety of different reasons from a\n * downed network to a bad TLS certificate.\n */\nclass StripeConnectionError extends StripeError {}\n\n/**\n * SignatureVerificationError is raised when the signature verification for a\n * webhook fails\n */\nclass StripeSignatureVerificationError extends StripeError {}\n\n/**\n * IdempotencyError is raised in cases where an idempotency key was used\n * improperly.\n */\nclass StripeIdempotencyError extends StripeError {}\n\n/**\n * InvalidGrantError is raised when a specified code doesn't exist, is\n * expired, has been used, or doesn't belong to you; a refresh token doesn't\n * exist, or doesn't belong to you; or if an API key's mode (live or test)\n * doesn't match the mode of a code or refresh token.\n */\nclass StripeInvalidGrantError extends StripeError {}\n\nmodule.exports.generate = StripeError.generate;\nmodule.exports.StripeError = StripeError;\nmodule.exports.StripeCardError = StripeCardError;\nmodule.exports.StripeInvalidRequestError = StripeInvalidRequestError;\nmodule.exports.StripeAPIError = StripeAPIError;\nmodule.exports.StripeAuthenticationError = StripeAuthenticationError;\nmodule.exports.StripePermissionError = StripePermissionError;\nmodule.exports.StripeRateLimitError = StripeRateLimitError;\nmodule.exports.StripeConnectionError = StripeConnectionError;\nmodule.exports.StripeSignatureVerificationError = StripeSignatureVerificationError;\nmodule.exports.StripeIdempotencyError = StripeIdempotencyError;\nmodule.exports.StripeInvalidGrantError = StripeInvalidGrantError;\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/Error.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/ResourceNamespace.js":
+/*!******************************************************!*\
+  !*** ./node_modules/stripe/lib/ResourceNamespace.js ***!
+  \******************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module */
+/*! CommonJS bailout: module.exports is used directly at 16:0-14 */
+/***/ ((module) => {
+
+"use strict";
+eval("\n\n// ResourceNamespace allows you to create nested resources, i.e. `stripe.issuing.cards`.\n// It also works recursively, so you could do i.e. `stripe.billing.invoicing.pay`.\n\nfunction ResourceNamespace(stripe, resources) {\n  for (const name in resources) {\n    const camelCaseName = name[0].toLowerCase() + name.substring(1);\n\n    const resource = new resources[name](stripe);\n\n    this[camelCaseName] = resource;\n  }\n}\n\nmodule.exports = function(namespace, resources) {\n  return function(stripe) {\n    return new ResourceNamespace(stripe, resources);\n  };\n};\n\nmodule.exports.ResourceNamespace = ResourceNamespace;\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/ResourceNamespace.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/StripeMethod.basic.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/stripe/lib/StripeMethod.basic.js ***!
+  \*******************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 5:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("\n\nconst stripeMethod = __webpack_require__(/*! ./StripeMethod */ \"./node_modules/stripe/lib/StripeMethod.js\");\n\nmodule.exports = {\n  create: stripeMethod({\n    method: 'POST',\n  }),\n\n  list: stripeMethod({\n    method: 'GET',\n    methodType: 'list',\n  }),\n\n  retrieve: stripeMethod({\n    method: 'GET',\n    path: '/{id}',\n  }),\n\n  update: stripeMethod({\n    method: 'POST',\n    path: '{id}',\n  }),\n\n  // Avoid 'delete' keyword in JS\n  del: stripeMethod({\n    method: 'DELETE',\n    path: '{id}',\n  }),\n};\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/StripeMethod.basic.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/StripeMethod.js":
+/*!*************************************************!*\
+  !*** ./node_modules/stripe/lib/StripeMethod.js ***!
+  \*************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: __webpack_require__, module */
+/*! CommonJS bailout: module.exports is used directly at 49:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("\n\nconst utils = __webpack_require__(/*! ./utils */ \"./node_modules/stripe/lib/utils.js\");\nconst makeRequest = __webpack_require__(/*! ./makeRequest */ \"./node_modules/stripe/lib/makeRequest.js\");\nconst makeAutoPaginationMethods = __webpack_require__(/*! ./autoPagination */ \"./node_modules/stripe/lib/autoPagination.js\").makeAutoPaginationMethods;\n\n/**\n * Create an API method from the declared spec.\n *\n * @param [spec.method='GET'] Request Method (POST, GET, DELETE, PUT)\n * @param [spec.path=''] Path to be appended to the API BASE_PATH, joined with\n *  the instance's path (e.g. 'charges' or 'customers')\n * @param [spec.urlParams=[]] Array of required arguments in the order that they\n *  must be passed by the consumer of the API. Subsequent optional arguments are\n *  optionally passed through a hash (Object) as the penultimate argument\n *  (preceding the also-optional callback argument\n * @param [spec.encode] Function for mutating input parameters to a method.\n *  Usefully for applying transforms to data on a per-method basis.\n * @param [spec.host] Hostname for the request.\n */\nfunction stripeMethod(spec) {\n  return function(...args) {\n    const callback = typeof args[args.length - 1] == 'function' && args.pop();\n\n    spec.urlParams = utils.extractUrlParams(\n      this.createResourcePathWithSymbols(spec.path || '')\n    );\n\n    const requestPromise = utils.callbackifyPromiseWithTimeout(\n      makeRequest(this, args, spec, {}),\n      callback\n    );\n\n    if (spec.methodType === 'list') {\n      const autoPaginationMethods = makeAutoPaginationMethods(\n        this,\n        args,\n        spec,\n        requestPromise\n      );\n      Object.assign(requestPromise, autoPaginationMethods);\n    }\n\n    return requestPromise;\n  };\n}\n\nmodule.exports = stripeMethod;\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/StripeMethod.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/StripeResource.js":
+/*!***************************************************!*\
+  !*** ./node_modules/stripe/lib/StripeResource.js ***!
+  \***************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 549:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("\n\nconst http = __webpack_require__(Object(function webpackMissingModule() { var e = new Error(\"Cannot find module 'http'\"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));\nconst https = __webpack_require__(Object(function webpackMissingModule() { var e = new Error(\"Cannot find module 'https'\"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));\nconst path = __webpack_require__(Object(function webpackMissingModule() { var e = new Error(\"Cannot find module 'path'\"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));\n\nconst utils = __webpack_require__(/*! ./utils */ \"./node_modules/stripe/lib/utils.js\");\nconst {\n  StripeConnectionError,\n  StripeAuthenticationError,\n  StripePermissionError,\n  StripeRateLimitError,\n  StripeError,\n  StripeAPIError,\n} = __webpack_require__(/*! ./Error */ \"./node_modules/stripe/lib/Error.js\");\n\nconst defaultHttpAgent = new http.Agent({keepAlive: true});\nconst defaultHttpsAgent = new https.Agent({keepAlive: true});\n\n// Provide extension mechanism for Stripe Resource Sub-Classes\nStripeResource.extend = utils.protoExtend;\n\n// Expose method-creator & prepared (basic) methods\nStripeResource.method = __webpack_require__(/*! ./StripeMethod */ \"./node_modules/stripe/lib/StripeMethod.js\");\nStripeResource.BASIC_METHODS = __webpack_require__(/*! ./StripeMethod.basic */ \"./node_modules/stripe/lib/StripeMethod.basic.js\");\n\nStripeResource.MAX_BUFFERED_REQUEST_METRICS = 100;\nconst MAX_RETRY_AFTER_WAIT = 60;\n\n/**\n * Encapsulates request logic for a Stripe Resource\n */\nfunction StripeResource(stripe, deprecatedUrlData) {\n  this._stripe = stripe;\n  if (deprecatedUrlData) {\n    throw new Error(\n      'Support for curried url params was dropped in stripe-node v7.0.0. Instead, pass two ids.'\n    );\n  }\n\n  this.basePath = utils.makeURLInterpolator(\n    this.basePath || stripe.getApiField('basePath')\n  );\n  this.resourcePath = this.path;\n  this.path = utils.makeURLInterpolator(this.path);\n\n  if (this.includeBasic) {\n    this.includeBasic.forEach(function(methodName) {\n      this[methodName] = StripeResource.BASIC_METHODS[methodName];\n    }, this);\n  }\n\n  this.initialize(...arguments);\n}\n\nStripeResource.prototype = {\n  path: '',\n\n  // Methods that don't use the API's default '/v1' path can override it with this setting.\n  basePath: null,\n\n  initialize() {},\n\n  // Function to override the default data processor. This allows full control\n  // over how a StripeResource's request data will get converted into an HTTP\n  // body. This is useful for non-standard HTTP requests. The function should\n  // take method name, data, and headers as arguments.\n  requestDataProcessor: null,\n\n  // Function to add a validation checks before sending the request, errors should\n  // be thrown, and they will be passed to the callback/promise.\n  validateRequest: null,\n\n  createFullPath(commandPath, urlData) {\n    return path\n      .join(\n        this.basePath(urlData),\n        this.path(urlData),\n        typeof commandPath == 'function' ? commandPath(urlData) : commandPath\n      )\n      .replace(/\\\\/g, '/'); // ugly workaround for Windows\n  },\n\n  // Creates a relative resource path with symbols left in (unlike\n  // createFullPath which takes some data to replace them with). For example it\n  // might produce: /invoices/{id}\n  createResourcePathWithSymbols(pathWithSymbols) {\n    return `/${path\n      .join(this.resourcePath, pathWithSymbols || '')\n      .replace(/\\\\/g, '/')}`; // ugly workaround for Windows\n  },\n\n  // DEPRECATED: Here for backcompat in case users relied on this.\n  wrapTimeout: utils.callbackifyPromiseWithTimeout,\n\n  _timeoutHandler(timeout, req, callback) {\n    return () => {\n      const timeoutErr = new TypeError('ETIMEDOUT');\n      timeoutErr.code = 'ETIMEDOUT';\n\n      req.destroy(timeoutErr);\n    };\n  },\n\n  _responseHandler(req, callback) {\n    return (res) => {\n      let response = '';\n\n      res.setEncoding('utf8');\n      res.on('data', (chunk) => {\n        response += chunk;\n      });\n      res.once('end', () => {\n        const headers = res.headers || {};\n        // NOTE: Stripe responds with lowercase header names/keys.\n\n        // For convenience, make some headers easily accessible on\n        // lastResponse.\n        res.requestId = headers['request-id'];\n\n        const stripeAccount = headers['stripe-account'];\n        if (stripeAccount) {\n          res.stripeAccount = stripeAccount;\n        }\n\n        const apiVersion = headers['stripe-version'];\n        if (apiVersion) {\n          res.apiVersion = apiVersion;\n        }\n\n        const idempotencyKey = headers['idempotency-key'];\n        if (idempotencyKey) {\n          res.idempotencyKey = idempotencyKey;\n        }\n\n        const requestEndTime = Date.now();\n        const requestDurationMs = requestEndTime - req._requestStart;\n\n        const responseEvent = utils.removeNullish({\n          api_version: headers['stripe-version'],\n          account: headers['stripe-account'],\n          idempotency_key: headers['idempotency-key'],\n          method: req._requestEvent.method,\n          path: req._requestEvent.path,\n          status: res.statusCode,\n          request_id: res.requestId,\n          elapsed: requestDurationMs,\n          request_start_time: req._requestStart,\n          request_end_time: requestEndTime,\n        });\n\n        this._stripe._emitter.emit('response', responseEvent);\n\n        try {\n          response = JSON.parse(response);\n\n          if (response.error) {\n            let err;\n\n            // Convert OAuth error responses into a standard format\n            // so that the rest of the error logic can be shared\n            if (typeof response.error === 'string') {\n              response.error = {\n                type: response.error,\n                message: response.error_description,\n              };\n            }\n\n            response.error.headers = headers;\n            response.error.statusCode = res.statusCode;\n            response.error.requestId = res.requestId;\n\n            if (res.statusCode === 401) {\n              err = new StripeAuthenticationError(response.error);\n            } else if (res.statusCode === 403) {\n              err = new StripePermissionError(response.error);\n            } else if (res.statusCode === 429) {\n              err = new StripeRateLimitError(response.error);\n            } else {\n              err = StripeError.generate(response.error);\n            }\n            return callback.call(this, err, null);\n          }\n        } catch (e) {\n          return callback.call(\n            this,\n            new StripeAPIError({\n              message: 'Invalid JSON received from the Stripe API',\n              response,\n              exception: e,\n              requestId: headers['request-id'],\n            }),\n            null\n          );\n        }\n\n        this._recordRequestMetrics(res.requestId, requestDurationMs);\n\n        // Expose res object\n        Object.defineProperty(response, 'lastResponse', {\n          enumerable: false,\n          writable: false,\n          value: res,\n        });\n        callback.call(this, null, response);\n      });\n    };\n  },\n\n  _generateConnectionErrorMessage(requestRetries) {\n    return `An error occurred with our connection to Stripe.${\n      requestRetries > 0 ? ` Request was retried ${requestRetries} times.` : ''\n    }`;\n  },\n\n  _errorHandler(req, requestRetries, callback) {\n    return (message, detail) => {\n      callback.call(\n        this,\n        new StripeConnectionError({\n          message: this._generateConnectionErrorMessage(requestRetries),\n          detail: error,\n        }),\n        null\n      );\n    };\n  },\n\n  // For more on when and how to retry API requests, see https://stripe.com/docs/error-handling#safely-retrying-requests-with-idempotency\n  _shouldRetry(res, numRetries, maxRetries) {\n    // Do not retry if we are out of retries.\n    if (numRetries >= maxRetries) {\n      return false;\n    }\n\n    // Retry on connection error.\n    if (!res) {\n      return true;\n    }\n\n    // The API may ask us not to retry (e.g., if doing so would be a no-op)\n    // or advise us to retry (e.g., in cases of lock timeouts); we defer to that.\n    if (res.headers && res.headers['stripe-should-retry'] === 'false') {\n      return false;\n    }\n    if (res.headers && res.headers['stripe-should-retry'] === 'true') {\n      return true;\n    }\n\n    // Retry on conflict errors.\n    if (res.statusCode === 409) {\n      return true;\n    }\n\n    // Retry on 500, 503, and other internal errors.\n    //\n    // Note that we expect the stripe-should-retry header to be false\n    // in most cases when a 500 is returned, since our idempotency framework\n    // would typically replay it anyway.\n    if (res.statusCode >= 500) {\n      return true;\n    }\n\n    return false;\n  },\n\n  _getSleepTimeInMS(numRetries, retryAfter = null) {\n    const initialNetworkRetryDelay = this._stripe.getInitialNetworkRetryDelay();\n    const maxNetworkRetryDelay = this._stripe.getMaxNetworkRetryDelay();\n\n    // Apply exponential backoff with initialNetworkRetryDelay on the\n    // number of numRetries so far as inputs. Do not allow the number to exceed\n    // maxNetworkRetryDelay.\n    let sleepSeconds = Math.min(\n      initialNetworkRetryDelay * Math.pow(numRetries - 1, 2),\n      maxNetworkRetryDelay\n    );\n\n    // Apply some jitter by randomizing the value in the range of\n    // (sleepSeconds / 2) to (sleepSeconds).\n    sleepSeconds *= 0.5 * (1 + Math.random());\n\n    // But never sleep less than the base sleep seconds.\n    sleepSeconds = Math.max(initialNetworkRetryDelay, sleepSeconds);\n\n    // And never sleep less than the time the API asks us to wait, assuming it's a reasonable ask.\n    if (Number.isInteger(retryAfter) && retryAfter <= MAX_RETRY_AFTER_WAIT) {\n      sleepSeconds = Math.max(sleepSeconds, retryAfter);\n    }\n\n    return sleepSeconds * 1000;\n  },\n\n  // Max retries can be set on a per request basis. Favor those over the global setting\n  _getMaxNetworkRetries(settings = {}) {\n    return settings.maxNetworkRetries &&\n      Number.isInteger(settings.maxNetworkRetries)\n      ? settings.maxNetworkRetries\n      : this._stripe.getMaxNetworkRetries();\n  },\n\n  _defaultIdempotencyKey(method, settings) {\n    // If this is a POST and we allow multiple retries, ensure an idempotency key.\n    const maxRetries = this._getMaxNetworkRetries(settings);\n\n    if (method === 'POST' && maxRetries > 0) {\n      return `stripe-node-retry-${utils.uuid4()}`;\n    }\n    return null;\n  },\n\n  _makeHeaders(\n    auth,\n    contentLength,\n    apiVersion,\n    clientUserAgent,\n    method,\n    userSuppliedHeaders,\n    userSuppliedSettings\n  ) {\n    const defaultHeaders = {\n      // Use specified auth token or use default from this stripe instance:\n      Authorization: auth ? `Bearer ${auth}` : this._stripe.getApiField('auth'),\n      Accept: 'application/json',\n      'Content-Type': 'application/x-www-form-urlencoded',\n      'Content-Length': contentLength,\n      'User-Agent': this._getUserAgentString(),\n      'X-Stripe-Client-User-Agent': clientUserAgent,\n      'X-Stripe-Client-Telemetry': this._getTelemetryHeader(),\n      'Stripe-Version': apiVersion,\n      'Idempotency-Key': this._defaultIdempotencyKey(\n        method,\n        userSuppliedSettings\n      ),\n    };\n\n    return Object.assign(\n      utils.removeNullish(defaultHeaders),\n      // If the user supplied, say 'idempotency-key', override instead of appending by ensuring caps are the same.\n      utils.normalizeHeaders(userSuppliedHeaders)\n    );\n  },\n\n  _getUserAgentString() {\n    const packageVersion = this._stripe.getConstant('PACKAGE_VERSION');\n    const appInfo = this._stripe._appInfo\n      ? this._stripe.getAppInfoAsString()\n      : '';\n\n    return `Stripe/v1 NodeBindings/${packageVersion} ${appInfo}`.trim();\n  },\n\n  _getTelemetryHeader() {\n    if (\n      this._stripe.getTelemetryEnabled() &&\n      this._stripe._prevRequestMetrics.length > 0\n    ) {\n      const metrics = this._stripe._prevRequestMetrics.shift();\n      return JSON.stringify({\n        last_request_metrics: metrics,\n      });\n    }\n  },\n\n  _recordRequestMetrics(requestId, requestDurationMs) {\n    if (this._stripe.getTelemetryEnabled() && requestId) {\n      if (\n        this._stripe._prevRequestMetrics.length >\n        StripeResource.MAX_BUFFERED_REQUEST_METRICS\n      ) {\n        utils.emitWarning(\n          'Request metrics buffer is full, dropping telemetry message.'\n        );\n      } else {\n        this._stripe._prevRequestMetrics.push({\n          request_id: requestId,\n          request_duration_ms: requestDurationMs,\n        });\n      }\n    }\n  },\n\n  _request(method, host, path, data, auth, options = {}, callback) {\n    let requestData;\n\n    const retryRequest = (\n      requestFn,\n      apiVersion,\n      headers,\n      requestRetries,\n      retryAfter\n    ) => {\n      return setTimeout(\n        requestFn,\n        this._getSleepTimeInMS(requestRetries, retryAfter),\n        apiVersion,\n        headers,\n        requestRetries + 1\n      );\n    };\n\n    const makeRequest = (apiVersion, headers, numRetries) => {\n      // timeout can be set on a per-request basis. Favor that over the global setting\n      const timeout =\n        options.settings &&\n        Number.isInteger(options.settings.timeout) &&\n        options.settings.timeout >= 0\n          ? options.settings.timeout\n          : this._stripe.getApiField('timeout');\n\n      const isInsecureConnection =\n        this._stripe.getApiField('protocol') === 'http';\n      let agent = this._stripe.getApiField('agent');\n      if (agent == null) {\n        agent = isInsecureConnection ? defaultHttpAgent : defaultHttpsAgent;\n      }\n\n      const req = (isInsecureConnection ? http : https).request({\n        host: host || this._stripe.getApiField('host'),\n        port: this._stripe.getApiField('port'),\n        path,\n        method,\n        agent,\n        headers,\n        ciphers: 'DEFAULT:!aNULL:!eNULL:!LOW:!EXPORT:!SSLv2:!MD5',\n      });\n\n      const requestStartTime = Date.now();\n\n      const requestEvent = utils.removeNullish({\n        api_version: apiVersion,\n        account: headers['Stripe-Account'],\n        idempotency_key: headers['Idempotency-Key'],\n        method,\n        path,\n        request_start_time: requestStartTime,\n      });\n\n      const requestRetries = numRetries || 0;\n\n      const maxRetries = this._getMaxNetworkRetries(options.settings);\n\n      req._requestEvent = requestEvent;\n\n      req._requestStart = requestStartTime;\n\n      this._stripe._emitter.emit('request', requestEvent);\n\n      req.setTimeout(timeout, this._timeoutHandler(timeout, req, callback));\n\n      req.once('response', (res) => {\n        if (this._shouldRetry(res, requestRetries, maxRetries)) {\n          return retryRequest(\n            makeRequest,\n            apiVersion,\n            headers,\n            requestRetries,\n            ((res || {}).headers || {})['retry-after']\n          );\n        } else {\n          return this._responseHandler(req, callback)(res);\n        }\n      });\n\n      req.on('error', (error) => {\n        if (this._shouldRetry(null, requestRetries, maxRetries)) {\n          return retryRequest(\n            makeRequest,\n            apiVersion,\n            headers,\n            requestRetries,\n            null\n          );\n        } else {\n          if (error.code === 'ETIMEDOUT') {\n            return callback.call(\n              this,\n              new StripeConnectionError({\n                message: `Request aborted due to timeout being reached (${timeout}ms)`,\n                detail: error,\n              })\n            );\n          }\n          return callback.call(\n            this,\n            new StripeConnectionError({\n              message: this._generateConnectionErrorMessage(requestRetries),\n              detail: error,\n            }),\n            null\n          );\n        }\n      });\n\n      req.once('socket', (socket) => {\n        if (socket.connecting) {\n          socket.once(\n            isInsecureConnection ? 'connect' : 'secureConnect',\n            () => {\n              // Send payload; we're safe:\n              req.write(requestData);\n              req.end();\n            }\n          );\n        } else {\n          // we're already connected\n          req.write(requestData);\n          req.end();\n        }\n      });\n    };\n\n    const prepareAndMakeRequest = (error, data) => {\n      if (error) {\n        return callback(error);\n      }\n\n      requestData = data;\n\n      this._stripe.getClientUserAgent((clientUserAgent) => {\n        const apiVersion = this._stripe.getApiField('version');\n        const headers = this._makeHeaders(\n          auth,\n          requestData.length,\n          apiVersion,\n          clientUserAgent,\n          method,\n          options.headers,\n          options.settings\n        );\n\n        makeRequest(apiVersion, headers);\n      });\n    };\n\n    if (this.requestDataProcessor) {\n      this.requestDataProcessor(\n        method,\n        data,\n        options.headers,\n        prepareAndMakeRequest\n      );\n    } else {\n      prepareAndMakeRequest(null, utils.stringifyRequestData(data || {}));\n    }\n  },\n};\n\nmodule.exports = StripeResource;\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/StripeResource.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/Webhooks.js":
+/*!*********************************************!*\
+  !*** ./node_modules/stripe/lib/Webhooks.js ***!
+  \*********************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 173:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("\n\nconst crypto = __webpack_require__(Object(function webpackMissingModule() { var e = new Error(\"Cannot find module 'crypto'\"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));\n\nconst utils = __webpack_require__(/*! ./utils */ \"./node_modules/stripe/lib/utils.js\");\nconst {StripeError, StripeSignatureVerificationError} = __webpack_require__(/*! ./Error */ \"./node_modules/stripe/lib/Error.js\");\n\nconst Webhook = {\n  DEFAULT_TOLERANCE: 300, // 5 minutes\n\n  constructEvent(payload, header, secret, tolerance) {\n    this.signature.verifyHeader(\n      payload,\n      header,\n      secret,\n      tolerance || Webhook.DEFAULT_TOLERANCE\n    );\n\n    const jsonPayload = JSON.parse(payload);\n    return jsonPayload;\n  },\n\n  /**\n   * Generates a header to be used for webhook mocking\n   *\n   * @typedef {object} opts\n   * @property {number} timestamp - Timestamp of the header. Defaults to Date.now()\n   * @property {string} payload - JSON stringified payload object, containing the 'id' and 'object' parameters\n   * @property {string} secret - Stripe webhook secret 'whsec_...'\n   * @property {string} scheme - Version of API to hit. Defaults to 'v1'.\n   * @property {string} signature - Computed webhook signature\n   */\n  generateTestHeaderString: function(opts) {\n    if (!opts) {\n      throw new StripeError({\n        message: 'Options are required',\n      });\n    }\n\n    opts.timestamp =\n      Math.floor(opts.timestamp) || Math.floor(Date.now() / 1000);\n    opts.scheme = opts.scheme || signature.EXPECTED_SCHEME;\n\n    opts.signature =\n      opts.signature ||\n      signature._computeSignature(\n        opts.timestamp + '.' + opts.payload,\n        opts.secret\n      );\n\n    const generatedHeader = [\n      't=' + opts.timestamp,\n      opts.scheme + '=' + opts.signature,\n    ].join(',');\n\n    return generatedHeader;\n  },\n};\n\nconst signature = {\n  EXPECTED_SCHEME: 'v1',\n\n  _computeSignature: (payload, secret) => {\n    return crypto\n      .createHmac('sha256', secret)\n      .update(payload, 'utf8')\n      .digest('hex');\n  },\n\n  verifyHeader(payload, header, secret, tolerance) {\n    payload = Buffer.isBuffer(payload) ? payload.toString('utf8') : payload;\n\n    // Express's type for `Request#headers` is `string | []string`\n    // which is because the `set-cookie` header is an array,\n    // but no other headers are an array (docs: https://nodejs.org/api/http.html#http_message_headers)\n    // (Express's Request class is an extension of http.IncomingMessage, and doesn't appear to be relevantly modified: https://github.com/expressjs/express/blob/master/lib/request.js#L31)\n    if (Array.isArray(header)) {\n      throw new Error(\n        'Unexpected: An array was passed as a header, which should not be possible for the stripe-signature header.'\n      );\n    }\n\n    header = Buffer.isBuffer(header) ? header.toString('utf8') : header;\n\n    const details = parseHeader(header, this.EXPECTED_SCHEME);\n\n    if (!details || details.timestamp === -1) {\n      throw new StripeSignatureVerificationError({\n        message: 'Unable to extract timestamp and signatures from header',\n        detail: {\n          header,\n          payload,\n        },\n      });\n    }\n\n    if (!details.signatures.length) {\n      throw new StripeSignatureVerificationError({\n        message: 'No signatures found with expected scheme',\n        detail: {\n          header,\n          payload,\n        },\n      });\n    }\n\n    const expectedSignature = this._computeSignature(\n      `${details.timestamp}.${payload}`,\n      secret\n    );\n\n    const signatureFound = !!details.signatures.filter(\n      utils.secureCompare.bind(utils, expectedSignature)\n    ).length;\n\n    if (!signatureFound) {\n      throw new StripeSignatureVerificationError({\n        message:\n          'No signatures found matching the expected signature for payload.' +\n          ' Are you passing the raw request body you received from Stripe?' +\n          ' https://github.com/stripe/stripe-node#webhook-signing',\n        detail: {\n          header,\n          payload,\n        },\n      });\n    }\n\n    const timestampAge = Math.floor(Date.now() / 1000) - details.timestamp;\n\n    if (tolerance > 0 && timestampAge > tolerance) {\n      throw new StripeSignatureVerificationError({\n        message: 'Timestamp outside the tolerance zone',\n        detail: {\n          header,\n          payload,\n        },\n      });\n    }\n\n    return true;\n  },\n};\n\nfunction parseHeader(header, scheme) {\n  if (typeof header !== 'string') {\n    return null;\n  }\n\n  return header.split(',').reduce(\n    (accum, item) => {\n      const kv = item.split('=');\n\n      if (kv[0] === 't') {\n        accum.timestamp = kv[1];\n      }\n\n      if (kv[0] === scheme) {\n        accum.signatures.push(kv[1]);\n      }\n\n      return accum;\n    },\n    {\n      timestamp: -1,\n      signatures: [],\n    }\n  );\n}\n\nWebhook.signature = signature;\n\nmodule.exports = Webhook;\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/Webhooks.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/autoPagination.js":
+/*!***************************************************!*\
+  !*** ./node_modules/stripe/lib/autoPagination.js ***!
+  \***************************************************/
+/*! default exports */
+/*! export makeAutoPaginationMethods [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: module, __webpack_require__ */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("\n\nconst makeRequest = __webpack_require__(/*! ./makeRequest */ \"./node_modules/stripe/lib/makeRequest.js\");\nconst utils = __webpack_require__(/*! ./utils */ \"./node_modules/stripe/lib/utils.js\");\n\nfunction makeAutoPaginationMethods(self, requestArgs, spec, firstPagePromise) {\n  const promiseCache = {currentPromise: null};\n  const reverseIteration = isReverseIteration(requestArgs);\n  let listPromise = firstPagePromise;\n  let i = 0;\n\n  function iterate(listResult) {\n    if (\n      !(\n        listResult &&\n        listResult.data &&\n        typeof listResult.data.length === 'number'\n      )\n    ) {\n      throw Error(\n        'Unexpected: Stripe API response does not have a well-formed `data` array.'\n      );\n    }\n\n    if (i < listResult.data.length) {\n      const idx = reverseIteration ? listResult.data.length - 1 - i : i;\n      const value = listResult.data[idx];\n      i += 1;\n      return {value, done: false};\n    } else if (listResult.has_more) {\n      // Reset counter, request next page, and recurse.\n      i = 0;\n      const lastId = getLastId(listResult, reverseIteration);\n      listPromise = makeRequest(self, requestArgs, spec, {\n        [reverseIteration ? 'ending_before' : 'starting_after']: lastId,\n      });\n      return listPromise.then(iterate);\n    }\n    return {value: undefined, done: true};\n  }\n\n  function asyncIteratorNext() {\n    return memoizedPromise(promiseCache, (resolve, reject) => {\n      return listPromise\n        .then(iterate)\n        .then(resolve)\n        .catch(reject);\n    });\n  }\n\n  const autoPagingEach = makeAutoPagingEach(asyncIteratorNext);\n  const autoPagingToArray = makeAutoPagingToArray(autoPagingEach);\n\n  const autoPaginationMethods = {\n    autoPagingEach,\n    autoPagingToArray,\n\n    // Async iterator functions:\n    next: asyncIteratorNext,\n    return: () => {\n      // This is required for `break`.\n      return {};\n    },\n    [getAsyncIteratorSymbol()]: () => {\n      return autoPaginationMethods;\n    },\n  };\n  return autoPaginationMethods;\n}\n\nmodule.exports.makeAutoPaginationMethods = makeAutoPaginationMethods;\n\n/**\n * ----------------\n * Private Helpers:\n * ----------------\n */\n\nfunction getAsyncIteratorSymbol() {\n  if (typeof Symbol !== 'undefined' && Symbol.asyncIterator) {\n    return Symbol.asyncIterator;\n  }\n  // Follow the convention from libraries like iterall: https://github.com/leebyron/iterall#asynciterator-1\n  return '@@asyncIterator';\n}\n\nfunction getDoneCallback(args) {\n  if (args.length < 2) {\n    return undefined;\n  }\n  const onDone = args[1];\n  if (typeof onDone !== 'function') {\n    throw Error(\n      `The second argument to autoPagingEach, if present, must be a callback function; received ${typeof onDone}`\n    );\n  }\n  return onDone;\n}\n\n/**\n * We allow four forms of the `onItem` callback (the middle two being equivalent),\n *\n *   1. `.autoPagingEach((item) => { doSomething(item); return false; });`\n *   2. `.autoPagingEach(async (item) => { await doSomething(item); return false; });`\n *   3. `.autoPagingEach((item) => doSomething(item).then(() => false));`\n *   4. `.autoPagingEach((item, next) => { doSomething(item); next(false); });`\n *\n * In addition to standard validation, this helper\n * coalesces the former forms into the latter form.\n */\nfunction getItemCallback(args) {\n  if (args.length === 0) {\n    return undefined;\n  }\n  const onItem = args[0];\n  if (typeof onItem !== 'function') {\n    throw Error(\n      `The first argument to autoPagingEach, if present, must be a callback function; received ${typeof onItem}`\n    );\n  }\n\n  // 4. `.autoPagingEach((item, next) => { doSomething(item); next(false); });`\n  if (onItem.length === 2) {\n    return onItem;\n  }\n\n  if (onItem.length > 2) {\n    throw Error(\n      `The \\`onItem\\` callback function passed to autoPagingEach must accept at most two arguments; got ${onItem}`\n    );\n  }\n\n  // This magically handles all three of these usecases (the latter two being functionally identical):\n  // 1. `.autoPagingEach((item) => { doSomething(item); return false; });`\n  // 2. `.autoPagingEach(async (item) => { await doSomething(item); return false; });`\n  // 3. `.autoPagingEach((item) => doSomething(item).then(() => false));`\n  return function _onItem(item, next) {\n    const shouldContinue = onItem(item);\n    next(shouldContinue);\n  };\n}\n\nfunction getLastId(listResult, reverseIteration) {\n  const lastIdx = reverseIteration ? 0 : listResult.data.length - 1;\n  const lastItem = listResult.data[lastIdx];\n  const lastId = lastItem && lastItem.id;\n  if (!lastId) {\n    throw Error(\n      'Unexpected: No `id` found on the last item while auto-paging a list.'\n    );\n  }\n  return lastId;\n}\n\n/**\n * If a user calls `.next()` multiple times in parallel,\n * return the same result until something has resolved\n * to prevent page-turning race conditions.\n */\nfunction memoizedPromise(promiseCache, cb) {\n  if (promiseCache.currentPromise) {\n    return promiseCache.currentPromise;\n  }\n  promiseCache.currentPromise = new Promise(cb).then((ret) => {\n    promiseCache.currentPromise = undefined;\n    return ret;\n  });\n  return promiseCache.currentPromise;\n}\n\nfunction makeAutoPagingEach(asyncIteratorNext) {\n  return function autoPagingEach(/* onItem?, onDone? */) {\n    const args = [].slice.call(arguments);\n    const onItem = getItemCallback(args);\n    const onDone = getDoneCallback(args);\n    if (args.length > 2) {\n      throw Error('autoPagingEach takes up to two arguments; received:', args);\n    }\n\n    const autoPagePromise = wrapAsyncIteratorWithCallback(\n      asyncIteratorNext,\n      onItem\n    );\n    return utils.callbackifyPromiseWithTimeout(autoPagePromise, onDone);\n  };\n}\n\nfunction makeAutoPagingToArray(autoPagingEach) {\n  return function autoPagingToArray(opts, onDone) {\n    const limit = opts && opts.limit;\n    if (!limit) {\n      throw Error(\n        'You must pass a `limit` option to autoPagingToArray, e.g., `autoPagingToArray({limit: 1000});`.'\n      );\n    }\n    if (limit > 10000) {\n      throw Error(\n        'You cannot specify a limit of more than 10,000 items to fetch in `autoPagingToArray`; use `autoPagingEach` to iterate through longer lists.'\n      );\n    }\n    const promise = new Promise((resolve, reject) => {\n      const items = [];\n      autoPagingEach((item) => {\n        items.push(item);\n        if (items.length >= limit) {\n          return false;\n        }\n      })\n        .then(() => {\n          resolve(items);\n        })\n        .catch(reject);\n    });\n    return utils.callbackifyPromiseWithTimeout(promise, onDone);\n  };\n}\n\nfunction wrapAsyncIteratorWithCallback(asyncIteratorNext, onItem) {\n  return new Promise((resolve, reject) => {\n    function handleIteration(iterResult) {\n      if (iterResult.done) {\n        resolve();\n        return;\n      }\n\n      const item = iterResult.value;\n      return new Promise((next) => {\n        // Bit confusing, perhaps; we pass a `resolve` fn\n        // to the user, so they can decide when and if to continue.\n        // They can return false, or a promise which resolves to false, to break.\n        onItem(item, next);\n      }).then((shouldContinue) => {\n        if (shouldContinue === false) {\n          return handleIteration({done: true});\n        } else {\n          return asyncIteratorNext().then(handleIteration);\n        }\n      });\n    }\n\n    asyncIteratorNext()\n      .then(handleIteration)\n      .catch(reject);\n  });\n}\n\nfunction isReverseIteration(requestArgs) {\n  const args = [].slice.call(requestArgs);\n  const dataFromArgs = utils.getDataFromArgs(args);\n\n  return !!dataFromArgs.ending_before;\n}\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/autoPagination.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/makeRequest.js":
+/*!************************************************!*\
+  !*** ./node_modules/stripe/lib/makeRequest.js ***!
+  \************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 108:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("\n\nconst utils = __webpack_require__(/*! ./utils */ \"./node_modules/stripe/lib/utils.js\");\n\nfunction getRequestOpts(self, requestArgs, spec, overrideData) {\n  // Extract spec values with defaults.\n  const commandPath = utils.makeURLInterpolator(spec.path || '');\n  const requestMethod = (spec.method || 'GET').toUpperCase();\n  const urlParams = spec.urlParams || [];\n  const encode = spec.encode || ((data) => data);\n  const host = spec.host;\n  const path = self.createResourcePathWithSymbols(spec.path);\n\n  // Don't mutate args externally.\n  const args = [].slice.call(requestArgs);\n\n  // Generate and validate url params.\n  const urlData = urlParams.reduce((urlData, param) => {\n    const arg = args.shift();\n    if (typeof arg !== 'string') {\n      throw new Error(\n        `Stripe: Argument \"${param}\" must be a string, but got: ${arg} (on API request to \\`${requestMethod} ${path}\\`)`\n      );\n    }\n\n    urlData[param] = arg;\n    return urlData;\n  }, {});\n\n  // Pull request data and options (headers, auth) from args.\n  const dataFromArgs = utils.getDataFromArgs(args);\n  const data = encode(Object.assign({}, dataFromArgs, overrideData));\n  const options = utils.getOptionsFromArgs(args);\n\n  // Validate that there are no more args.\n  if (args.filter((x) => x != null).length) {\n    throw new Error(\n      `Stripe: Unknown arguments (${args}). Did you mean to pass an options object? See https://github.com/stripe/stripe-node/wiki/Passing-Options. (on API request to ${requestMethod} \\`${path}\\`)`\n    );\n  }\n\n  const requestPath = self.createFullPath(commandPath, urlData);\n  const headers = Object.assign(options.headers, spec.headers);\n\n  if (spec.validator) {\n    spec.validator(data, {headers});\n  }\n\n  const dataInQuery = spec.method === 'GET' || spec.method === 'DELETE';\n  const bodyData = dataInQuery ? {} : data;\n  const queryData = dataInQuery ? data : {};\n\n  return {\n    requestMethod,\n    requestPath,\n    bodyData,\n    queryData,\n    auth: options.auth,\n    headers,\n    host,\n    settings: options.settings,\n  };\n}\n\nfunction makeRequest(self, requestArgs, spec, overrideData) {\n  return new Promise((resolve, reject) => {\n    let opts;\n    try {\n      opts = getRequestOpts(self, requestArgs, spec, overrideData);\n    } catch (err) {\n      reject(err);\n      return;\n    }\n\n    function requestCallback(err, response) {\n      if (err) {\n        reject(err);\n      } else {\n        resolve(\n          spec.transformResponseData\n            ? spec.transformResponseData(response)\n            : response\n        );\n      }\n    }\n\n    const emptyQuery = Object.keys(opts.queryData).length === 0;\n    const path = [\n      opts.requestPath,\n      emptyQuery ? '' : '?',\n      utils.stringifyRequestData(opts.queryData),\n    ].join('');\n\n    const {headers, settings} = opts;\n\n    self._request(\n      opts.requestMethod,\n      opts.host,\n      path,\n      opts.bodyData,\n      opts.auth,\n      {headers, settings},\n      requestCallback\n    );\n  });\n}\n\nmodule.exports = makeRequest;\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/makeRequest.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/multipart.js":
+/*!**********************************************!*\
+  !*** ./node_modules/stripe/lib/multipart.js ***!
+  \**********************************************/
+/*! default exports */
+/*! export multipartRequestDataProcessor [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: module, __webpack_require__ */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("\n\nconst utils = __webpack_require__(/*! ./utils */ \"./node_modules/stripe/lib/utils.js\");\nconst {StripeError} = __webpack_require__(/*! ./Error */ \"./node_modules/stripe/lib/Error.js\");\n\nclass StreamProcessingError extends StripeError {}\n\n// Method for formatting HTTP body for the multipart/form-data specification\n// Mostly taken from Fermata.js\n// https://github.com/natevw/fermata/blob/5d9732a33d776ce925013a265935facd1626cc88/fermata.js#L315-L343\nconst multipartDataGenerator = (method, data, headers) => {\n  const segno = (\n    Math.round(Math.random() * 1e16) + Math.round(Math.random() * 1e16)\n  ).toString();\n  headers['Content-Type'] = `multipart/form-data; boundary=${segno}`;\n  let buffer = Buffer.alloc(0);\n\n  function push(l) {\n    const prevBuffer = buffer;\n    const newBuffer = l instanceof Buffer ? l : Buffer.from(l);\n    buffer = Buffer.alloc(prevBuffer.length + newBuffer.length + 2);\n    prevBuffer.copy(buffer);\n    newBuffer.copy(buffer, prevBuffer.length);\n    buffer.write('\\r\\n', buffer.length - 2);\n  }\n\n  function q(s) {\n    return `\"${s.replace(/\"|\"/g, '%22').replace(/\\r\\n|\\r|\\n/g, ' ')}\"`;\n  }\n\n  const flattenedData = utils.flattenAndStringify(data);\n\n  for (const k in flattenedData) {\n    const v = flattenedData[k];\n    push(`--${segno}`);\n    if (v.hasOwnProperty('data')) {\n      push(\n        `Content-Disposition: form-data; name=${q(k)}; filename=${q(\n          v.name || 'blob'\n        )}`\n      );\n      push(`Content-Type: ${v.type || 'application/octet-stream'}`);\n      push('');\n      push(v.data);\n    } else {\n      push(`Content-Disposition: form-data; name=${q(k)}`);\n      push('');\n      push(v);\n    }\n  }\n  push(`--${segno}--`);\n\n  return buffer;\n};\n\nconst streamProcessor = (method, data, headers, callback) => {\n  const bufferArray = [];\n  data.file.data\n    .on('data', (line) => {\n      bufferArray.push(line);\n    })\n    .once('end', () => {\n      const bufferData = Object.assign({}, data);\n      bufferData.file.data = Buffer.concat(bufferArray);\n      const buffer = multipartDataGenerator(method, bufferData, headers);\n      callback(null, buffer);\n    })\n    .on('error', (err) => {\n      callback(\n        new StreamProcessingError({\n          message:\n            'An error occurred while attempting to process the file for upload.',\n          detail: err,\n        }),\n        null\n      );\n    });\n};\n\nconst multipartRequestDataProcessor = (method, data, headers, callback) => {\n  data = data || {};\n\n  if (method !== 'POST') {\n    return callback(null, utils.stringifyRequestData(data));\n  }\n\n  const isStream = utils.checkForStream(data);\n  if (isStream) {\n    return streamProcessor(method, data, headers, callback);\n  }\n\n  const buffer = multipartDataGenerator(method, data, headers);\n  return callback(null, buffer);\n};\n\nmodule.exports.multipartRequestDataProcessor = multipartRequestDataProcessor;\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/multipart.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources.js":
+/*!**********************************************!*\
+  !*** ./node_modules/stripe/lib/resources.js ***!
+  \**********************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 7:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst resourceNamespace = __webpack_require__(/*! ./ResourceNamespace */ \"./node_modules/stripe/lib/ResourceNamespace.js\");\n\nmodule.exports = {\n  Accounts: __webpack_require__(/*! ./resources/Accounts */ \"./node_modules/stripe/lib/resources/Accounts.js\"),\n  // Support Accounts for consistency, Account for backwards compatibility\n  Account: __webpack_require__(/*! ./resources/Accounts */ \"./node_modules/stripe/lib/resources/Accounts.js\"),\n  AccountLinks: __webpack_require__(/*! ./resources/AccountLinks */ \"./node_modules/stripe/lib/resources/AccountLinks.js\"),\n  ApplePayDomains: __webpack_require__(/*! ./resources/ApplePayDomains */ \"./node_modules/stripe/lib/resources/ApplePayDomains.js\"),\n  ApplicationFees: __webpack_require__(/*! ./resources/ApplicationFees */ \"./node_modules/stripe/lib/resources/ApplicationFees.js\"),\n  Balance: __webpack_require__(/*! ./resources/Balance */ \"./node_modules/stripe/lib/resources/Balance.js\"),\n  BalanceTransactions: __webpack_require__(/*! ./resources/BalanceTransactions */ \"./node_modules/stripe/lib/resources/BalanceTransactions.js\"),\n  Charges: __webpack_require__(/*! ./resources/Charges */ \"./node_modules/stripe/lib/resources/Charges.js\"),\n  CountrySpecs: __webpack_require__(/*! ./resources/CountrySpecs */ \"./node_modules/stripe/lib/resources/CountrySpecs.js\"),\n  Coupons: __webpack_require__(/*! ./resources/Coupons */ \"./node_modules/stripe/lib/resources/Coupons.js\"),\n  CreditNotes: __webpack_require__(/*! ./resources/CreditNotes */ \"./node_modules/stripe/lib/resources/CreditNotes.js\"),\n  Customers: __webpack_require__(/*! ./resources/Customers */ \"./node_modules/stripe/lib/resources/Customers.js\"),\n  Disputes: __webpack_require__(/*! ./resources/Disputes */ \"./node_modules/stripe/lib/resources/Disputes.js\"),\n  EphemeralKeys: __webpack_require__(/*! ./resources/EphemeralKeys */ \"./node_modules/stripe/lib/resources/EphemeralKeys.js\"),\n  Events: __webpack_require__(/*! ./resources/Events */ \"./node_modules/stripe/lib/resources/Events.js\"),\n  ExchangeRates: __webpack_require__(/*! ./resources/ExchangeRates */ \"./node_modules/stripe/lib/resources/ExchangeRates.js\"),\n  Files: __webpack_require__(/*! ./resources/Files */ \"./node_modules/stripe/lib/resources/Files.js\"),\n  FileLinks: __webpack_require__(/*! ./resources/FileLinks */ \"./node_modules/stripe/lib/resources/FileLinks.js\"),\n  Invoices: __webpack_require__(/*! ./resources/Invoices */ \"./node_modules/stripe/lib/resources/Invoices.js\"),\n  InvoiceItems: __webpack_require__(/*! ./resources/InvoiceItems */ \"./node_modules/stripe/lib/resources/InvoiceItems.js\"),\n  IssuerFraudRecords: __webpack_require__(/*! ./resources/IssuerFraudRecords */ \"./node_modules/stripe/lib/resources/IssuerFraudRecords.js\"),\n  Mandates: __webpack_require__(/*! ./resources/Mandates */ \"./node_modules/stripe/lib/resources/Mandates.js\"),\n  OAuth: __webpack_require__(/*! ./resources/OAuth */ \"./node_modules/stripe/lib/resources/OAuth.js\"),\n  Orders: __webpack_require__(/*! ./resources/Orders */ \"./node_modules/stripe/lib/resources/Orders.js\"),\n  OrderReturns: __webpack_require__(/*! ./resources/OrderReturns */ \"./node_modules/stripe/lib/resources/OrderReturns.js\"),\n  PaymentIntents: __webpack_require__(/*! ./resources/PaymentIntents */ \"./node_modules/stripe/lib/resources/PaymentIntents.js\"),\n  PaymentMethods: __webpack_require__(/*! ./resources/PaymentMethods */ \"./node_modules/stripe/lib/resources/PaymentMethods.js\"),\n  Payouts: __webpack_require__(/*! ./resources/Payouts */ \"./node_modules/stripe/lib/resources/Payouts.js\"),\n  Plans: __webpack_require__(/*! ./resources/Plans */ \"./node_modules/stripe/lib/resources/Plans.js\"),\n  Prices: __webpack_require__(/*! ./resources/Prices */ \"./node_modules/stripe/lib/resources/Prices.js\"),\n  Products: __webpack_require__(/*! ./resources/Products */ \"./node_modules/stripe/lib/resources/Products.js\"),\n  PromotionCodes: __webpack_require__(/*! ./resources/PromotionCodes */ \"./node_modules/stripe/lib/resources/PromotionCodes.js\"),\n  Refunds: __webpack_require__(/*! ./resources/Refunds */ \"./node_modules/stripe/lib/resources/Refunds.js\"),\n  Reviews: __webpack_require__(/*! ./resources/Reviews */ \"./node_modules/stripe/lib/resources/Reviews.js\"),\n  SetupAttempts: __webpack_require__(/*! ./resources/SetupAttempts */ \"./node_modules/stripe/lib/resources/SetupAttempts.js\"),\n  SetupIntents: __webpack_require__(/*! ./resources/SetupIntents */ \"./node_modules/stripe/lib/resources/SetupIntents.js\"),\n  Skus: __webpack_require__(/*! ./resources/SKUs */ \"./node_modules/stripe/lib/resources/SKUs.js\"),\n  Sources: __webpack_require__(/*! ./resources/Sources */ \"./node_modules/stripe/lib/resources/Sources.js\"),\n  Subscriptions: __webpack_require__(/*! ./resources/Subscriptions */ \"./node_modules/stripe/lib/resources/Subscriptions.js\"),\n  SubscriptionItems: __webpack_require__(/*! ./resources/SubscriptionItems */ \"./node_modules/stripe/lib/resources/SubscriptionItems.js\"),\n  SubscriptionSchedules: __webpack_require__(/*! ./resources/SubscriptionSchedules */ \"./node_modules/stripe/lib/resources/SubscriptionSchedules.js\"),\n  TaxRates: __webpack_require__(/*! ./resources/TaxRates */ \"./node_modules/stripe/lib/resources/TaxRates.js\"),\n  Tokens: __webpack_require__(/*! ./resources/Tokens */ \"./node_modules/stripe/lib/resources/Tokens.js\"),\n  Topups: __webpack_require__(/*! ./resources/Topups */ \"./node_modules/stripe/lib/resources/Topups.js\"),\n  Transfers: __webpack_require__(/*! ./resources/Transfers */ \"./node_modules/stripe/lib/resources/Transfers.js\"),\n  WebhookEndpoints: __webpack_require__(/*! ./resources/WebhookEndpoints */ \"./node_modules/stripe/lib/resources/WebhookEndpoints.js\"),\n  BillingPortal: resourceNamespace('billingPortal', {\n    Sessions: __webpack_require__(/*! ./resources/BillingPortal/Sessions */ \"./node_modules/stripe/lib/resources/BillingPortal/Sessions.js\"),\n  }),\n  Checkout: resourceNamespace('checkout', {\n    Sessions: __webpack_require__(/*! ./resources/Checkout/Sessions */ \"./node_modules/stripe/lib/resources/Checkout/Sessions.js\"),\n  }),\n  Issuing: resourceNamespace('issuing', {\n    Authorizations: __webpack_require__(/*! ./resources/Issuing/Authorizations */ \"./node_modules/stripe/lib/resources/Issuing/Authorizations.js\"),\n    Cards: __webpack_require__(/*! ./resources/Issuing/Cards */ \"./node_modules/stripe/lib/resources/Issuing/Cards.js\"),\n    Cardholders: __webpack_require__(/*! ./resources/Issuing/Cardholders */ \"./node_modules/stripe/lib/resources/Issuing/Cardholders.js\"),\n    Disputes: __webpack_require__(/*! ./resources/Issuing/Disputes */ \"./node_modules/stripe/lib/resources/Issuing/Disputes.js\"),\n    Transactions: __webpack_require__(/*! ./resources/Issuing/Transactions */ \"./node_modules/stripe/lib/resources/Issuing/Transactions.js\"),\n  }),\n  Radar: resourceNamespace('radar', {\n    EarlyFraudWarnings: __webpack_require__(/*! ./resources/Radar/EarlyFraudWarnings */ \"./node_modules/stripe/lib/resources/Radar/EarlyFraudWarnings.js\"),\n    ValueLists: __webpack_require__(/*! ./resources/Radar/ValueLists */ \"./node_modules/stripe/lib/resources/Radar/ValueLists.js\"),\n    ValueListItems: __webpack_require__(/*! ./resources/Radar/ValueListItems */ \"./node_modules/stripe/lib/resources/Radar/ValueListItems.js\"),\n  }),\n  Reporting: resourceNamespace('reporting', {\n    ReportRuns: __webpack_require__(/*! ./resources/Reporting/ReportRuns */ \"./node_modules/stripe/lib/resources/Reporting/ReportRuns.js\"),\n    ReportTypes: __webpack_require__(/*! ./resources/Reporting/ReportTypes */ \"./node_modules/stripe/lib/resources/Reporting/ReportTypes.js\"),\n  }),\n  Sigma: resourceNamespace('sigma', {\n    ScheduledQueryRuns: __webpack_require__(/*! ./resources/Sigma/ScheduledQueryRuns */ \"./node_modules/stripe/lib/resources/Sigma/ScheduledQueryRuns.js\"),\n  }),\n  Terminal: resourceNamespace('terminal', {\n    ConnectionTokens: __webpack_require__(/*! ./resources/Terminal/ConnectionTokens */ \"./node_modules/stripe/lib/resources/Terminal/ConnectionTokens.js\"),\n    Locations: __webpack_require__(/*! ./resources/Terminal/Locations */ \"./node_modules/stripe/lib/resources/Terminal/Locations.js\"),\n    Readers: __webpack_require__(/*! ./resources/Terminal/Readers */ \"./node_modules/stripe/lib/resources/Terminal/Readers.js\"),\n  }),\n};\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/AccountLinks.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/AccountLinks.js ***!
+  \***********************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 7:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\n\nmodule.exports = StripeResource.extend({\n  path: 'account_links',\n\n  includeBasic: ['create'],\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/AccountLinks.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/Accounts.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/Accounts.js ***!
+  \*******************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 9:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\nconst stripeMethod = StripeResource.method;\n\n// Since path can either be `account` or `accounts`, support both through stripeMethod path;\nmodule.exports = StripeResource.extend({\n  path: '',\n\n  create: stripeMethod({\n    method: 'POST',\n    path: 'accounts',\n  }),\n\n  retrieve(id) {\n    // No longer allow an api key to be passed as the first string to this function due to ambiguity between\n    // old account ids and api keys. To request the account for an api key, send null as the id\n    if (typeof id === 'string') {\n      return stripeMethod({\n        method: 'GET',\n        path: 'accounts/{id}',\n      }).apply(this, arguments);\n    } else {\n      if (id === null || id === undefined) {\n        // Remove id as stripeMethod would complain of unexpected argument\n        [].shift.apply(arguments);\n      }\n      return stripeMethod({\n        method: 'GET',\n        path: 'account',\n      }).apply(this, arguments);\n    }\n  },\n\n  update: stripeMethod({\n    method: 'POST',\n    path: 'accounts/{account}',\n  }),\n\n  list: stripeMethod({\n    method: 'GET',\n    path: 'accounts',\n    methodType: 'list',\n  }),\n\n  del: stripeMethod({\n    method: 'DELETE',\n    path: 'accounts/{account}',\n  }),\n\n  reject: stripeMethod({\n    method: 'POST',\n    path: 'accounts/{account}/reject',\n  }),\n\n  retrieveCapability: stripeMethod({\n    method: 'GET',\n    path: 'accounts/{account}/capabilities/{capability}',\n  }),\n\n  updateCapability: stripeMethod({\n    method: 'POST',\n    path: 'accounts/{account}/capabilities/{capability}',\n  }),\n\n  listCapabilities: stripeMethod({\n    method: 'GET',\n    path: 'accounts/{account}/capabilities',\n    methodType: 'list',\n  }),\n\n  createExternalAccount: stripeMethod({\n    method: 'POST',\n    path: 'accounts/{account}/external_accounts',\n  }),\n\n  retrieveExternalAccount: stripeMethod({\n    method: 'GET',\n    path: 'accounts/{account}/external_accounts/{id}',\n  }),\n\n  updateExternalAccount: stripeMethod({\n    method: 'POST',\n    path: 'accounts/{account}/external_accounts/{id}',\n  }),\n\n  listExternalAccounts: stripeMethod({\n    method: 'GET',\n    path: 'accounts/{account}/external_accounts',\n    methodType: 'list',\n  }),\n\n  deleteExternalAccount: stripeMethod({\n    method: 'DELETE',\n    path: 'accounts/{account}/external_accounts/{id}',\n  }),\n\n  createLoginLink: stripeMethod({\n    method: 'POST',\n    path: 'accounts/{account}/login_links',\n  }),\n\n  createPerson: stripeMethod({\n    method: 'POST',\n    path: 'accounts/{account}/persons',\n  }),\n\n  retrievePerson: stripeMethod({\n    method: 'GET',\n    path: 'accounts/{account}/persons/{person}',\n  }),\n\n  updatePerson: stripeMethod({\n    method: 'POST',\n    path: 'accounts/{account}/persons/{person}',\n  }),\n\n  listPersons: stripeMethod({\n    method: 'GET',\n    path: 'accounts/{account}/persons',\n    methodType: 'list',\n  }),\n\n  deletePerson: stripeMethod({\n    method: 'DELETE',\n    path: 'accounts/{account}/persons/{person}',\n  }),\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/Accounts.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/ApplePayDomains.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/ApplePayDomains.js ***!
+  \**************************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 7:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\n\nmodule.exports = StripeResource.extend({\n  path: 'apple_pay/domains',\n\n  includeBasic: ['create', 'retrieve', 'list', 'del'],\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/ApplePayDomains.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/ApplicationFees.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/ApplicationFees.js ***!
+  \**************************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 8:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\nconst stripeMethod = StripeResource.method;\n\nmodule.exports = StripeResource.extend({\n  path: 'application_fees',\n\n  includeBasic: ['retrieve', 'list'],\n\n  createRefund: stripeMethod({\n    method: 'POST',\n    path: '/{id}/refunds',\n  }),\n\n  retrieveRefund: stripeMethod({\n    method: 'GET',\n    path: '/{fee}/refunds/{id}',\n  }),\n\n  updateRefund: stripeMethod({\n    method: 'POST',\n    path: '/{fee}/refunds/{id}',\n  }),\n\n  listRefunds: stripeMethod({\n    method: 'GET',\n    path: '/{id}/refunds',\n    methodType: 'list',\n  }),\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/ApplicationFees.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/Balance.js":
+/*!******************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/Balance.js ***!
+  \******************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 8:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\nconst stripeMethod = StripeResource.method;\n\nmodule.exports = StripeResource.extend({\n  path: 'balance',\n\n  retrieve: stripeMethod({\n    method: 'GET',\n    path: '',\n  }),\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/Balance.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/BalanceTransactions.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/BalanceTransactions.js ***!
+  \******************************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 7:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\n\nmodule.exports = StripeResource.extend({\n  path: 'balance_transactions',\n\n  includeBasic: ['retrieve', 'list'],\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/BalanceTransactions.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/BillingPortal/Sessions.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/BillingPortal/Sessions.js ***!
+  \*********************************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 7:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\n\nmodule.exports = StripeResource.extend({\n  path: 'billing_portal/sessions',\n\n  includeBasic: ['create'],\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/BillingPortal/Sessions.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/Charges.js":
+/*!******************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/Charges.js ***!
+  \******************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 8:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\nconst stripeMethod = StripeResource.method;\n\nmodule.exports = StripeResource.extend({\n  path: 'charges',\n\n  includeBasic: ['create', 'retrieve', 'update', 'list'],\n\n  capture: stripeMethod({\n    method: 'POST',\n    path: '/{charge}/capture',\n  }),\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/Charges.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/Checkout/Sessions.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/Checkout/Sessions.js ***!
+  \****************************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 8:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\nconst stripeMethod = StripeResource.method;\n\nmodule.exports = StripeResource.extend({\n  path: 'checkout/sessions',\n\n  includeBasic: ['create', 'retrieve', 'list'],\n\n  listLineItems: stripeMethod({\n    method: 'GET',\n    path: '/{session}/line_items',\n    methodType: 'list',\n  }),\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/Checkout/Sessions.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/CountrySpecs.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/CountrySpecs.js ***!
+  \***********************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 7:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\n\nmodule.exports = StripeResource.extend({\n  path: 'country_specs',\n\n  includeBasic: ['retrieve', 'list'],\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/CountrySpecs.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/Coupons.js":
+/*!******************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/Coupons.js ***!
+  \******************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 7:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\n\nmodule.exports = StripeResource.extend({\n  path: 'coupons',\n\n  includeBasic: ['create', 'retrieve', 'update', 'list', 'del'],\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/Coupons.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/CreditNotes.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/CreditNotes.js ***!
+  \**********************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 8:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\nconst stripeMethod = StripeResource.method;\n\nmodule.exports = StripeResource.extend({\n  path: 'credit_notes',\n\n  includeBasic: ['create', 'retrieve', 'update', 'list'],\n\n  preview: stripeMethod({\n    method: 'GET',\n    path: '/preview',\n  }),\n\n  voidCreditNote: stripeMethod({\n    method: 'POST',\n    path: '/{id}/void',\n  }),\n\n  listLineItems: stripeMethod({\n    method: 'GET',\n    path: '/{creditNote}/lines',\n    methodType: 'list',\n  }),\n\n  listPreviewLineItems: stripeMethod({\n    method: 'GET',\n    path: '/preview/lines',\n    methodType: 'list',\n  }),\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/CreditNotes.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/Customers.js":
+/*!********************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/Customers.js ***!
+  \********************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 8:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\nconst stripeMethod = StripeResource.method;\n\nmodule.exports = StripeResource.extend({\n  path: 'customers',\n\n  includeBasic: ['create', 'retrieve', 'update', 'list', 'del'],\n\n  deleteDiscount: stripeMethod({\n    method: 'DELETE',\n    path: '/{customer}/discount',\n  }),\n\n  createBalanceTransaction: stripeMethod({\n    method: 'POST',\n    path: '/{customer}/balance_transactions',\n  }),\n\n  retrieveBalanceTransaction: stripeMethod({\n    method: 'GET',\n    path: '/{customer}/balance_transactions/{transaction}',\n  }),\n\n  updateBalanceTransaction: stripeMethod({\n    method: 'POST',\n    path: '/{customer}/balance_transactions/{transaction}',\n  }),\n\n  listBalanceTransactions: stripeMethod({\n    method: 'GET',\n    path: '/{customer}/balance_transactions',\n    methodType: 'list',\n  }),\n\n  createSource: stripeMethod({\n    method: 'POST',\n    path: '/{customer}/sources',\n  }),\n\n  retrieveSource: stripeMethod({\n    method: 'GET',\n    path: '/{customer}/sources/{id}',\n  }),\n\n  updateSource: stripeMethod({\n    method: 'POST',\n    path: '/{customer}/sources/{id}',\n  }),\n\n  listSources: stripeMethod({\n    method: 'GET',\n    path: '/{customer}/sources',\n    methodType: 'list',\n  }),\n\n  deleteSource: stripeMethod({\n    method: 'DELETE',\n    path: '/{customer}/sources/{id}',\n  }),\n\n  verifySource: stripeMethod({\n    method: 'POST',\n    path: '/{customer}/sources/{id}/verify',\n  }),\n\n  createTaxId: stripeMethod({\n    method: 'POST',\n    path: '/{customer}/tax_ids',\n  }),\n\n  retrieveTaxId: stripeMethod({\n    method: 'GET',\n    path: '/{customer}/tax_ids/{id}',\n  }),\n\n  listTaxIds: stripeMethod({\n    method: 'GET',\n    path: '/{customer}/tax_ids',\n    methodType: 'list',\n  }),\n\n  deleteTaxId: stripeMethod({\n    method: 'DELETE',\n    path: '/{customer}/tax_ids/{id}',\n  }),\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/Customers.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/Disputes.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/Disputes.js ***!
+  \*******************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 8:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\nconst stripeMethod = StripeResource.method;\n\nmodule.exports = StripeResource.extend({\n  path: 'disputes',\n\n  includeBasic: ['retrieve', 'update', 'list'],\n\n  close: stripeMethod({\n    method: 'POST',\n    path: '/{dispute}/close',\n  }),\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/Disputes.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/EphemeralKeys.js":
+/*!************************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/EphemeralKeys.js ***!
+  \************************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 8:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\nconst stripeMethod = StripeResource.method;\n\nmodule.exports = StripeResource.extend({\n  path: 'ephemeral_keys',\n\n  includeBasic: ['del'],\n\n  create: stripeMethod({\n    method: 'POST',\n    path: '',\n    validator: (data, options) => {\n      if (!options.headers || !options.headers['Stripe-Version']) {\n        throw new Error(\n          'stripe_version must be specified to create an ephemeral key'\n        );\n      }\n    },\n  }),\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/EphemeralKeys.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/Events.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/Events.js ***!
+  \*****************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 7:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\n\nmodule.exports = StripeResource.extend({\n  path: 'events',\n\n  includeBasic: ['retrieve', 'list'],\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/Events.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/ExchangeRates.js":
+/*!************************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/ExchangeRates.js ***!
+  \************************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 7:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\n\nmodule.exports = StripeResource.extend({\n  path: 'exchange_rates',\n\n  includeBasic: ['retrieve', 'list'],\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/ExchangeRates.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/FileLinks.js":
+/*!********************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/FileLinks.js ***!
+  \********************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 7:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\n\nmodule.exports = StripeResource.extend({\n  path: 'file_links',\n\n  includeBasic: ['create', 'retrieve', 'update', 'list'],\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/FileLinks.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/Files.js":
+/*!****************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/Files.js ***!
+  \****************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 9:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst {multipartRequestDataProcessor} = __webpack_require__(/*! ../multipart */ \"./node_modules/stripe/lib/multipart.js\");\nconst StripeResource = __webpack_require__(/*! ../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\nconst stripeMethod = StripeResource.method;\n\nmodule.exports = StripeResource.extend({\n  path: 'files',\n\n  includeBasic: ['retrieve', 'list'],\n\n  create: stripeMethod({\n    method: 'POST',\n    headers: {\n      'Content-Type': 'multipart/form-data',\n    },\n    host: 'files.stripe.com',\n  }),\n\n  requestDataProcessor: multipartRequestDataProcessor,\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/Files.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/InvoiceItems.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/InvoiceItems.js ***!
+  \***********************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 7:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\n\nmodule.exports = StripeResource.extend({\n  path: 'invoiceitems',\n\n  includeBasic: ['create', 'retrieve', 'update', 'list', 'del'],\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/InvoiceItems.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/Invoices.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/Invoices.js ***!
+  \*******************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 8:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\nconst stripeMethod = StripeResource.method;\n\nmodule.exports = StripeResource.extend({\n  path: 'invoices',\n\n  includeBasic: ['create', 'retrieve', 'update', 'list', 'del'],\n\n  finalizeInvoice: stripeMethod({\n    method: 'POST',\n    path: '/{invoice}/finalize',\n  }),\n\n  markUncollectible: stripeMethod({\n    method: 'POST',\n    path: '/{invoice}/mark_uncollectible',\n  }),\n\n  pay: stripeMethod({\n    method: 'POST',\n    path: '/{invoice}/pay',\n  }),\n\n  retrieveUpcoming: stripeMethod({\n    method: 'GET',\n    path: '/upcoming',\n  }),\n\n  sendInvoice: stripeMethod({\n    method: 'POST',\n    path: '/{invoice}/send',\n  }),\n\n  voidInvoice: stripeMethod({\n    method: 'POST',\n    path: '/{invoice}/void',\n  }),\n\n  listLineItems: stripeMethod({\n    method: 'GET',\n    path: '/{invoice}/lines',\n    methodType: 'list',\n  }),\n\n  listUpcomingLineItems: stripeMethod({\n    method: 'GET',\n    path: '/upcoming/lines',\n    methodType: 'list',\n  }),\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/Invoices.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/IssuerFraudRecords.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/IssuerFraudRecords.js ***!
+  \*****************************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 7:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\n\nmodule.exports = StripeResource.extend({\n  path: 'issuer_fraud_records',\n\n  includeBasic: ['retrieve', 'list'],\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/IssuerFraudRecords.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/Issuing/Authorizations.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/Issuing/Authorizations.js ***!
+  \*********************************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 8:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\nconst stripeMethod = StripeResource.method;\n\nmodule.exports = StripeResource.extend({\n  path: 'issuing/authorizations',\n\n  includeBasic: ['retrieve', 'update', 'list'],\n\n  approve: stripeMethod({\n    method: 'POST',\n    path: '/{authorization}/approve',\n  }),\n\n  decline: stripeMethod({\n    method: 'POST',\n    path: '/{authorization}/decline',\n  }),\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/Issuing/Authorizations.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/Issuing/Cardholders.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/Issuing/Cardholders.js ***!
+  \******************************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 7:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\n\nmodule.exports = StripeResource.extend({\n  path: 'issuing/cardholders',\n\n  includeBasic: ['create', 'retrieve', 'update', 'list'],\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/Issuing/Cardholders.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/Issuing/Cards.js":
+/*!************************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/Issuing/Cards.js ***!
+  \************************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 8:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\nconst stripeMethod = StripeResource.method;\n\nmodule.exports = StripeResource.extend({\n  path: 'issuing/cards',\n\n  includeBasic: ['create', 'retrieve', 'update', 'list'],\n\n  retrieveDetails: stripeMethod({\n    method: 'GET',\n    path: '/{card}/details',\n  }),\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/Issuing/Cards.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/Issuing/Disputes.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/Issuing/Disputes.js ***!
+  \***************************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 8:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\nconst stripeMethod = StripeResource.method;\n\nmodule.exports = StripeResource.extend({\n  path: 'issuing/disputes',\n\n  includeBasic: ['create', 'retrieve', 'update', 'list'],\n\n  submit: stripeMethod({\n    method: 'POST',\n    path: '/{dispute}/submit',\n  }),\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/Issuing/Disputes.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/Issuing/Transactions.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/Issuing/Transactions.js ***!
+  \*******************************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 7:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\n\nmodule.exports = StripeResource.extend({\n  path: 'issuing/transactions',\n\n  includeBasic: ['retrieve', 'update', 'list'],\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/Issuing/Transactions.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/Mandates.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/Mandates.js ***!
+  \*******************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 7:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\n\nmodule.exports = StripeResource.extend({\n  path: 'mandates',\n\n  includeBasic: ['retrieve'],\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/Mandates.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/OAuth.js":
+/*!****************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/OAuth.js ***!
+  \****************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 9:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("\n\nconst StripeResource = __webpack_require__(/*! ../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\nconst stripeMethod = StripeResource.method;\nconst utils = __webpack_require__(/*! ../utils */ \"./node_modules/stripe/lib/utils.js\");\n\nconst oAuthHost = 'connect.stripe.com';\n\nmodule.exports = StripeResource.extend({\n  basePath: '/',\n\n  authorizeUrl(params, options) {\n    params = params || {};\n    options = options || {};\n\n    let path = 'oauth/authorize';\n\n    // For Express accounts, the path changes\n    if (options.express) {\n      path = `express/${path}`;\n    }\n\n    if (!params.response_type) {\n      params.response_type = 'code';\n    }\n\n    if (!params.client_id) {\n      params.client_id = this._stripe.getClientId();\n    }\n\n    if (!params.scope) {\n      params.scope = 'read_write';\n    }\n\n    return `https://${oAuthHost}/${path}?${utils.stringifyRequestData(params)}`;\n  },\n\n  token: stripeMethod({\n    method: 'POST',\n    path: 'oauth/token',\n    host: oAuthHost,\n  }),\n\n  deauthorize(spec) {\n    if (!spec.client_id) {\n      spec.client_id = this._stripe.getClientId();\n    }\n\n    return stripeMethod({\n      method: 'POST',\n      path: 'oauth/deauthorize',\n      host: oAuthHost,\n    }).apply(this, arguments);\n  },\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/OAuth.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/OrderReturns.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/OrderReturns.js ***!
+  \***********************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 7:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\n\nmodule.exports = StripeResource.extend({\n  path: 'order_returns',\n\n  includeBasic: ['retrieve', 'list'],\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/OrderReturns.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/Orders.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/Orders.js ***!
+  \*****************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 8:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\nconst stripeMethod = StripeResource.method;\n\nmodule.exports = StripeResource.extend({\n  path: 'orders',\n\n  includeBasic: ['create', 'retrieve', 'update', 'list'],\n\n  pay: stripeMethod({\n    method: 'POST',\n    path: '/{id}/pay',\n  }),\n\n  returnOrder: stripeMethod({\n    method: 'POST',\n    path: '/{id}/returns',\n  }),\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/Orders.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/PaymentIntents.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/PaymentIntents.js ***!
+  \*************************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 8:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\nconst stripeMethod = StripeResource.method;\n\nmodule.exports = StripeResource.extend({\n  path: 'payment_intents',\n\n  includeBasic: ['create', 'retrieve', 'update', 'list'],\n\n  cancel: stripeMethod({\n    method: 'POST',\n    path: '/{intent}/cancel',\n  }),\n\n  capture: stripeMethod({\n    method: 'POST',\n    path: '/{intent}/capture',\n  }),\n\n  confirm: stripeMethod({\n    method: 'POST',\n    path: '/{intent}/confirm',\n  }),\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/PaymentIntents.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/PaymentMethods.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/PaymentMethods.js ***!
+  \*************************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 8:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\nconst stripeMethod = StripeResource.method;\n\nmodule.exports = StripeResource.extend({\n  path: 'payment_methods',\n\n  includeBasic: ['create', 'retrieve', 'update', 'list'],\n\n  attach: stripeMethod({\n    method: 'POST',\n    path: '/{paymentMethod}/attach',\n  }),\n\n  detach: stripeMethod({\n    method: 'POST',\n    path: '/{paymentMethod}/detach',\n  }),\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/PaymentMethods.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/Payouts.js":
+/*!******************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/Payouts.js ***!
+  \******************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 8:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\nconst stripeMethod = StripeResource.method;\n\nmodule.exports = StripeResource.extend({\n  path: 'payouts',\n\n  includeBasic: ['create', 'retrieve', 'update', 'list'],\n\n  cancel: stripeMethod({\n    method: 'POST',\n    path: '/{payout}/cancel',\n  }),\n\n  reverse: stripeMethod({\n    method: 'POST',\n    path: '/{payout}/reverse',\n  }),\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/Payouts.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/Plans.js":
+/*!****************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/Plans.js ***!
+  \****************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 7:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\n\nmodule.exports = StripeResource.extend({\n  path: 'plans',\n\n  includeBasic: ['create', 'retrieve', 'update', 'list', 'del'],\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/Plans.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/Prices.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/Prices.js ***!
+  \*****************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 7:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\n\nmodule.exports = StripeResource.extend({\n  path: 'prices',\n\n  includeBasic: ['create', 'retrieve', 'update', 'list'],\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/Prices.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/Products.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/Products.js ***!
+  \*******************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 7:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\n\nmodule.exports = StripeResource.extend({\n  path: 'products',\n\n  includeBasic: ['create', 'retrieve', 'update', 'list', 'del'],\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/Products.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/PromotionCodes.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/PromotionCodes.js ***!
+  \*************************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 7:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\n\nmodule.exports = StripeResource.extend({\n  path: 'promotion_codes',\n\n  includeBasic: ['create', 'retrieve', 'update', 'list'],\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/PromotionCodes.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/Radar/EarlyFraudWarnings.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/Radar/EarlyFraudWarnings.js ***!
+  \***********************************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 7:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\n\nmodule.exports = StripeResource.extend({\n  path: 'radar/early_fraud_warnings',\n\n  includeBasic: ['retrieve', 'list'],\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/Radar/EarlyFraudWarnings.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/Radar/ValueListItems.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/Radar/ValueListItems.js ***!
+  \*******************************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 7:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\n\nmodule.exports = StripeResource.extend({\n  path: 'radar/value_list_items',\n\n  includeBasic: ['create', 'retrieve', 'list', 'del'],\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/Radar/ValueListItems.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/Radar/ValueLists.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/Radar/ValueLists.js ***!
+  \***************************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 7:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\n\nmodule.exports = StripeResource.extend({\n  path: 'radar/value_lists',\n\n  includeBasic: ['create', 'retrieve', 'update', 'list', 'del'],\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/Radar/ValueLists.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/Refunds.js":
+/*!******************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/Refunds.js ***!
+  \******************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 7:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\n\nmodule.exports = StripeResource.extend({\n  path: 'refunds',\n\n  includeBasic: ['create', 'retrieve', 'update', 'list'],\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/Refunds.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/Reporting/ReportRuns.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/Reporting/ReportRuns.js ***!
+  \*******************************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 7:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\n\nmodule.exports = StripeResource.extend({\n  path: 'reporting/report_runs',\n\n  includeBasic: ['create', 'retrieve', 'list'],\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/Reporting/ReportRuns.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/Reporting/ReportTypes.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/Reporting/ReportTypes.js ***!
+  \********************************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 7:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\n\nmodule.exports = StripeResource.extend({\n  path: 'reporting/report_types',\n\n  includeBasic: ['retrieve', 'list'],\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/Reporting/ReportTypes.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/Reviews.js":
+/*!******************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/Reviews.js ***!
+  \******************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 8:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\nconst stripeMethod = StripeResource.method;\n\nmodule.exports = StripeResource.extend({\n  path: 'reviews',\n\n  includeBasic: ['retrieve', 'list'],\n\n  approve: stripeMethod({\n    method: 'POST',\n    path: '/{review}/approve',\n  }),\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/Reviews.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/SKUs.js":
+/*!***************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/SKUs.js ***!
+  \***************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 7:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\n\nmodule.exports = StripeResource.extend({\n  path: 'skus',\n\n  includeBasic: ['create', 'retrieve', 'update', 'list', 'del'],\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/SKUs.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/SetupAttempts.js":
+/*!************************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/SetupAttempts.js ***!
+  \************************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 7:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\n\nmodule.exports = StripeResource.extend({\n  path: 'setup_attempts',\n\n  includeBasic: ['list'],\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/SetupAttempts.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/SetupIntents.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/SetupIntents.js ***!
+  \***********************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 8:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\nconst stripeMethod = StripeResource.method;\n\nmodule.exports = StripeResource.extend({\n  path: 'setup_intents',\n\n  includeBasic: ['create', 'retrieve', 'update', 'list'],\n\n  cancel: stripeMethod({\n    method: 'POST',\n    path: '/{intent}/cancel',\n  }),\n\n  confirm: stripeMethod({\n    method: 'POST',\n    path: '/{intent}/confirm',\n  }),\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/SetupIntents.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/Sigma/ScheduledQueryRuns.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/Sigma/ScheduledQueryRuns.js ***!
+  \***********************************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 7:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\n\nmodule.exports = StripeResource.extend({\n  path: 'sigma/scheduled_query_runs',\n\n  includeBasic: ['retrieve', 'list'],\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/Sigma/ScheduledQueryRuns.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/Sources.js":
+/*!******************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/Sources.js ***!
+  \******************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 8:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\nconst stripeMethod = StripeResource.method;\n\nmodule.exports = StripeResource.extend({\n  path: 'sources',\n\n  includeBasic: ['create', 'retrieve', 'update'],\n\n  listSourceTransactions: stripeMethod({\n    method: 'GET',\n    path: '/{source}/source_transactions',\n    methodType: 'list',\n  }),\n\n  verify: stripeMethod({\n    method: 'POST',\n    path: '/{source}/verify',\n  }),\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/Sources.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/SubscriptionItems.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/SubscriptionItems.js ***!
+  \****************************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 8:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\nconst stripeMethod = StripeResource.method;\n\nmodule.exports = StripeResource.extend({\n  path: 'subscription_items',\n\n  includeBasic: ['create', 'retrieve', 'update', 'list', 'del'],\n\n  createUsageRecord: stripeMethod({\n    method: 'POST',\n    path: '/{subscriptionItem}/usage_records',\n  }),\n\n  listUsageRecordSummaries: stripeMethod({\n    method: 'GET',\n    path: '/{subscriptionItem}/usage_record_summaries',\n    methodType: 'list',\n  }),\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/SubscriptionItems.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/SubscriptionSchedules.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/SubscriptionSchedules.js ***!
+  \********************************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 8:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\nconst stripeMethod = StripeResource.method;\n\nmodule.exports = StripeResource.extend({\n  path: 'subscription_schedules',\n\n  includeBasic: ['create', 'retrieve', 'update', 'list'],\n\n  cancel: stripeMethod({\n    method: 'POST',\n    path: '/{schedule}/cancel',\n  }),\n\n  release: stripeMethod({\n    method: 'POST',\n    path: '/{schedule}/release',\n  }),\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/SubscriptionSchedules.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/Subscriptions.js":
+/*!************************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/Subscriptions.js ***!
+  \************************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 8:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\nconst stripeMethod = StripeResource.method;\n\nmodule.exports = StripeResource.extend({\n  path: 'subscriptions',\n\n  includeBasic: ['create', 'retrieve', 'update', 'list', 'del'],\n\n  deleteDiscount: stripeMethod({\n    method: 'DELETE',\n    path: '/{subscriptionExposedId}/discount',\n  }),\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/Subscriptions.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/TaxRates.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/TaxRates.js ***!
+  \*******************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 7:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\n\nmodule.exports = StripeResource.extend({\n  path: 'tax_rates',\n\n  includeBasic: ['create', 'retrieve', 'update', 'list'],\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/TaxRates.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/Terminal/ConnectionTokens.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/Terminal/ConnectionTokens.js ***!
+  \************************************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 7:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\n\nmodule.exports = StripeResource.extend({\n  path: 'terminal/connection_tokens',\n\n  includeBasic: ['create'],\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/Terminal/ConnectionTokens.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/Terminal/Locations.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/Terminal/Locations.js ***!
+  \*****************************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 7:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\n\nmodule.exports = StripeResource.extend({\n  path: 'terminal/locations',\n\n  includeBasic: ['create', 'retrieve', 'update', 'list', 'del'],\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/Terminal/Locations.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/Terminal/Readers.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/Terminal/Readers.js ***!
+  \***************************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 7:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\n\nmodule.exports = StripeResource.extend({\n  path: 'terminal/readers',\n\n  includeBasic: ['create', 'retrieve', 'update', 'list', 'del'],\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/Terminal/Readers.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/Tokens.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/Tokens.js ***!
+  \*****************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 7:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\n\nmodule.exports = StripeResource.extend({\n  path: 'tokens',\n\n  includeBasic: ['create', 'retrieve'],\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/Tokens.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/Topups.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/Topups.js ***!
+  \*****************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 8:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\nconst stripeMethod = StripeResource.method;\n\nmodule.exports = StripeResource.extend({\n  path: 'topups',\n\n  includeBasic: ['create', 'retrieve', 'update', 'list'],\n\n  cancel: stripeMethod({\n    method: 'POST',\n    path: '/{topup}/cancel',\n  }),\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/Topups.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/Transfers.js":
+/*!********************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/Transfers.js ***!
+  \********************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 8:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\nconst stripeMethod = StripeResource.method;\n\nmodule.exports = StripeResource.extend({\n  path: 'transfers',\n\n  includeBasic: ['create', 'retrieve', 'update', 'list'],\n\n  createReversal: stripeMethod({\n    method: 'POST',\n    path: '/{id}/reversals',\n  }),\n\n  retrieveReversal: stripeMethod({\n    method: 'GET',\n    path: '/{transfer}/reversals/{id}',\n  }),\n\n  updateReversal: stripeMethod({\n    method: 'POST',\n    path: '/{transfer}/reversals/{id}',\n  }),\n\n  listReversals: stripeMethod({\n    method: 'GET',\n    path: '/{id}/reversals',\n    methodType: 'list',\n  }),\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/Transfers.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/resources/WebhookEndpoints.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/stripe/lib/resources/WebhookEndpoints.js ***!
+  \***************************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: module, __webpack_require__ */
+/*! CommonJS bailout: module.exports is used directly at 7:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("// File generated from our OpenAPI spec\n\n\n\nconst StripeResource = __webpack_require__(/*! ../StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\n\nmodule.exports = StripeResource.extend({\n  path: 'webhook_endpoints',\n\n  includeBasic: ['create', 'retrieve', 'update', 'list', 'del'],\n});\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/resources/WebhookEndpoints.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/stripe.js":
+/*!*******************************************!*\
+  !*** ./node_modules/stripe/lib/stripe.js ***!
+  \*******************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: __webpack_require__, module */
+/*! CommonJS bailout: module.exports is used directly at 541:0-14 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("\n\nconst resources = __webpack_require__(/*! ./resources */ \"./node_modules/stripe/lib/resources.js\");\n\nconst DEFAULT_HOST = 'api.stripe.com';\nconst DEFAULT_PORT = '443';\nconst DEFAULT_BASE_PATH = '/v1/';\nconst DEFAULT_API_VERSION = null;\n\nconst DEFAULT_TIMEOUT = 80000;\n\nStripe.PACKAGE_VERSION = __webpack_require__(/*! ../package.json */ \"./node_modules/stripe/package.json\").version;\n\nStripe.USER_AGENT = {\n  bindings_version: Stripe.PACKAGE_VERSION,\n  lang: 'node',\n  lang_version: process.version,\n  platform: process.platform,\n  publisher: 'stripe',\n  uname: null,\n  typescript: false,\n};\n\nStripe.USER_AGENT_SERIALIZED = null;\n\nconst MAX_NETWORK_RETRY_DELAY_SEC = 2;\nconst INITIAL_NETWORK_RETRY_DELAY_SEC = 0.5;\n\nconst APP_INFO_PROPERTIES = ['name', 'version', 'url', 'partner_id'];\nconst ALLOWED_CONFIG_PROPERTIES = [\n  'apiVersion',\n  'typescript',\n  'maxNetworkRetries',\n  'httpAgent',\n  'timeout',\n  'host',\n  'port',\n  'protocol',\n  'telemetry',\n  'appInfo',\n];\n\nconst EventEmitter = __webpack_require__(/*! events */ \"./node_modules/events/events.js\").EventEmitter;\nconst utils = __webpack_require__(/*! ./utils */ \"./node_modules/stripe/lib/utils.js\");\nconst {emitWarning} = utils;\n\nStripe.StripeResource = __webpack_require__(/*! ./StripeResource */ \"./node_modules/stripe/lib/StripeResource.js\");\nStripe.resources = resources;\n\nfunction Stripe(key, config = {}) {\n  if (!(this instanceof Stripe)) {\n    return new Stripe(key, config);\n  }\n\n  const props = this._getPropsFromConfig(config);\n\n  Object.defineProperty(this, '_emitter', {\n    value: new EventEmitter(),\n    enumerable: false,\n    configurable: false,\n    writable: false,\n  });\n\n  this.VERSION = Stripe.PACKAGE_VERSION;\n\n  this.on = this._emitter.on.bind(this._emitter);\n  this.once = this._emitter.once.bind(this._emitter);\n  this.off = this._emitter.removeListener.bind(this._emitter);\n\n  if (\n    props.protocol &&\n    props.protocol !== 'https' &&\n    (!props.host || /\\.stripe\\.com$/.test(props.host))\n  ) {\n    throw new Error(\n      'The `https` protocol must be used when sending requests to `*.stripe.com`'\n    );\n  }\n\n  this._api = {\n    auth: null,\n    host: props.host || DEFAULT_HOST,\n    port: props.port || DEFAULT_PORT,\n    protocol: props.protocol || 'https',\n    basePath: DEFAULT_BASE_PATH,\n    version: props.apiVersion || DEFAULT_API_VERSION,\n    timeout: utils.validateInteger('timeout', props.timeout, DEFAULT_TIMEOUT),\n    maxNetworkRetries: utils.validateInteger(\n      'maxNetworkRetries',\n      props.maxNetworkRetries,\n      0\n    ),\n    agent: props.httpAgent || null,\n    dev: false,\n  };\n\n  const typescript = props.typescript || false;\n  if (typescript !== Stripe.USER_AGENT.typescript) {\n    // The mutation here is uncomfortable, but likely fastest;\n    // serializing the user agent involves shelling out to the system,\n    // and given some users may instantiate the library many times without switching between TS and non-TS,\n    // we only want to incur the performance hit when that actually happens.\n    Stripe.USER_AGENT_SERIALIZED = null;\n    Stripe.USER_AGENT.typescript = typescript;\n  }\n\n  if (props.appInfo) {\n    this._setAppInfo(props.appInfo);\n  }\n\n  this._prepResources();\n  this._setApiKey(key);\n\n  this.errors = __webpack_require__(/*! ./Error */ \"./node_modules/stripe/lib/Error.js\");\n  this.webhooks = __webpack_require__(/*! ./Webhooks */ \"./node_modules/stripe/lib/Webhooks.js\");\n\n  this._prevRequestMetrics = [];\n  this._enableTelemetry = props.telemetry !== false;\n\n  // Expose StripeResource on the instance too\n  this.StripeResource = Stripe.StripeResource;\n}\n\nStripe.errors = __webpack_require__(/*! ./Error */ \"./node_modules/stripe/lib/Error.js\");\nStripe.webhooks = __webpack_require__(/*! ./Webhooks */ \"./node_modules/stripe/lib/Webhooks.js\");\n\nStripe.prototype = {\n  /**\n   * @deprecated will be removed in a future major version. Use the config object instead:\n   *\n   * const stripe = new Stripe(API_KEY, {\n   *   host: 'example.com',\n   *   port: '8080',\n   *   protocol: 'http',\n   * });\n   *\n   */\n  setHost(host, port, protocol) {\n    emitWarning(\n      '`setHost` is deprecated. Use the `host` config option instead.'\n    );\n    this._setApiField('host', host);\n    if (port) {\n      this.setPort(port);\n    }\n    if (protocol) {\n      this.setProtocol(protocol);\n    }\n  },\n\n  /**\n   * @deprecated will be removed in a future major version. Use the config object instead:\n   *\n   * const stripe = new Stripe(API_KEY, {\n   *   protocol: 'http',\n   * });\n   *\n   */\n  setProtocol(protocol) {\n    emitWarning(\n      '`setProtocol` is deprecated. Use the `protocol` config option instead.'\n    );\n    this._setApiField('protocol', protocol.toLowerCase());\n  },\n\n  /**\n   * @deprecated will be removed in a future major version. Use the config object instead:\n   *\n   * const stripe = new Stripe(API_KEY, {\n   *   port: 3000,\n   * });\n   *\n   */\n  setPort(port) {\n    emitWarning(\n      '`setPort` is deprecated. Use the `port` config option instead.'\n    );\n    this._setApiField('port', port);\n  },\n\n  /**\n   * @deprecated will be removed in a future major version. Use the config object instead:\n   *\n   * const stripe = new Stripe(API_KEY, {\n   *   apiVersion: API_VERSION,\n   * });\n   *\n   */\n  setApiVersion(version) {\n    emitWarning(\n      '`setApiVersion` is deprecated. Use the `apiVersion` config or request option instead.'\n    );\n    if (version) {\n      this._setApiField('version', version);\n    }\n  },\n\n  /**\n   * @deprecated will be removed in a future major version. Use the config object instead:\n   *\n   * const stripe = new Stripe(API_KEY);\n   *\n   * Or, for Stripe Connect, use `stripeAccount` instead:\n   *\n   * const stripe = new Stripe(API_KEY, {\n   *   stripeAccount: 'acct_...',\n   * });\n   *\n   * Or, to use a different apiKey on a given request:\n   *\n   * stripe.customers.create(params, {apiKey: 'sk_test_...'});\n   */\n  setApiKey(key) {\n    emitWarning(\n      '`setApiKey` is deprecated. Use the `apiKey` request option instead.'\n    );\n    this._setApiKey(key);\n  },\n\n  /**\n   * @private\n   */\n  _setApiKey(key) {\n    if (key) {\n      this._setApiField('auth', `Bearer ${key}`);\n    }\n  },\n\n  /**\n   * @deprecated will be removed in a future major version. Use the config object instead:\n   *\n   * const stripe = new Stripe(API_KEY, {\n   *   timeout: TIMEOUT_MS,\n   * });\n   */\n  setTimeout(timeout) {\n    emitWarning(\n      '`setTimeout` is deprecated. Use the `timeout` config or request option instead.'\n    );\n    this._setApiField('timeout', timeout == null ? DEFAULT_TIMEOUT : timeout);\n  },\n\n  /**\n   * @deprecated will be removed in a future major version. Use the config object instead:\n   *\n   * const stripe = new Stripe(API_KEY, {\n   *   appInfo: {\n   *     name: 'MyPlugin',\n   *     version: '1.4.2',\n   *     url: 'https://myplugin.com',\n   *     partner_id: '1234',\n   *   },\n   * });\n   */\n  setAppInfo(info) {\n    emitWarning(\n      '`setAppInfo` is deprecated. Use the `appInfo` config option instead.'\n    );\n    this._setAppInfo(info);\n  },\n\n  /**\n   * @private\n   * This may be removed in the future.\n   */\n  _setAppInfo(info) {\n    if (info && typeof info !== 'object') {\n      throw new Error('AppInfo must be an object.');\n    }\n\n    if (info && !info.name) {\n      throw new Error('AppInfo.name is required');\n    }\n\n    info = info || {};\n\n    const appInfo = APP_INFO_PROPERTIES.reduce((accum, prop) => {\n      if (typeof info[prop] == 'string') {\n        accum = accum || {};\n\n        accum[prop] = info[prop];\n      }\n\n      return accum;\n    }, undefined);\n\n    // Kill the cached UA string because it may no longer be valid\n    Stripe.USER_AGENT_SERIALIZED = undefined;\n\n    this._appInfo = appInfo;\n  },\n\n  /**\n   * @deprecated will be removed in a future major version. Use the config object instead:\n   *\n   * const ProxyAgent = require('https-proxy-agent');\n   * const stripe = new Stripe(API_KEY, {\n   *   httpAgent: new ProxyAgent(process.env.http_proxy),\n   * });\n   *\n   */\n  setHttpAgent(agent) {\n    emitWarning(\n      '`setHttpAgent` is deprecated. Use the `httpAgent` config option instead.'\n    );\n    this._setApiField('agent', agent);\n  },\n\n  /**\n   * @private\n   * This may be removed in the future.\n   */\n  _setApiField(key, value) {\n    this._api[key] = value;\n  },\n\n  /**\n   * @private\n   * Please open or upvote an issue at github.com/stripe/stripe-node\n   * if you use this, detailing your use-case.\n   *\n   * It may be deprecated and removed in the future.\n   */\n  getApiField(key) {\n    return this._api[key];\n  },\n\n  setClientId(clientId) {\n    this._clientId = clientId;\n  },\n\n  getClientId() {\n    return this._clientId;\n  },\n\n  /**\n   * @private\n   * Please open or upvote an issue at github.com/stripe/stripe-node\n   * if you use this, detailing your use-case.\n   *\n   * It may be deprecated and removed in the future.\n   */\n  getConstant: (c) => {\n    switch (c) {\n      case 'DEFAULT_HOST':\n        return DEFAULT_HOST;\n      case 'DEFAULT_PORT':\n        return DEFAULT_PORT;\n      case 'DEFAULT_BASE_PATH':\n        return DEFAULT_BASE_PATH;\n      case 'DEFAULT_API_VERSION':\n        return DEFAULT_API_VERSION;\n      case 'DEFAULT_TIMEOUT':\n        return DEFAULT_TIMEOUT;\n      case 'MAX_NETWORK_RETRY_DELAY_SEC':\n        return MAX_NETWORK_RETRY_DELAY_SEC;\n      case 'INITIAL_NETWORK_RETRY_DELAY_SEC':\n        return INITIAL_NETWORK_RETRY_DELAY_SEC;\n    }\n    return Stripe[c];\n  },\n\n  getMaxNetworkRetries() {\n    return this.getApiField('maxNetworkRetries');\n  },\n\n  /**\n   * @deprecated will be removed in a future major version. Use the config object instead:\n   *\n   * const stripe = new Stripe(API_KEY, {\n   *   maxNetworkRetries: 2,\n   * });\n   *\n   */\n  setMaxNetworkRetries(maxNetworkRetries) {\n    this._setApiNumberField('maxNetworkRetries', maxNetworkRetries);\n  },\n\n  /**\n   * @private\n   * This may be removed in the future.\n   */\n  _setApiNumberField(prop, n, defaultVal) {\n    const val = utils.validateInteger(prop, n, defaultVal);\n\n    this._setApiField(prop, val);\n  },\n\n  getMaxNetworkRetryDelay() {\n    return MAX_NETWORK_RETRY_DELAY_SEC;\n  },\n\n  getInitialNetworkRetryDelay() {\n    return INITIAL_NETWORK_RETRY_DELAY_SEC;\n  },\n\n  /**\n   * @private\n   * Please open or upvote an issue at github.com/stripe/stripe-node\n   * if you use this, detailing your use-case.\n   *\n   * It may be deprecated and removed in the future.\n   *\n   * Gets a JSON version of a User-Agent and uses a cached version for a slight\n   * speed advantage.\n   */\n  getClientUserAgent(cb) {\n    if (Stripe.USER_AGENT_SERIALIZED) {\n      return cb(Stripe.USER_AGENT_SERIALIZED);\n    }\n    this.getClientUserAgentSeeded(Stripe.USER_AGENT, (cua) => {\n      Stripe.USER_AGENT_SERIALIZED = cua;\n      cb(Stripe.USER_AGENT_SERIALIZED);\n    });\n  },\n\n  /**\n   * @private\n   * Please open or upvote an issue at github.com/stripe/stripe-node\n   * if you use this, detailing your use-case.\n   *\n   * It may be deprecated and removed in the future.\n   *\n   * Gets a JSON version of a User-Agent by encoding a seeded object and\n   * fetching a uname from the system.\n   */\n  getClientUserAgentSeeded(seed, cb) {\n    utils.safeExec('uname -a', (err, uname) => {\n      const userAgent = {};\n      for (const field in seed) {\n        userAgent[field] = encodeURIComponent(seed[field]);\n      }\n\n      // URI-encode in case there are unusual characters in the system's uname.\n      userAgent.uname = encodeURIComponent(uname || 'UNKNOWN');\n\n      if (this._appInfo) {\n        userAgent.application = this._appInfo;\n      }\n\n      cb(JSON.stringify(userAgent));\n    });\n  },\n\n  /**\n   * @private\n   * Please open or upvote an issue at github.com/stripe/stripe-node\n   * if you use this, detailing your use-case.\n   *\n   * It may be deprecated and removed in the future.\n   */\n  getAppInfoAsString() {\n    if (!this._appInfo) {\n      return '';\n    }\n\n    let formatted = this._appInfo.name;\n\n    if (this._appInfo.version) {\n      formatted += `/${this._appInfo.version}`;\n    }\n\n    if (this._appInfo.url) {\n      formatted += ` (${this._appInfo.url})`;\n    }\n\n    return formatted;\n  },\n\n  /**\n   * @deprecated will be removed in a future major version. Use the config object instead:\n   *\n   * const stripe = new Stripe(API_KEY, {\n   *   telemetry: false,\n   * });\n   *\n   */\n  setTelemetryEnabled(enableTelemetry) {\n    emitWarning(\n      '`setTelemetryEnabled` is deprecated. Use the `telemetry` config option instead.'\n    );\n    this._enableTelemetry = enableTelemetry;\n  },\n\n  getTelemetryEnabled() {\n    return this._enableTelemetry;\n  },\n\n  /**\n   * @private\n   * This may be removed in the future.\n   */\n  _prepResources() {\n    for (const name in resources) {\n      this[utils.pascalToCamelCase(name)] = new resources[name](this);\n    }\n  },\n\n  /**\n   * @private\n   * This may be removed in the future.\n   */\n  _getPropsFromConfig(config) {\n    // If config is null or undefined, just bail early with no props\n    if (!config) {\n      return {};\n    }\n\n    // config can be an object or a string\n    const isString = typeof config === 'string';\n    const isObject = config === Object(config) && !Array.isArray(config);\n\n    if (!isObject && !isString) {\n      throw new Error('Config must either be an object or a string');\n    }\n\n    // If config is a string, we assume the old behavior of passing in a string representation of the api version\n    if (isString) {\n      return {\n        apiVersion: config,\n      };\n    }\n\n    // If config is an object, we assume the new behavior and make sure it doesn't contain any unexpected values\n    const values = Object.keys(config).filter(\n      (value) => !ALLOWED_CONFIG_PROPERTIES.includes(value)\n    );\n\n    if (values.length > 0) {\n      throw new Error(\n        `Config object may only contain the following: ${ALLOWED_CONFIG_PROPERTIES.join(\n          ', '\n        )}`\n      );\n    }\n\n    return config;\n  },\n};\n\nmodule.exports = Stripe;\n\n// expose constructor as a named property to enable mocking with Sinon.JS\nmodule.exports.Stripe = Stripe;\n\n// Allow use with the TypeScript compiler without `esModuleInterop`.\n// We may also want to add `Object.defineProperty(exports, \"__esModule\", {value: true});` in the future, so that Babel users will use the `default` version.\nmodule.exports.default = Stripe;\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/stripe.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/lib/utils.js":
+/*!******************************************!*\
+  !*** ./node_modules/stripe/lib/utils.js ***!
+  \******************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: __webpack_require__, module */
+/*! CommonJS bailout: module.exports is used directly at 39:15-29 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+eval("\n\nconst EventEmitter = __webpack_require__(/*! events */ \"./node_modules/events/events.js\").EventEmitter;\nconst qs = __webpack_require__(/*! qs */ \"./node_modules/qs/lib/index.js\");\nconst crypto = __webpack_require__(Object(function webpackMissingModule() { var e = new Error(\"Cannot find module 'crypto'\"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));\n\nconst hasOwn = (obj, prop) => Object.prototype.hasOwnProperty.call(obj, prop);\n\n// Certain sandboxed environments (our known example right now are CloudFlare\n// Workers) may make `child_process` unavailable. Because `exec` isn't critical\n// to the operation of stripe-node, we handle this unavailability gracefully.\nlet exec = null;\ntry {\n  exec = Object(function webpackMissingModule() { var e = new Error(\"Cannot find module 'child_process'\"); e.code = 'MODULE_NOT_FOUND'; throw e; }()).exec;\n} catch (e) {\n  if (e.code !== 'MODULE_NOT_FOUND') {\n    throw e;\n  }\n}\n\nconst OPTIONS_KEYS = [\n  'apiKey',\n  'idempotencyKey',\n  'stripeAccount',\n  'apiVersion',\n  'maxNetworkRetries',\n  'timeout',\n];\n\nconst DEPRECATED_OPTIONS = {\n  api_key: 'apiKey',\n  idempotency_key: 'idempotencyKey',\n  stripe_account: 'stripeAccount',\n  stripe_version: 'apiVersion',\n  stripeVersion: 'apiVersion',\n};\nconst DEPRECATED_OPTIONS_KEYS = Object.keys(DEPRECATED_OPTIONS);\n\nconst utils = (module.exports = {\n  isOptionsHash(o) {\n    return (\n      o &&\n      typeof o === 'object' &&\n      (OPTIONS_KEYS.some((prop) => hasOwn(o, prop)) ||\n        DEPRECATED_OPTIONS_KEYS.some((prop) => hasOwn(o, prop)))\n    );\n  },\n\n  /**\n   * Stringifies an Object, accommodating nested objects\n   * (forming the conventional key 'parent[child]=value')\n   */\n  stringifyRequestData: (data) => {\n    return (\n      qs\n        .stringify(data, {\n          serializeDate: (d) => Math.floor(d.getTime() / 1000),\n        })\n        // Don't use strict form encoding by changing the square bracket control\n        // characters back to their literals. This is fine by the server, and\n        // makes these parameter strings easier to read.\n        .replace(/%5B/g, '[')\n        .replace(/%5D/g, ']')\n    );\n  },\n\n  /**\n   * Outputs a new function with interpolated object property values.\n   * Use like so:\n   *   const fn = makeURLInterpolator('some/url/{param1}/{param2}');\n   *   fn({ param1: 123, param2: 456 }); // => 'some/url/123/456'\n   */\n  makeURLInterpolator: (() => {\n    const rc = {\n      '\\n': '\\\\n',\n      '\"': '\\\\\"',\n      '\\u2028': '\\\\u2028',\n      '\\u2029': '\\\\u2029',\n    };\n    return (str) => {\n      const cleanString = str.replace(/[\"\\n\\r\\u2028\\u2029]/g, ($0) => rc[$0]);\n      return (outputs) => {\n        return cleanString.replace(/\\{([\\s\\S]+?)\\}/g, ($0, $1) =>\n          encodeURIComponent(outputs[$1] || '')\n        );\n      };\n    };\n  })(),\n\n  extractUrlParams: (path) => {\n    const params = path.match(/\\{\\w+\\}/g);\n    if (!params) {\n      return [];\n    }\n\n    return params.map((param) => param.replace(/[{}]/g, ''));\n  },\n\n  /**\n   * Return the data argument from a list of arguments\n   *\n   * @param {object[]} args\n   * @returns {object}\n   */\n  getDataFromArgs(args) {\n    if (!Array.isArray(args) || !args[0] || typeof args[0] !== 'object') {\n      return {};\n    }\n\n    if (!utils.isOptionsHash(args[0])) {\n      return args.shift();\n    }\n\n    const argKeys = Object.keys(args[0]);\n\n    const optionKeysInArgs = argKeys.filter((key) =>\n      OPTIONS_KEYS.includes(key)\n    );\n\n    // In some cases options may be the provided as the first argument.\n    // Here we're detecting a case where there are two distinct arguments\n    // (the first being args and the second options) and with known\n    // option keys in the first so that we can warn the user about it.\n    if (\n      optionKeysInArgs.length > 0 &&\n      optionKeysInArgs.length !== argKeys.length\n    ) {\n      emitWarning(\n        `Options found in arguments (${optionKeysInArgs.join(\n          ', '\n        )}). Did you mean to pass an options object? See https://github.com/stripe/stripe-node/wiki/Passing-Options.`\n      );\n    }\n\n    return {};\n  },\n\n  /**\n   * Return the options hash from a list of arguments\n   */\n  getOptionsFromArgs: (args) => {\n    const opts = {\n      auth: null,\n      headers: {},\n      settings: {},\n    };\n    if (args.length > 0) {\n      const arg = args[args.length - 1];\n      if (typeof arg === 'string') {\n        opts.auth = args.pop();\n      } else if (utils.isOptionsHash(arg)) {\n        const params = {...args.pop()};\n\n        const extraKeys = Object.keys(params).filter(\n          (key) => !OPTIONS_KEYS.includes(key)\n        );\n\n        if (extraKeys.length) {\n          const nonDeprecated = extraKeys.filter((key) => {\n            if (!DEPRECATED_OPTIONS[key]) {\n              return true;\n            }\n            const newParam = DEPRECATED_OPTIONS[key];\n            if (params[newParam]) {\n              throw Error(\n                `Both '${newParam}' and '${key}' were provided; please remove '${key}', which is deprecated.`\n              );\n            }\n            /**\n             * TODO turn this into a hard error in a future major version (once we have fixed our docs).\n             */\n            emitWarning(`'${key}' is deprecated; use '${newParam}' instead.`);\n            params[newParam] = params[key];\n          });\n          if (nonDeprecated.length) {\n            emitWarning(\n              `Invalid options found (${extraKeys.join(', ')}); ignoring.`\n            );\n          }\n        }\n\n        if (params.apiKey) {\n          opts.auth = params.apiKey;\n        }\n        if (params.idempotencyKey) {\n          opts.headers['Idempotency-Key'] = params.idempotencyKey;\n        }\n        if (params.stripeAccount) {\n          opts.headers['Stripe-Account'] = params.stripeAccount;\n        }\n        if (params.apiVersion) {\n          opts.headers['Stripe-Version'] = params.apiVersion;\n        }\n        if (Number.isInteger(params.maxNetworkRetries)) {\n          opts.settings.maxNetworkRetries = params.maxNetworkRetries;\n        }\n        if (Number.isInteger(params.timeout)) {\n          opts.settings.timeout = params.timeout;\n        }\n      }\n    }\n    return opts;\n  },\n\n  /**\n   * Provide simple \"Class\" extension mechanism\n   */\n  protoExtend(sub) {\n    const Super = this;\n    const Constructor = hasOwn(sub, 'constructor')\n      ? sub.constructor\n      : function(...args) {\n          Super.apply(this, args);\n        };\n\n    // This initialization logic is somewhat sensitive to be compatible with\n    // divergent JS implementations like the one found in Qt. See here for more\n    // context:\n    //\n    // https://github.com/stripe/stripe-node/pull/334\n    Object.assign(Constructor, Super);\n    Constructor.prototype = Object.create(Super.prototype);\n    Object.assign(Constructor.prototype, sub);\n\n    return Constructor;\n  },\n\n  /**\n   * Secure compare, from https://github.com/freewil/scmp\n   */\n  secureCompare: (a, b) => {\n    a = Buffer.from(a);\n    b = Buffer.from(b);\n\n    // return early here if buffer lengths are not equal since timingSafeEqual\n    // will throw if buffer lengths are not equal\n    if (a.length !== b.length) {\n      return false;\n    }\n\n    // use crypto.timingSafeEqual if available (since Node.js v6.6.0),\n    // otherwise use our own scmp-internal function.\n    if (crypto.timingSafeEqual) {\n      return crypto.timingSafeEqual(a, b);\n    }\n\n    const len = a.length;\n    let result = 0;\n\n    for (let i = 0; i < len; ++i) {\n      result |= a[i] ^ b[i];\n    }\n    return result === 0;\n  },\n\n  /**\n   * Remove empty values from an object\n   */\n  removeNullish: (obj) => {\n    if (typeof obj !== 'object') {\n      throw new Error('Argument must be an object');\n    }\n\n    return Object.keys(obj).reduce((result, key) => {\n      if (obj[key] != null) {\n        result[key] = obj[key];\n      }\n      return result;\n    }, {});\n  },\n\n  /**\n   * Normalize standard HTTP Headers:\n   * {'foo-bar': 'hi'}\n   * becomes\n   * {'Foo-Bar': 'hi'}\n   */\n  normalizeHeaders: (obj) => {\n    if (!(obj && typeof obj === 'object')) {\n      return obj;\n    }\n\n    return Object.keys(obj).reduce((result, header) => {\n      result[utils.normalizeHeader(header)] = obj[header];\n      return result;\n    }, {});\n  },\n\n  /**\n   * Stolen from https://github.com/marten-de-vries/header-case-normalizer/blob/master/index.js#L36-L41\n   * without the exceptions which are irrelevant to us.\n   */\n  normalizeHeader: (header) => {\n    return header\n      .split('-')\n      .map(\n        (text) => text.charAt(0).toUpperCase() + text.substr(1).toLowerCase()\n      )\n      .join('-');\n  },\n\n  /**\n   * Determine if file data is a derivative of EventEmitter class.\n   * https://nodejs.org/api/events.html#events_events\n   */\n  checkForStream: (obj) => {\n    if (obj.file && obj.file.data) {\n      return obj.file.data instanceof EventEmitter;\n    }\n    return false;\n  },\n\n  callbackifyPromiseWithTimeout: (promise, callback) => {\n    if (callback) {\n      // Ensure callback is called outside of promise stack.\n      return promise.then(\n        (res) => {\n          setTimeout(() => {\n            callback(null, res);\n          }, 0);\n        },\n        (err) => {\n          setTimeout(() => {\n            callback(err, null);\n          }, 0);\n        }\n      );\n    }\n\n    return promise;\n  },\n\n  /**\n   * Allow for special capitalization cases (such as OAuth)\n   */\n  pascalToCamelCase: (name) => {\n    if (name === 'OAuth') {\n      return 'oauth';\n    } else {\n      return name[0].toLowerCase() + name.substring(1);\n    }\n  },\n\n  emitWarning,\n\n  /**\n   * Node's built in `exec` function sometimes throws outright,\n   * and sometimes has a callback with an error,\n   * depending on the type of error.\n   *\n   * This unifies that interface.\n   */\n  safeExec: (cmd, cb) => {\n    // Occurs if we couldn't load the `child_process` module, which might\n    // happen in certain sandboxed environments like a CloudFlare Worker.\n    if (utils._exec === null) {\n      cb(new Error('exec not available'), null);\n      return;\n    }\n\n    try {\n      utils._exec(cmd, cb);\n    } catch (e) {\n      cb(e, null);\n    }\n  },\n\n  // For mocking in tests.\n  _exec: exec,\n\n  isObject: (obj) => {\n    const type = typeof obj;\n    return (type === 'function' || type === 'object') && !!obj;\n  },\n\n  // For use in multipart requests\n  flattenAndStringify: (data) => {\n    const result = {};\n\n    const step = (obj, prevKey) => {\n      Object.keys(obj).forEach((key) => {\n        const value = obj[key];\n\n        const newKey = prevKey ? `${prevKey}[${key}]` : key;\n\n        if (utils.isObject(value)) {\n          if (!Buffer.isBuffer(value) && !value.hasOwnProperty('data')) {\n            // Non-buffer non-file Objects are recursively flattened\n            return step(value, newKey);\n          } else {\n            // Buffers and file objects are stored without modification\n            result[newKey] = value;\n          }\n        } else {\n          // Primitives are converted to strings\n          result[newKey] = String(value);\n        }\n      });\n    };\n\n    step(data);\n\n    return result;\n  },\n\n  /**\n   * https://stackoverflow.com/a/2117523\n   */\n  uuid4: () => {\n    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {\n      const r = (Math.random() * 16) | 0;\n      const v = c === 'x' ? r : (r & 0x3) | 0x8;\n      return v.toString(16);\n    });\n  },\n\n  validateInteger: (name, n, defaultVal) => {\n    if (!Number.isInteger(n)) {\n      if (defaultVal !== undefined) {\n        return defaultVal;\n      } else {\n        throw new Error(`${name} must be an integer`);\n      }\n    }\n\n    return n;\n  },\n});\n\nfunction emitWarning(warning) {\n  if (typeof process.emitWarning !== 'function') {\n    return console.warn(\n      `Stripe: ${warning}`\n    ); /* eslint-disable-line no-console */\n  }\n\n  return process.emitWarning(warning, 'Stripe');\n}\n\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/lib/utils.js?");
+
+/***/ }),
+
+/***/ "./node_modules/stripe/package.json":
+/*!******************************************!*\
+  !*** ./node_modules/stripe/package.json ***!
+  \******************************************/
+/*! default exports */
+/*! export _from [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export _id [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export _inBundle [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export _integrity [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export _location [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export _phantomChildren [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   exports [not provided] [no usage info] */
+/*! export _requested [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export escapedName [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export fetchSpec [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export name [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export raw [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export rawSpec [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export registry [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export saveSpec [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export type [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   other exports [not provided] [no usage info] */
+/*! export _requiredBy [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export 0 [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export 1 [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   other exports [not provided] [no usage info] */
+/*! export _resolved [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export _shasum [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export _spec [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export _where [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export author [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export email [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export name [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export url [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   other exports [not provided] [no usage info] */
+/*! export bugs [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export url [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   other exports [not provided] [no usage info] */
+/*! export bugs: [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export bundleDependencies [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export contributors [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export 0 [provided] [no usage info] [missing usage info prevents renaming] */
+/*!     export email [provided] [no usage info] [missing usage info prevents renaming] */
+/*!     export name [provided] [no usage info] [missing usage info prevents renaming] */
+/*!     export url [provided] [no usage info] [missing usage info prevents renaming] */
+/*!     other exports [not provided] [no usage info] */
+/*!   export 1 [provided] [no usage info] [missing usage info prevents renaming] */
+/*!     export email [provided] [no usage info] [missing usage info prevents renaming] */
+/*!     export name [provided] [no usage info] [missing usage info prevents renaming] */
+/*!     other exports [not provided] [no usage info] */
+/*!   export 2 [provided] [no usage info] [missing usage info prevents renaming] */
+/*!     export email [provided] [no usage info] [missing usage info prevents renaming] */
+/*!     export name [provided] [no usage info] [missing usage info prevents renaming] */
+/*!     other exports [not provided] [no usage info] */
+/*!   export 3 [provided] [no usage info] [missing usage info prevents renaming] */
+/*!     export name [provided] [no usage info] [missing usage info prevents renaming] */
+/*!     other exports [not provided] [no usage info] */
+/*!   other exports [not provided] [no usage info] */
+/*! export dependencies [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export @types/node [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export qs [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   other exports [not provided] [no usage info] */
+/*! export deprecated [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export description [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export devDependencies [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export @typescript-eslint/eslint-plugin [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export @typescript-eslint/parser [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export chai [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export chai-as-promised [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export coveralls [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export eslint [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export eslint-config-prettier [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export eslint-plugin-chai-friendly [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export eslint-plugin-prettier [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export mocha [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export mocha-junit-reporter [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export nock [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export nyc [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export prettier [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export typescript [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   other exports [not provided] [no usage info] */
+/*! export engines [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export node [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   other exports [not provided] [no usage info] */
+/*! export homepage [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export keywords [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export 0 [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export 1 [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export 2 [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export 3 [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   other exports [not provided] [no usage info] */
+/*! export license [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export main [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export name [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export repository [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export type [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export url [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   other exports [not provided] [no usage info] */
+/*! export scripts [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export clean [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export coveralls [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export fix [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export lint [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export mocha [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export mocha-only [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export report [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export test [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   export test-typescript [provided] [no usage info] [missing usage info prevents renaming] */
+/*!   other exports [not provided] [no usage info] */
+/*! export types [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export version [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: module */
+/***/ ((module) => {
+
+"use strict";
+eval("module.exports = JSON.parse(\"{\\\"_from\\\":\\\"stripe@^8.131.1\\\",\\\"_id\\\":\\\"stripe@8.131.1\\\",\\\"_inBundle\\\":false,\\\"_integrity\\\":\\\"sha512-A5rRVO8pykYAHWpIsLcTKru5KQSUoZ5u9stglmP062Wdlrp/fK3Z6jKOn6Phjoi0m75gaXm7QnFF0Kzlg1EXKw==\\\",\\\"_location\\\":\\\"/stripe\\\",\\\"_phantomChildren\\\":{},\\\"_requested\\\":{\\\"type\\\":\\\"range\\\",\\\"registry\\\":true,\\\"raw\\\":\\\"stripe@^8.131.1\\\",\\\"name\\\":\\\"stripe\\\",\\\"escapedName\\\":\\\"stripe\\\",\\\"rawSpec\\\":\\\"^8.131.1\\\",\\\"saveSpec\\\":null,\\\"fetchSpec\\\":\\\"^8.131.1\\\"},\\\"_requiredBy\\\":[\\\"#USER\\\",\\\"/\\\"],\\\"_resolved\\\":\\\"https://registry.npmjs.org/stripe/-/stripe-8.131.1.tgz\\\",\\\"_shasum\\\":\\\"50ac816ba6959ace144002328240e6eaa79e156f\\\",\\\"_spec\\\":\\\"stripe@^8.131.1\\\",\\\"_where\\\":\\\"/Users/tommys/Desktop/Projects/ecommerce-base\\\",\\\"author\\\":{\\\"name\\\":\\\"Stripe\\\",\\\"email\\\":\\\"support@stripe.com\\\",\\\"url\\\":\\\"https://stripe.com/\\\"},\\\"bugs\\\":{\\\"url\\\":\\\"https://github.com/stripe/stripe-node/issues\\\"},\\\"bugs:\\\":\\\"https://github.com/stripe/stripe-node/issues\\\",\\\"bundleDependencies\\\":false,\\\"contributors\\\":[{\\\"name\\\":\\\"Ask Bjørn Hansen\\\",\\\"email\\\":\\\"ask@develooper.com\\\",\\\"url\\\":\\\"http://www.askask.com/\\\"},{\\\"name\\\":\\\"Michelle Bu\\\",\\\"email\\\":\\\"michelle@stripe.com\\\"},{\\\"name\\\":\\\"Alex Sexton\\\",\\\"email\\\":\\\"alex@stripe.com\\\"},{\\\"name\\\":\\\"James Padolsey\\\"}],\\\"dependencies\\\":{\\\"@types/node\\\":\\\">=8.1.0\\\",\\\"qs\\\":\\\"^6.6.0\\\"},\\\"deprecated\\\":false,\\\"description\\\":\\\"Stripe API wrapper\\\",\\\"devDependencies\\\":{\\\"@typescript-eslint/eslint-plugin\\\":\\\"^2.13.0\\\",\\\"@typescript-eslint/parser\\\":\\\"^2.13.0\\\",\\\"chai\\\":\\\"~4.2.0\\\",\\\"chai-as-promised\\\":\\\"~7.1.1\\\",\\\"coveralls\\\":\\\"^3.0.0\\\",\\\"eslint\\\":\\\"^6.8.0\\\",\\\"eslint-config-prettier\\\":\\\"^4.1.0\\\",\\\"eslint-plugin-chai-friendly\\\":\\\"^0.4.0\\\",\\\"eslint-plugin-prettier\\\":\\\"^3.0.1\\\",\\\"mocha\\\":\\\"~6.1.4\\\",\\\"mocha-junit-reporter\\\":\\\"^1.23.1\\\",\\\"nock\\\":\\\"^10.0.6\\\",\\\"nyc\\\":\\\"^14.1.0\\\",\\\"prettier\\\":\\\"^1.16.4\\\",\\\"typescript\\\":\\\"^3.7.2\\\"},\\\"engines\\\":{\\\"node\\\":\\\"^8.1 || >=10.*\\\"},\\\"homepage\\\":\\\"https://github.com/stripe/stripe-node\\\",\\\"keywords\\\":[\\\"stripe\\\",\\\"payment processing\\\",\\\"credit cards\\\",\\\"api\\\"],\\\"license\\\":\\\"MIT\\\",\\\"main\\\":\\\"lib/stripe.js\\\",\\\"name\\\":\\\"stripe\\\",\\\"repository\\\":{\\\"type\\\":\\\"git\\\",\\\"url\\\":\\\"git://github.com/stripe/stripe-node.git\\\"},\\\"scripts\\\":{\\\"clean\\\":\\\"rm -rf ./.nyc_output ./node_modules/.cache ./coverage\\\",\\\"coveralls\\\":\\\"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js\\\",\\\"fix\\\":\\\"yarn lint --fix && ./scripts/updateAPIVersion.js\\\",\\\"lint\\\":\\\"eslint --ext .js,.jsx,.ts .\\\",\\\"mocha\\\":\\\"nyc mocha\\\",\\\"mocha-only\\\":\\\"mocha\\\",\\\"report\\\":\\\"nyc -r text -r lcov report\\\",\\\"test\\\":\\\"yarn lint && yarn test-typescript && yarn mocha\\\",\\\"test-typescript\\\":\\\"tsc --build types/test\\\"},\\\"types\\\":\\\"types/2020-08-27/index.d.ts\\\",\\\"version\\\":\\\"8.131.1\\\"}\");\n\n//# sourceURL=webpack://ecommerce-base/./node_modules/stripe/package.json?");
 
 /***/ }),
 
