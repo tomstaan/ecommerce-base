@@ -9,6 +9,7 @@ import shutil
 import os
 from .stripefile import create_product, get_payment_intents
 import time
+import re
 
 # Product Viewset
 class ProductViewSet(viewsets.ModelViewSet):
@@ -83,6 +84,33 @@ class ProductImageViewSet(viewsets.ModelViewSet):
             relatingProductId.cover_image = self.queryset.filter(image_id=req_image_id)[0].image_name
             relatingProductId.save()
         return HttpResponse({'message': 'Product Image Created'}, status=200)
+    
+    def destroy(self, request, *args, **kwargs):
+        product_id = kwargs['pk']
+        print("Product id = "+product_id)
+        print(request.data)
+        req_image_name = request.data['pictures']['image_name']
+        print("Product name = "+req_image_name)
+        req_image_id = request.data['pictures']['image_id']
+        image = ProductImage.objects.all().get(pk=product_id)
+        print(image)
+        image.delete()
+        # Get correct regex
+        re.sub(r'^.*?/media', './../media', req_image_name)
+        # Delete file
+        if os.path.isfile(req_image_name):
+            os.remove(req_image_name)
+            # Check if directory is empty
+            if len(os.listdir("./../media/product_images/"+req_image_id+"/")) == 0:
+                # If its empty delete directory
+                try:
+                    shutil.rmtree("./../media/product_images/"+req_image_id+"/")
+                except OSError as e:
+                    print("Error Deleting Directory: %s : %s" % ("./../media/product_images/"+req_image_id+"/", e.strerror))
+        else:   
+            print("Error: %s file not found" % req_image_name)
+        return HttpResponse({'message': 'Product Image Deleted'}, status=200)
+
 
 # Get images that relate to a product id
 class ProductImagesViewSet(viewsets.ModelViewSet):

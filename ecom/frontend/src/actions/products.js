@@ -18,13 +18,18 @@ import {
   SET_EDIT_PRODUCT_ID,
   SET_SAVED_PICTURES,
   GET_ALL_PRODUCT_IMAGES,
-  RESET_REDIRECT
+  RESET_REDIRECT,
+  UPDATE_EDIT_PICTURES,
+  UPDATE_EDIT_DISPLAY_PICTURES,
+  UPDATE_EDIT_NEW_PICTURES,
+  EDIT_MODE_SELECT,
+  DELETE_PRODUCT_IMAGE,
 } from "./types.js";
 
 //Get Products
 export const getProducts = () => (dispatch) => {
   axios
-    .get(`http://127.0.0.1:8000/api/products`)
+    .get(`${process.env.REACT_APP_HOST_IP_ADDRESS}/api/products`)
     .then((res) => {
       dispatch({
         type: GET_PRODUCTS,
@@ -37,7 +42,7 @@ export const getProducts = () => (dispatch) => {
 //Delete Products
 export const deleteProducts = (id) => (dispatch) => {
   axios
-    .delete(`http://127.0.0.1:8000/api/products/${id}/`)
+    .delete(`${process.env.REACT_APP_HOST_IP_ADDRESS}/api/products/${id}/`)
     .then((res) => {
       //Message for adding leads
       dispatch(
@@ -54,7 +59,9 @@ export const deleteProducts = (id) => (dispatch) => {
 // Get Product Images using Image_id
 export const getAllProductImages = (productId) => (dispatch) => {
   axios
-    .get(`http://127.0.0.1:8000/api/products/${productId}/images/`)
+    .get(
+      `${process.env.REACT_APP_HOST_IP_ADDRESS}/api/products/${productId}/images/`
+    )
     .then((res) => {
       dispatch({
         type: GET_ALL_PRODUCT_IMAGES,
@@ -64,12 +71,10 @@ export const getAllProductImages = (productId) => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
-
-
 //ADD Category
 export const addProduct = (product) => (dispatch) => {
   axios
-    .post(`http://127.0.0.1:8000/api/products/`, product)
+    .post(`${process.env.REACT_APP_HOST_IP_ADDRESS}/api/products/`, product)
     .then((res) => {
       dispatch({
         type: ADD_PRODUCT,
@@ -82,7 +87,10 @@ export const addProduct = (product) => (dispatch) => {
 //Edit Category
 export const editProduct = (product, id) => (dispatch) => {
   axios
-    .put(`http://127.0.0.1:8000/api/products/${id}/`, product)
+    .put(
+      `${process.env.REACT_APP_HOST_IP_ADDRESS}/api/products/${id}/`,
+      product
+    )
     .then((res) => {
       dispatch({
         type: EDIT_PRODUCT,
@@ -110,16 +118,15 @@ export const setSavedPictures = (pictures) => (dispatch) => {
 
 //Add product images to id of product
 export const addPicsToProd = (picture) => (dispatch) => {
-
-    axios
-      .post(`http://127.0.0.1:8000/api/productimage/`, picture)
-      .then((res) => {
-        dispatch({
-          type: ADD_IMAGE_TO_PRODUCT,
-          payload: res.data,
-        });
-      })
-      .catch((err) => console.log(err));
+  axios
+    .post(`${process.env.REACT_APP_HOST_IP_ADDRESS}/api/productimage/`, picture)
+    .then((res) => {
+      dispatch({
+        type: ADD_IMAGE_TO_PRODUCT,
+        payload: res.data,
+      });
+    })
+    .catch((err) => console.log(err));
 };
 
 // Set the edit product id
@@ -187,4 +194,61 @@ export const filterByUnits = () => (dispatch) => {
   dispatch({
     type: FILTER_UNITS,
   });
+};
+
+// Set the savedProductImages from the edit product
+export const updateSavedEditImages = (pictures) => (dispatch) => {
+  dispatch({
+    type: UPDATE_EDIT_PICTURES,
+    payload: pictures,
+  });
+};
+
+// Set the displayProductImages from the edit product
+export const updateDisplayEditImages = (pictures) => (dispatch) => {
+  dispatch({
+    type: UPDATE_EDIT_DISPLAY_PICTURES,
+    payload: pictures,
+  });
+};
+
+// Set the from the edit product
+export const updateNewEditImages = (pictures) => (dispatch) => {
+  dispatch({
+    type: UPDATE_EDIT_NEW_PICTURES,
+    payload: pictures,
+  });
+};
+
+// Set the mode for editing pictures
+export const selectEditMode = (mode) => (dispatch) => {
+  dispatch({
+    type: EDIT_MODE_SELECT,
+    payload: mode,
+  });
+};
+
+//Delete ProductImage
+export const deleteProductImage = (pictures) => (dispatch) => {
+  axios
+    .delete(
+      `${process.env.REACT_APP_HOST_IP_ADDRESS}/api/productimage/${pictures.id}/`,
+      { 
+        data: { pictures },
+        headers: {
+          "Content-Type": "application/json"
+        }
+     }
+    )
+    .then((res) => {
+      //Message for adding leads
+      dispatch(
+        {
+          type: DELETE_PRODUCT_IMAGE,
+          payload: res.data,
+        },
+        console.log(res)
+      );
+    })
+    .catch((err) => console.log(err));
 };

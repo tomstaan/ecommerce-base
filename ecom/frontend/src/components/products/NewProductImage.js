@@ -8,7 +8,13 @@ import GalleryIcon from "./../style/images/pic.png";
 import AddImageIcon from "./../style/images/addImages.png";
 import TestImage from "./../../../../media/product_images/63c39c97-fe7e-46c4-bf7c-b78750206b23/71EoGntO5bL._SX466_.jpg";
 
-import { updateProductPictures } from "../../actions/products";
+import {
+  updateProductPictures,
+  updateSavedEditImages,
+  updateDisplayEditImages,
+  updateNewEditImages,
+  selectEditMode,
+} from "../../actions/products";
 import { isEmptyObject } from "jquery";
 
 export class NewProductImage extends Component {
@@ -16,29 +22,56 @@ export class NewProductImage extends Component {
     super(props);
     this.state = {
       displayProductPictures: [],
+      editNewProductPictures: [],
       savedProductPictures: [],
-      displaySavedProductPictures: [],
-      displayImages: false
+      displayImages: false,
+      imagesLoaded: true,
     };
-    console.log("True");
   }
 
-  // Get image id from header (edit/232)
+  // Make sure new product images works
 
-  // Upload images to list, add them to the array of images
+  // Make function to filter the images from the array to check if they are already contained in the array or got deleted then delete them
 
-  // Allow the user to upload more or delete
+  // Add the rest of the images as new images to the product
 
-  // On Save, compare images from the ones saved and delete the ones that were not included and create new ones
-  //
-  
+  // 1. make a function in actions to check
+
+  // Add images to list on components did update
+  componentDidUpdate() {
+    // If the cureent mode is edit product , get product pictures
+    if (this.props.mode_select_edit) {
+      if (this.state.imagesLoaded) {
+        // Get images
+        var images = this.props.savedProductPictures.map(
+          (img) => img["image_name"]
+        );
+        console.log("Images");
+        console.log(images);
+        let imgCopy = images.slice(); //creates the clone of the state
+        // Cache images into memery
+        this.setState({
+          displayProductPictures: imgCopy,
+        });
+        this.setState({
+          imagesLoaded: false,
+          displayImages: true,
+        });
+      }
+      this.props.selectEditMode(false);
+    }
+    this.props.updateDisplayEditImages(this.state.displayProductPictures);
+  }
+
   static propTypes = {
-    updateProductPictures: PropTypes.func.isRequired
+    displayProductPictures: PropTypes.array.isRequired,
+    updateProductPictures: PropTypes.func.isRequired,
+    updateSavedEditImages: PropTypes.func.isRequired,
   };
-  
+
   pictureSelectedHandler = (event) => {
     if (event.target.files) {
-      console.log(event.target.files)
+      console.log(event.target.files);
       // Switch from upload to display
       this.setState({
         displayImages: true,
@@ -47,6 +80,7 @@ export class NewProductImage extends Component {
       /* Get files in array form */
       const files = Array.from(event.target.files);
 
+      var displayArr = this.state.displayProductPictures;
       /* Map each file to a promise that resolves to an array of image URI's */
       Promise.all(
         files.map((file) => {
@@ -63,22 +97,15 @@ export class NewProductImage extends Component {
         (images) => {
           /* Once all promises are resolved, update state with image URI array */
           console.log(images);
-          if (this.state.displayProductPictures.length < 1) {
-            this.setState({
-              displayProductPictures: [
-                images
-              ]
-            });
-          } else {
-            this.setState({
-              displayProductPictures: [
-                ...this.state.displayProductPictures,
-                images
-              ]
-            });
-          }
-          console.log(this.state.displayProductPictures)
+          images.forEach(image=>{
+            displayArr.push(image);
+          })
+          this.setState({
+            displayProductPictures: displayArr
+          })
           this.props.updateProductPictures(files);
+          console.log("New Image Added");
+          console.log(files);
         },
         (error) => {
           console.error(error);
@@ -90,22 +117,49 @@ export class NewProductImage extends Component {
   pictureDeleteHandler = (element) => {
     // Get index of element + remove
     const tempPics = this.state.displayProductPictures;
-    const index = tempPics.indexOf(element);
-    if (index > -1) {
-      tempPics.splice(index, 1);
+    console.log("Length of index");
+    console.log(tempPics.length);
+    if (tempPics.length < 2) {
+      const index = tempPics.indexOf(element);
+      console.log("Temp Pics");
+      console.log(tempPics);
+      console.log("Index");
+      console.log(index);
+      if (index > -1) {
+        tempPics.splice(index, 1);
+      }
+      console.log(tempPics);
+      this.setState({
+        displayProductPictures: tempPics,
+      });
+    } else {
+      var tempCopy = tempPics.filter((array) => {
+        // If an element is an array get the first index
+        if (Array.isArray(array)) {
+          if (array[0] != element) {
+            return array;
+          }
+        } else {
+          // Get the values of url
+          if (array != element) {
+            return array;
+          }
+        }
+      });
+      console.log("Temp copy");
+      console.log(tempCopy);
+      this.setState({
+        displayProductPictures: tempCopy,
+      });
     }
-    this.setState({
-      displayProductPictures: tempPics,
-    });
-    this.props.updateProductPictures(tempPics);
   };
 
   render() {
     return (
       <div>
-        {(!this.state.displayImages) ||
-        (this.state.displayProductPictures.length == 0) ||
-        (this.state.displayProductPictures == undefined) ? (
+        {!this.state.displayImages ||
+        this.state.displayProductPictures.length == 0 ||
+        this.state.displayProductPictures == undefined ? (
           <div className="newProdTopFields">
             <div className="newProdImageUploadCont">
               <div className="newProdImageUploadLabel">
@@ -169,8 +223,15 @@ export class NewProductImage extends Component {
 
 const mapStateToProps = (state) => ({
   savedProductPictures: state.products.savedProductPictures,
+  displayProductPictures: state.products.displayProductPictures,
+  editNewProductPictures: state.products.editNewProductPictures,
+  mode_select_edit: state.products.mode_select_edit,
 });
 
 export default connect(mapStateToProps, {
   updateProductPictures,
+  updateSavedEditImages,
+  updateDisplayEditImages,
+  updateNewEditImages,
+  selectEditMode,
 })(NewProductImage);

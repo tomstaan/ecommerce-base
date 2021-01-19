@@ -5,6 +5,7 @@ import NewProduct from "../products/NewProduct";
 import Products from "../products/Products";
 import EditProduct from "../products/EditProduct";
 import Sales from "../sales/Transactions"
+import Dashboard from "../dashboard/Dashboard"
 
 export default class Feed extends Component {
   render() {
@@ -16,6 +17,7 @@ export default class Feed extends Component {
           <Route path="/products/newproduct/" component={NewProduct} />
           <Route path="/products/editproduct/:id" component={EditProduct} />
           <Route exact path="/sales/" component={Sales} />
+          <Route exact path="/dashboard/" component={Dashboard} />
         </Switch>
       </Router>
     );

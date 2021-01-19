@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { BrowserRouter, Link, withRouter } from "react-router-dom";
+import { BrowserRouter, Link, withRouter, Router } from "react-router-dom";
 
 import dashboard from "./../style/images/dash.png";
 import product from "./../style/images/product.png";
 import sales from "./../style/images/sales.png";
-
+import { v4 as uuid } from 'uuid';
 
 export class HeaderLinks extends Component {
   handleRoute() {
@@ -23,12 +23,18 @@ export class HeaderLinks extends Component {
       <div>
         <BrowserRouter>
           <div className="hlOptions">
-            <div className="hlDashboard">
+            <Link to="/dashboard">
+            <div className={
+                  this.handleRoute().includes("/dashboard")
+                    ? "hlDashboardActive"
+                    : "hlDashboard"
+                }>
               <img src={dashboard} alt="Dashboard" title="Dashboard" />
               <div className="hlDashText">
                 <h2>Dashboard</h2>
               </div>
             </div>
+            </Link>
             <Link to="/products">
               <div
                 className={
@@ -36,7 +42,6 @@ export class HeaderLinks extends Component {
                     ? "hlDashboardActive"
                     : "hlDashboard"
                 }
-                onClick={() => {window.location.href="/products"}}
               >
                 <img src={product} alt="ProductsActive" title="Products" />
                 <div className="hlDashText">
@@ -51,7 +56,6 @@ export class HeaderLinks extends Component {
                     ? "hlDashboardActive"
                     : "hlDashboard"
                 }
-                onClick={() => {window.location.href="/sales"}}
               >
                 <img src={sales} alt="ProductsActive" title="Products" />
                 <div className="hlDashText">

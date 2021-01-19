@@ -14,7 +14,7 @@ import store from "../../../src/store";
 
 //Other imports
 import { getCategory } from "../../actions/category";
-import { addProduct, addPicsToProd } from "../../actions/products";
+import { addProduct, addPicsToProd, selectEditMode } from "../../actions/products";
 import { FormFile } from "react-bootstrap";
 
 export class NewProduct extends Component {
@@ -45,6 +45,10 @@ export class NewProduct extends Component {
     getCategory: PropTypes.func.isRequired,
     addProduct: PropTypes.func.isRequired,
   };
+
+  componentWillMount(){
+    selectEditMode(false);
+  }
 
   componentDidMount() {
     this.props.getCategory();
@@ -134,7 +138,7 @@ export class NewProduct extends Component {
   };
 
   render() {
-    //Redirect back to products when © MorganReeveExposed 2019submit is complete
+    //Redirect back to products when submit is complete
     if (this.state.redirect) {
       return <Redirect push to="/products" />;
     }
@@ -312,4 +316,5 @@ export default connect(mapStateToProps, {
   getCategory,
   addProduct,
   addPicsToProd,
+  selectEditMode
 })(NewProduct);

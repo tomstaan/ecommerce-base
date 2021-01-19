@@ -33,7 +33,6 @@ export class ProductList extends Component {
       productDeleteWarning: false,
       tempDeleteProduct: null
     };
-    console.log("True");
   }
 
   
@@ -218,7 +217,7 @@ export class ProductList extends Component {
                         </button>
                       </div>
                       <div className="editSingleProduct">
-                        <Link to={`./editproduct/${Product.id}`}>
+                        <Link to={`/products/editproduct/${Product.id}`}>
                         <button
                           type="button"
                           className="btn btn-primary"

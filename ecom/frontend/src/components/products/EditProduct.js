@@ -15,7 +15,17 @@ import store from "../../store";
 
 //Other imports
 import { getCategory } from "../../actions/category";
-import { getProducts, editProduct, setSavedPictures } from "../../actions/products";
+import {
+  getProducts,
+  editProduct,
+  setSavedPictures,
+  updateSavedEditImages,
+  updateDisplayEditImages,
+  updateProductPictures,
+  selectEditMode,
+  addPicsToProd,
+  deleteProductImage,
+} from "../../actions/products";
 import { FormFile } from "react-bootstrap";
 import products from "../../reducers/products";
 
@@ -42,6 +52,7 @@ export class EditProduct extends Component {
       product_description: "",
       redirect: false,
       savedProductPictures: [],
+      displayProductPictures: [],
     };
   }
 
@@ -51,9 +62,11 @@ export class EditProduct extends Component {
     getCategory: PropTypes.func.isRequired,
     editProduct: PropTypes.func.isRequired,
     setSavedPictures: PropTypes.func.isRequired,
+    updateDisplayEditImages: PropTypes.func.isRequired,
   };
 
-  componentWillMount(){
+  componentWillMount() {
+    this.props.selectEditMode(true);
     this.getProductDetails();
     this.getProductImages();
   }
@@ -65,11 +78,14 @@ export class EditProduct extends Component {
     store.subscribe(() => {
       if (this.subscribed == true) {
         this.setState({
-          savedProductPictures: store.getState().products.savedProductPictures,
+          newProductPictures: store.getState().products.newProductPictures,
         });
       }
     });
-    console.log("Hello");
+  }
+
+  componentWillUnmount() {
+    this.subscribed = false;
   }
 
   getProductDetails() {
@@ -100,7 +116,7 @@ export class EditProduct extends Component {
     axios
       .get(`http://127.0.0.1:8000/api/products/${meetupId}/images/`)
       .then((response) => {
-        this.props.setSavedPictures(response.data)
+        this.props.setSavedPictures(response.data);
       })
       .catch((err) => console.log(err));
   }
@@ -108,9 +124,8 @@ export class EditProduct extends Component {
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
- 
+
   onSubmit = (e) => {
-    //console.log("Pictures = "+this.state.newProductPictures);
     // --------------
     e.preventDefault();
 
@@ -142,21 +157,57 @@ export class EditProduct extends Component {
       product_description,
     };
 
+    //List todo
+    // Delete the pics that were deleted
+    // Add new pics
+
     // Edit product
     this.props.editProduct(product, this.state.id);
 
-    /*
-    this.state.newProductPictures.forEach((picture) => {
-      var newImageObject = new FormData(); // Currently empty
+    // Get the saved images
+    var image_nameArr = this.props.savedProductPictures.map((pic) => {
+      return pic["image_name"];
+    });
 
-      //const product_ref = 38
+    // Get display images array
+    var allDisplayPicsURLS = this.props.displayProductPictures.map((pic) => {
+      return pic;
+    });
 
-      //newImageObject.append('product_ref', product_ref);
-      newImageObject.append("image_id", image_id);
-      newImageObject.append("image_name", picture, picture.name);
-      console.log(newImageObject);
-      this.props.addPicsToProd(newImageObject);
-    });*/
+    // Get the images to delete by looping through the saved images and checking which images don't exist in saved
+    var savedPicsToDeleteURLS = image_nameArr.filter((pic) => {
+      if (!allDisplayPicsURLS.includes(pic)) {
+        return pic;
+      }
+    });
+
+    var savedPicsToDelete = this.props.savedProductPictures.filter((pic) => {
+      if (savedPicsToDeleteURLS.includes(pic["image_name"])) {
+        return pic;
+      }
+    });
+
+    console.log("New Product Pictures")
+    console.log(this.state.newProductPictures)
+
+    //Add product images
+    if (this.state.newProductPictures.length > 0) {
+      this.state.newProductPictures.forEach((picture) => {
+        var newImageObject = new FormData(); // Currently empty
+
+        //newImageObject.append('product_ref', product_ref);
+        newImageObject.append("image_id", image_id);
+        newImageObject.append("image_name", picture, picture.name);
+        this.props.addPicsToProd(newImageObject);
+      });
+    }
+
+    // Delete pictures
+    if (savedPicsToDelete.length > 0) {
+      savedPicsToDelete.forEach((picture) => {
+        this.props.deleteProductImage(picture);
+      });
+    }
 
     // Reset state
     this.setState({
@@ -349,6 +400,7 @@ const mapStateToProps = (state) => ({
   category: state.category.category,
   products: state.products.products,
   savedProductPictures: state.products.savedProductPictures,
+  displayProductPictures: state.products.displayProductPictures,
 });
 
 export default connect(mapStateToProps, {
@@ -356,4 +408,10 @@ export default connect(mapStateToProps, {
   getProducts,
   editProduct,
   setSavedPictures,
+  updateSavedEditImages,
+  updateDisplayEditImages,
+  updateProductPictures,
+  selectEditMode,
+  addPicsToProd,
+  deleteProductImage,
 })(EditProduct);
