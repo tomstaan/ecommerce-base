@@ -54,7 +54,7 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-promise-middleware": "^6.1.2",
     "redux-thunk": "^2.3.0",
-    "stripe": "^8.131.1",
+    "stripe": "^8.132.0",
     "url-loader": "^4.1.0",
     "uuid": "^8.3.2",
     "webpack": "^5.15.0"
