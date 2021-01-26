@@ -33,7 +33,7 @@
     "@popperjs/core": "^2.6.0",
     "apexcharts": "^3.23.1",
     "axios": "^0.21.1",
-    "bootstrap": "^4.5.3",
+    "bootstrap": "^4.6.0",
     "braces": "^3.0.2",
     "compress-js": "^2.0.2",
     "currencyjs": "^1.1.1",
@@ -54,9 +54,9 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-promise-middleware": "^6.1.2",
     "redux-thunk": "^2.3.0",
-    "stripe": "^8.131.1",
+    "stripe": "^8.132.0",
     "url-loader": "^4.1.0",
     "uuid": "^8.3.2",
-    "webpack": "^5.15.0"
+    "webpack": "^5.17.0"
   }
 }
