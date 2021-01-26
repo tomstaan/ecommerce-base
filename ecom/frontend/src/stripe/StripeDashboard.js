@@ -1,7 +1,6 @@
 //import stripe from './StripeKey'
 import { func } from 'prop-types'
-const Stripe = require('stripe');
-const stripe = Stripe('sk_test_qVyhxgBH7ndQwSUy6lW9SGVI00wKodpGe5');
+//import Stripe from 'stripe';
 import getMonthlySales from './../actions/dashboard'
 
 
