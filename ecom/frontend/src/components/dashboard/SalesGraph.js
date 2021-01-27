@@ -26,11 +26,6 @@ class SalesGraph extends Component {
     };
   }
 
-  componentDidMount(){
-    getDashboardData();
-  }
-
-
   render() {
     return (
       <div>
