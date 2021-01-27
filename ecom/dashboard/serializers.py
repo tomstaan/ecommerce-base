@@ -1,8 +1,10 @@
 from rest_framework import serializers
-from .models import Dashboard
 
-class DashboardSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Dashboard
-        fields = '__all__'
+class DashboardSerializer(serializers.Serializer):
+    monthly_sales = serializers.IntegerField()
+    revenue = serializers.DecimalField(max_digits=12, decimal_places=2)
+    profit = serializers.DecimalField(max_digits=12, decimal_places=2)
+    monthly_visitors = serializers.IntegerField()
+    new_customers = serializers.IntegerField()
+    all_customers = serializers.IntegerField()
 
