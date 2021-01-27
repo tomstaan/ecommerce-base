@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./../style/dashboard.css";
 
 import Chart from "react-apexcharts";
-import getDashboardData from './../../stripe/StripeDashboard';
 import getMonthlySales from './../../actions/dashboard';
 
 class SalesGraph extends Component {

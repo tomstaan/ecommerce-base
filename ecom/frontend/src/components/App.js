@@ -4,7 +4,6 @@ import { Route, Link, BrowserRouter as Router } from "react-router-dom";
 import "./style/Background.css";
 import Header from "./layout/Header";
 import Feed from "./layout/Feed.js";
-
 //
 //Redux
 import { Provider } from "react-redux";

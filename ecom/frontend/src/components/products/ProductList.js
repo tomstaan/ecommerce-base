@@ -109,7 +109,7 @@ export class ProductList extends Component {
             {this.props.filteredProducts.length ? (
               <Fragment>
                 {this.props.filteredProducts.map((Product) => (
-                  <div key={Product.id} className="productBack">
+                  <div className="productBack" key={Product.id} >
                     <div className="selectProductCont">
                       <div className="selectProductBack">
                         <input

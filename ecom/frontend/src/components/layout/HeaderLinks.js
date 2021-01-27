@@ -23,7 +23,7 @@ export class HeaderLinks extends Component {
       <div>
         <BrowserRouter>
           <div className="hlOptions">
-            <Link to="/dashboard">
+            <Link to="/dashboard" onClick={() => window.location.href="/dashboard"}>
             <div className={
                   this.handleRoute().includes("/dashboard")
                     ? "hlDashboardActive"
@@ -35,7 +35,7 @@ export class HeaderLinks extends Component {
               </div>
             </div>
             </Link>
-            <Link to="/products">
+            <Link to="/products" onClick={() => window.location.href="/products"}>
               <div
                 className={
                   this.handleRoute().includes("/products")
@@ -49,7 +49,7 @@ export class HeaderLinks extends Component {
                 </div>
               </div>
             </Link>
-            <Link to="/sales">
+            <Link to="/sales" onClick={() => window.location.href="/sales"}>
               <div
                 className={
                   this.handleRoute().includes("/sales")

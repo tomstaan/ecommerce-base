@@ -82,7 +82,7 @@ export class TransactionList extends Component {
           <div className="transactionListCont">
             <Fragment>
               {this.props.filteredSales.map((Transaction) => (
-                <div key={Transaction.id} className="transactionElement">
+                <div key={Transaction.date} className="transactionElement">
                   <div className="transactionElementId">
                     <h4>{Transaction.product_details.order_id}</h4>
                   </div>
