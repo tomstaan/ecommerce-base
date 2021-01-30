@@ -4,13 +4,16 @@ from rest_framework import viewsets, permissions, views
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.renderers import JSONRenderer
-from .serializers import DashboardSerializer
+from .serializers import DashboardSerializer, WebsiteVisitorSerializer
 from rest_framework.renderers import JSONRenderer
+from .models import Dashboard
 import shutil
+from django.db.models import F, Min
 import os
-#from .stripefile import create_product, get_payment_intents
-import time
+from .stripefile import get_transactioncount_revenue_profit, get_number_of_customers
 import re
+from django.utils import timezone
+import datetime
 
 # Product Viewset
 class DashboardViewSet(viewsets.ViewSet):
@@ -22,13 +25,20 @@ class DashboardViewSet(viewsets.ViewSet):
     # Get data from stripe
     
     def list(self, request):
-        monthly_sales = 4382
-        revenue = 6103.50
-        profit = 5282.30
-        monthly_visitors = 228
-        new_customers = 13
-        all_customers = 93
-
+        # get transaction info
+        dashTrRePr = get_transactioncount_revenue_profit()
+        monthly_sales = dashTrRePr['monthly_sales']
+        revenue = dashTrRePr['revenue']
+        profit = dashTrRePr['profit']
+        # Get website visitor info
+        lastMonthTimestamp = datetime.date.today() - datetime.timedelta(30)
+        visitors = Dashboard.objects.filter(date__range=[lastMonthTimestamp,timezone.now()])
+        monthly_visitors = len(visitors)
+        # Get customer info
+        customers = get_number_of_customers()
+        new_customers = customers['new']
+        all_customers = customers['all']
+        
         data = {
             "monthly_sales": monthly_sales, 
             "revenue": revenue,
@@ -40,3 +50,5 @@ class DashboardViewSet(viewsets.ViewSet):
 
         serializedData = DashboardSerializer(data).data
         return Response(serializedData)
+
+        

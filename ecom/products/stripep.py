@@ -13,9 +13,9 @@ stripe.PaymentIntent.create(
     payment_method_types=["card"],
     description='Dell XPS 13 - 512GB, Black',
     confirm=True,
-    customer="cus_IG4EgmVOQK0DTG",
+    customer="cus_Ir0nOdlmBJr548",
     metadata={
-        'order_id': '432jk22g',
+        'order_id': '923bf23e',
         'product_ref': 193,
         'stripe_product_ref': 'prod_IH2aY7wmlHc23T'
     }
