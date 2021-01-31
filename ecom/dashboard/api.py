@@ -20,7 +20,6 @@ class DashboardViewSet(viewsets.ViewSet):
     permission_classes = [
         permissions.AllowAny
     ]
-    serializer_class = DashboardSerializer
 
     # Get data from stripe
     

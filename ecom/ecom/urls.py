@@ -3,8 +3,8 @@ from django.urls import path, include
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
-    path('', include('products.urls')),
     path('', include('dashboard.urls')),
+    path('', include('products.urls')),
     path('', include('frontend.urls')),
 ] 
 

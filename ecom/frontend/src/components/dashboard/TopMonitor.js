@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect, Provider } from "react-redux";
 import "./../style/dashboard.css";
 
 // Images
@@ -11,7 +13,31 @@ import Customers from "./../style/images/customers.png";
 import UpPointer from "./../style/images/UpPointer.png";
 import DownPointer from "./../style/images/DownPointer.png";
 
-export default class TopMonitor extends Component {
+import { getDashboardStatistics } from '../../actions/dashboard';
+
+export class TopMonitor extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      monthly_sales: 0,
+      revenue: 0,
+      profit: 0,
+      monthly_visitors: 0,
+      new_customers: 0,
+      all_customers: 0
+    };
+  }
+
+  static propTypes = {
+    getDashboardStatistics: PropTypes.func.isRequired
+  };
+
+  componentDidMount(){
+    console.log("Get dashboard stats")
+    this.props.getDashboardStatistics()
+  }
+
+
   render() {
     return (
       <div>
@@ -24,7 +50,7 @@ export default class TopMonitor extends Component {
               <div className="topMonitorInfoBox">
                 <div className="topMonitorInfoBoxTop">
                   <img src={UpPointer} alt="UpPointer" title="UpPointer" />
-                  <h3 className="topMonitorInfoText">4382</h3>
+                  <h3 className="topMonitorInfoText">{this.props.monthly_sales}</h3>
                 </div>
                 <div className="topMonitorInfoBoxBottom">
                   <h3 className="topMonitorInfoDesc">Monthly Sales</h3>
@@ -40,7 +66,7 @@ export default class TopMonitor extends Component {
               <div className="topMonitorInfoBox">
                 <div className="topMonitorInfoBoxTop">
                   <img src={UpPointer} alt="UpPointer" title="UpPointer" />
-                  <h3 className="topMonitorInfoText">$6103</h3>
+                  <h3 className="topMonitorInfoText">€{this.props.revenue/100}</h3>
                 </div>
                 <div className="topMonitorInfoBoxBottom">
                   <h3 className="topMonitorInfoDesc">Revenue</h3>
@@ -56,7 +82,7 @@ export default class TopMonitor extends Component {
               <div className="topMonitorInfoBox">
                 <div className="topMonitorInfoBoxTop">
                   <img src={UpPointer} alt="UpPointer" title="UpPointer" />
-                  <h3 className="topMonitorInfoText">$5282</h3>
+                  <h3 className="topMonitorInfoText">€{this.props.profit/100}</h3>
                 </div>
                 <div className="topMonitorInfoBoxBottom">
                   <h3 className="topMonitorInfoDesc">Profit</h3>
@@ -72,7 +98,7 @@ export default class TopMonitor extends Component {
               <div className="topMonitorInfoBox">
                 <div className="topMonitorInfoBoxTop">
                   <img src={UpPointer} alt="UpPointer" title="UpPointer" />
-                  <h3 className="topMonitorInfoText">228</h3>
+                  <h3 className="topMonitorInfoText">{this.props.monthly_visitors}</h3>
                 </div>
 
                 <div className="topMonitorInfoBoxBottom">
@@ -89,7 +115,7 @@ export default class TopMonitor extends Component {
               <div className="topMonitorInfoBox">
                 <div className="topMonitorInfoBoxTop">
                   <img src={DownPointer} alt="UpPointer" title="UpPointer" />
-                  <h3 className="topMonitorInfoText">-13</h3>
+                  <h3 className="topMonitorInfoText">{this.props.new_customers}</h3>
                 </div>
                 <div className="topMonitorInfoBoxBottom">
                   <h3 className="topMonitorInfoDesc">New Customers</h3>
@@ -105,7 +131,7 @@ export default class TopMonitor extends Component {
               <div className="topMonitorInfoBox">
                 <div className="topMonitorInfoBoxTop">
                   <img src={UpPointer} alt="UpPointer" title="UpPointer" />
-                  <h3 className="topMonitorInfoText">93</h3>
+                  <h3 className="topMonitorInfoText">{this.props.all_customers}</h3>
                 </div>
                 <div className="topMonitorInfoBoxBottom">
                   <h3 className="topMonitorInfoDesc">Total Customers</h3>
@@ -118,3 +144,16 @@ export default class TopMonitor extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  monthly_sales: state.dashboard.monthly_sales,
+  revenue: state.dashboard.revenue,
+  profit: state.dashboard.profit,
+  monthly_visitors: state.dashboard.monthly_visitors,
+  new_customers: state.dashboard.new_customers,
+  all_customers: state.dashboard.all_customers
+});
+
+export default connect(mapStateToProps, {
+  getDashboardStatistics
+})(TopMonitor);
