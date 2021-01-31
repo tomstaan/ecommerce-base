@@ -10,7 +10,7 @@ from .models import Dashboard
 import shutil
 from django.db.models import F, Min
 import os
-from .stripefile import get_transactioncount_revenue_profit, get_number_of_customers
+from .stripefile import get_transactioncount_revenue_profit, get_number_of_customers, get_sales_graph_data
 import re
 from django.utils import timezone
 import datetime
@@ -22,7 +22,6 @@ class DashboardViewSet(viewsets.ViewSet):
     ]
 
     # Get data from stripe
-    
     def list(self, request):
         # get transaction info
         dashTrRePr = get_transactioncount_revenue_profit()
@@ -50,4 +49,24 @@ class DashboardViewSet(viewsets.ViewSet):
         serializedData = DashboardSerializer(data).data
         return Response(serializedData)
 
+
+# Product Viewset
+class DashboardSalesGraph(viewsets.ViewSet):
+    permission_classes = [
+        permissions.AllowAny
+    ]
+
+    # Get data from stripe
+    def list(self, request):
+        # get transaction info
+        salesData = get_sales_graph_data()
+        sales = salesData['sales']
+        dates = salesData['dates']
         
+        data = {
+            "sales": sales, 
+            "dates": dates
+        }
+
+        serializedData = DashboardSerializer(data).data
+        return Response(serializedData)

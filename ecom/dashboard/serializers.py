@@ -13,3 +13,7 @@ class WebsiteVisitorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Dashboard
         fields = '__all__'
+
+class DashboardSerializer(serializers.Serializer):
+    sales = serializers.ListField(child=serializers.IntegerField())
+    dates = serializers.ListField(child=serializers.CharField())
