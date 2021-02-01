@@ -177,7 +177,7 @@ def get_sales_graph_data():
 
         # Get last months timestamp
         currentTimestamp = datetime.date.today()
-        for i in range(0, 31):
+        for i in range(-1, 31):
             # Get the dates
             start = currentTimestamp - datetime.timedelta(i+1)
             end = currentTimestamp - datetime.timedelta(i)
@@ -201,6 +201,68 @@ def get_sales_graph_data():
         # Reverse lists
         cusData['sales'] = cusData['sales'][::-1]
         cusData['dates'] = cusData['dates'][::-1]
+
+        return cusData
+
+    except stripe.error.CardError as e:
+        # Since it's a decline, stripe.error.CardError will be caught
+        body = e.json_body
+        err = body.get('error', {})
+
+        print('Status is: %s' % e.http_status)
+        print('Type is: %s' % err.get('type'))
+        print('Code is: %s' % err.get('code'))
+        # param is '' in this case
+        print('Param is: %s' % err.get('param'))
+        print('Message is: %s' % err.get('message'))
+    except stripe.error.RateLimitError as e:
+        # Too many requests made to the API too quickly
+        print("Stripe [Error]: Too Many Requests")
+    except stripe.error.InvalidRequestError as e:
+        # Invalid parameters were supplied to Stripe's API
+        print("Stripe [Error]: Invalid Request")
+    except stripe.error.AuthenticationError as e:
+        # Authentication with Stripe's API failed
+        # (maybe you changed API keys recently)
+        print("Stripe [Error]: Auth Error")
+    except stripe.error.APIConnectionError as e:
+        # Network communication with Stripe failed
+        print("Stripe [Error]: Network Communication Error")
+    except stripe.error.StripeError as e:
+        # Display a very generic error to the user, and maybe send
+        # yourself an email
+        print("Stripe [Error]: Stripe Error")
+    except Exception as e:
+        # Something else happened, completely unrelated to Stripe
+        print("Stripe [Error]: Unrelated Error")
+
+
+def get_popular_products():
+    # Get Transaction amount
+    try:
+        cusData = dict()
+
+        sales = stripe.PaymentIntent.list()
+
+        # Get last months timestamp
+        currentTimestamp = datetime.date.today()
+
+        # Get the dates
+        start = currentTimestamp - datetime.timedelta(31)
+        end = currentTimestamp - datetime.timedelta(-1)
+
+        # Get timestamps
+        startTime = start.strftime("%s")
+        endTime = end.strftime("%s")
+            
+        for s in sales['data']:
+            # Check if the sale was made in between today and last month
+            if int(startTime) < int(s['created']) < int(endTime) and s['status'] == "succeeded":
+                if s['description'] not in cusData and len(cusData) < 9:
+                    cusData[s['description']] = 1
+                else:
+                    if s['description'] in cusData:
+                        cusData[s['description']] = cusData[s['description']] + 1
 
         return cusData
 

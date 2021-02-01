@@ -1,7 +1,10 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect, Provider } from "react-redux";
 import "./../style/dashboard.css";
 
 import Chart from "react-apexcharts";
+import { getPopularProducts } from "../../actions/dashboard";
 
 class PopularItems extends Component {
   constructor(props) {
@@ -14,24 +17,19 @@ class PopularItems extends Component {
             type: 'bar',
         },
         xaxis: {
-            categories: [
-                "Iphone 12",
-                "Apple Watch",
-                "Samsung S10",
-                "Macbook Pro 15",
-                "Iphone 11",
-                "Dell XPS 13",
-                "Samsung S20",
-                "Macbook Pro 13",
-              ],
+            categories: [],
           }
       },
       series: [
         {
-          data: [39, 34, 32, 31, 28, 26, 24, 19],
+          data: [],
         },
       ],
     };
+  }
+
+  componentDidMount(){
+    this.props.getPopularProducts()
   }
 
   render() {
@@ -41,8 +39,8 @@ class PopularItems extends Component {
           <h4>Popular</h4>
           <div className="salesGraphSalesCont">
           <Chart
-              options={this.state.options}
-              series={this.state.series}
+              options={this.props.popular_options}
+              series={this.props.popular_series}
               type="bar"
               width="500"
             />
@@ -53,4 +51,11 @@ class PopularItems extends Component {
   }
 }
 
-export default PopularItems;
+const mapStateToProps = (state) => ({
+  popular_options: state.dashboard.popular_options,
+  popular_series: state.dashboard.popular_series
+});
+
+export default connect(mapStateToProps, {
+  getPopularProducts
+})(PopularItems);

@@ -1,8 +1,10 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect, Provider } from "react-redux";
 import "./../style/dashboard.css";
 
 import Chart from "react-apexcharts";
-import getMonthlySales from './../../actions/dashboard';
+import { getDashboardSalesGraph } from "../../actions/dashboard";
 
 class SalesGraph extends Component {
   constructor(props) {
@@ -14,16 +16,24 @@ class SalesGraph extends Component {
             type: 'line'
         },
         xaxis: {
-            categories: ["17 Dec", "24 Dec", "31 Dec", "7 Jan", "17 Jan"]
+            categories: []
           }
       },
       series: [
         {
-            name: 'sales',
-            data: [20, 39, 18, 36, 2]
+            name: 'Sales',
+            data: []
         },
       ],
     };
+  }
+
+  static propTypes = {
+    getDashboardSalesGraph: PropTypes.func.isRequired
+  };
+
+  componentDidMount(){
+    this.props.getDashboardSalesGraph()
   }
 
   render() {
@@ -33,8 +43,8 @@ class SalesGraph extends Component {
           <h4>Sales</h4>
           <div className="salesGraphSalesCont">
           <Chart
-              options={this.state.options}
-              series={this.state.series}
+              options={this.props.options}
+              series={this.props.series}
               type="line"
               width="500"
             />
@@ -45,4 +55,12 @@ class SalesGraph extends Component {
   }
 }
 
-export default SalesGraph;
+const mapStateToProps = (state) => ({
+  options: state.dashboard.options,
+  series: state.dashboard.series
+});
+
+export default connect(mapStateToProps, {
+  getDashboardSalesGraph
+})(SalesGraph);
+

@@ -14,6 +14,10 @@ class WebsiteVisitorSerializer(serializers.ModelSerializer):
         model = Dashboard
         fields = '__all__'
 
-class DashboardSerializer(serializers.Serializer):
+class DashboardSalesGraphSerializer(serializers.Serializer):
     sales = serializers.ListField(child=serializers.IntegerField())
     dates = serializers.ListField(child=serializers.CharField())
+
+class DashboardPopularBarChartSerializer(serializers.Serializer):
+    amount_sold = serializers.ListField(child=serializers.IntegerField())
+    product = serializers.ListField(child=serializers.CharField())
