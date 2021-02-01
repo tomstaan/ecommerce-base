@@ -8,15 +8,15 @@ stripe.api_key = "sk_test_qVyhxgBH7ndQwSUy6lW9SGVI00wKodpGe5"
 
 # Create Payment
 stripe.PaymentIntent.create(
-    amount=135999,
+    amount=59900,
     currency="eur",
     payment_method_types=["card"],
-    description='Dell XPS 13 - 512GB, Black',
+    description='Samsung S10 - Black 128GB',
     confirm=True,
-    customer="cus_Ir0nOdlmBJr548",
+    customer="cus_IE6nJd199pkScq",
     metadata={
-        'order_id': '923bf23e',
-        'product_ref': 193,
-        'stripe_product_ref': 'prod_IH2aY7wmlHc23T'
+        'order_id': '032ed83w',
+        'product_ref': 171,
+        'stripe_product_ref': 'prod_IFx4D1BGDIzhC1'
     }
 )
