@@ -4,6 +4,7 @@ import urllib.request
 import pycountry
 import json
 import time
+from collections import OrderedDict
 import datetime
 stripe.api_key = "sk_test_qVyhxgBH7ndQwSUy6lW9SGVI00wKodpGe5"
 
@@ -329,6 +330,8 @@ def get_users_per_country():
             else:
                 country_return[c] = country_return[c] + 1
         
+        country_return = OrderedDict(sorted(country_return.items(), key=lambda kv: kv[1], reverse=True))
+        
         country_list = country_return
         country_return = list()
         for c in country_list:
@@ -336,8 +339,7 @@ def get_users_per_country():
                 "country": c,
                 "user_number": country_list[c]
             })
-        
-        print(country_return)
+
         return country_return
 
     except stripe.error.CardError as e:

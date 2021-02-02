@@ -2,6 +2,7 @@ import {
   GET_DASHBOARD_STATISTICS,
   GET_DASHBOARD_SALES_GRAPH,
   GET_POPULAR_PRODUCTS,
+  GET_USER_COUNTRIES
 } from "../actions/types.js";
 
 const initalState = {
@@ -39,6 +40,7 @@ const initalState = {
       data: [],
     },
   ],
+  countries: []
 };
 
 export default function (state = initalState, action) {
@@ -89,6 +91,11 @@ export default function (state = initalState, action) {
           },
         ],
       };
+    case GET_USER_COUNTRIES:
+      return{
+        ...state,
+        countries: action.payload
+      }
     default:
       return state;
   }
