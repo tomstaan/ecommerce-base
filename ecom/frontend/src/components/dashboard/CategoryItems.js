@@ -38,8 +38,31 @@ class CategoryItems extends Component {
     return (
       <div>
         <div className="salesGraphBaseContainerRight">
-          <h4>Category</h4>
-          <div className="salesGraphSalesCont"></div>
+          <h4>Customer Per Country</h4>
+          <div className="salesGraphSalesContCountry">
+
+            <div className="salesGraphSalesBoxCont">
+              <div className="salesGraphSalesInnerCont">
+                <h3 className="salesGraphSalesInnerContCountry">United States</h3>
+                <h3 className="salesGraphSalesInnerContNumber">23</h3>
+              </div>
+            </div>
+
+            <div className="salesGraphSalesBoxCont">
+              <div className="salesGraphSalesInnerCont">
+                <h3 className="salesGraphSalesInnerContCountry">Ireland</h3>
+                <h3 className="salesGraphSalesInnerContNumber">16</h3>
+              </div>
+            </div>
+
+            <div className="salesGraphSalesBoxCont">
+              <div className="salesGraphSalesInnerCont">
+                <h3 className="salesGraphSalesInnerContCountry">United Kingdom</h3>
+                <h3 className="salesGraphSalesInnerContNumber">8</h3>
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
     );

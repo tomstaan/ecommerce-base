@@ -1,6 +1,7 @@
 import stripe
 import requests
 import urllib.request
+import pycountry
 import json
 import time
 import datetime
@@ -265,6 +266,79 @@ def get_popular_products():
                         cusData[s['description']] = cusData[s['description']] + 1
 
         return cusData
+
+    except stripe.error.CardError as e:
+        # Since it's a decline, stripe.error.CardError will be caught
+        body = e.json_body
+        err = body.get('error', {})
+
+        print('Status is: %s' % e.http_status)
+        print('Type is: %s' % err.get('type'))
+        print('Code is: %s' % err.get('code'))
+        # param is '' in this case
+        print('Param is: %s' % err.get('param'))
+        print('Message is: %s' % err.get('message'))
+    except stripe.error.RateLimitError as e:
+        # Too many requests made to the API too quickly
+        print("Stripe [Error]: Too Many Requests")
+    except stripe.error.InvalidRequestError as e:
+        # Invalid parameters were supplied to Stripe's API
+        print("Stripe [Error]: Invalid Request")
+    except stripe.error.AuthenticationError as e:
+        # Authentication with Stripe's API failed
+        # (maybe you changed API keys recently)
+        print("Stripe [Error]: Auth Error")
+    except stripe.error.APIConnectionError as e:
+        # Network communication with Stripe failed
+        print("Stripe [Error]: Network Communication Error")
+    except stripe.error.StripeError as e:
+        # Display a very generic error to the user, and maybe send
+        # yourself an email
+        print("Stripe [Error]: Stripe Error")
+    except Exception as e:
+        # Something else happened, completely unrelated to Stripe
+        print("Stripe [Error]: Unrelated Error")
+
+
+def get_users_per_country():
+    # Get Transaction amount
+    try:
+        cusData = dict()
+
+        sales = stripe.Customer.list()
+
+        country_list = []
+
+        for s in sales['data']:
+            if 'tax_ids' in s and len(s["tax_ids"]["data"]) > 0:
+                country_list.append(s["tax_ids"]["data"][0]['country'])
+            elif 'sources' in s and "data" in s["sources"]:
+                if 'country' in s['sources']['data'][0]:
+                    country_list.append(s['sources']['data'][0]['country'])
+                elif "country" in s['sources']['data'][0]['card']:
+                    country_list.append(s['sources']['data'][0]['card']["country"])
+
+        country_name = []            
+        for c in country_list:
+            country_name.append(pycountry.countries.get(alpha_2=c).name)
+        
+        country_return = dict()
+        for c in country_name:
+            if c not in country_return:
+                country_return[c] = 1
+            else:
+                country_return[c] = country_return[c] + 1
+        
+        country_list = country_return
+        country_return = list()
+        for c in country_list:
+            country_return.append({
+                "country": c,
+                "user_number": country_list[c]
+            })
+        
+        print(country_return)
+        return country_return
 
     except stripe.error.CardError as e:
         # Since it's a decline, stripe.error.CardError will be caught
