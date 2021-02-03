@@ -102,9 +102,14 @@ export class TransactionList extends Component {
                     <h4>€{Transaction.price/100}</h4>
                   </div>
                   <div className="transactionElementStatus">
+                    {Transaction.status == "succeeded" ? (
                     <h4 className="transactionElementStatusProcessed">
+                      Succeeded
+                    </h4>) : (
+                      <h4 className="transactionElementStatusRefunded">
                       {Transaction.status}
                     </h4>
+                    )}
                   </div>
                 </div>
               ))}

@@ -5,13 +5,13 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from collections import OrderedDict
 from rest_framework.renderers import JSONRenderer
-from .serializers import DashboardSerializer, WebsiteVisitorSerializer, DashboardSalesGraphSerializer, DashboardPopularBarChartSerializer
+from .serializers import DashboardSerializer, WebsiteVisitorSerializer, DashboardSalesGraphSerializer, DashboardPopularBarChartSerializer, DashboardUserCountrySerializer
 from rest_framework.renderers import JSONRenderer
 from .models import Dashboard
 import shutil
 from django.db.models import F, Min
 import os
-from .stripefile import get_transactioncount_revenue_profit, get_number_of_customers, get_sales_graph_data, get_popular_products
+from .stripefile import get_transactioncount_revenue_profit, get_number_of_customers, get_sales_graph_data, get_popular_products, get_users_per_country
 import re
 from django.utils import timezone
 import datetime
@@ -95,4 +95,19 @@ class DashboardPopularBarChart(viewsets.ViewSet):
         }
 
         serializedData = DashboardPopularBarChartSerializer(data).data
+        return Response(serializedData)
+
+
+# Product Viewset
+class DashboardUserCountries(viewsets.ViewSet):
+    permission_classes = [
+        permissions.AllowAny
+    ]
+
+    # Get data from stripe
+    def list(self, request):
+        # get transaction info
+        data = get_users_per_country()
+
+        serializedData = DashboardUserCountrySerializer(data, many=True).data
         return Response(serializedData)

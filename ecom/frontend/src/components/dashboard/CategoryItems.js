@@ -1,49 +1,59 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect, Provider } from "react-redux";
 import "./../style/dashboard.css";
 
-import Chart from "react-apexcharts";
+import { getUserCountries } from "../../actions/dashboard";
+import { Fragment } from "react";
 
 class CategoryItems extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      options: {
-        chart: {
-            height: 380,
-            type: 'bar',
-        },
-        xaxis: {
-            categories: [
-                "Iphone 12",
-                "Apple Watch",
-                "Samsung S10",
-                "Macbook Pro 15",
-                "Iphone 11",
-                "Dell XPS 13",
-                "Samsung S20",
-                "Macbook Pro 13",
-              ],
-          }
-      },
-      series: [
-        {
-          data: [39, 34, 32, 31, 28, 26, 24, 19],
-        },
-      ],
+      countries: [],
     };
+  }
+
+  static propTypes = {
+    getUserCountries: PropTypes.func.isRequired,
+  };
+
+  componentDidMount() {
+    this.props.getUserCountries();
   }
 
   render() {
     return (
       <div>
         <div className="salesGraphBaseContainerRight">
-          <h4>Category</h4>
-          <div className="salesGraphSalesCont"></div>
+          <h4>Customer Per Country</h4>
+          <div className="salesGraphSalesContCountry">
+            <Fragment>
+              {this.props.countries.map((Country) => (
+                <div className="salesGraphSalesBoxCont">
+                  <div className="salesGraphSalesInnerCont">
+                    <h3 className="salesGraphSalesInnerContCountry">
+                      {Country.country}
+                    </h3>
+                    <h3 className="salesGraphSalesInnerContNumber">
+                      {Country.user_number}
+                    </h3>
+                  </div>
+                </div>
+              ))}
+            </Fragment>
+          </div>
         </div>
       </div>
     );
   }
 }
 
-export default CategoryItems;
+const mapStateToProps = (state) => ({
+  countries: state.dashboard.countries,
+});
+
+export default connect(mapStateToProps, {
+  getUserCountries,
+})(CategoryItems);
