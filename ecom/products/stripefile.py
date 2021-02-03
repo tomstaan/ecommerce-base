@@ -20,7 +20,13 @@ def get_payment_intents():
                 payment['name'] = result['data'][i]['description']
                 payment['status'] = result['data'][i]['status']
                 payment['product_details'] = result['data'][i]['metadata']
-                payment['status'] = result['data'][i]['status']
+                if len(result['data'][i]['charges']['data']) > 0:
+                    if result['data'][i]['charges']['data'][0]['amount_refunded'] > 0:
+                        payment['status'] = "Refunded"
+                    else:
+                        payment['status'] = result['data'][i]['status']
+                else:
+                    payment['status'] = result['data'][i]['status']
                 payment['stripe_customer_id'] = result['data'][i]['customer']
                 customer = stripe.Customer.retrieve(result['data'][i]['customer'])
                 payment['customer_email'] = customer['email']

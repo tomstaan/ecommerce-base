@@ -3,7 +3,8 @@ import axios from "axios";
 import {
   GET_DASHBOARD_STATISTICS,
   GET_DASHBOARD_SALES_GRAPH,
-  GET_POPULAR_PRODUCTS
+  GET_POPULAR_PRODUCTS,
+  GET_USER_COUNTRIES
 } from "./types.js";
 
 // Get Monthly sales
@@ -38,6 +39,18 @@ export const getPopularProducts = () => (dispatch) => {
     .then((res) => {
       dispatch({
         type: GET_POPULAR_PRODUCTS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => console.log(err));
+};
+
+export const getUserCountries = () => (dispatch) => {
+  axios
+    .get(`${process.env.REACT_APP_HOST_IP_ADDRESS}/api/dashboard/usercountries/`)
+    .then((res) => {
+      dispatch({
+        type: GET_USER_COUNTRIES,
         payload: res.data,
       });
     })

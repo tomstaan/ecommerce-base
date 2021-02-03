@@ -178,11 +178,14 @@
     width: 10%;
     overflow: hidden;
 }
-.transactionElementStatus h4{
-    color: #14FF00;
+
+.transactionElementStatus .transactionElementStatusProcessed{
+  color: #14FF00;
 }
 
-
+.transactionElementStatus .transactionElementStatusRefunded{
+  color: #E2123C;
+}
 
 /* Selecter */
 
