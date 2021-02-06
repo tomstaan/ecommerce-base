@@ -18,6 +18,7 @@ const initalState = {
   filterDate: false,
   filterQuantity: false,
   currentSort: "price",
+  tranLoadingScreen: true,
 };
 
 export default function (state = initalState, action) {
@@ -72,6 +73,7 @@ export default function (state = initalState, action) {
         filteredSales: state.filteredSales.map((Sale) => ({
           ...Sale,
         })),
+        tranLoadingScreen: false,
       };
     case FILTER_SALES: {
       handleSort();

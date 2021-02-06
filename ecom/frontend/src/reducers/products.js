@@ -44,6 +44,7 @@ const initalState = {
   editNewProductPictures: [],
   redirect_to_product_page: false,
   mode_select_edit: false,
+  prodLoadingScreen: true
 };
 
 export default function (state = initalState, action) {
@@ -95,11 +96,12 @@ export default function (state = initalState, action) {
         ...state,
         products: action.payload.map((product) => ({
           ...product,
-          selected: false,
+          selected: false
         })),
         filteredProducts: state.filteredProducts.map((Product) => ({
-          ...Product,
+          ...Product
         })),
+        prodLoadingScreen: false
       };
     case DELETE_PRODUCT:
       return {

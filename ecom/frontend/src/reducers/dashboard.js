@@ -40,7 +40,8 @@ const initalState = {
       data: [],
     },
   ],
-  countries: []
+  countries: [],
+  dashLoadingScreen: true
 };
 
 export default function (state = initalState, action) {
@@ -94,7 +95,8 @@ export default function (state = initalState, action) {
     case GET_USER_COUNTRIES:
       return{
         ...state,
-        countries: action.payload
+        countries: action.payload,
+        dashLoadingScreen: false
       }
     default:
       return state;

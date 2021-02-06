@@ -27,7 +27,7 @@ class CategoryItems extends Component {
     return (
       <div>
         <div className="salesGraphBaseContainerRight">
-          <h4>Customer Per Country</h4>
+          <h4>Customers Per Country</h4>
           <div className="salesGraphSalesContCountry">
             <Fragment>
               {this.props.countries.map((Country) => (

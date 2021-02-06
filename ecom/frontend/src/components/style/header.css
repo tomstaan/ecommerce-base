@@ -3,6 +3,7 @@
     position: relative;
     margin: auto;
     background-color: #fff;
+    z-index: 200;
 }
 .headerLogo h1{
     position: relative;

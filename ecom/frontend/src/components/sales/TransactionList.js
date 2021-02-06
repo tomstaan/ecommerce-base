@@ -25,37 +25,6 @@ export class TransactionList extends Component {
 
   componentDidMount() {
     this.props.getSales();
-    this.setState({
-      TransactionList: [
-        {
-          id: "23kj4n4n",
-          product_name: "Iphone 11",
-          customer_email: "johndoe123@gmail.com",
-          date: "13:45 08/11/2020",
-          quantity: 1,
-          price: "699.00",
-          status: "Processed",
-        },
-        {
-          id: "dkjfn09f",
-          product_name: "Samsung S10",
-          customer_email: "johndoe321@gmail.com",
-          date: "16:35 06/12/2020",
-          quantity: 1,
-          price: "599.00",
-          status: "Processed",
-        },
-        {
-          id: "sd09jc0sd",
-          product_name: "Apple Watch",
-          customer_email: "johndoe9238@gmail.com",
-          date: "13:33 01/12/2019",
-          quantity: 1,
-          price: "499.00",
-          status: "Processed",
-        },
-      ],
-    });
   }
 
   handleDate(unixDate) {
