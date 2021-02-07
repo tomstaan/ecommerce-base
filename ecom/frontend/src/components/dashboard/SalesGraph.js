@@ -60,6 +60,7 @@ const mapStateToProps = (state) => ({
   series: state.dashboard.series
 });
 
+
 export default connect(mapStateToProps, {
   getDashboardSalesGraph
 })(SalesGraph);
