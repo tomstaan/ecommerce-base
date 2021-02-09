@@ -3,6 +3,7 @@ from django.db import models
 from django.utils.timezone import now
 from django.dispatch import receiver
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth.models import User
 
 
 def get_image_path(instance, filename):
@@ -10,9 +11,6 @@ def get_image_path(instance, filename):
 
 # Create your models here.
 class Product(models.Model):
-    #sku = models.CharField(max_length=15, blank=True)
-    #idsku = models.CharField(blank=True, max_length=255)
-    #vendor_product_id = models.CharField(max_length=255, blank=True)
     product_name = models.CharField(max_length=255, blank=True, null=True)
     stripe_ref_id = models.CharField(max_length=255, blank=True, null=True)
     product_unique_name = models.CharField(max_length=255, blank=True, null=True)
@@ -43,6 +41,7 @@ class Product(models.Model):
     note = models.CharField(max_length=500, blank=True)
     date = models.DateTimeField(default=now, editable=False)
     cover_image = models.CharField(max_length=255, blank=True, null=True)
+    owner = models.ForeignKey(User, related_name="products", on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.product_name

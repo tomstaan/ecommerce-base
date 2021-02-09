@@ -37,12 +37,20 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'products',
-    'dashboard',
     'rest_framework',
     'corsheaders',
+    'knox',
+    'products',
+    'dashboard',
+    'accounts',
     'frontend',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES':(
+        'knox.auth.TokenAuthentication',
+    )
+}
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
@@ -58,10 +66,10 @@ MIDDLEWARE = [
 ]
 
 # Allows API requests from other servers
-#CORS_ORIGIN_WHITELIST = [
-#   'http://127.0.0.1:8000',
-#]
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = [
+   'http://127.0.0.1:8000',
+]
+#CORS_ORIGIN_ALLOW_ALL = True
 
 
 ROOT_URLCONF = 'ecom.urls'

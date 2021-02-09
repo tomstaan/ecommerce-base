@@ -13,12 +13,13 @@ import re
 
 # Product Viewset
 class ProductViewSet(viewsets.ModelViewSet):
-    queryset = Product.objects.all()
-    product_cats = Product_categories.objects.all()
     permission_classes = [
-        permissions.AllowAny
+        permissions.IsAuthenticated,
     ]
     serializer_class = ProductSerializer
+
+    queryset = Product.objects.all()
+    product_cats = Product_categories.objects.all()
 
     def create(self, request, *args, **kwargs):
         product_name = request.data['product_name']
@@ -53,6 +54,9 @@ class ProductViewSet(viewsets.ModelViewSet):
             product_description = product_description
         )
         return HttpResponse({'message': 'Product Created'}, status=200)
+    
+    def perform_create(self, serializer):  # added
+        serializer.save(owner=self.request.user)
 
 class ProductCatViewSet(viewsets.ModelViewSet):
     queryset = Product_categories.objects.all()
@@ -137,13 +141,17 @@ class ProductImagesViewSet(viewsets.ModelViewSet):
 # Sales
 # Get images that relate to a product id
 class SalesViewSet(viewsets.ModelViewSet):
-    stripe_payment_intents = get_payment_intents()
     permission_classes = [
-        permissions.AllowAny
+        permissions.IsAuthenticated,
     ]
+
+    stripe_payment_intents = get_payment_intents()
 
     def list(self, request, *args, **kwargs):
         return Response(self.stripe_payment_intents)
 
     def retrieve(self, request, pk=None, *args, **kwargs):
         return Response(self.stripe_payment_intents)
+    
+    def perform_create(self, serializer):  # added
+        serializer.save(owner=self.request.user)
