@@ -6,6 +6,7 @@ urlpatterns = [
     path('', include('dashboard.urls')),
     path('', include('products.urls')),
     path('', include('frontend.urls')),
+    path('', include('accounts.urls'))
 ] 
 
 urlpatterns += staticfiles_urlpatterns()
