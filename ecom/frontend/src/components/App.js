@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import { Route, Link, BrowserRouter as Router } from "react-router-dom";
 import "./style/Background.css";
 import Header from "./layout/Header";
 import Feed from "./layout/Feed.js";
@@ -9,16 +8,25 @@ import Feed from "./layout/Feed.js";
 import { Provider } from "react-redux";
 //Provider store
 import store from "../store";
+import { Fragment } from "react";
+import auth from "../reducers/auth";
+import { loadUser } from "../actions/auth";
 
 class App extends Component {
+  componentDidMount() {
+    store.dispatch(loadUser());
+  }
+
   render() {
     return (
-        <Provider store={store}>
+      <Provider store={store}>
+        <Fragment>
           <div className="appContent">
-            <Header />
+            {auth.isAuthenticated ?  (<Header />) : ""}
             <Feed />
           </div>
-        </Provider>
+        </Fragment>
+      </Provider>
     );
   }
 }

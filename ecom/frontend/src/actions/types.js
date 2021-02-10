@@ -50,3 +50,7 @@ export const GET_POPULAR_PRODUCTS = "GET_POPULAR_PRODUCTS";
 export const GET_USER_COUNTRIES = "GET_USER_COUNTRIES";
 
 
+// User Accounts
+export const USER_LOADING = 'USER_LOADING';
+export const USER_LOADED = 'USER_LOADED';
+export const AUTH_ERROR = 'AUTH_ERROR';
