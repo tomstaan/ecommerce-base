@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import "./style/Background.css";
-import Header from "./layout/Header";
 import Feed from "./layout/Feed.js";
 //
 //Redux
@@ -9,7 +8,6 @@ import { Provider } from "react-redux";
 //Provider store
 import store from "../store";
 import { Fragment } from "react";
-import auth from "../reducers/auth";
 import { loadUser } from "../actions/auth";
 
 class App extends Component {
@@ -22,7 +20,6 @@ class App extends Component {
       <Provider store={store}>
         <Fragment>
           <div className="appContent">
-            {auth.isAuthenticated ?  (<Header />) : ""}
             <Feed />
           </div>
         </Fragment>

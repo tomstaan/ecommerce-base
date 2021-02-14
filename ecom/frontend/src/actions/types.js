@@ -50,7 +50,15 @@ export const GET_POPULAR_PRODUCTS = "GET_POPULAR_PRODUCTS";
 export const GET_USER_COUNTRIES = "GET_USER_COUNTRIES";
 
 
-// User Accounts
+// User Accounts + Authentication
 export const USER_LOADING = 'USER_LOADING';
 export const USER_LOADED = 'USER_LOADED';
 export const AUTH_ERROR = 'AUTH_ERROR';
+
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAIL = 'LOGIN_FAIL';
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
+export const REGISTER_FAIL = 'REGISTER_FAIL';
+export const CLEAR_LEADS = 'CLEAR_LEADS';
+export const REDIRECT_URL = 'REDIRECT_URL';

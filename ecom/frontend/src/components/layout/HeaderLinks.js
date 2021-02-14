@@ -1,12 +1,22 @@
 import React, { Component } from "react";
 import { BrowserRouter, Link, withRouter, Router } from "react-router-dom";
+import { connect, Provider } from "react-redux";
 
 import dashboard from "./../style/images/dash.png";
 import product from "./../style/images/product.png";
 import sales from "./../style/images/sales.png";
 import { v4 as uuid } from 'uuid';
 
+import { redirectUrl } from "../../actions/auth"
+
 export class HeaderLinks extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      redirectUrl: "",
+    };
+  }
+
   handleRoute() {
     //return currentDir;
     let editDir = window.location.pathname;
@@ -21,9 +31,8 @@ export class HeaderLinks extends Component {
   render() {
     return (
       <div>
-        <BrowserRouter>
           <div className="hlOptions">
-            <Link to="/dashboard" onClick={() => window.location.href="/dashboard"}>
+            <Link to="/dashboard" onClick={this.props.redirectUrl("/dashboard/")}>
             <div className={
                   this.handleRoute().includes("/dashboard")
                     ? "hlDashboardActive"
@@ -35,7 +44,7 @@ export class HeaderLinks extends Component {
               </div>
             </div>
             </Link>
-            <Link to="/products" onClick={() => window.location.href="/products"}>
+            <Link to="/products" onClick={this.props.redirectUrl("/products/")}>
               <div
                 className={
                   this.handleRoute().includes("/products")
@@ -49,7 +58,7 @@ export class HeaderLinks extends Component {
                 </div>
               </div>
             </Link>
-            <Link to="/sales" onClick={() => window.location.href="/sales"}>
+            <Link to="/sales" onClick={this.props.redirectUrl("/sales/")}>
               <div
                 className={
                   this.handleRoute().includes("/sales")
@@ -64,11 +73,15 @@ export class HeaderLinks extends Component {
               </div>
             </Link>
           </div>
-        </BrowserRouter>
       </div>
     );
   }
 }
 
+const mapStateToProps = (state) => ({
+  redirectUrl: state.auth.redirectUrl,
+});
 
-export default HeaderLinks;
+export default connect(mapStateToProps, {
+  redirectUrl
+})(HeaderLinks);

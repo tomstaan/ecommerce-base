@@ -8,13 +8,20 @@ import SalesGraph from "./SalesGraph";
 import PopularItems from "./PopularItems";
 import CategoryItems from "./CategoryItems.js";
 import { Fragment } from "react";
+import Header from "./../layout/Header"
 
 export class Dashboard extends Component {
-
   render() {
     return (
       <div>
-        <div className={this.props.dashLoadingScreen ? "loadingBackground" : "loadingBackgroundHidden"}>
+        <Header />
+        <div
+          className={
+            this.props.dashLoadingScreen
+              ? "loadingBackground"
+              : "loadingBackgroundHidden"
+          }
+        >
           <div className="loadingBox">
             <Fragment>
               <div className="lds-ring">
@@ -37,10 +44,8 @@ export class Dashboard extends Component {
   }
 }
 
-
 const mapStateToProps = (state) => ({
-  dashLoadingScreen: state.dashboard.dashLoadingScreen
+  dashLoadingScreen: state.dashboard.dashLoadingScreen,
 });
 
-export default connect(mapStateToProps, {
-})(Dashboard);
+export default connect(mapStateToProps, {})(Dashboard);

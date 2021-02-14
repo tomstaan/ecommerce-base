@@ -15,14 +15,14 @@ export default class Feed extends Component {
     return (
       <Router>
         <Switch>
-          <PrivateRoute exact path="/products/" component={Products} />
+          <PrivateRoute exact path="/products/" component={withRouter(Products)} />
           <PrivateRoute path="/products/newcategory/" component={NewCategory} />
           <PrivateRoute path="/products/newproduct/" component={NewProduct} />
           <PrivateRoute path="/products/editproduct/:id" component={EditProduct} />
-          <PrivateRoute exact path="/sales/" component={Sales} />
-          <PrivateRoute exact path="/dashboard/" component={Dashboard} />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/login" component={Login} />
+          <PrivateRoute exact path="/sales/" component={withRouter(Sales)} />
+          <PrivateRoute exact path="/dashboard/" component={withRouter(Dashboard)} />
+          <Route exact path="/register/" component={Register} />
+          <Route exact path="/login/" component={Login} />
         </Switch>
       </Router>
     );

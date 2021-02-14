@@ -2,28 +2,46 @@ import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { register } from '../../actions/auth';
 
 export class Register extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-        username: '',
-        email: '',
-        password: '',
-        password2: ''
-    };
-  }
+  state = {
+    username: '',
+    email: '',
+    password: '',
+    password2: '',
+    redirectUrl: "",
+  };
+
+  static propTypes = {
+    register: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool,
+  };
+
+  onSubmit = (e) => {
+    e.preventDefault();
+    const { username, email, password, password2 } = this.state;
+    if (password !== password2) {
+      console.log('Passwords do not match');
+    } else {
+      const newUser = {
+        username,
+        password,
+        email,
+      };
+      this.props.register(newUser);
+    }
+  };
 
   onChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
   render() {
     if (this.props.isAuthenticated) {
-        return <Redirect to="/dashboard" />;
-      }
-      const { username, email, password, password2 } = this.state;
-
+      return <Redirect to={this.props.redirectUrl} />;
+    }
+    const { username, email, password, password2 } = this.state;
     return (
-        <div className="col-md-6 m-auto">
+      <div className="col-md-6 m-auto">
         <div className="card card-body mt-5">
           <h2 className="text-center">Register</h2>
           <form onSubmit={this.onSubmit}>
@@ -83,7 +101,8 @@ export class Register extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    isAuthenticated: state.auth.isAuthenticated,
-  });
-  
-export default connect(mapStateToProps, )(Register);
+  isAuthenticated: state.auth.isAuthenticated,
+  redirectUrl: state.auth.redirectUrl,
+});
+
+export default connect(mapStateToProps, { register })(Register);

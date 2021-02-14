@@ -5,15 +5,22 @@ import "./../style/products.css";
 import "./../style/dashboard.css";
 import Options from "./Options";
 import ProductList from "./ProductList";
+import Header from "./../layout/Header"
 
 import { Fragment } from "react";
-
 
 export class Products extends Component {
   render() {
     return (
       <div>
-        <div className={this.props.prodLoadingScreen ? "loadingBackground" : "loadingBackgroundHidden"}>
+        <Header />
+        <div
+          className={
+            this.props.prodLoadingScreen
+              ? "loadingBackground"
+              : "loadingBackgroundHidden"
+          }
+        >
           <div className="loadingBox">
             <Fragment>
               <div className="lds-ring">
@@ -25,17 +32,15 @@ export class Products extends Component {
             </Fragment>
           </div>
         </div>
-          <Options />
-          <ProductList />
-        </div>
+        <Options />
+        <ProductList />
+      </div>
     );
   }
 }
 
-
 const mapStateToProps = (state) => ({
-  prodLoadingScreen: state.products.prodLoadingScreen
+  prodLoadingScreen: state.products.prodLoadingScreen,
 });
 
-export default connect(mapStateToProps, {
-})(Products);
+export default connect(mapStateToProps, {})(Products);
