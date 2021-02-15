@@ -50,11 +50,13 @@ class ProductImage(models.Model):
     product_ref = models.ForeignKey(Product, on_delete=models.CASCADE, blank=True, null=True)
     image_id = models.CharField(max_length=255, blank=True, null=True)
     image_name = models.ImageField(blank=True, null=True, upload_to=get_image_path)
+    owner = models.ForeignKey(User, related_name="product_images", on_delete=models.CASCADE, null=True)
 
 class Product_categories(models.Model):
     cat_name = models.CharField(max_length=128, null=False)
     description = models.CharField(max_length=500)
     active = models.BooleanField(default=True, null=False)
+    owner = models.ForeignKey(User, related_name="product_cats", on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.cat_name

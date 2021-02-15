@@ -19,7 +19,7 @@ import datetime
 # Product Viewset
 class DashboardViewSet(viewsets.ViewSet):
     permission_classes = [
-        permissions.AllowAny
+        permissions.IsAuthenticated,
     ]
 
     # Get data from stripe
@@ -50,11 +50,13 @@ class DashboardViewSet(viewsets.ViewSet):
         serializedData = DashboardSerializer(data).data
         return Response(serializedData)
 
+    def perform_create(self, serializer):  # added
+        serializer.save(owner=self.request.user)
 
 # Product Viewset
 class DashboardSalesGraph(viewsets.ViewSet):
     permission_classes = [
-        permissions.AllowAny
+        permissions.IsAuthenticated,
     ]
 
     # Get data from stripe
@@ -72,10 +74,13 @@ class DashboardSalesGraph(viewsets.ViewSet):
         serializedData = DashboardSalesGraphSerializer(data).data
         return Response(serializedData)
     
+    def perform_create(self, serializer):  # added
+        serializer.save(owner=self.request.user)
+    
 # Product Viewset
 class DashboardPopularBarChart(viewsets.ViewSet):
     permission_classes = [
-        permissions.AllowAny
+        permissions.IsAuthenticated,
     ]
 
     # Get data from stripe
@@ -96,12 +101,15 @@ class DashboardPopularBarChart(viewsets.ViewSet):
 
         serializedData = DashboardPopularBarChartSerializer(data).data
         return Response(serializedData)
+    
+    def perform_create(self, serializer):  # added
+        serializer.save(owner=self.request.user)
 
 
 # Product Viewset
 class DashboardUserCountries(viewsets.ViewSet):
     permission_classes = [
-        permissions.AllowAny
+        permissions.IsAuthenticated,
     ]
 
     # Get data from stripe
@@ -111,3 +119,6 @@ class DashboardUserCountries(viewsets.ViewSet):
 
         serializedData = DashboardUserCountrySerializer(data, many=True).data
         return Response(serializedData)
+    
+    def perform_create(self, serializer):  # added
+        serializer.save(owner=self.request.user)

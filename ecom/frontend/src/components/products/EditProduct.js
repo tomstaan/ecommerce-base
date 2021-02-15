@@ -5,6 +5,9 @@ import TopRoute from "./TopRoute";
 import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
+import { tokenConfig } from "../../actions/auth";
+import Header from "./../layout/Header";
+
 import "./../style/newproduct.css";
 
 //Image Uploading
@@ -91,7 +94,10 @@ export class EditProduct extends Component {
   getProductDetails() {
     let meetupId = this.props.match.params.id;
     axios
-      .get(`http://127.0.0.1:8000/api/products/${meetupId}/`)
+      .get(
+        `http://127.0.0.1:8000/api/products/${meetupId}/`,
+        tokenConfig(store.getState)
+      )
       .then((response) => {
         this.setState({
           id: response.data.id,
@@ -187,8 +193,8 @@ export class EditProduct extends Component {
       }
     });
 
-    console.log("New Product Pictures")
-    console.log(this.state.newProductPictures)
+    console.log("New Product Pictures");
+    console.log(this.state.newProductPictures);
 
     //Add product images
     if (this.state.newProductPictures.length > 0) {
@@ -245,151 +251,154 @@ export class EditProduct extends Component {
     } = this.state;
 
     return (
-      <div className="NewProdBack">
-        <div className="col-lg-12">
-          <TopRoute />
-          <div className="newProductTitle">
-            <h3>Edit Product</h3>
-          </div>
-          <form onSubmit={this.onSubmit}>
-            <div className="newProdTopFields">
-              <div className="newProdField">
-                <input
-                  className=""
-                  type="text"
-                  name="product_name"
-                  id="label-title"
-                  placeholder="Product Name"
-                  onChange={this.onChange}
-                  value={product_name}
-                />
-              </div>
-              <div className="newProdField">
-                <select
-                  id="newProdCat"
-                  onChange={this.onChange}
-                  name="category_id"
-                  className="newProdCat"
-                  value={category_id}
-                >
-                  <option className="selectEmptyCat" value="">
-                    Category
-                  </option>
-                  {this.props.category.map((Category) => (
-                    <option key={Category.id} value={Category.id}>
-                      {Category.cat_name}
-                    </option>
-                  ))}
-                </select>
-              </div>
+      <div>
+        <Header />
+        <div className="NewProdBack">
+          <div className="col-lg-12">
+            <TopRoute />
+            <div className="newProductTitle">
+              <h3>Edit Product</h3>
             </div>
-            <NewProductImage />
-            <div className="newProdTopFields">
-              <div className="newProdField">
-                <label className="newProdFieldLabel">Price</label>
-                <input
-                  className=""
-                  type="number"
-                  step="0.01"
-                  min="0"
-                  name="unit_price"
-                  id="label-title"
-                  placeholder=""
-                  onChange={this.onChange}
-                  value={unit_price}
-                />
-                <span></span>
-              </div>
-              <div className="newProdFieldRight">
-                <label className="newProdFieldLabel">Quantity Per Unit</label>
-                <input
-                  className=""
-                  type="text"
-                  name="quantity_per_unit"
-                  id="label-title"
-                  placeholder=""
-                  onChange={this.onChange}
-                  value={quantity_per_unit}
-                />
-              </div>
-              <div className="newProdField">
-                <input
-                  className="newProdBottomFields"
-                  type="text"
-                  name="size"
-                  id="label-title"
-                  placeholder="Size"
-                  onChange={this.onChange}
-                  value={size}
-                />
-              </div>
-              <div className="newProdFieldRight">
-                <input
-                  className="newProdBottomFields"
-                  type="text"
-                  name="color"
-                  id="label-title"
-                  placeholder="Color"
-                  onChange={this.onChange}
-                  value={color}
-                />
-              </div>
-              <div className="newProdField">
-                <label className="newProdFieldLabel">Weight</label>
-                <input
-                  className=""
-                  type="text"
-                  name="unit_weight"
-                  id="label-title"
-                  placeholder=""
-                  onChange={this.onChange}
-                  value={unit_weight}
-                />
-              </div>
-              <div className="newProdFieldRight">
-                <label className="newProdFieldLabel">Units In Stock</label>
-                <input
-                  className=""
-                  type="text"
-                  name="units_in_stock"
-                  id="label-title"
-                  placeholder=""
-                  onChange={this.onChange}
-                  value={units_in_stock}
-                />
-              </div>
-              <div className="newProdField">
-                <label className="newProdFieldLabel">Units On Order</label>
-                <input
-                  className=""
-                  type="text"
-                  name="units_on_order"
-                  id="label-title"
-                  placeholder=""
-                  onChange={this.onChange}
-                  value={units_on_order}
-                />
-              </div>
-              <div className="newProdTxtArea">
-                <textarea
-                  name="product_description"
-                  id="product_description"
-                  placeholder="Product Description"
-                  onChange={this.onChange}
-                  value={product_description}
-                ></textarea>
-              </div>
-              <Link to="/products">
-                <div className="newProdLeftButton">
-                  <button>Cancel</button>
+            <form onSubmit={this.onSubmit}>
+              <div className="newProdTopFields">
+                <div className="newProdField">
+                  <input
+                    className=""
+                    type="text"
+                    name="product_name"
+                    id="label-title"
+                    placeholder="Product Name"
+                    onChange={this.onChange}
+                    value={product_name}
+                  />
                 </div>
-              </Link>
-              <div className="newProdRightButton">
-                <button type="submit">Save Changes</button>
+                <div className="newProdField">
+                  <select
+                    id="newProdCat"
+                    onChange={this.onChange}
+                    name="category_id"
+                    className="newProdCat"
+                    value={category_id}
+                  >
+                    <option className="selectEmptyCat" value="">
+                      Category
+                    </option>
+                    {this.props.category.map((Category) => (
+                      <option key={Category.id} value={Category.id}>
+                        {Category.cat_name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
-            </div>
-          </form>
-          <div className="newProdBottom"></div>
+              <NewProductImage />
+              <div className="newProdTopFields">
+                <div className="newProdField">
+                  <label className="newProdFieldLabel">Price</label>
+                  <input
+                    className=""
+                    type="number"
+                    step="0.01"
+                    min="0"
+                    name="unit_price"
+                    id="label-title"
+                    placeholder=""
+                    onChange={this.onChange}
+                    value={unit_price}
+                  />
+                  <span></span>
+                </div>
+                <div className="newProdFieldRight">
+                  <label className="newProdFieldLabel">Quantity Per Unit</label>
+                  <input
+                    className=""
+                    type="text"
+                    name="quantity_per_unit"
+                    id="label-title"
+                    placeholder=""
+                    onChange={this.onChange}
+                    value={quantity_per_unit}
+                  />
+                </div>
+                <div className="newProdField">
+                  <input
+                    className="newProdBottomFields"
+                    type="text"
+                    name="size"
+                    id="label-title"
+                    placeholder="Size"
+                    onChange={this.onChange}
+                    value={size}
+                  />
+                </div>
+                <div className="newProdFieldRight">
+                  <input
+                    className="newProdBottomFields"
+                    type="text"
+                    name="color"
+                    id="label-title"
+                    placeholder="Color"
+                    onChange={this.onChange}
+                    value={color}
+                  />
+                </div>
+                <div className="newProdField">
+                  <label className="newProdFieldLabel">Weight</label>
+                  <input
+                    className=""
+                    type="text"
+                    name="unit_weight"
+                    id="label-title"
+                    placeholder=""
+                    onChange={this.onChange}
+                    value={unit_weight}
+                  />
+                </div>
+                <div className="newProdFieldRight">
+                  <label className="newProdFieldLabel">Units In Stock</label>
+                  <input
+                    className=""
+                    type="text"
+                    name="units_in_stock"
+                    id="label-title"
+                    placeholder=""
+                    onChange={this.onChange}
+                    value={units_in_stock}
+                  />
+                </div>
+                <div className="newProdField">
+                  <label className="newProdFieldLabel">Units On Order</label>
+                  <input
+                    className=""
+                    type="text"
+                    name="units_on_order"
+                    id="label-title"
+                    placeholder=""
+                    onChange={this.onChange}
+                    value={units_on_order}
+                  />
+                </div>
+                <div className="newProdTxtArea">
+                  <textarea
+                    name="product_description"
+                    id="product_description"
+                    placeholder="Product Description"
+                    onChange={this.onChange}
+                    value={product_description}
+                  ></textarea>
+                </div>
+                <Link to="/products">
+                  <div className="newProdLeftButton">
+                    <button>Cancel</button>
+                  </div>
+                </Link>
+                <div className="newProdRightButton">
+                  <button type="submit">Save Changes</button>
+                </div>
+              </div>
+            </form>
+            <div className="newProdBottom"></div>
+          </div>
         </div>
       </div>
     );

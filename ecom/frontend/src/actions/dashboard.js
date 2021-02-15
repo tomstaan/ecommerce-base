@@ -7,11 +7,13 @@ import {
   GET_USER_COUNTRIES
 } from "./types.js";
 
+import { tokenConfig } from './auth';
+
 // Get Monthly sales
 
-export const getDashboardStatistics = () => (dispatch) => {
+export const getDashboardStatistics = () => (dispatch, getState) => {
   axios
-    .get(`${process.env.REACT_APP_HOST_IP_ADDRESS}/api/dashboard/statistics/`)
+    .get(`${process.env.REACT_APP_HOST_IP_ADDRESS}/api/dashboard/statistics/`, tokenConfig(getState))
     .then((res) => {
       dispatch({
         type: GET_DASHBOARD_STATISTICS,
@@ -21,9 +23,9 @@ export const getDashboardStatistics = () => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
-export const getDashboardSalesGraph = () => (dispatch) => {
+export const getDashboardSalesGraph = () => (dispatch, getState) => {
   axios
-    .get(`${process.env.REACT_APP_HOST_IP_ADDRESS}/api/dashboard/salesgraph/`)
+    .get(`${process.env.REACT_APP_HOST_IP_ADDRESS}/api/dashboard/salesgraph/`, tokenConfig(getState))
     .then((res) => {
       dispatch({
         type: GET_DASHBOARD_SALES_GRAPH,
@@ -33,9 +35,9 @@ export const getDashboardSalesGraph = () => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
-export const getPopularProducts = () => (dispatch) => {
+export const getPopularProducts = () => (dispatch, getState) => {
   axios
-    .get(`${process.env.REACT_APP_HOST_IP_ADDRESS}/api/dashboard/popularproducts/`)
+    .get(`${process.env.REACT_APP_HOST_IP_ADDRESS}/api/dashboard/popularproducts/`, tokenConfig(getState))
     .then((res) => {
       dispatch({
         type: GET_POPULAR_PRODUCTS,
@@ -45,9 +47,9 @@ export const getPopularProducts = () => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
-export const getUserCountries = () => (dispatch) => {
+export const getUserCountries = () => (dispatch, getState) => {
   axios
-    .get(`${process.env.REACT_APP_HOST_IP_ADDRESS}/api/dashboard/usercountries/`)
+    .get(`${process.env.REACT_APP_HOST_IP_ADDRESS}/api/dashboard/usercountries/`, tokenConfig(getState))
     .then((res) => {
       dispatch({
         type: GET_USER_COUNTRIES,
