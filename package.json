@@ -33,7 +33,7 @@
     "@popperjs/core": "^2.6.0",
     "@stripe/react-stripe-js": "^1.2.2",
     "@stripe/stripe-js": "^1.12.1",
-    "apexcharts": "^3.24.0",
+    "apexcharts": "^3.25.0",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "braces": "^3.0.2",
