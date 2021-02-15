@@ -1,0 +1,132 @@
+.loginBackground {
+  position: relative;
+  width: 100%;
+}
+
+.loginCardBack {
+  position: relative;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  width: 95%;
+  max-width: 300px;
+  border-radius: 3px;
+  background-color: #fff;
+  -webkit-box-shadow: 2px 3px 15px 2px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 2px 3px 15px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: 2px 3px 15px 2px rgba(0, 0, 0, 0.05);
+  margin: auto;
+  margin-top: 30vh;
+}
+
+.loginTextBox {
+  position: relative;
+  width: 100%;
+}
+
+.loginTextBox h3 {
+  position: relative;
+  position: relative;
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  color: #000;
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.loginTextBox form {
+  position: relative;
+  margin: auto;
+}
+
+.formFieldBox {
+  position: relative;
+  width: 90%;
+  margin: auto;
+  height: 45px;
+  margin-bottom: 10px;
+}
+
+.formFieldBox input {
+  position: relative;
+  width: 90%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 4.7%;
+  padding-right: 4.7%;
+  margin: auto;
+  color: #000;
+  font-size: 16px;
+  display: inline-block;
+  background-color: #f3f3f3;
+  border-radius: 3px;
+  border-color: #999;
+  border-style: solid;
+  border-width: 1px;
+  font-family: "Open Sans", sans-serif;
+}
+
+.formFieldBox input::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: #999;
+}
+.formFieldBox input:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #999;
+  opacity: 1;
+}
+.formFieldBox input::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #999;
+  opacity: 1;
+}
+.formFieldBox input:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #999;
+}
+.formFieldBox input::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #999;
+}
+
+::placeholder {
+  /* Most modern browsers support this now. */
+  color: #999;
+}
+
+.formFieldBox input:focus {
+  border-radius: 2px;
+  border-color: #0066ff;
+  background-color: #fff;
+}
+
+.formFieldBtn {
+  position: relative;
+  width: 90%;
+  margin: auto;
+  height: 38px;
+  border-radius: 3px;
+  background-color: transparent;
+}
+
+.formFieldBtn button {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: none;
+  color: #fff;
+  border-radius: 3px;
+  font-family: "Open Sans", sans-serif;
+  border-radius: 4px;
+  background: linear-gradient(145deg, #005ce6, #006dff);
+  cursor: pointer;
+}
+
+.formFieldBtn button:focus {
+  border: none;
+  border-radius: 0px;
+}
+
+.formFieldBtn button:hover {
+    opacity: .7;
+  }
