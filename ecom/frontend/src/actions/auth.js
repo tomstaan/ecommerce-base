@@ -16,7 +16,7 @@ export const loadUser = () => (dispatch, getState) => {
   // User Loading
   dispatch({ type: USER_LOADING });
   axios
-    .get("/api/auth/user", tokenConfig(getState))
+    .get(`${process.env.REACT_APP_HOST_IP_ADDRESS}/api/auth/user`, tokenConfig(getState))
     .then((res) => {
       dispatch({
         type: USER_LOADED,
@@ -44,7 +44,7 @@ export const login = (username, password) => (dispatch) => {
   const body = JSON.stringify({ username, password });
 
   axios
-    .post("/api/auth/login", body, config)
+    .post(`${process.env.REACT_APP_HOST_IP_ADDRESS}/api/auth/login`, body, config)
     .then((res) => {
       dispatch({
         type: LOGIN_SUCCESS,
@@ -72,7 +72,7 @@ export const register = ({ username, password, email }) => (dispatch) => {
   const body = JSON.stringify({ username, email, password });
 
   axios
-    .post("/api/auth/register", body, config)
+    .post(`${process.env.REACT_APP_HOST_IP_ADDRESS}/api/auth/register`, body, config)
     .then((res) => {
       dispatch({
         type: REGISTER_SUCCESS,
@@ -90,9 +90,12 @@ export const register = ({ username, password, email }) => (dispatch) => {
 // LOGOUT USER
 export const logout = () => (dispatch, getState) => {
   axios
-    .post("/api/auth/logout/", null, tokenConfig(getState))
+    .post(`${process.env.REACT_APP_HOST_IP_ADDRESS}/api/auth/logout`, null, tokenConfig(getState))
     .then((res) => {
-      dispatch({ type: "CLEAR_LEADS" });
+      dispatch({ type: "CLEAR_DASHBOARD_ON_LOGOUT" });
+      dispatch({ type: "CLEAR_CATEGORY_ON_LOGOUT" });
+      dispatch({ type: "CLEAR_PRODUCTS_ON_LOGOUT" });
+      dispatch({ type: "CLEAR_SALES_ON_LOGOUT" });
       dispatch({
         type: LOGOUT_SUCCESS,
       });

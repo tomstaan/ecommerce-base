@@ -6,6 +6,7 @@ import {
   FILTER_PRICE_SALES,
   FILTER_DATE_SALES,
   FILTER_QUANTITY_SALES,
+  CLEAR_SALES_ON_LOGOUT,
 } from "../actions/types.js";
 
 const initalState = {
@@ -173,6 +174,21 @@ export default function (state = initalState, action) {
         filteredSales: state.filteredSales.map((Sale) => ({
           ...Sale,
         })),
+      };
+    }
+    case CLEAR_SALES_ON_LOGOUT: {
+      return {
+        ...state,
+        sales: [],
+        filterValue: "",
+        filteredSales: [],
+        filterAsc: true,
+        filterDesc: false,
+        filterPrice: true,
+        filterDate: false,
+        filterQuantity: false,
+        currentSort: "price",
+        tranLoadingScreen: true,
       };
     }
     default:

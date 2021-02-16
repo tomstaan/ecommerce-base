@@ -11,6 +11,13 @@
     font-size: 16px;
     font-family: 'Open Sans', sans-serif;
     font-weight: bold;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
 }
 
 .headerLmt{
@@ -58,6 +65,27 @@
     float: right;
     position: relative;
     list-style: none;
+}
+
+.headerUserMenu h2{
+    position: relative;
+    line-height: 50px;
+    margin-right: 10px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    color: #FF0000;
+    transition: .3s ease;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+.headerUserMenu h2:hover{
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 .userMenuProfile{

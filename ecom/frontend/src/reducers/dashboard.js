@@ -2,7 +2,8 @@ import {
   GET_DASHBOARD_STATISTICS,
   GET_DASHBOARD_SALES_GRAPH,
   GET_POPULAR_PRODUCTS,
-  GET_USER_COUNTRIES
+  GET_USER_COUNTRIES,
+  CLEAR_DASHBOARD_ON_LOGOUT,
 } from "../actions/types.js";
 
 const initalState = {
@@ -41,7 +42,7 @@ const initalState = {
     },
   ],
   countries: [],
-  dashLoadingScreen: true
+  dashLoadingScreen: true,
 };
 
 export default function (state = initalState, action) {
@@ -83,21 +84,61 @@ export default function (state = initalState, action) {
             type: "bar",
           },
           xaxis: {
-            categories: action.payload['product'],
+            categories: action.payload["product"],
           },
         },
         popular_series: [
           {
-            data: action.payload['amount_sold'],
+            data: action.payload["amount_sold"],
           },
         ],
       };
     case GET_USER_COUNTRIES:
-      return{
+      return {
         ...state,
         countries: action.payload,
-        dashLoadingScreen: false
-      }
+        dashLoadingScreen: false,
+      };
+    case CLEAR_DASHBOARD_ON_LOGOUT:
+      return {
+        ...state,
+        monthly_sales: 0,
+        revenue: 0,
+        profit: 0,
+        monthly_visitors: 0,
+        new_customers: 0,
+        all_customers: 0,
+        options: {
+          chart: {
+            type: "line",
+          },
+          xaxis: {
+            categories: [],
+          },
+        },
+        series: [
+          {
+            name: "Sales",
+            data: [],
+          },
+        ],
+        popular_options: {
+          chart: {
+            height: 380,
+            type: "bar",
+          },
+          xaxis: {
+            categories: [],
+          },
+        },
+        popular_series: [
+          {
+            data: [],
+          },
+        ],
+        countries: [],
+        dashLoadingScreen: true,
+      };
     default:
       return state;
   }

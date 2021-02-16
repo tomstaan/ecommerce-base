@@ -22,6 +22,7 @@ import {
   UPDATE_EDIT_NEW_PICTURES,
   EDIT_MODE_SELECT,
   DELETE_PRODUCT_IMAGE,
+  CLEAR_PRODUCTS_ON_LOGOUT,
 } from "../actions/types.js";
 
 const initalState = {
@@ -44,7 +45,7 @@ const initalState = {
   editNewProductPictures: [],
   redirect_to_product_page: false,
   mode_select_edit: false,
-  prodLoadingScreen: true
+  prodLoadingScreen: true,
 };
 
 export default function (state = initalState, action) {
@@ -96,12 +97,12 @@ export default function (state = initalState, action) {
         ...state,
         products: action.payload.map((product) => ({
           ...product,
-          selected: false
+          selected: false,
         })),
         filteredProducts: state.filteredProducts.map((Product) => ({
-          ...Product
+          ...Product,
         })),
-        prodLoadingScreen: false
+        prodLoadingScreen: false,
       };
     case DELETE_PRODUCT:
       return {
@@ -205,7 +206,7 @@ export default function (state = initalState, action) {
       };
     case DELETE_PRODUCT_IMAGE:
       return {
-        ...state
+        ...state,
       };
     case FILTER_PRODUCTS: {
       handleSort();
@@ -283,6 +284,31 @@ export default function (state = initalState, action) {
         filteredProducts: state.filteredProducts.map((Product) => ({
           ...Product,
         })),
+      };
+    }
+    case CLEAR_PRODUCTS_ON_LOGOUT: {
+      return {
+        ...state,
+        products: [],
+        newProductPictures: [],
+        newProdImageId: 0,
+        selectAllChecked: false,
+        filterValue: "",
+        filteredProducts: [],
+        filterAsc: true,
+        filterDesc: false,
+        filterPrice: true,
+        filterCategory: false,
+        filterUnits: false,
+        currentSort: "unit_price",
+        editProductId: 0,
+        savedProductPictures: [],
+        displayProductPictures: [],
+        retrievedProductImages: [],
+        editNewProductPictures: [],
+        redirect_to_product_page: false,
+        mode_select_edit: false,
+        prodLoadingScreen: true,
       };
     }
     default:
