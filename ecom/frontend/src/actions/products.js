@@ -26,6 +26,8 @@ import {
   DELETE_PRODUCT_IMAGE,
 } from "./types.js";
 
+import { createMessage, returnErrors } from './messages';
+
 import { tokenConfig } from './auth';
 
 //Get Products
@@ -78,12 +80,13 @@ export const addProduct = (product) => (dispatch, getState) => {
   axios
     .post(`${process.env.REACT_APP_HOST_IP_ADDRESS}/api/products/`, product, tokenConfig(getState))
     .then((res) => {
+      dispatch(createMessage({ product: 'Product Added' }));
       dispatch({
         type: ADD_PRODUCT,
         payload: res.data,
       });
     })
-    .catch((err) => console.log(err));
+    .catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 };
 
 //Edit Category

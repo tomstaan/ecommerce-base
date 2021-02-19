@@ -11,6 +11,8 @@ import {
   REDIRECT_URL,
 } from "./types";
 
+import { createMessage, returnErrors } from './messages';
+
 // CHECK TOKEN & LOAD USER
 export const loadUser = () => (dispatch, getState) => {
   // User Loading
@@ -46,17 +48,13 @@ export const login = (username, password) => (dispatch) => {
   axios
     .post(`${process.env.REACT_APP_HOST_IP_ADDRESS}/api/auth/login`, body, config)
     .then((res) => {
+      dispatch(createMessage({ login: 'Login Successful' }));
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data,
       });
     })
-    .catch((err) => {
-      console.log(err);
-      dispatch({
-        type: LOGIN_FAIL,
-      });
-    });
+    .catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
 };
 
 // REGISTER USER

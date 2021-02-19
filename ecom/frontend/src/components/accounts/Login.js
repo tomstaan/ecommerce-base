@@ -22,43 +22,44 @@ export class Login extends Component {
   };
 
   onChange = (e) => this.setState({ [e.target.name]: e.target.value });
+  
 
   render() {
     if (this.props.isAuthenticated) {
-      return <Redirect to={this.props.redirectUrl} />;
+      return <Redirect to="/dashboard/" />;
     }
     const { username, password } = this.state;
     return (
-      <div className="loginBackground">
-        <div className="loginCardBack">
-          <div className="loginTextBox">
-            <h3>Login</h3>
-            <form onSubmit={this.onSubmit}>
-              <div className="formFieldBox">
-                <input
-                  type="text"
-                  name="username"
-                  onChange={this.onChange}
-                  value={username}
-                  placeholder="Username"
-                />
-              </div>
-              <div className="formFieldBox">
-                <input
-                  type="password"
-                  name="password"
-                  onChange={this.onChange}
-                  value={password}
-                  placeholder="Password"
-                />
-              </div>
+      <div>
+        <div className="loginBackground">
+          <div className="loginCardBack">
+            <div className="loginTextBox">
+              <h3>Login</h3>
+              <form onSubmit={this.onSubmit}>
+                <div className="formFieldBox">
+                  <input
+                    type="text"
+                    name="username"
+                    onChange={this.onChange}
+                    value={username}
+                    placeholder="Username"
+                  />
+                </div>
+                <div className="formFieldBox">
+                  <input
+                    type="password"
+                    name="password"
+                    onChange={this.onChange}
+                    value={password}
+                    placeholder="Password"
+                  />
+                </div>
 
-              <div className="formFieldBtn">
-                <button type="submit">
-                  Login
-                </button>
-              </div>
-            </form>
+                <div className="formFieldBtn">
+                  <button type="submit">Login</button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
