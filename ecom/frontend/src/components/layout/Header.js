@@ -8,13 +8,19 @@ import logo from "./../style/images/headlogo.png";
 import settings from "./../style/images/sett.png";
 
 import HeaderLinks from "./HeaderLinks";
-
+import { redirectUrl } from "../../actions/auth"
 import { logout } from "../../actions/auth";
 
 export class Header extends Component {
   static propTypes = {
     logout: PropTypes.func.isRequired,
   };
+
+  handleRoute() {
+    //return currentDir;
+    let editDir = window.location.pathname;
+    return editDir;
+  }
 
   render() {
     return (
@@ -43,13 +49,18 @@ export class Header extends Component {
             <div className="col-lg-12">
             
             <HeaderLinks/>
-
-              <div className="hlSettings">
+            <Link to="/settings">
+              <div className={
+                  this.handleRoute().includes("/settings")
+                    ? "hlSettingsActive"
+                    : "hlSettings"
+                }>
                 <img src={settings} alt="Settings" title="Settings" />
                 <div className="hlSettText">
                   <h2>Settings</h2>
                 </div>
               </div>
+              </Link>
             </div>
           </div>
         </div>
@@ -63,5 +74,6 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  logout
+  logout,
+  redirectUrl
 })(Header);

@@ -20,7 +20,7 @@
   "homepage": "https://github.com/TomSCoding/ecommerce-base#readme",
   "devDependencies": {
     "@babel/core": "^7.12.17",
-    "@babel/preset-env": "^7.12.16",
+    "@babel/preset-env": "^7.12.17",
     "@babel/preset-react": "^7.12.13",
     "@putout/plugin-webpack": "^1.2.0",
     "@types/react-alert": "^5.2.0",
@@ -63,6 +63,6 @@
     "stream-http": "^3.1.1",
     "url-loader": "^4.1.0",
     "uuid": "^8.3.2",
-    "webpack": "^5.22.0"
+    "webpack": "^5.23.0"
   }
 }
