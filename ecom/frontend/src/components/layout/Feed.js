@@ -9,6 +9,7 @@ import Dashboard from "../dashboard/Dashboard"
 import Login from '../accounts/Login';
 import Register from '../accounts/Register';
 import PrivateRoute from "../common/PrivateRoute"
+import Settings from "../settings/Settings"
 
 export default class Feed extends Component {
   render() {
@@ -21,6 +22,7 @@ export default class Feed extends Component {
           <PrivateRoute path="/products/editproduct/:id" component={EditProduct} />
           <PrivateRoute exact path="/sales/" component={withRouter(Sales)} />
           <PrivateRoute exact path="/dashboard/" component={withRouter(Dashboard)} />
+          <PrivateRoute exact path="/settings/" component={withRouter(Settings)} />
           <Route exact path="/register/" component={Register} />
           <Route exact path="/login/" component={Login} />
         </Switch>
