@@ -37,22 +37,23 @@ class StoreSettingViewSet(viewsets.ModelViewSet):
             return HttpResponse({'message': 'Settings Object Created'}, status=200)
     
     def update(self, request, *args, **kwargs):
+        pk = kwargs['pk']
         profile_pic = request.data['profile_pic']
         store_name = request.data['store_name']
+        print(pk)
         print(profile_pic)
         print(store_name)
-        '''
-        instance = self.get_object()
-        instance.name = request.data.get("name")
+        
+        instance = StoreSettings.objects.get(pk=pk)
+        print(instance)
+        
+        instance.profile_pic = profile_pic
+        instance.store_name = store_name
         instance.save()
 
-        serializer = self.get_serializer(instance)
-        serializer.is_valid(raise_exception=True)
-        self.perform_update(serializer)
+        data = StoreSettingSerializer(instance).data
 
-        return Response(serializer.data
-        '''
-        return HttpResponse({'message': 'Settings Object Created'}, status=200)
+        return Response(data)
     
     def perform_create(self, serializer):  # added
         serializer.save(owner=self.request.user)
