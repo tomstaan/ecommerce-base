@@ -7,6 +7,14 @@ import Header from "../layout/Header";
 import GalleryIcon from "./../style/images/pic.png";
 
 export class Settings extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      category: [],
+      newProductPictures: [],
+    };
+  }
+
   render() {
     return (
       <div>

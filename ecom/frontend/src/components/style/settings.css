@@ -161,7 +161,7 @@
 
   .settingsSubmitBtn {
     position: relative;
-    height: 35px;
+    height: 40px;
     width: 100%;
     margin-top: 10px;
     background-color: transparent;
@@ -174,7 +174,7 @@
   }
   .settingsSubmitBtn button {
     position: relative;
-    height: 35px;
+    height: 40px;
     background-color: #3887FF;
     cursor: pointer;
     color: #fff;
