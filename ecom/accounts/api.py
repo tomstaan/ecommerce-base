@@ -1,6 +1,8 @@
 from rest_framework import generics, permissions
 from rest_framework.response import Response
 from knox.models import AuthToken
+from django.contrib.auth.models import User
+from django.http import HttpResponse
 from .serializers import UserSerializer, RegisterSerializer, LoginSerializer
 
 # Register API
@@ -39,3 +41,24 @@ class UserAPI(generics.RetrieveAPIView):
 
     def get_object(self):
         return self.request.user
+
+
+# Change Username API
+class ChangeUsernameAPI(generics.GenericAPIView):
+    permission_classes = [
+        permissions.IsAuthenticated,
+    ]
+
+    def patch(self, request, *args, **kwargs):
+        pk = kwargs['pk']
+        newusername = request.data['username']
+        print(pk)
+        print(newusername)
+
+        if User.objects.filter(pk=pk).exists():
+            user = User.objects.get(pk=pk)
+            user.username = newusername
+            user.save()
+            return HttpResponse({'message': 'Username changed sucessfully'}, status=200)
+        else:
+            return HttpResponse({'error': 'user does not exist'}, status=400)
