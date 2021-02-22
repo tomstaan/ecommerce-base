@@ -62,3 +62,23 @@ class ChangeUsernameAPI(generics.GenericAPIView):
             return HttpResponse({'message': 'Username changed sucessfully'}, status=200)
         else:
             return HttpResponse({'error': 'user does not exist'}, status=400)
+
+# Change Username API
+class ChangePasswordAPI(generics.GenericAPIView):
+    permission_classes = [
+        permissions.IsAuthenticated,
+    ]
+
+    def patch(self, request, *args, **kwargs):
+        pk = kwargs['pk']
+        newpassword = request.data['password']
+        print(pk)
+        print(newpassword)
+
+        if User.objects.filter(pk=pk).exists():
+            user = User.objects.get(pk=pk)
+            user.set_password(newpassword)
+            user.save()
+            return HttpResponse({'message': 'Password changed sucessfully'}, status=200)
+        else:
+            return HttpResponse({'error': 'user does not exist'}, status=400)
