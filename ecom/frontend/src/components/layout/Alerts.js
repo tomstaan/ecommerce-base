@@ -25,6 +25,7 @@ export class Alerts extends Component {
       if (message.login) this.props.alert.success(message.login);
       if (message.product) this.props.alert.success(message.product);
       if (message.category) this.props.alert.success(message.category);
+      if (message.settings) this.props.alert.success(message.settings);
     }
   }
 

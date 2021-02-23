@@ -5,6 +5,7 @@ import sales from "./sales";
 import dashboard from "./dashboard";
 import auth from "./auth";
 import errors from "./errors";
+import settings from "./settings";
 import messages from "./messages";
 
 export default combineReducers({
@@ -15,5 +16,6 @@ export default combineReducers({
   auth,
   errors,
   messages,
+  settings,
 });
  
