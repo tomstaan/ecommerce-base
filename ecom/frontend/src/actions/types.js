@@ -69,3 +69,8 @@ export const REDIRECT_URL = 'REDIRECT_URL';
 export const GET_ERRORS = "GET_ERRORS";
 export const GET_MESSAGE = "GET_MESSAGE"
 export const CREATE_MESSAGE = "CREATE_MESSAGE";
+
+// Settings
+export const GET_SETTINGS = "GET_SETTINGS";
+export const CREATE_SETTINGS = "CREATE_SETTINGS";
+export const UPDATE_SETTINGS = "UPDATE_SETTINGS";

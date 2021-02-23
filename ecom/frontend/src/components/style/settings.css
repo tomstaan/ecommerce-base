@@ -68,6 +68,7 @@
     height: 285px;
     border-radius: 3px;
     background-color: #fff;
+    overflow: hidden;
 }
 
 .settingsImageBox{
@@ -83,6 +84,21 @@
     position: relative;
     width: 42px;
     height: 42px;
+}
+
+.settingsImageBoxUser{
+  position: relative;
+    width: auto;
+    height: 100%;
+    overflow: hidden;
+    margin: auto;
+    top: 0px;
+}
+
+.settingsImageBoxUser img{ 
+  position: relative;
+  width: auto;
+    height: 100%;
 }
 
 .newProfileImageBtn {

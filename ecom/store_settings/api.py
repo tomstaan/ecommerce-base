@@ -18,6 +18,9 @@ class StoreSettingViewSet(viewsets.ModelViewSet):
     serializer_class = StoreSettingSerializer
 
     def list(self, request, *args, **kwargs):
+        existingSettings = StoreSettings.objects.filter(owner = self.request.user).count()
+        if existingSettings < 1:
+            return HttpResponse({'error': 'settings dont exist already exists'}, status=400)
         relatingSettings = StoreSettings.objects.all().get(owner=self.request.user)
         serializer = StoreSettingSerializer(relatingSettings)
         return Response(serializer.data)
@@ -38,20 +41,25 @@ class StoreSettingViewSet(viewsets.ModelViewSet):
     
     def update(self, request, *args, **kwargs):
         pk = kwargs['pk']
-        profile_pic = request.data['profile_pic']
-        store_name = request.data['store_name']
+        profile_pic = ""
+        store_name = ""
+
         print(pk)
-        print(profile_pic)
-        print(store_name)
-        
         instance = StoreSettings.objects.get(pk=pk)
         print(instance)
-        
-        instance.profile_pic = profile_pic
-        instance.store_name = store_name
+
+        if 'profile_pic' in request.data:
+            profile_pic = request.data['profile_pic']
+            instance.profile_pic = profile_pic
+            print(profile_pic)
+        if 'store_name' in request.data:
+            store_name = request.data['store_name']
+            instance.store_name = store_name
+            print(store_name)
+
         instance.save()
 
-        data = StoreSettingSerializer(instance).data
+        data = StoreSettingSerializer(instance, partial=True).data
 
         return Response(data)
     
