@@ -66,6 +66,7 @@ export const CLEAR_SALES_ON_LOGOUT = 'CLEAR_SALES_ON_LOGOUT';
 export const REDIRECT_URL = 'REDIRECT_URL';
 export const GET_USERNAME = 'GET_USERNAME';
 export const CHANGE_USERNAME = 'CHANGE_USERNAME';
+export const CHANGE_PASSWORD = 'CHANGE_PASSWORD';
 
 // Error Message handling
 export const GET_ERRORS = "GET_ERRORS";

@@ -17,6 +17,9 @@ const alertOptions = {
   // you can also just use 'bottom center'
   position: 'top center',
   timeout: 3000,
+  containerStyle: {
+    zIndex: 500
+  }
 }
 
 class App extends Component {

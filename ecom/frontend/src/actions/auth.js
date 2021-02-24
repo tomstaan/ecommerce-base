@@ -10,6 +10,7 @@ import {
   REGISTER_FAIL,
   REDIRECT_URL,
   CHANGE_USERNAME,
+  CHANGE_PASSWORD
 } from "./types";
 
 import { createMessage, returnErrors } from "./messages";
@@ -138,6 +139,26 @@ export const changeUsername = (username, user_id) => (dispatch, getState) => {
     .catch((err) => {
       console.log(err);
     });
+};
+
+// CHANGE USERNAME
+export const changePassword = (password, user_id) => (dispatch, getState) => {
+  axios
+    .patch(
+      `${process.env.REACT_APP_HOST_IP_ADDRESS}/api/auth/change/password/${user_id}`,
+      password,
+      tokenConfig(getState)
+    )
+    .then((res) => {
+      dispatch(createMessage({ password: "Password Changed" }));
+      dispatch({
+        type: CHANGE_PASSWORD,
+        payload: username
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors("password", "error changing password"))
+    );
 };
 
 // LOGOUT USER

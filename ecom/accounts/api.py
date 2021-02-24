@@ -71,14 +71,16 @@ class ChangePasswordAPI(generics.GenericAPIView):
 
     def patch(self, request, *args, **kwargs):
         pk = kwargs['pk']
-        newpassword = request.data['password']
-        print(pk)
-        print(newpassword)
+        password = request.data['password']
+        newpassword = request.data['newpassword']
 
         if User.objects.filter(pk=pk).exists():
             user = User.objects.get(pk=pk)
-            user.set_password(newpassword)
-            user.save()
-            return HttpResponse({'message': 'Password changed sucessfully'}, status=200)
+            if user.check_password(password):
+                user.set_password(newpassword)
+                user.save()
+                return HttpResponse({'message': 'Password changed sucessfully'}, status=200)
+            else:
+                return HttpResponse({'error': 'Wrong Password'}, status=400)
         else:
             return HttpResponse({'error': 'user does not exist'}, status=400)

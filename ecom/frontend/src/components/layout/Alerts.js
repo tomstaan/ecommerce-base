@@ -19,6 +19,12 @@ export class Alerts extends Component {
       if (error.msg.non_field_errors) this.props.alert.error(error.msg.non_field_errors.join());
       if (error.msg.username) this.props.alert.error(`Username: ${error.msg.username.join()}`);
       if (error.msg.password) this.props.alert.error(`Password: ${error.msg.password.join()}`);
+      if (error.msg == "passwordmatch") {
+        this.props.alert.error(error.status);
+      }
+      if (error.msg == "passwordempty") {
+        this.props.alert.error(error.status);
+      }
     }
 
     if (message !== prevProps.message) {
@@ -26,6 +32,7 @@ export class Alerts extends Component {
       if (message.product) this.props.alert.success(message.product);
       if (message.category) this.props.alert.success(message.category);
       if (message.settings) this.props.alert.success(message.settings);
+      if (message.password) this.props.alert.success(message.password);
     }
   }
 
