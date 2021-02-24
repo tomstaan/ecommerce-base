@@ -20,7 +20,7 @@
   "homepage": "https://github.com/TomSCoding/ecommerce-base#readme",
   "devDependencies": {
     "@babel/core": "^7.13.1",
-    "@babel/preset-env": "^7.12.17",
+    "@babel/preset-env": "^7.13.0",
     "@babel/preset-react": "^7.12.13",
     "@putout/plugin-webpack": "^1.2.0",
     "@types/react-alert": "^5.2.0",
@@ -31,9 +31,9 @@
     "webpack-cli": "^4.5.0"
   },
   "dependencies": {
-    "@popperjs/core": "^2.8.2",
+    "@popperjs/core": "^2.8.3",
     "@stripe/react-stripe-js": "^1.2.2",
-    "@stripe/stripe-js": "^1.12.1",
+    "@stripe/stripe-js": "^1.13.0",
     "apexcharts": "^3.25.0",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
@@ -63,6 +63,6 @@
     "stream-http": "^3.1.1",
     "url-loader": "^4.1.0",
     "uuid": "^8.3.2",
-    "webpack": "^5.23.0"
+    "webpack": "^5.24.0"
   }
 }
