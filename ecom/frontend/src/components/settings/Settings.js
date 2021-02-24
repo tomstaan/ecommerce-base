@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect, Provider } from "react-redux";
+import { BrowserRouter, Link, withRouter, Router } from "react-router-dom";
 import axios from "axios";
 import store from "../../store";
 import "./../style/settings.css";
 
-import { tokenConfig } from "../../actions/auth";
+import { tokenConfig, changeUsername } from "../../actions/auth";
 
 import Header from "../layout/Header";
 import GalleryIcon from "./../style/images/pic.png";
@@ -32,6 +33,9 @@ export class Settings extends Component {
   componentDidMount() {
     this.props.getSettings();
     this.getSettingsUpdate();
+    this.setState({
+      username: this.props.user.username,
+    });
     store.subscribe(() => {
       if (this.subscribed == true) {
         this.setState({
@@ -39,6 +43,7 @@ export class Settings extends Component {
           profile_pic_url: store.getState().products.profile_pic_url,
           storename: store.getState().products.storename,
           exists: store.getState().products.exists,
+          username: store.getState().auth.user.username,
         });
       }
     });
@@ -113,8 +118,15 @@ export class Settings extends Component {
     // --------------
     e.preventDefault();
 
-    const { storename, profile_pic_url, settingsId } = this.state;
+    const { storename, profile_pic_url, settingsId, username } = this.state;
 
+    // Update username
+    const username_data = {
+      username,
+    };
+    this.props.changeUsername(username_data, this.props.user.id);
+
+    // add profile image to send
     var newSettings = new FormData();
     if (profile_pic_url != "") {
       newSettings.append(
@@ -142,9 +154,13 @@ export class Settings extends Component {
         <div className="settingsBack">
           <h3>Settings</h3>
           <div className="settingsCont">
-            <div className="changePassBtn">
-              <h4>Change Password</h4>
-            </div>
+            <Link to="/settings/password">
+              <div>
+                <div className="changePassBtn">
+                  <h4>Change Password</h4>
+                </div>
+              </div>
+            </Link>
             <div className="settingsImageCont">
               <div className="settingsImage">
                 {profile_pic == "" ? (
@@ -212,10 +228,12 @@ const mapStateToProps = (state) => ({
   profile_pic_url: state.settings.profile_pic_url,
   storename: state.settings.storename,
   exists: state.settings.exists,
+  user: state.auth.user,
 });
 
 export default connect(mapStateToProps, {
   getSettings,
   createSettings,
   updateSettings,
+  changeUsername,
 })(Settings);

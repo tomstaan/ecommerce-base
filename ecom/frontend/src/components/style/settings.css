@@ -15,6 +15,7 @@
   padding-top: 8px;
   padding-bottom: 20px;
   font-weight: bold;
+  text-decoration: none;
 }
 
 .settingsCont {
@@ -35,10 +36,14 @@
   margin-bottom: 15px;
   box-shadow: 0px 3px 12px 2px rgba(0, 0, 0, 0.16);
   cursor: pointer;
+  color: #fff;
+  text-decoration: none;
 }
+
 
 .changePassBtn:hover {
     opacity: .7;
+    text-decoration: none;
 }
 
 .changePassBtn h4 {
@@ -49,6 +54,7 @@
   line-height: 40px;
   text-align: center;
   font-weight: bold;
+  text-decoration: none;
 }
 
 
@@ -207,3 +213,28 @@
     opacity: .7;
   }
 
+.settingsPassBack{
+  position: relative;
+  margin-top: 0px;
+  max-width: 1600px;
+  width: 95%;
+  margin: auto;
+  margin-top: 10px;
+}
+
+.changePasswordTitle h4{
+  position: relative;
+  color: #000;
+  margin-top: 15px;
+  font-size: 25px;
+  font-weight: bold;
+  line-height: 25px;
+  text-align: left;
+  font-family: "Open Sans", sans-serif;
+}
+
+.changePasswordForm{
+  position: relative;
+  margin-top: 15px;
+  max-width: 300px;
+}

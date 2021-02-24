@@ -9,16 +9,20 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   REDIRECT_URL,
+  CHANGE_USERNAME,
 } from "./types";
 
-import { createMessage, returnErrors } from './messages';
+import { createMessage, returnErrors } from "./messages";
 
 // CHECK TOKEN & LOAD USER
 export const loadUser = () => (dispatch, getState) => {
   // User Loading
   dispatch({ type: USER_LOADING });
   axios
-    .get(`${process.env.REACT_APP_HOST_IP_ADDRESS}/api/auth/user`, tokenConfig(getState))
+    .get(
+      `${process.env.REACT_APP_HOST_IP_ADDRESS}/api/auth/user`,
+      tokenConfig(getState)
+    )
     .then((res) => {
       dispatch({
         type: USER_LOADED,
@@ -46,15 +50,21 @@ export const login = (username, password) => (dispatch) => {
   const body = JSON.stringify({ username, password });
 
   axios
-    .post(`${process.env.REACT_APP_HOST_IP_ADDRESS}/api/auth/login`, body, config)
+    .post(
+      `${process.env.REACT_APP_HOST_IP_ADDRESS}/api/auth/login`,
+      body,
+      config
+    )
     .then((res) => {
-      dispatch(createMessage({ login: 'Login Successful' }));
+      dispatch(createMessage({ login: "Login Successful" }));
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data,
       });
     })
-    .catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
 };
 
 // REGISTER USER
@@ -70,7 +80,11 @@ export const register = ({ username, password, email }) => (dispatch) => {
   const body = JSON.stringify({ username, email, password });
 
   axios
-    .post(`${process.env.REACT_APP_HOST_IP_ADDRESS}/api/auth/register`, body, config)
+    .post(
+      `${process.env.REACT_APP_HOST_IP_ADDRESS}/api/auth/register`,
+      body,
+      config
+    )
     .then((res) => {
       dispatch({
         type: REGISTER_SUCCESS,
@@ -88,7 +102,11 @@ export const register = ({ username, password, email }) => (dispatch) => {
 // LOGOUT USER
 export const logout = () => (dispatch, getState) => {
   axios
-    .post(`${process.env.REACT_APP_HOST_IP_ADDRESS}/api/auth/logout`, null, tokenConfig(getState))
+    .post(
+      `${process.env.REACT_APP_HOST_IP_ADDRESS}/api/auth/logout`,
+      null,
+      tokenConfig(getState)
+    )
     .then((res) => {
       dispatch({ type: "CLEAR_DASHBOARD_ON_LOGOUT" });
       dispatch({ type: "CLEAR_CATEGORY_ON_LOGOUT" });
@@ -103,11 +121,30 @@ export const logout = () => (dispatch, getState) => {
     });
 };
 
+// CHANGE USERNAME
+export const changeUsername = (username, user_id) => (dispatch, getState) => {
+  axios
+    .patch(
+      `${process.env.REACT_APP_HOST_IP_ADDRESS}/api/auth/change/username/${user_id}`,
+      username,
+      tokenConfig(getState)
+    )
+    .then((res) => {
+      dispatch({
+        type: CHANGE_USERNAME,
+        payload: username
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 // LOGOUT USER
 export const redirectUrl = (url) => (dispatch) => {
   dispatch({
     type: REDIRECT_URL,
-    payload: url
+    payload: url,
   });
 };
 

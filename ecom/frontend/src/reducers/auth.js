@@ -8,6 +8,8 @@ import {
     REGISTER_SUCCESS,
     REGISTER_FAIL,
     REDIRECT_URL,
+    GET_USERNAME,
+    CHANGE_USERNAME,
   } from '../actions/types';
   
   const initialState = {
@@ -37,6 +39,14 @@ import {
           ...state,
           redirectUrl: action.payload,
         };
+      case CHANGE_USERNAME:
+        return {
+          ...state,
+          user: {
+            ...state.user,
+            username: action.payload.username
+          }
+        }
       case LOGIN_SUCCESS:
       case REGISTER_SUCCESS:
         localStorage.setItem('token', action.payload.token);
