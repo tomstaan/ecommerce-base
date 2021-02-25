@@ -30,6 +30,11 @@ class PopularItems extends Component {
 
   componentDidMount(){
     this.props.getPopularProducts()
+    this.interval = setInterval(() => this.props.getPopularProducts(), 5000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
   render() {

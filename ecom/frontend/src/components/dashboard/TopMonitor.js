@@ -33,8 +33,12 @@ export class TopMonitor extends Component {
   };
 
   componentDidMount(){
-    console.log("Get dashboard stats")
     this.props.getDashboardStatistics()
+    this.interval = setInterval(() => this.props.getDashboardStatistics(), 5000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
 

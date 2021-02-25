@@ -19,8 +19,13 @@ class CategoryItems extends Component {
     getUserCountries: PropTypes.func.isRequired,
   };
 
-  componentDidMount() {
-    this.props.getUserCountries();
+  componentDidMount(){
+    this.props.getUserCountries()
+    this.interval = setInterval(() => this.props.getUserCountries(), 5000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
   render() {

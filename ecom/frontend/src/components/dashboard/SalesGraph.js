@@ -34,6 +34,11 @@ class SalesGraph extends Component {
 
   componentDidMount(){
     this.props.getDashboardSalesGraph()
+    this.interval = setInterval(() => this.props.getDashboardSalesGraph(), 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
   render() {
