@@ -157,7 +157,7 @@ export class Settings extends Component {
             <Link to="/settings/password">
               <div>
                 <div className="changePassBtn">
-                  <h4>Change Password</h4>
+                  <h4 style={{textDecoration: 'none'}}><span className="changePassBtnSpan">Change Password</span></h4>
                 </div>
               </div>
             </Link>

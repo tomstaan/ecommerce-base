@@ -56,6 +56,13 @@
   font-weight: bold;
   text-decoration: none;
 }
+.changePassBtnSpan{
+  text-decoration: none;
+}
+
+.changePassBtn span{
+  text-decoration: none;
+}
 
 
 .settingsImageCont{
