@@ -145,6 +145,7 @@ export class Settings extends Component {
       this.props.createSettings(newSettings);
     }
   };
+  
 
   render() {
     const { profile_pic, username, storename } = this.state;
