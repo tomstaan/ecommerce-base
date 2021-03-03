@@ -25,7 +25,7 @@ SECRET_KEY = 'tjp!u#8t0f21!@yt8^pk@vtk3de0eh56*_1=o(x64o8_u&t2$8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1', '172.18.0.3', '0.0.0.0']
 
 
 # Application definition
@@ -102,11 +102,21 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ecom',
         'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': 'db',
+        'PORT': '3306',
+    }
+}
+'''
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'ecom',
+        'USER': 'root',
         'PASSWORD': '',
     }
 }
-
-
+'''
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 

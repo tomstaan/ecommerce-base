@@ -15,6 +15,7 @@ class PopularItems extends Component {
         chart: {
             height: 380,
             type: 'bar',
+            width: '100%',
         },
         xaxis: {
             categories: [],
@@ -40,14 +41,15 @@ class PopularItems extends Component {
   render() {
     return (
       <div>
-        <div className="salesGraphBaseContainer">
-          <h4>Popular</h4>
+        <div className="salesGraphBaseContainerPopular">
+          <h4>Popular Products</h4>
           <div className="salesGraphSalesCont">
           <Chart
               options={this.props.popular_options}
               series={this.props.popular_series}
               type="bar"
-              width="500"
+              width="100%"
+              height="360px"
             />
           </div>
         </div>

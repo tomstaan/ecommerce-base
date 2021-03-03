@@ -7,6 +7,7 @@ import store from "../../store";
 import "./../style/settings.css";
 
 import { tokenConfig, changeUsername } from "../../actions/auth";
+import { Fragment } from "react";
 
 import Header from "../layout/Header";
 import GalleryIcon from "./../style/images/pic.png";
@@ -152,6 +153,24 @@ export class Settings extends Component {
     return (
       <div>
         <Header />
+        <div
+          className={
+            this.props.settingsLoadingScreen
+              ? "loadingBackground"
+              : "loadingBackgroundHidden"
+          }
+        >
+          <div className="loadingBox">
+            <Fragment>
+              <div className="lds-ring">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+            </Fragment>
+          </div>
+        </div>
         <div className="settingsBack">
           <h3>Settings</h3>
           <div className="settingsCont">
@@ -164,7 +183,7 @@ export class Settings extends Component {
             </Link>
             <div className="settingsImageCont">
               <div className="settingsImage">
-                {profile_pic == "" ? (
+                {profile_pic == "" || profile_pic == null ? (
                   <div className="settingsImageBox">
                     <img
                       src={GalleryIcon}
@@ -230,6 +249,7 @@ const mapStateToProps = (state) => ({
   storename: state.settings.storename,
   exists: state.settings.exists,
   user: state.auth.user,
+  settingsLoadingScreen: state.dashboard.settingsLoadingScreen,
 });
 
 export default connect(mapStateToProps, {

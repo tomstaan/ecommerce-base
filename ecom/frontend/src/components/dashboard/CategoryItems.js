@@ -9,7 +9,6 @@ import { Fragment } from "react";
 class CategoryItems extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       countries: [],
     };
@@ -19,9 +18,13 @@ class CategoryItems extends Component {
     getUserCountries: PropTypes.func.isRequired,
   };
 
-  componentDidMount(){
-    this.props.getUserCountries()
-    this.interval = setInterval(() => this.props.getUserCountries(), 5000);
+  componentDidMount() {
+    this.props.getUserCountries();
+    if (this.props.auth.token != null) {
+      this.interval = setInterval(() => this.props.getUserCountries(), 5000);
+    } else {
+      clearInterval(this.interval);
+    }
   }
 
   componentWillUnmount() {
@@ -57,6 +60,7 @@ class CategoryItems extends Component {
 
 const mapStateToProps = (state) => ({
   countries: state.dashboard.countries,
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, {

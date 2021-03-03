@@ -16,6 +16,7 @@ const initalState = {
   options: {
     chart: {
       type: "line",
+      width: '100%',
     },
     xaxis: {
       categories: [],
@@ -31,6 +32,7 @@ const initalState = {
     chart: {
       height: 380,
       type: "bar",
+      width: '100%',
     },
     xaxis: {
       categories: [],
@@ -63,6 +65,7 @@ export default function (state = initalState, action) {
         options: {
           chart: {
             type: "line",
+            width: '100%',
           },
           xaxis: {
             categories: action.payload["dates"],
@@ -82,6 +85,7 @@ export default function (state = initalState, action) {
           chart: {
             height: 380,
             type: "bar",
+            width: '100%',
           },
           xaxis: {
             categories: action.payload["product"],
@@ -92,12 +96,13 @@ export default function (state = initalState, action) {
             data: action.payload["amount_sold"],
           },
         ],
+        dashLoadingScreen: false,
       };
     case GET_USER_COUNTRIES:
       return {
         ...state,
         countries: action.payload,
-        dashLoadingScreen: false,
+        
       };
     case CLEAR_DASHBOARD_ON_LOGOUT:
       return {

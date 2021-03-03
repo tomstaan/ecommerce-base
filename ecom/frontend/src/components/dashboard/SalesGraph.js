@@ -13,7 +13,8 @@ class SalesGraph extends Component {
     this.state = {
       options: {
         chart: {
-            type: 'line'
+            type: 'line',
+            width: '100%',
         },
         xaxis: {
             categories: []
@@ -51,7 +52,8 @@ class SalesGraph extends Component {
               options={this.props.options}
               series={this.props.series}
               type="line"
-              width="500"
+              height="360px"
+              width="100%"
             />
           </div>
         </div>

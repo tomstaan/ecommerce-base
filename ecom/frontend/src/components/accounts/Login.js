@@ -16,6 +16,10 @@ export class Login extends Component {
     isAuthenticated: PropTypes.bool,
   };
 
+  componentDidMount(){
+    console.log(process.env.REACT_APP_HOST_IP_ADDRESS)
+  }
+
   onSubmit = (e) => {
     e.preventDefault();
     this.props.login(this.state.username, this.state.password);

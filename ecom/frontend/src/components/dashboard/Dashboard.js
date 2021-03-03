@@ -37,7 +37,6 @@ export class Dashboard extends Component {
           <TopMonitor />
           <SalesGraph />
           <PopularItems />
-          <CategoryItems />
         </div>
       </div>
     );

@@ -9,6 +9,7 @@ import {
     profile_pic_url: "",
     storename: "",
     exists: false,
+    settingsLoadingScreen: true,
   };
   
   export default function (state = initalState, action) {
@@ -18,7 +19,8 @@ import {
           ...state,
           profile_pic: action.payload.profile_pic,
           storename: action.payload.store_name,
-          exists: true
+          exists: true,
+          settingsLoadingScreen: false,
         };
       case CREATE_SETTINGS:
         return {
@@ -31,7 +33,8 @@ import {
         return {
           ...state,
           profile_pic: action.payload.profile_pic,
-          storename: action.payload.store_name
+          storename: action.payload.store_name,
+          settingsLoadingScreen: false,
         }
       default:
         return state;

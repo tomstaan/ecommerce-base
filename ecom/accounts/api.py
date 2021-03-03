@@ -4,6 +4,7 @@ from knox.models import AuthToken
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from .serializers import UserSerializer, RegisterSerializer, LoginSerializer
+from store_settings.models import StoreSettings
 
 # Register API
 class RegisterAPI(generics.GenericAPIView):
@@ -13,6 +14,8 @@ class RegisterAPI(generics.GenericAPIView):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
+        store_name = "Ecommerce Manager"
+        res = StoreSettings.objects.create(store_name=store_name, owner=user)
         return Response({
             "user": UserSerializer(user, context=self.get_serializer_context()).data,
             "token": AuthToken.objects.create(user)[1]
