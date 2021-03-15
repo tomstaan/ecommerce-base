@@ -15,7 +15,7 @@ import { tokenConfig } from './auth';
 //Get Products
 export const getSales = () => (dispatch, getState) => {
   axios
-    .get(`${process.env.REACT_APP_HOST_IP_ADDRESS}/api/sales/`, tokenConfig(getState))
+    .get(`${process.env.REACT_APP_HOST_PROD_IP_ADDRESS}/api/sales/`, tokenConfig(getState))
     .then((res) => {
       dispatch({
         type: GET_ALL_SALES,

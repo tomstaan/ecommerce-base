@@ -10,7 +10,7 @@ import { createMessage, returnErrors } from './messages';
 export const getSettings = () => (dispatch, getState) => {
   axios
     .get(
-      `${process.env.REACT_APP_HOST_IP_ADDRESS}/api/store/settings/`,
+      `${process.env.REACT_APP_HOST_PROD_IP_ADDRESS}/api/store/settings/`,
       tokenConfig(getState)
     )
     .then((res) => {
@@ -26,7 +26,7 @@ export const getSettings = () => (dispatch, getState) => {
 export const createSettings = (settings) => (dispatch, getState) => {
   axios
     .post(
-      `${process.env.REACT_APP_HOST_IP_ADDRESS}/api/store/settings/`,
+      `${process.env.REACT_APP_HOST_PROD_IP_ADDRESS}/api/store/settings/`,
       settings,
       tokenConfig(getState)
     )
@@ -46,7 +46,7 @@ export const createSettings = (settings) => (dispatch, getState) => {
 export const updateSettings = (settings, id) => (dispatch, getState) => {
   axios
     .put(
-      `${process.env.REACT_APP_HOST_IP_ADDRESS}/api/store/settings/${id}/`,
+      `${process.env.REACT_APP_HOST_PROD_IP_ADDRESS}/api/store/settings/${id}/`,
       settings,
       tokenConfig(getState)
     )

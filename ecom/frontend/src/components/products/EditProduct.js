@@ -95,7 +95,7 @@ export class EditProduct extends Component {
     let meetupId = this.props.match.params.id;
     axios
       .get(
-        `http://127.0.0.1:8000/api/products/${meetupId}/`,
+        `${process.env.REACT_APP_HOST_PROD_IP_ADDRESS}/api/products/${meetupId}/`,
         tokenConfig(store.getState)
       )
       .then((response) => {
@@ -120,7 +120,7 @@ export class EditProduct extends Component {
   getProductImages() {
     let meetupId = this.props.match.params.id;
     axios
-      .get(`http://127.0.0.1:8000/api/products/${meetupId}/images/`)
+      .get(`${process.env.REACT_APP_HOST_PROD_IP_ADDRESS}/api/products/${meetupId}/images/`)
       .then((response) => {
         this.props.setSavedPictures(response.data);
       })

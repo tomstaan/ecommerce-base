@@ -33,7 +33,7 @@ import { tokenConfig } from './auth';
 //Get Products
 export const getProducts = () => (dispatch, getState) => {
   axios
-    .get(`${process.env.REACT_APP_HOST_IP_ADDRESS}/api/products`, tokenConfig(getState))
+    .get(`${process.env.REACT_APP_HOST_PROD_IP_ADDRESS}/api/products`, tokenConfig(getState))
     .then((res) => {
       dispatch({
         type: GET_PRODUCTS,
@@ -46,7 +46,7 @@ export const getProducts = () => (dispatch, getState) => {
 //Delete Products
 export const deleteProducts = (id) => (dispatch, getState) => {
   axios
-    .delete(`${process.env.REACT_APP_HOST_IP_ADDRESS}/api/products/${id}/`, tokenConfig(getState))
+    .delete(`${process.env.REACT_APP_HOST_PROD_IP_ADDRESS}/api/products/${id}/`, tokenConfig(getState))
     .then((res) => {
       //Message for adding leads
       dispatch(
@@ -64,7 +64,7 @@ export const deleteProducts = (id) => (dispatch, getState) => {
 export const getAllProductImages = (productId) => (dispatch, getState) => {
   axios
     .get(
-      `${process.env.REACT_APP_HOST_IP_ADDRESS}/api/products/${productId}/images/`, tokenConfig(getState)
+      `${process.env.REACT_APP_HOST_PROD_IP_ADDRESS}/api/products/${productId}/images/`, tokenConfig(getState)
     )
     .then((res) => {
       dispatch({
@@ -78,7 +78,7 @@ export const getAllProductImages = (productId) => (dispatch, getState) => {
 //ADD Category
 export const addProduct = (product) => (dispatch, getState) => {
   axios
-    .post(`${process.env.REACT_APP_HOST_IP_ADDRESS}/api/products/`, product, tokenConfig(getState))
+    .post(`${process.env.REACT_APP_HOST_PROD_IP_ADDRESS}/api/products/`, product, tokenConfig(getState))
     .then((res) => {
       dispatch(createMessage({ product: 'Product Added' }));
       dispatch({
@@ -92,7 +92,7 @@ export const addProduct = (product) => (dispatch, getState) => {
 //Edit Category
 export const editProduct = (product, id) => (dispatch, getState) => {
   axios
-    .put(`${process.env.REACT_APP_HOST_IP_ADDRESS}/api/products/${id}/`,product, tokenConfig(getState))
+    .put(`${process.env.REACT_APP_HOST_PROD_IP_ADDRESS}/api/products/${id}/`,product, tokenConfig(getState))
     .then((res) => {
       dispatch({
         type: EDIT_PRODUCT,
@@ -121,7 +121,7 @@ export const setSavedPictures = (pictures) => (dispatch) => {
 //Add product images to id of product
 export const addPicsToProd = (picture) => (dispatch, getState) => {
   axios
-    .post(`${process.env.REACT_APP_HOST_IP_ADDRESS}/api/productimage/`, picture, tokenConfig(getState))
+    .post(`${process.env.REACT_APP_HOST_PROD_IP_ADDRESS}/api/productimage/`, picture, tokenConfig(getState))
     .then((res) => {
       dispatch({
         type: ADD_IMAGE_TO_PRODUCT,
@@ -234,7 +234,7 @@ export const selectEditMode = (mode) => (dispatch) => {
 export const deleteProductImage = (pictures) => (dispatch, getState) => {
   axios
     .delete(
-      `${process.env.REACT_APP_HOST_IP_ADDRESS}/api/productimage/${pictures.id}/`,
+      `${process.env.REACT_APP_HOST_PROD_IP_ADDRESS}/api/productimage/${pictures.id}/`,
       { 
         data: { pictures },
         headers: {

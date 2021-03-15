@@ -98,7 +98,12 @@ export class ProductList extends Component {
   }
 
   handleImage(picture) {
-    return "/media/"+picture
+    // If production mode is enabled return a different image folder
+    if (process.env.REACT_APP_HOST_PROD_IP_ADDRESS) {
+      return "/static/media/"+picture
+    } else {
+      return "/media/"+picture
+    }
   }
 
   render() {

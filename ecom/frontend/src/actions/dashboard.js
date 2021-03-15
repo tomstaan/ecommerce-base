@@ -7,15 +7,13 @@ import {
   GET_USER_COUNTRIES
 } from "./types.js";
 
-import { createMessage, returnErrors } from './messages';
-
 import { tokenConfig } from './auth';
 
 // Get Monthly sales
-
+// get
 export const getDashboardStatistics = () => (dispatch, getState) => {
   axios
-    .get(`${process.env.REACT_APP_HOST_IP_ADDRESS}/api/dashboard/statistics/`, tokenConfig(getState))
+    .get(`${process.env.REACT_APP_HOST_PROD_IP_ADDRESS}/api/dashboard/statistics/`, tokenConfig(getState))
     .then((res) => {
       dispatch({
         type: GET_DASHBOARD_STATISTICS,
@@ -27,7 +25,7 @@ export const getDashboardStatistics = () => (dispatch, getState) => {
 
 export const getDashboardSalesGraph = () => (dispatch, getState) => {
   axios
-    .get(`${process.env.REACT_APP_HOST_IP_ADDRESS}/api/dashboard/salesgraph/`, tokenConfig(getState))
+    .get(`${process.env.REACT_APP_HOST_PROD_IP_ADDRESS}/api/dashboard/salesgraph/`, tokenConfig(getState))
     .then((res) => {
       dispatch({
         type: GET_DASHBOARD_SALES_GRAPH,
@@ -39,7 +37,7 @@ export const getDashboardSalesGraph = () => (dispatch, getState) => {
 
 export const getPopularProducts = () => (dispatch, getState) => {
   axios
-    .get(`${process.env.REACT_APP_HOST_IP_ADDRESS}/api/dashboard/popularproducts/`, tokenConfig(getState))
+    .get(`${process.env.REACT_APP_HOST_PROD_IP_ADDRESS}/api/dashboard/popularproducts/`, tokenConfig(getState))
     .then((res) => {
       dispatch({
         type: GET_POPULAR_PRODUCTS,
@@ -51,7 +49,7 @@ export const getPopularProducts = () => (dispatch, getState) => {
 
 export const getUserCountries = () => (dispatch, getState) => {
   axios
-    .get(`${process.env.REACT_APP_HOST_IP_ADDRESS}/api/dashboard/usercountries/`, tokenConfig(getState))
+    .get(`${process.env.REACT_APP_HOST_PROD_IP_ADDRESS}/api/dashboard/usercountries/`, tokenConfig(getState))
     .then((res) => {
       dispatch({
         type: GET_USER_COUNTRIES,

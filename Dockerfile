@@ -43,7 +43,7 @@ RUN apk add --update \
   tiff-dev \
   tk-dev \
   zlib-dev
-RUN export PIP_DEFAULT_TIMEOUT=100
+#RUN export PIP_DEFAULT_TIMEOUT=100
 RUN pip install --upgrade pip
 RUN pip install -r /requirements.txt
 RUN apk del .tmp
@@ -54,13 +54,17 @@ WORKDIR /ecom
 COPY ./scripts /scripts
 
 RUN chmod +x /scripts/*
+RUN pwd
 
 RUN mkdir -p /vol/web/media
 RUN mkdir -p /vol/web/static
 
 RUN adduser -D user
 RUN chown -R user:user /vol
-RUN chown -R 755 /vol/web
-USER user 
+RUN chown -R user:user manage.py
+RUN chmod 755 -R manage.py
+RUN chmod 777 -R /vol/web
+
+USER root
 
 CMD ["entrypoint.sh"]

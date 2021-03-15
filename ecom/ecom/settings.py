@@ -20,12 +20,16 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+#SECRET_KEY = os.environ.get('SECRET_KEY', 'changeme')
 SECRET_KEY = 'tjp!u#8t0f21!@yt8^pk@vtk3de0eh56*_1=o(x64o8_u&t2$8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ['127.0.0.1', '172.18.0.3', '0.0.0.0']
+DEBUG = bool(int(os.environ.get('DEBUG', 0)))
+#'127.0.0.1', '172.18.0.3', '0.0.0.0'
+ALLOWED_HOSTS = []
+ALLOWED_HOSTS_ENV = os.environ.get('ALLOWED_HOSTS')
+if ALLOWED_HOSTS_ENV:
+    ALLOWED_HOSTS.extend(ALLOWED_HOSTS_ENV.split(','))
 
 
 # Application definition
@@ -67,10 +71,11 @@ MIDDLEWARE = [
 ]
 
 # Allows API requests from other servers
+'''
 CORS_ORIGIN_WHITELIST = [
    'http://127.0.0.1:8000',
-]
-#CORS_ORIGIN_ALLOW_ALL = True
+]'''
+CORS_ORIGIN_ALLOW_ALL = True
 
 
 ROOT_URLCONF = 'ecom.urls'
@@ -153,7 +158,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_URL = '/static/'
+#STATIC_URL = '/static/'
+STATIC_URL = '/static/static/'
 
 # Tells django where static files are stored
 '''
@@ -161,5 +167,12 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'assets'),
 )
 '''
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-MEDIA_URL =  '/media/'
+
+#MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+#MEDIA_URL =  '/media/'
+MEDIA_URL = '/static/media/'
+
+#STATIC_ROOT = '/vol/web/static'
+STATIC_ROOT = os.path.join(BASE_DIR, "/vol/web/static")
+MEDIA_ROOT = os.path.join(BASE_DIR, "/vol/web/media")
+#MEDIA_ROOT = '/vol/web/media'

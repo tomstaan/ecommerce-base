@@ -57,7 +57,7 @@ export class Settings extends Component {
   getSettingsUpdate() {
     axios
       .get(
-        `http://127.0.0.1:8000/api/store/settings/`,
+        `${process.env.REACT_APP_HOST_PROD_IP_ADDRESS}/api/store/settings/`,
         tokenConfig(store.getState)
       )
       .then((response) => {

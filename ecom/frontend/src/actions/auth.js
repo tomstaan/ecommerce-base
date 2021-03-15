@@ -21,7 +21,7 @@ export const loadUser = () => (dispatch, getState) => {
   dispatch({ type: USER_LOADING });
   axios
     .get(
-      `${process.env.REACT_APP_HOST_IP_ADDRESS}/api/auth/user`,
+      `${process.env.REACT_APP_HOST_PROD_IP_ADDRESS}/api/auth/user`,
       tokenConfig(getState)
     )
     .then((res) => {
@@ -52,7 +52,7 @@ export const login = (username, password) => (dispatch) => {
 
   axios
     .post(
-      `${process.env.REACT_APP_HOST_IP_ADDRESS}/api/auth/login`,
+      `${process.env.REACT_APP_HOST_PROD_IP_ADDRESS}/api/auth/login`,
       body,
       config
     )
@@ -82,7 +82,7 @@ export const register = ({ username, password, email }) => (dispatch) => {
 
   axios
     .post(
-      `${process.env.REACT_APP_HOST_IP_ADDRESS}/api/auth/register`,
+      `${process.env.REACT_APP_HOST_PROD_IP_ADDRESS}/api/auth/register`,
       body,
       config
     )
@@ -104,7 +104,7 @@ export const register = ({ username, password, email }) => (dispatch) => {
 export const logout = () => (dispatch, getState) => {
   axios
     .post(
-      `${process.env.REACT_APP_HOST_IP_ADDRESS}/api/auth/logout`,
+      `${process.env.REACT_APP_HOST_PROD_IP_ADDRESS}/api/auth/logout`,
       null,
       tokenConfig(getState)
     )
@@ -126,7 +126,7 @@ export const logout = () => (dispatch, getState) => {
 export const changeUsername = (username, user_id) => (dispatch, getState) => {
   axios
     .patch(
-      `${process.env.REACT_APP_HOST_IP_ADDRESS}/api/auth/change/username/${user_id}`,
+      `${process.env.REACT_APP_HOST_PROD_IP_ADDRESS}/api/auth/change/username/${user_id}`,
       username,
       tokenConfig(getState)
     )
@@ -145,7 +145,7 @@ export const changeUsername = (username, user_id) => (dispatch, getState) => {
 export const changePassword = (password, user_id) => (dispatch, getState) => {
   axios
     .patch(
-      `${process.env.REACT_APP_HOST_IP_ADDRESS}/api/auth/change/password/${user_id}`,
+      `${process.env.REACT_APP_HOST_PROD_IP_ADDRESS}/api/auth/change/password/${user_id}`,
       password,
       tokenConfig(getState)
     )
