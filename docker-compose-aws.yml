@@ -15,7 +15,7 @@ services:
       - static_data:/vol/web
     environment: 
       - SECRET_KEY=tjp!u#8t0f21!@yt8^pk@vtk3de0eh56*_1=o(x64o8_u&t2$$8
-      - ALLOWED_HOSTS=127.0.0.1, localhost, 0.0.0.0, 54.247.147.49
+      - ALLOWED_HOSTS=127.0.0.1, localhost, 0.0.0.0, 54.247.147.49, 172.31.24.121
 
   proxy:
     restart: always
