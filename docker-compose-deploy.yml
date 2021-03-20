@@ -37,7 +37,7 @@ services:
       MYSQL_DATABASE: "ecom"
       MYSQL_USER: root
       MYSQL_PASSWORD: "root"
-      MYSQL_ROOT_HOST: 'localhost'
+      MYSQL_ROOT_HOST: '54.247.147.49'
       MYSQL_ROOT_PASSWORD: "root"
 
 volumes:
