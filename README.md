@@ -15,3 +15,6 @@ User Authentication is handled using tokens with the help of [Django Rest Knox](
  The frontend is compiled using [Babel](https://babeljs.io/).
 
  Pages are rendered using [Webpack](https://webpack.js.org/) as a bundler.
+
+## Link to Demo
+### [Demo](http://ec2-3-83-143-22.compute-1.amazonaws.com/login/)
