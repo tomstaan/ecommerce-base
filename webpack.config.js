@@ -66,8 +66,8 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      "process.env.REACT_APP_HOST_IP_ADDRESS": JSON.stringify("http://3.83.143.22:8000"),
-      "process.env.REACT_APP_HOST_PROD_IP_ADDRESS": JSON.stringify("http://3.83.143.22:8080"),
+      "process.env.REACT_APP_HOST_IP_ADDRESS": JSON.stringify("http://3.83.143.22"),
+      "process.env.REACT_APP_HOST_PROD_IP_ADDRESS": JSON.stringify("http://3.83.143.22"),
       "process.env.PRODUCTION": true
     })
   ]
