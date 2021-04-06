@@ -1,7 +1,7 @@
 
 # ECOMMERCE MANAGER
 
-![ecom_design (1)](https://user-images.githubusercontent.com/36516273/113730914-36c30500-96f0-11eb-8566-6602890d26a4.png)
+![ecom_design (2)](https://user-images.githubusercontent.com/36516273/113732665-ad143700-96f1-11eb-8208-46c4b1956684.png)
 
 Ecommerce management system build with the help of the [Stripe api](https://stripe.com/docs/api), lets users manage their ecommerce store, by managing products, categorising products, viewing sales in real time and viewing their transactions. 
 
